@@ -1,1 +1,2 @@
-# [Zodiac syllabus](https://github.com/greenfox-academy/zodiac-syllabus)
+# Ferenc Hartmann
+[Zodiac syllabus](https://github.com/greenfox-academy/zodiac-syllabus)
