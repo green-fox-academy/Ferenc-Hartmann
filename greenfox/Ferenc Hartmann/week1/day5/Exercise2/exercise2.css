@@ -1,0 +1,35 @@
+body{
+    width: 300px;
+}
+
+p{
+    margin-left: 30px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    font-family: courier;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 18px;
+    text-align: center;
+    color: white;
+    background-image: url(duck.png);
+    background-repeat: no-repeat;
+}
+
+.leftpic{
+    background-color: tomato;
+    background-size: 75px;
+    background-position: left;
+}
+
+.midpic{
+    background-color: purple;
+    background-size: 150px;
+    background-position: center;
+}
+
+.rightpic{
+    background-color: grey;
+    background-size: 75px;
+    background-position: bottom right;
+}

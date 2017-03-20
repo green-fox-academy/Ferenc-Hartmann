@@ -1,0 +1,37 @@
+body{
+    margin-left: 30px;
+    width: 350px;
+    border-style: solid;
+    border-color: rgb(66, 133, 244);
+    border-width: 15px;
+    padding: 0;
+}
+
+div{
+    font-size: 30px;
+    font-family: arial;
+    color: white;
+    text-align: center;
+    background-color: rgb(14, 145, 161);
+    height: 78px;
+    width: 350px;
+    border: 0;
+    margin: 0;
+    padding-top: 50px;
+}
+
+#boxone{
+    background-color: rgb(230, 118, 118);
+}
+
+#boxtwo{
+    background-color: rgb(242, 240, 98);
+}
+
+#boxthree{
+    background-color: rgb(169, 230, 230);
+}
+
+#boxfour{
+    background-color: rgb(118, 146, 228);
+}

@@ -1,0 +1,22 @@
+body{
+    width: 300px;
+    margin-left: 100px;
+}
+
+p{
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+    border-top: 20px;
+    padding: 20px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.lastparagraph{
+    border-bottom: 0px;
+}
+
+p:hover{
+    background-color: tomato;
+}

@@ -1,0 +1,32 @@
+h1{
+    color: blue;
+    font-size: 36px;
+    font-weight: bold;
+}
+
+h2{
+    color: orange;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.first {
+    color: blue;
+}
+
+html body ul{
+    list-style-type: square;
+}
+
+html body ul ul{
+    list-style-type: disc;
+    color: black;
+}
+
+.third{
+        color: red;
+}
+
+ol{
+    color: black;
+}

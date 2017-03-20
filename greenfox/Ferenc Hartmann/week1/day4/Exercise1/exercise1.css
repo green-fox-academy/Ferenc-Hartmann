@@ -1,0 +1,22 @@
+*{
+    margin: 8px;
+    padding: 0;
+}
+
+p{
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+div{
+    font-size: 30px;
+    font-family: arial;
+    color: rgb(0, 85, 102);
+    background-color: rgb(14, 145, 161);
+    height: 130px;
+    width: 350px;
+    border-width: 5px;
+    border-color: rgb(125, 206, 148);
+    border-style: solid;
+    margin-bottom: 20px;
+}

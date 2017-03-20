@@ -1,0 +1,52 @@
+div{
+    font-size: 30px;
+    font-family: arial;
+    color: white;
+    text-align: center;
+    height: 78px;
+    width: 350px;
+    border: 0;
+    margin: 0;
+    padding-top: 35px;
+}
+
+.alltheboxes{
+    margin:20px;
+    margin-left:30px;
+    padding:0;
+    height: auto;
+}
+
+.redbox{
+    margin-top:0;
+    width: 350px;
+    height: auto;
+    padding: 0;
+    border-style: solid;
+    border-color: rgb(66, 133, 244);
+    border-width: 15px;
+}
+
+.azurebox{
+    margin-top:5px;
+    width: 350px;
+    height: auto;
+    padding: 0;
+    border-style: solid;
+    border-color: rgb(66, 133, 244);
+    border-width: 15px;
+}
+
+.boxone{
+    background-color: rgb(230, 118, 118);
+    margin-top:0;
+    padding-top:50px;
+    border:0;
+}
+
+.boxtwo{
+    background-color: rgb(169, 230, 230);
+    margin-top:0;
+    padding-top:50px;
+    border:0;
+}

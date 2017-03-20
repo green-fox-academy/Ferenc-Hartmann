@@ -1,0 +1,15 @@
+body{
+    width: 300px;
+    margin-left: 100px;
+}
+
+p{
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 0;
+    padding-left: 20px;
+
+}

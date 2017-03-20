@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <title>My nice page</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="style.css">
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <h1>Galleys</h1>
+    </header>
+
+    <img src="img/cover.jpeg" alt="cover image">
+
+    <article>
+      <h1>How She Got There</h1>
+
+      <h2>An interview with <a href="http://muledesign.com/" target="blank">Mule Design’s</a> Erika Hall about philosophy, phone calls and her professional journey.</h2>
+
+      <p><em>In the fall of 2013 I interviewed Erika Hall, co-founder of Mule Design Studio, one of the most influential design practices in North America. It was the first of fourteen interviews that I would conduct for my book How They Got There: Interviews With Digital Designers About Their Careers, and so in many ways it was the most important, too.</em></p>
+
+      <p>Erika had been profiled numerous times in many different forums, and her insights on design, business and technology were well known. I was after something narrower, though. I wanted to hear about the nitty gritty of her professional journey, the trials and tribulations she encountered in finding meaningful work, and the stories of her lucky breaks and less lucky mishaps. The goal of How They Got There was to document the random things that conspire together to forge every career, even very high profile ones like Erika’s.</p>
+
+      <p>I knew that, if it went off well, our discussion would serve as a kind of template for the others that would follow, and so I was relieved when Erika talked about her professional life with such unaffected candor and incisive wit. Her tales of the first dot-com bubble and burst, and how she salvaged from that wreckage the building blocks that would lead to Mule Design, were exactly what I was looking for. This interview remains one of my very favorites from all of the ones I conducted for How They Got There.</p>
+
+      <!--pontok-->
+      <div class="section-divider">. . .</div>
+
+      <p><strong>You studied philosophy at Dartmouth. How did you get from there into doing the kind of work that you’re doing? What was the first step?</strong></p>
+
+      <p>Well, let’s see, the first step was graduating into a recession with a philosophy degree [laughs].</p>
+
+      <p><strong>Perfect.</strong></p>
+
+      <p>Then the first job I got, amusingly, was — you know how venture capital partnerships frequently have girls in the front office? That’s the job I had immediately after graduating. Well, not as immediately as I would have liked — I got it six months after graduating. I did not know what a venture capital partnership was, but I knew that my philosophy degree qualified me to sit at a front desk while I figured things out. It was a pretty unsuccessful partnership. It wasn’t even on Sand Hill Road. I had no idea what they did. So I spent a couple of years working at this grunty VC job for no money with horrible people, and all my friends were working at Apple.</p>
+
+      <img class="woman" src="img/woman.jpeg" alt="woman">
+
+      <p><strong>So when you saw the web, you said, “This is what I want to do.” How specific was that idea? Was it like, “I just want to do something in this industry” or was it “I want to be publishing here” or “I want to be programming”?</strong></p>
+
+      <p>I wanted to somehow be involved. At that point, everybody was making it up as they went along. At the time, we were asking ourselves, “What is this for?” There was no commercial Internet. Having things online, being able to communicate asynchronously, always being networked — that was what I loved about being in school and communicating by email, and hating the phone. That was so natural to me.</p>
+    </article>
+</body>
+</html>
