@@ -49,13 +49,13 @@ while True:
                                     print("health 0 and you died")
                             elif ua == da:
                                 print("You attacked very hard but no damage")
-                                print("")                            
+                                print("")
                     elif str(a3) == "r" or str(a3) == "R":
                         print("game over")
                         raise SystemExit
                     elif str(a3) == "q" or str(a3) == "Q":
-                        raise SystemExit
                         print("quit3")
+                        raise SystemExit
                     else:
                         print("Please press [A] or [R]")
             #Choosing knight
@@ -95,20 +95,20 @@ while True:
                         print("game over")
                         raise SystemExit
                     elif str(a3) == "q" or str(a3) == "Q":
-                        raise SystemExit
                         print("quit3")
+                        raise SystemExit
                     else:
                         print("Please press [A] or [R]")
             elif str(a2) == "q" or str(a2) == "Q":
-                raise SystemExit
                 print("quit3")
+                raise SystemExit
             else:
                 print("Please press [A] or [K]")
     elif str(a1) == "h" or str(a1) == "H":
         print("help")
     elif str(a1) == "q" or str(a1) == "Q":
-        raise SystemExit
         print("quit")
+        raise SystemExit
     elif str(a1) == "m" or str(a1) == "M":
         print("main")
     else:
