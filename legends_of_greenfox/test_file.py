@@ -1,26 +1,47 @@
-hp = 0
+health = 0
 damage = 0
 dex = 0
 a1 = 0
 a2 = 0
+a3 = 0
 anykey = str(0)
 def first_decision():
     while True:
-#Main Menu
+        #Main Menu
         a1 = input("a1")
         if str(a1) == "s" or str(a1) == "S":
             print("start")
             while True:
-#Character choosing
+                #Character choosing
                 a2 = input("a2")
-                if str(a2) == "a" or str(a1) == "A":
+                if str(a2) == "a" or str(a2) == "A":
                     print("archer")
-                    anykey = str(input("anykey"))
+                    health = 10
+                    damage = 2
+                    dex = 12
+                    anykey = str(input("press [Enter]"))
                     print("prologue archer")
+                    while True:
+                        #Archer story starts here
+                        a3 = input("a3")
+                        if str(a3) == "a" or str(a3) == "A":
+                            print("Battle")
+                            anykey = str(input("press [Enter]"))
+                        elif str(a3) == "r" or str(a3) == "R":
+                            print("run")
+                            raise SystemExit
+                        elif str(a3) == "q" or str(a3) == "Q":
+                            raise SystemExit
+                            print("quit3")
+                        else:
+                            print("Please press [S] or [A]")
+
                 elif str(a2) == "k" or str(a2) == "K":
                     print("knight")
                     anykey = str(input("anykey"))
                     print("prologue knight")
+                    #Archer story starts here
+                    a3 = input("a3")
                 elif str(a2) == "q" or str(a2) == "Q":
                     raise SystemExit
                     print("quit2")
