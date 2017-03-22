@@ -14,22 +14,22 @@ while True:
     #Main Menu
     a1 = input("a1")
     if str(a1) == "s" or str(a1) == "S":
-        print("start")
+        print("character choosing screen")
         while True:
-            #Character choosing
             a2 = input("a2")
+            #Choosing archer
             if str(a2) == "a" or str(a2) == "A":
-                print("archer")
+                print("archer chosen screen")
                 health = 10
                 damage = 2
                 dex = 12
                 anykey = str(input("press [Enter]"))
-                print("prologue archer")
+                print("archer prologue screen")
                 while True:
                     #Archer story starts here
                     a3 = input("a3")
                     if str(a3) == "a" or str(a3) == "A":
-                        print("Battle")
+                        print("archer pre-battle screen")
                         anykey = str(input("press [Enter]"))
                         #Battle calculation
                         while health > 0 and dragon_health > 0:
@@ -40,16 +40,16 @@ while True:
                                 print("dragon took " + str(damage) + " damage")
                                 print("")
                                 if dragon_health == 0:
-                                    print("dragon_health 0")
+                                    print("dragon_health 0 and you win!")
                             elif ua < da:
                                 health =  (health - dragon_damage)
                                 print("You took " + str(dragon_damage) + " damage")
                                 print("")
                                 if health == 0:
-                                    print("health 0")
+                                    print("health 0 and you died")
                             elif ua == da:
                                 print("You attacked very hard but no damage")
-
+                                print("")                            
                     elif str(a3) == "r" or str(a3) == "R":
                         print("game over")
                         raise SystemExit
@@ -58,18 +58,19 @@ while True:
                         print("quit3")
                     else:
                         print("Please press [A] or [R]")
+            #Choosing knight
             if str(a2) == "k" or str(a2) == "K":
-                print("knight")
+                print("knight chosen screen")
                 health = 20
                 damage = 2
                 dex = 8
                 anykey = str(input("press [Enter]"))
-                print("prologue knight")
+                print("knight prologue screen")
                 while True:
                     #Knight story starts here
                     a3 = input("a3")
                     if str(a3) == "a" or str(a3) == "A":
-                        print("Battle")
+                        print("knight pre-battle screen")
                         anykey = str(input("press [Enter]"))
                         #Battle calculation
                         while health > 0 and dragon_health > 0:
@@ -80,16 +81,16 @@ while True:
                                 print("dragon took " + str(damage) + " damage")
                                 print("")
                                 if dragon_health == 0:
-                                    print("dragon_health 0")
+                                    print("dragon_health 0 and you win!")
                             elif ua < da:
                                 health =  (health - dragon_damage)
                                 print("You took " + str(dragon_damage) + " damage")
                                 print("")
                                 if health == 0:
-                                    print("health 0")
+                                    print("health 0 and you died")
                             elif ua == da:
                                 print("You attacked very hard but no damage")
-
+                                print("")
                     elif str(a3) == "r" or str(a3) == "R":
                         print("game over")
                         raise SystemExit
@@ -98,6 +99,11 @@ while True:
                         print("quit3")
                     else:
                         print("Please press [A] or [R]")
+            elif str(a2) == "q" or str(a2) == "Q":
+                raise SystemExit
+                print("quit3")
+            else:
+                print("Please press [A] or [K]")
     elif str(a1) == "h" or str(a1) == "H":
         print("help")
     elif str(a1) == "q" or str(a1) == "Q":
