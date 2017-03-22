@@ -1,10 +1,25 @@
+import random
 health = 0
 damage = 0
 dex = 0
+dragon_health = 10
+dragon_damage = 1
+dragon_dex = 10
 a1 = 0
 a2 = 0
 a3 = 0
 anykey = str(0)
+
+def battle_calculation(dragon):
+    while True
+        a = random.randrange(2, 12)
+        print(a)
+
+
+
+
+
+
 while True:
     #Main Menu
     a1 = input("a1")
@@ -66,8 +81,6 @@ while True:
         print("main")
     else:
         print("Please press [Q] or [S] or [H]")
-
-
 
 #http://www.chris.com/ascii/joan/www.geocities.com/SoHo/7373/mythical2.html
 #http://patorjk.com/software/taag/#p=display&h=1&f=Big&t=Help%20Menu
