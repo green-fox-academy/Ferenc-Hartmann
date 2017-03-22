@@ -10,21 +10,20 @@ a2 = 0
 a3 = 0
 anykey = str(0)
 
-def battle_calculation():
-    while True:
-        a = random.randrange(2, 12)
-        if (dex + a) > (dragon_dex + a):
-            dragon_health -= damage
-            print("dragon took" + damage + "damage")
-        if (dex + a) < (dragon_dex + a):
-            health -= dragon_damage
-            print("You took" + damage + "damage")
-        if health == 0:
-            break
-            print("health 0")
-        if dragon_health == 0:
-            break
-            print("dragon_health 0")
-        else:
-            print("You attacked very hard but no damage")
-battle_calculation()
+while True:
+    r = random.randrange(2, 12)
+    print(r)
+    if (dex + r) > (dragon_dex + r):
+        dragon_health -= damage
+        print("dragon took" + str(damage) + "damage")
+    if (dex + r) < (dragon_dex + r):
+        health -= dragon_damage
+        print("You took" + str(dragon_damage) + "damage")
+    else:
+        print("You attacked very hard but no damage")
+    if health == 0:
+        print("health 0")
+        break
+    if dragon_health == 0:
+        print("dragon_health 0")
+        break
