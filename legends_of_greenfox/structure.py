@@ -10,16 +10,6 @@ a2 = 0
 a3 = 0
 anykey = str(0)
 
-def battle_calculation(dragon):
-    while True
-        a = random.randrange(2, 12)
-        print(a)
-
-
-
-
-
-
 while True:
     #Main Menu
     a1 = input("a1")
@@ -41,7 +31,25 @@ while True:
                     if str(a3) == "a" or str(a3) == "A":
                         print("Battle")
                         anykey = str(input("press [Enter]"))
-# Battle calculation needs to be here!
+                        #Battle calculation
+                        while health > 0 and dragon_health > 0:
+                            ua = dex + random.randrange(2, 12)
+                            da = dragon_dex + random.randrange(2, 12)
+                            if ua > da:
+                                dragon_health = (dragon_health - damage)
+                                print("dragon took " + str(damage) + " damage")
+                                print("")
+                                if dragon_health == 0:
+                                    print("dragon_health 0")
+                            elif ua < da:
+                                health =  (health - dragon_damage)
+                                print("You took " + str(dragon_damage) + " damage")
+                                print("")
+                                if health == 0:
+                                    print("health 0")
+                            elif ua == da:
+                                print("You attacked very hard but no damage")
+
                     elif str(a3) == "r" or str(a3) == "R":
                         print("game over")
                         raise SystemExit
@@ -63,7 +71,25 @@ while True:
                     if str(a3) == "a" or str(a3) == "A":
                         print("Battle")
                         anykey = str(input("press [Enter]"))
-# Battle calculation needs to be here!
+                        #Battle calculation
+                        while health > 0 and dragon_health > 0:
+                            ua = dex + random.randrange(2, 12)
+                            da = dragon_dex + random.randrange(2, 12)
+                            if ua > da:
+                                dragon_health = (dragon_health - damage)
+                                print("dragon took " + str(damage) + " damage")
+                                print("")
+                                if dragon_health == 0:
+                                    print("dragon_health 0")
+                            elif ua < da:
+                                health =  (health - dragon_damage)
+                                print("You took " + str(dragon_damage) + " damage")
+                                print("")
+                                if health == 0:
+                                    print("health 0")
+                            elif ua == da:
+                                print("You attacked very hard but no damage")
+
                     elif str(a3) == "r" or str(a3) == "R":
                         print("game over")
                         raise SystemExit
