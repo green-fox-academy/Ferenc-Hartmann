@@ -16,6 +16,7 @@ for x in range(4):
         row.append(0)
     a.append(row)
 
+
 a[0][0] = 1
 a[1][1] = 1
 a[2][2] = 1
