@@ -3,6 +3,7 @@ damage = 0
 dex = 0
 a1 = 0
 a2 = 0
+anykey = str(0)
 def first_decision():
     while True:
 #Main Menu
@@ -14,8 +15,12 @@ def first_decision():
                 a2 = input("a2")
                 if str(a2) == "a" or str(a1) == "A":
                     print("archer")
+                    anykey = str(input("anykey"))
+                    print("prologue archer")
                 elif str(a2) == "k" or str(a2) == "K":
                     print("knight")
+                    anykey = str(input("anykey"))
+                    print("prologue knight")
                 elif str(a2) == "q" or str(a2) == "Q":
                     raise SystemExit
                     print("quit2")
