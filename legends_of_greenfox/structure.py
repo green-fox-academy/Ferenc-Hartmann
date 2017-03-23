@@ -5,20 +5,20 @@ dex = 0
 dragon_health = 10
 dragon_damage = 1
 dragon_dex = 10
-a1 = 0
-a2 = 0
-a3 = 0
+user_input_lvl1 = 0
+user_input_lvl2 = 0
+user_input_lvl3 = 0
 anykey = str(0)
 
 while True:
     #Main Menu
-    a1 = input("a1")
-    if str(a1) == "s" or str(a1) == "S":
+    user_input_lvl1 = input("user_input_lvl1")
+    if str(user_input_lvl1) == "s" or str(user_input_lvl1) == "S":
         print("character choosing screen")
         while True:
-            a2 = input("a2")
+            user_input_lvl2 = input("user_input_lvl2")
             #Choosing archer
-            if str(a2) == "a" or str(a2) == "A":
+            if str(user_input_lvl2) == "a" or str(user_input_lvl2) == "A":
                 print("archer chosen screen")
                 health = 10
                 damage = 2
@@ -27,8 +27,8 @@ while True:
                 print("archer prologue screen")
                 while True:
                     #Archer story starts here
-                    a3 = input("a3")
-                    if str(a3) == "a" or str(a3) == "A":
+                    user_input_lvl3 = input("user_input_lvl3")
+                    if str(user_input_lvl3) == "a" or str(user_input_lvl3) == "A":
                         print("archer pre-battle screen")
                         anykey = str(input("press [Enter]"))
                         #Battle calculation
@@ -50,16 +50,16 @@ while True:
                             elif ua == da:
                                 print("You attacked very hard but no damage")
                                 print("")
-                    elif str(a3) == "r" or str(a3) == "R":
+                    elif str(user_input_lvl3) == "r" or str(user_input_lvl3) == "R":
                         print("game over")
                         raise SystemExit
-                    elif str(a3) == "q" or str(a3) == "Q":
+                    elif str(user_input_lvl3) == "q" or str(user_input_lvl3) == "Q":
                         print("quit3")
                         raise SystemExit
                     else:
                         print("Please press [A] or [R]")
             #Choosing knight
-            if str(a2) == "k" or str(a2) == "K":
+            if str(user_input_lvl2) == "k" or str(user_input_lvl2) == "K":
                 print("knight chosen screen")
                 health = 20
                 damage = 2
@@ -68,8 +68,8 @@ while True:
                 print("knight prologue screen")
                 while True:
                     #Knight story starts here
-                    a3 = input("a3")
-                    if str(a3) == "a" or str(a3) == "A":
+                    user_input_lvl3 = input("user_input_lvl3")
+                    if str(user_input_lvl3) == "a" or str(user_input_lvl3) == "A":
                         print("knight pre-battle screen")
                         anykey = str(input("press [Enter]"))
                         #Battle calculation
@@ -91,25 +91,25 @@ while True:
                             elif ua == da:
                                 print("You attacked very hard but no damage")
                                 print("")
-                    elif str(a3) == "r" or str(a3) == "R":
+                    elif str(user_input_lvl3) == "r" or str(user_input_lvl3) == "R":
                         print("game over")
                         raise SystemExit
-                    elif str(a3) == "q" or str(a3) == "Q":
+                    elif str(user_input_lvl3) == "q" or str(user_input_lvl3) == "Q":
                         print("quit3")
                         raise SystemExit
                     else:
                         print("Please press [A] or [R]")
-            elif str(a2) == "q" or str(a2) == "Q":
+            elif str(user_input_lvl2) == "q" or str(user_input_lvl2) == "Q":
                 print("quit3")
                 raise SystemExit
             else:
                 print("Please press [A] or [K]")
-    elif str(a1) == "h" or str(a1) == "H":
+    elif str(user_input_lvl1) == "h" or str(user_input_lvl1) == "H":
         print("help")
-    elif str(a1) == "q" or str(a1) == "Q":
+    elif str(user_input_lvl1) == "q" or str(user_input_lvl1) == "Q":
         print("quit")
         raise SystemExit
-    elif str(a1) == "m" or str(a1) == "M":
+    elif str(user_input_lvl1) == "m" or str(user_input_lvl1) == "M":
         print("main")
     else:
         print("Please press [Q] or [S] or [H]")
