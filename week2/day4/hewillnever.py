@@ -21,4 +21,13 @@ hashmap = [
 #for hashmap[key] in notSoCrypticMessage:
 #    print(hashmap[value])
 
-print(hashmap[notSoCrypticMessage[0]])
+a = 0
+a = notSoCrypticMessage[0]
+print(notSoCrypticMessage[0])
+print(hashmap[1])
+print(hashmap.key[50])
+
+
+for i in range (len(notSoCrypticMessage)):
+    a = notSoCrypticMessage[i]
+    print(hashmap[notSoCrypticMessage[i]])
