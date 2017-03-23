@@ -1,3 +1,66 @@
+
+def quit_screen():
+        print("_______________________________________________________________________________________________________________________________________________________________________________________________")
+        print("")
+        print("")
+        print("")
+        print("")
+        print("")
+        print("")
+        print("")
+        print("")
+        print("")
+        print("")
+        print("")
+        print("")
+        print("")
+        print("")
+        print("")
+        print("")
+        print("")
+        print("")
+        print("")
+        print("")
+        print("")
+        print(r"""                                                        _____    _                                                                              _   """)
+        print(r"""                                                       |  __ \  | |                                                                            | |   """)
+        print(r"""                                                       | |__) | | |   ___    __ _   ___    ___     ___   _   _   _ __    _ __     ___    _ __  | |_   """)
+        print(r"""                                                       |  ___/  | |  / _ \  / _` | / __|  / _ \   / __| | | | | | '_ \  | '_ \   / _ \  | '__| | __| """)
+        print(r"""                                                       | |      | | |  __/ | (_| | \__ \ |  __/   \__ \ | |_| | | |_) | | |_) | | (_) | | |    | |_  """)
+        print(r"""                                                       |_|      |_|  \___|  \__,_| |___/  \___|   |___/  \__,_| | .__/  | .__/   \___/  |_|     \__|  """)
+        print(r"""                                                                                                                | |     | |          """)
+        print(r"""                                                                                                                |_|     |_|          """)
+        print(r"""                                                         _     _                    _                         _                                       _ """)
+        print(r"""                                                        | |   | |                  | |                       | |                                     | | """)
+        print(r"""                                                        | |_  | |__     ___      __| |   ___  __   __   ___  | |   ___    _ __     ___   _ __   ___  | | """)
+        print(r"""                                                        | __| | '_ \   / _ \    / _` |  / _ \ \ \ / /  / _ \ | |  / _ \  | '_ \   / _ \ | '__| / __| | | """)
+        print(r"""                                                        | |_  | | | | |  __/   | (_| | |  __/  \ V /  |  __/ | | | (_) | | |_) | |  __/ | |    \__ \ |_| """)
+        print(r"""                                                         \__| |_| |_|  \___|    \__,_|  \___|   \_/    \___| |_|  \___/  | .__/   \___| |_|    |___/ (_) """)
+        print(r"""                                                                                                                         | |             """)
+        print(r"""                                                                                                                         |_|   """)
+        print("")
+        print("")
+        print("")
+        print("")
+        print("")
+        print("")
+        print("")
+        print("")
+        print("")
+        print("")
+        print("")
+        print("")
+
+        print("")
+        print("")
+        print("")
+        print("")
+        print("")
+        print("")
+        print("")
+        print("")
+        print("")
+        print("Legends of Greenfox has been terminated.")
 def black_screen():
     print("")
     print("")
@@ -97,12 +160,6 @@ def main_screen():
     print(r"""                                                                                          START A NEW GAME [S]""")
     print(r"""                                                                                           VIEW HELP MENU [H]""")
     print(r"""                                                                                            QUIT GAME [Q]""")
-main_screen()
-
-a1 = input("")
-
-def help_screen():
-    if str(a1) == "h" or str(a1) == "H":
         print("")
         print("")
         print("")
@@ -157,17 +214,6 @@ def help_screen():
         print("")
         print("")
         print(r"""                                                                                           BACK TO MAIN MENU [M]""")
-help_screen()
-
-a2 = input("")
-
-if str(a2) == "m" or str(a2) == "M":
-    main_screen()
-
-a1 = input("")
-
-def quit_screen():
-    if str(a1) == "q" or str(a1) == "Q":
         print("_______________________________________________________________________________________________________________________________________________________________________________________________")
         print("")
         print("")
@@ -228,13 +274,6 @@ def quit_screen():
         print("")
         print("")
         print("")
-        print("Legends of Greenfox has been terminated.")
-quit_screen()
-
-
-if str(a1) == "s" or str(a1) == "S":
-    print("s pressed")
-
 
 
 

@@ -74,7 +74,6 @@ def quit_screen():
         print("")
         print("")
         print("Legends of Greenfox has been terminated.")
-quit_screen()
 def black_screen():
     print("")
     print("")
