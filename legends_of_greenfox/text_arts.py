@@ -314,7 +314,7 @@ dragon_end
 
 knight_start
 
-                    {}
+                     {}
                     {{}}
                     {{}}
                      {}
