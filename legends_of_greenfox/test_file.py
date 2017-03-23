@@ -11,7 +11,7 @@ user_input_lvl1 = 0
 user_input_lvl2 = 0
 user_input_lvl3 = 0
 anykey = str(0)
-
+i = 0
 def quit_screen():
         print("_______________________________________________________________________________________________________________________________________________________________________________________________")
         print("")
@@ -455,22 +455,32 @@ while True:
                         anykey = str(input("press [Enter]"))
                         #Battle calculation
                         while health > 0 and dragon_health > 0:
+                            i += 1
                             ua = dex + random.randrange(2, 12)
                             da = dragon_dex + random.randrange(2, 12)
                             if ua > da:
                                 dragon_health = (dragon_health - damage)
-                                print("dragon took " + str(damage) + " damage")
+                                print("                                                                       ---------------ROUND " + str(i) + "---------------")
+                                print("")
+                                print("                                                                                DRAGON TOOK " + str(damage) + " DAMAGE")
+                                print("                                                        YOUR HEALTH: " + str(health) +           "                                     DRAGON'S HEALTH: " + str(dragon_health) + "  ")
                                 print("")
                                 if dragon_health == 0:
                                     print("dragon_health 0 and you win!")
                             elif ua < da:
                                 health =  (health - dragon_damage)
-                                print("You took " + str(dragon_damage) + " damage")
+                                print("                                                                       ---------------ROUND " + str(i) + "---------------")
                                 print("")
+                                print("                                                                                 YOU TOOK " + str(dragon_damage) + " DAMAGE")
+                                print("                                                        YOUR HEALTH: " + str(health) +           "                                     DRAGON'S HEALTH: " + str(dragon_health) + "  ")
+                                print("")
+
                                 if health == 0:
                                     print("health 0 and you died")
                             elif ua == da:
-                                print("You attacked very hard but no damage")
+                                print("                                                                       ---------------ROUND " + str(i) + "---------------")
+                                print("")
+                                print("                                                                         YOU ATTACK VERY HARD BUT NO DAMAGE")
                                 print("")
                     elif str(user_input_lvl3) == "r" or str(user_input_lvl3) == "R":
                         print("game over")
