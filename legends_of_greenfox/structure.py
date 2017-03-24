@@ -1,5 +1,7 @@
 #Legends of Greenfox: Made by Ferenc Hartmann from Greenfox Academy
+
 import random
+import time
 health = 0
 damage = 0
 dex = 0
@@ -38,6 +40,7 @@ while True:
                         black_screen()
                         #Battle calculation
                         while health > 0 and dragon_health > 0:
+                            time.sleep(1)
                             battle_rounds += 1
                             ua = dex + random.randrange(2, 12)
                             da = dragon_dex + random.randrange(2, 12)
@@ -100,6 +103,7 @@ while True:
                         black_screen()
                         #Battle calculation
                         while health > 0 and dragon_health > 0:
+                            time.sleep(0.5)
                             battle_rounds += 1
                             ua = dex + random.randrange(2, 12)
                             da = dragon_dex + random.randrange(2, 12)
