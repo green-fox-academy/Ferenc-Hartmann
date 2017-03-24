@@ -550,7 +550,68 @@ def prologue():
     print(r"""                                                                                 PRESS "A" TO ATTACK THE DRAGON """)
     print(r"""                                                                              PRESS "R" TO RUN BACK TO YOUR MUMMY """)
     print("")
-
+def wingame():
+    print("")
+    print("")
+    print("")
+    print("")
+    print("")
+    print("")
+    print("_______________________________________________________________________________________________________________________________________________________________________________________________")
+    print(r"")
+    print(r"""                                       __     __ ____   _    _  __          __ _____  _   _   _______  _    _  ______    _____            __  __  ______   """)
+    print(r"""                                       \ \   / // __ \ | |  | | \ \        / /|_   _|| \ | | |__   __|| |  | ||  ____|  / ____|    /\    |  \/  ||  ____|  """)
+    print(r"""                                        \ \_/ /| |  | || |  | |  \ \  /\  / /   | |  |  \| |    | |   | |__| || |__    | |  __    /  \   | \  / || |__     """)
+    print(r"""                                         \   / | |  | || |  | |   \ \/  \/ /    | |  | . ` |    | |   |  __  ||  __|   | | |_ |  / /\ \  | |\/| ||  __|    """)
+    print(r"""                                          | |  | |__| || |__| |    \  /\  /    _| |_ | |\  |    | |   | |  | || |____  | |__| | / ____ \ | |  | || |____   """)
+    print(r"""                                          |_|   \____/  \____/      \/  \/    |_____||_| \_|    |_|   |_|  |_||______|  \_____|/_/    \_\|_|  |_||______|  """)
+    print("")
+    print(r"""                                                                         __                            """)
+    print(r"""                                                                        /__`.                          """)
+    print(r"""                                                                       / \ `\\                         """)
+    print(r"""                                                                      /   \  `\                        """)
+    print(r"""                                                                     /     \   \                       """)
+    print(r"""                                                                    /_______\  /\                      """)
+    print(r"""                                                                    (((( ))))                          """)
+    print(r"""                                                                   (((' . ')))                                 *****           ***** """)
+    print(r"""                                                                   (((\_-_/)))                              ****   ****     ****   **** """)
+    print(r"""                                                                   (((_) (_)))                            ***         *** ***         *** """)
+    print(r"""                                                                  /((( \ / )))\                          **             ***             ** """)
+    print(r"""                                                                 / (((  ^  ))) \                        **               *              ** """)
+    print(r"""                                                                / / ((  ^  )) \ \                       **                             ** """)
+    print(r"""                                                               ( (   \  ^  /   ) )                       ***                          ** """)
+    print(r"""                                                                \ \   )www(   / /                          ***                      *** """)
+    print(r"""                                                                 `\\ /     \ //'                             ***                  *** """)
+    print(r"""                                                                   /'       `\                                 ****            **** """)
+    print(r"""                                                                  /           \                                   ****       **** """)
+    print(r"""                                                                 /             \                                     ***   *** """)
+    print(r"""                                                                /               \                                      ***** """)
+    print(r"""                                                               /                 \                                       * """)
+    print(r"""                                                              /                   \                    """)
+    print(r"""                                                             /                     \                   """)
+    print(r"""                                                            /                       \                  """)
+    print(r"""                                                           /                         \                 """)
+    print(r"""                                                          /                           \                """)
+    print(r"""                                                         |                             |               """)
+    print(r"""                                                          `-----......_____......-----'                """)
+    print("")
+    print(r"""                                                 _   _    _                           _                               _                                               _        """)
+    print(r"""                                                | | | |  | |                         (_)                             | |                                             | |     """)
+    print(r"""                                __ _  _ __    __| | | |_ | |__    ___    _ __   _ __  _  _ __    ___  ___  ___  ___  | |  ___ __   __ ___  ___   _   _   ___   _   _ | |   """)
+    print(r"""                               / _` || '_ \  / _` | | __|| '_ \  / _ \  | '_ \ | '__|| || '_ \  / __|/ _ \/ __|/ __| | | / _ \\ \ / // _ \/ __| | | | | / _ \ | | | || |      """)
+    print(r"""                       _  _  _| (_| || | | || (_| | | |_ | | | ||  __/  | |_) || |   | || | | || (__|  __/\__ \\__ \ | || (_) |\ V /|  __/\__ \ | |_| || (_) || |_| ||_|     """)
+    print(r"""                      (_)(_)(_)\__,_||_| |_| \__,_|  \__||_| |_| \___|  | .__/ |_|   |_||_| |_| \___|\___||___/|___/ |_| \___/  \_/  \___||___/  \__, | \___/  \__,_|(_)    """)
+    print(r"""                                                                        | |                                                                       __/ |                       """)
+    print(r"""                                                                        |_|                                                                      |___/                            """)
+    print("")
+    print("_______________________________________________________________________________________________________________________________________________________________________________________________")
+    print("")
+    print("                                                                          YOU WIN THE GAME  ...AND THE PRINCESS LOVES YOU! ")
+    print("")
+    print("")
+    print("                                                                                PRESS ANY KEY TO TERMINATE THE GAME ")
+    print("")
+    print("")
 
 #Interactive program starts here
 while True:
@@ -589,7 +650,11 @@ while True:
                                 print("                                                        YOUR HEALTH: " + str(health) +           "                                     DRAGON'S HEALTH: " + str(dragon_health) + "  ")
                                 print("")
                                 if dragon_health == 0:
-                                    print("dragon_health 0 and you win!")
+                                    anykey = str(input(""))
+                                    wingame()
+                                    anykey = str(input(""))
+                                    quit_screen()
+                                    raise SystemExit
                             elif ua < da:
                                 health =  (health - dragon_damage)
                                 print("                                                                       ---------------ROUND " + str(i) + "---------------")
@@ -599,7 +664,11 @@ while True:
                                 print("")
 
                                 if health == 0:
-                                    print("health 0 and you died")
+                                    anykey = str(input(""))
+                                    wingame()
+                                    anykey = str(input(""))
+                                    quit_screen()
+                                    raise SystemExit
                             elif ua == da:
                                 print("                                                                       ---------------ROUND " + str(i) + "---------------")
                                 print("")
@@ -641,7 +710,11 @@ while True:
                                 print("                                                        YOUR HEALTH: " + str(health) +           "                                     DRAGON'S HEALTH: " + str(dragon_health) + "  ")
                                 print("")
                                 if dragon_health == 0:
-                                    print("dragon_health 0 and you win!")
+                                    anykey = str(input(""))
+                                    wingame()
+                                    anykey = str(input(""))
+                                    quit_screen()
+                                    raise SystemExit
                             elif ua < da:
                                 health =  (health - dragon_damage)
                                 print("                                                                       ---------------ROUND " + str(i) + "---------------")
@@ -651,7 +724,11 @@ while True:
                                 print("")
 
                                 if health == 0:
-                                    print("health 0 and you died")
+                                    anykey = str(input(""))
+                                    wingame()
+                                    anykey = str(input(""))
+                                    quit_screen()
+                                    raise SystemExit
                             elif ua == da:
                                 print("                                                                       ---------------ROUND " + str(i) + "---------------")
                                 print("")
