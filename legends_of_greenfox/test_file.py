@@ -1,6 +1,7 @@
 #Legends of Greenfox: Made by Ferenc Hartmann from Greenfox Academy
 
 import random
+import time
 health = 0
 damage = 0
 dex = 0
@@ -11,7 +12,7 @@ user_input_lvl1 = 0
 user_input_lvl2 = 0
 user_input_lvl3 = 0
 anykey = str(0)
-i = 0
+battle_rounds = 0
 def quit_screen():
         print("_______________________________________________________________________________________________________________________________________________________________________________________________")
         print("")
@@ -43,14 +44,14 @@ def quit_screen():
         print(r"""                                                       |_|      |_|  \___|  \__,_| |___/  \___|   |___/  \__,_| | .__/  | .__/   \___/  |_|     \__|  """)
         print(r"""                                                                                                                | |     | |          """)
         print(r"""                                                                                                                |_|     |_|          """)
-        print(r"""                                                         _     _                    _                         _                                       _ """)
-        print(r"""                                                        | |   | |                  | |                       | |                                     | | """)
-        print(r"""                                                        | |_  | |__     ___      __| |   ___  __   __   ___  | |   ___    _ __     ___   _ __   ___  | | """)
-        print(r"""                                                        | __| | '_ \   / _ \    / _` |  / _ \ \ \ / /  / _ \ | |  / _ \  | '_ \   / _ \ | '__| / __| | | """)
-        print(r"""                                                        | |_  | | | | |  __/   | (_| | |  __/  \ V /  |  __/ | | | (_) | | |_) | |  __/ | |    \__ \ |_| """)
-        print(r"""                                                         \__| |_| |_|  \___|    \__,_|  \___|   \_/    \___| |_|  \___/  | .__/   \___| |_|    |___/ (_) """)
-        print(r"""                                                                                                                         | |             """)
-        print(r"""                                                                                                                         |_|   """)
+        print(r"""                                                        _     _                    _                         _                                       _ """)
+        print(r"""                                                       | |   | |                  | |                       | |                                     | | """)
+        print(r"""                                                       | |_  | |__     ___      __| |   ___  __   __   ___  | |   ___    _ __     ___   _ __   ___  | | """)
+        print(r"""                                                       | __| | '_ \   / _ \    / _` |  / _ \ \ \ / /  / _ \ | |  / _ \  | '_ \   / _ \ | '__| / __| | | """)
+        print(r"""                                                       | |_  | | | | |  __/   | (_| | |  __/  \ V /  |  __/ | | | (_) | | |_) | |  __/ | |    \__ \ |_| """)
+        print(r"""                                                        \__| |_| |_|  \___|    \__,_|  \___|   \_/    \___| |_|  \___/  | .__/   \___| |_|    |___/ (_) """)
+        print(r"""                                                                                                                        | |             """)
+        print(r"""                                                                                                                        |_|   """)
         print("")
         print("")
         print("")
@@ -116,7 +117,6 @@ def black_screen():
     print("")
     print("")
     print("")
-black_screen()
 def main_screen():
     print("")
     print("")
@@ -179,7 +179,6 @@ def main_screen():
     print(r"""                                                                                          START A NEW GAME [S]""")
     print(r"""                                                                                           VIEW HELP MENU [H]""")
     print(r"""                                                                                            QUIT GAME [Q]""")
-main_screen()
 def character_choose_screen():
     print("")
     print("")
@@ -469,10 +468,10 @@ def help_screen():
     print("                                                       AT THE BOTTOM OF THE SCREEN THERE IS THE DESCRIPTION AND ABOVE IT YOU CAN READ THE AVAILABLE COMMANDS")
     print("")
     print("")
+    print("                                                       SPECIAL THANKS TO JOAN G. STARK FOR THE AMAZING TEXT ARTS ")
     print("")
     print("")
     print("                                                       CURRENT VERSION: v.0.1.0")
-    print("")
     print("")
     print("")
     print("")
@@ -734,8 +733,47 @@ def runlosegame():
     print("                                                                                 TRUE HEROES NEVER RUN! GAME OVER. ")
     print("")
     print("                                                                                PRESS ANY KEY TO TERMINATE THE GAME ")
+def fightison():
+    print("")
+    print("")
+    print("")
+    print("")
+    print("")
+    print("")
+    print("_______________________________________________________________________________________________________________________________________________________________________________________________")
+    print("")
+    print("")
+    print(r"""                                                                          ______  _         _      _     _                      _  """)
+    print(r"""                                                                         |  ____|(_)       | |    | |   (_)                    | |  """)
+    print(r"""                                                                         | |__    _   __ _ | |__  | |_   _  ___    ___   _ __  | |  """)
+    print(r"""                                                                         |  __|  | | / _` || '_ \ | __| | |/ __|  / _ \ | '_ \ | |  """)
+    print(r"""                                                                         | |     | || (_| || | | || |_  | |\__ \ | (_) || | | ||_|  """)
+    print(r"""                                                                         |_|     |_| \__, ||_| |_| \__| |_||___/  \___/ |_| |_|(_)  """)
+    print(r"""                                                                                      __/ |  """)
+    print(r"""                                                                                     |___/         """)
+    print("")
+    print("")
+def fightisover():
+    print("")
+    print("")
+    print("")
+    print("")
 
+    print(r"""                                                                   ______  _         _      _     _                                _  """)
+    print(r"""                                                                  |  ____|(_)       | |    | |   (_)                              | | """)
+    print(r"""                                                                  | |__    _   __ _ | |__  | |_   _  ___    ___ __   __ ___  _ __ | | """)
+    print(r"""                                                                  |  __|  | | / _` || '_ \ | __| | |/ __|  / _ \\ \ / // _ \| '__|| | """)
+    print(r"""                                                                  | |     | || (_| || | | || |_  | |\__ \ | (_) |\ V /|  __/| |   |_| """)
+    print(r"""                                                                  |_|     |_| \__, ||_| |_| \__| |_||___/  \___/  \_/  \___||_|   (_) """)
+    print(r"""                                                                               __/ |                        """)
+    print(r"""                                                                              |___/                 """)
+    print("_______________________________________________________________________________________________________________________________________________________________________________________________")
+    print("")
+    print("")
+    print("                                                                                           PRESS ANY KEY TO CONTINUE ")
 
+black_screen()
+main_screen()
 #Interactive program starts here
 while True:
     #Main Menu
@@ -760,19 +798,21 @@ while True:
                         dragon_attacks()
                         anykey = str(input(""))
                         black_screen()
+                        fightison()
                         #Battle calculation
                         while health > 0 and dragon_health > 0:
-                            i += 1
+                            battle_rounds += 1
                             ua = dex + random.randrange(2, 12)
                             da = dragon_dex + random.randrange(2, 12)
                             if ua > da:
                                 dragon_health = (dragon_health - damage)
-                                print("                                                                       ---------------ROUND " + str(i) + "---------------")
+                                print("                                                                                 ---------------ROUND " + str(battle_rounds) + "---------------")
                                 print("")
-                                print("                                                                                DRAGON TOOK " + str(damage) + " DAMAGE")
-                                print("                                                        YOUR HEALTH: " + str(health) +           "                                     DRAGON'S HEALTH: " + str(dragon_health) + "  ")
+                                print("                                                                                          DRAGON TOOK " + str(damage) + " DAMAGE")
+                                print("                                                                  YOUR HEALTH: " + str(health) +           "                                     DRAGON'S HEALTH: " + str(dragon_health) + "  ")
                                 print("")
                                 if dragon_health == 0:
+                                    fightisover()
                                     anykey = str(input(""))
                                     wingame()
                                     anykey = str(input(""))
@@ -780,23 +820,25 @@ while True:
                                     raise SystemExit
                             elif ua < da:
                                 health =  (health - dragon_damage)
-                                print("                                                                       ---------------ROUND " + str(i) + "---------------")
+                                print("                                                                                 ---------------ROUND " + str(battle_rounds) + "---------------")
                                 print("")
-                                print("                                                                                 YOU TOOK " + str(dragon_damage) + " DAMAGE")
-                                print("                                                        YOUR HEALTH: " + str(health) +           "                                     DRAGON'S HEALTH: " + str(dragon_health) + "  ")
+                                print("                                                                                           YOU TOOK " + str(dragon_damage) + " DAMAGE")
+                                print("                                                                  YOUR HEALTH: " + str(health) +           "                                     DRAGON'S HEALTH: " + str(dragon_health) + "  ")
                                 print("")
 
                                 if health == 0:
+                                    fightisover()
                                     anykey = str(input(""))
                                     losegame()
                                     anykey = str(input(""))
                                     quit_screen()
                                     raise SystemExit
                             elif ua == da:
-                                print("                                                                       ---------------ROUND " + str(i) + "---------------")
+                                print("                                                                                 ---------------ROUND " + str(battle_rounds) + "---------------")
                                 print("")
-                                print("                                                                         YOU ATTACK VERY HARD BUT NO DAMAGE")
+                                print("                                                                                   YOU ATTACK VERY HARD BUT NO DAMAGE")
                                 print("")
+                            time.sleep(1)
                     elif str(user_input_lvl3) == "r" or str(user_input_lvl3) == "R":
                         runlosegame()
                         anykey = str(input(""))
@@ -822,19 +864,21 @@ while True:
                         dragon_attacks()
                         anykey = str(input(""))
                         black_screen()
+                        fightison()
                         #Battle calculation
                         while health > 0 and dragon_health > 0:
-                            i += 1
+                            battle_rounds += 1
                             ua = dex + random.randrange(2, 12)
                             da = dragon_dex + random.randrange(2, 12)
                             if ua > da:
                                 dragon_health = (dragon_health - damage)
-                                print("                                                                       ---------------ROUND " + str(i) + "---------------")
+                                print("                                                                                 ---------------ROUND " + str(battle_rounds) + "---------------")
                                 print("")
-                                print("                                                                                DRAGON TOOK " + str(damage) + " DAMAGE")
-                                print("                                                        YOUR HEALTH: " + str(health) +           "                                     DRAGON'S HEALTH: " + str(dragon_health) + "  ")
+                                print("                                                                                          DRAGON TOOK " + str(damage) + " DAMAGE")
+                                print("                                                                  YOUR HEALTH: " + str(health) +           "                                     DRAGON'S HEALTH: " + str(dragon_health) + "  ")
                                 print("")
                                 if dragon_health == 0:
+                                    fightisover()
                                     anykey = str(input(""))
                                     wingame()
                                     anykey = str(input(""))
@@ -842,23 +886,24 @@ while True:
                                     raise SystemExit
                             elif ua < da:
                                 health =  (health - dragon_damage)
-                                print("                                                                       ---------------ROUND " + str(i) + "---------------")
+                                print("                                                                                 ---------------ROUND " + str(battle_rounds) + "---------------")
                                 print("")
-                                print("                                                                                 YOU TOOK " + str(dragon_damage) + " DAMAGE")
-                                print("                                                        YOUR HEALTH: " + str(health) +           "                                     DRAGON'S HEALTH: " + str(dragon_health) + "  ")
+                                print("                                                                                           YOU TOOK " + str(dragon_damage) + " DAMAGE")
+                                print("                                                                  YOUR HEALTH: " + str(health) +           "                                     DRAGON'S HEALTH: " + str(dragon_health) + "  ")
                                 print("")
-
                                 if health == 0:
+                                    fightisover()
                                     anykey = str(input(""))
                                     losegame()
                                     anykey = str(input(""))
                                     quit_screen()
                                     raise SystemExit
                             elif ua == da:
-                                print("                                                                       ---------------ROUND " + str(i) + "---------------")
+                                print("                                                                                 ---------------ROUND " + str(battle_rounds) + "---------------")
                                 print("")
-                                print("                                                                         YOU ATTACK VERY HARD BUT NO DAMAGE")
+                                print("                                                                                   YOU ATTACK VERY HARD BUT NO DAMAGE")
                                 print("")
+                            time.sleep(1)
                     elif str(user_input_lvl3) == "r" or str(user_input_lvl3) == "R":
                         runlosegame()
                         anykey = str(input(""))
