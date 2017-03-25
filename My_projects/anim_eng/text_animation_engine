@@ -1,0 +1,12 @@
+#192 x 65
+
+l=range(5)
+print l
+[0, 1, 2, 3, 4]
+''.join(str(i) for i in l)
+
+
+
+#w, h = 9, 60;
+#Matrix = [[0 for x in range(w)] for y in range(h)]
+#print (Matrix)
