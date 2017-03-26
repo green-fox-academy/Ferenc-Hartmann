@@ -1,4 +1,4 @@
-x = int(input("Please enter an odd number for the pyramid: "))
+x = int(input("Please enter an odd number for the diamond: "))
 b = 0
 a = 0
 
