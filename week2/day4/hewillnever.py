@@ -17,17 +17,16 @@ hashmap = [
     {3: "say goodbye"}
 ]
 
-
-#for hashmap[key] in notSoCrypticMessage:
-#    print(hashmap[value])
-
-a = 0
-a = notSoCrypticMessage[0]
-print(notSoCrypticMessage[0])
-print(hashmap[1])
-print(hashmap.key[50])
-
-
-for i in range (len(notSoCrypticMessage)):
-    a = notSoCrypticMessage[i]
-    print(hashmap[notSoCrypticMessage[i]])
+def out():
+    for i in range(len(notSoCrypticMessage)):
+        for j in range(len(hashmap)):
+            c = str(hashmap[j])
+            if (notSoCrypticMessage[i]) == int(c[1]) and c[2] == ":":
+                d = notSoCrypticMessage[i]
+                print(hashmap[j][d])
+            elif c[2] == ":":
+                d = 0
+            elif (notSoCrypticMessage[i]) == int(c[1:3]):
+                d = notSoCrypticMessage[i]
+                print(hashmap[j][d])
+out()
