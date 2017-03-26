@@ -1,10 +1,11 @@
 #192 x 65
 
-l=range(5)
-print l
+l = range(5)
+
 [0, 1, 2, 3, 4]
 ''.join(str(i) for i in l)
 
+print (l)
 
 
 #w, h = 9, 60;

@@ -1,4 +1,5 @@
-x = int(input("Please enter an odd number for the pyramid: "))
+x = 9
+
 b = 0
 a = 0
 
@@ -11,6 +12,3 @@ if x % 2 != 0:
     while (b + 2) < x:
         b += 2
         print(int(b / 2) * " " + (x - b) * "*" + int(b / 2) * " ")
-
-else:
-  print("Please restart the program and enter an ODD number.")
