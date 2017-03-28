@@ -13,12 +13,29 @@
 # The frist columns should be automatically as wide as the longest key
 
 ingredients = [
-	{ 'vodka': 1, 'needs_cooling': True }
-	{ 'coffee_liqueur': 0, 'needs_cooling': True }
-	{ 'fresh_cream': 1, 'needs_cooling': True }
-	{ 'captain_morgan_rum': 2, 'needs_cooling': True }
-	{ 'mint_leaves': 0, 'needs_cooling': False }
-	{ 'sugar': 100, 'needs_cooling': False }
-	{ 'lime juice': 10, 'needs_cooling': True }
+	{ 'vodka': 1, 'needs_cooling': True },
+	{ 'coffee_liqueur': 0, 'needs_cooling': True },
+	{ 'fresh_cream': 1, 'needs_cooling': True },
+	{ 'captain_morgan_rum': 2, 'needs_cooling': True },
+	{ 'mint_leaves': 0, 'needs_cooling': False },
+	{ 'sugar': 100, 'needs_cooling': False },
+	{ 'lime juice': 10, 'needs_cooling': True },
 	{ 'soda': 100, 'needs_cooling': True }
 ]
+
+
+def table_printer():
+	maxlength = 0
+	for p, q in ingredients:
+		if len(p) > maxlength:
+			maxlength = len(p)
+	print("+-" + ("-" * (int(maxlength) + 1)) + "+---------------+----------+" )
+	print("| Ingredient " + (" " * (int(maxlength) - 10)) + "| Needs cooling | In stock |")
+	print("+-" + ("-" * (int(maxlength) + 1)) + "+---------------+----------+" )
+	for p, q in ingredients:
+		print("| " + p + (" " * (maxlength - len(p) + 1)) + "| " + "              |          |")
+
+	print("+-" + ("-" * (int(maxlength) + 1)) + "+---------------+----------+" )
+
+table_printer()
+print(ingredients[0]['vodka'])

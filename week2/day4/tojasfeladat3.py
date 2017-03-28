@@ -11,9 +11,9 @@ pirate["gold"] = 8
 for key in pirate:
     print(key)
 
-#for key, value in pirate.items():
-#    print(key)
-#    print(value)
+for key, value in pirate.items():
+    print(key)
+    print(value)
 
 #for key in pirate:
 #    print(key + ": " + str(pirate[key]))

@@ -1,38 +1,44 @@
+# Create a function that prints the ingredient list of dictionaries to the console in the following format:
+#
+# +--------------------+---------------+----------+
+# | Ingredient         | Needs cooling | In stock |
+# +--------------------+---------------+----------+
+# | vodka              | Yes           | 1        |
+# | coffee_liqueur     | Yes           | -        |
+# | fresh_cream        | Yes           | 1        |
+# | captain_morgan_rum | Yes           | 2        |
+# | mint_leaves        | No            | -        |
+# +--------------------+---------------+----------+
+#
+# The frist columns should be automatically as wide as the longest key
 
-watchlist = []
-
-security_alchol_loot = 0
-
-queue = [
-	{ 'name': 'Amanda', 'alcohol': 10, 'guns': 1 },
-	{ 'name': 'Tibi', 'alcohol': 0, 'guns': 0 },
-	{ 'name': 'Dolores', 'alcohol': 0, 'guns': 1 },
-	{ 'name': 'Wade', 'alcohol': 1, 'guns': 1 },
-	{ 'name': 'Anna', 'alcohol': 10, 'guns': 0 },
-	{ 'name': 'Rob', 'alcohol': 2, 'guns': 0 },
-	{ 'name': 'Joerg', 'alcohol': 20, 'guns': 0 }
+ingredients = [
+	{ 'vodka': 1, 'needs_cooling': True },
+	{ 'coffee_liqueur': 0, 'needs_cooling': True },
+	{ 'fresh_cream': 1, 'needs_cooling': True },
+	{ 'captain_morgan_rum': 2, 'needs_cooling': True },
+	{ 'mint_leaves': 0, 'needs_cooling': False },
+	{ 'sugar': 100, 'needs_cooling': False },
+	{ 'lime juice': 10, 'needs_cooling': True },
+	{ 'soda': 100, 'needs_cooling': True }
 ]
 
-# Queue of festivalgoers at entry
-# no. of alcohol units
-# no. of guns
 
-# Create a security_check function that returns a list of festivalgoers who can enter the festival
+def table_printer():
+	maxlength = 0
+	for p, q in ingredients:
+		if len(p) > maxlength:
+			maxlength = len(p)
+	print("+-" + ("-" * (int(maxlength) + 1)) + "+---------------+----------+" )
+	print("| Ingredient " + (" " * (int(maxlength) - 10)) + "| Needs cooling | In stock |")
+	print("+-" + ("-" * (int(maxlength) + 1)) + "+---------------+----------+" )
+	for p, q in ingredients:
+		for i in range(8):
+			print(ingredients[i][q])
 
-# If guns are found, remove them and put them on the watchlist (only the names)
-# If alcohol is found confiscate it (set it to zero and add it to security_alchol_loot) and let them enter the festival
+		#print(ingredients[p][q])
 
-#def security_check():
-name = ['name:', 'name:', 'name:', 'name:']
-for p in queue:
-	queueclean = {}
-	if p['guns'] == 0:
-		queueclean['name'] = p['name']
+	print("+-" + ("-" * (int(maxlength) + 1)) + "+---------------+----------+" )
 
-
-print(security_alchol_loot)
-print(watchlist)
-print(queueclean)
-
-	#return watchlist = []
-#print(security_check())
+table_printer()
+print(ingredients[0]['vodka'])
