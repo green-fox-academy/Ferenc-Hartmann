@@ -10,7 +10,6 @@ pirate["gold"] = 8
 
 for key in pirate:
     print(key)
-    print(pirate[key])
 
 #for key, value in pirate.items():
 #    print(key)
