@@ -10,23 +10,13 @@
 #   "dog"	"god"	true
 #   "green"	"fox"	false
 
-import random
-
-user_input_0 = input("I will start the calculation from 1. Please enter which should be the highest number what I will calculate for you.")
-print("")
-user_input_1 = input("I have calculated a number between 1 and " + user_input_0 + ". You have 5 lives. Please guess it!")
-
-a = random.randrange(1, int(user_input_0))
-lives = 5
-
-while lives > 0:
-    lives -= 1
-    if int(user_input_1) < a:
-        user_input_1 = input("The stored number is higher than your typed number. Please gueass again!")
-        print("")
-    elif int(user_input_1) > a:
-        user_input_1 = input("The stored number is lower than your typed number. Please gueass again!")
-        print("")
-    elif int(user_input_1) == a:
-        print("You won! Congratulations! You found the number: " + str(a))
-        break
+def anagram():
+    user_input_0 = input("Please enter the first word to analyse: ")
+    print("")
+    user_input_1 = input("Please enter the second word to analyse:")
+    user_input_1 = user_input_1 [::-1]
+    if str(user_input_0) == str(user_input_1):
+        return True
+    else:
+        return False
+print(anagram())
