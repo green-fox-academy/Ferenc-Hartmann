@@ -33,24 +33,24 @@ fac = 0
 tac = 0
 bal = 0
 
-def transfer ():
+def transfer():
 	fac = input("Please enter the account number where you want to start the transfer: ")
 	tac = input("Please enter the account number where you want to do the transfer: ")
 	bal = input("Please enter the balance what you want to transfer: ")
 	n = 0
 	for i in accounts:
-		if accounts[i]['account_number'] == fac:
-			n += 1
-			print("Starter balance before: " + accounts[(n -1)]['balance'])
-			accounts[(n -1)]['balance'] -= bal
-			print("Starter balance after: " + accounts[(n -1)]['balance'])
+		n += 1
+		if i['account_number'] == int(fac):
+			q = accounts[(n -1)]['balance']
+			print("Starter balance before: " + str(q))
+			q -= int(bal)
+			print("Starter balance after: " + str(q))
 			t = 0
 			for j in accounts:
-				if accounts[j]['account_number'] == tac:
-					t += 1
-					print("End balance before: " + accounts[(t -1)]['balance'])
-					accounts[t]['balance'] += bal
-					print("End balance after: " + accounts[(t -1)]['balance'])
-		if n == 0 or t == 0:
-			print("404 - account number not found")
-transfer ()
+				t += 1
+				if j['account_number'] == int(tac):
+					p = accounts[(t -1)]['balance']
+					print("End balance before: " + str(p))
+					p += int(bal)
+					print("End balance after: " + str(p))
+transfer()
