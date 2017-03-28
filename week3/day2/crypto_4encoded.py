@@ -6,26 +6,26 @@
 my_file = 0
 def decrypt(file_name):
     my_file = open("encoded-lines.txt", "r")
-    test = my_file.readlines()
-    n = 0
-    for i in test:
-        a = test[n]
-        n += 1
-        p = len(a)
-        r = 0
-        f = ""
-        ch = 0
-        ch2 = 0
-        ch1 = 0
-        for j in range(p):
-            ch = a[r]
-            ch1 = ord(ch)
-            if ch == " ":
-                ch2 = chr(ch1)
+    lines = my_file.readlines()
+    linecount = 0
+    for line in lines:
+        oneline = lines[linecount]
+        linecount += 1
+        linelength = len(oneline)
+        charcount = 0
+        fulltext = ""
+        onechar = 0
+        char2 = 0
+        char1 = 0
+        for j in range(linelength):
+            onechar = oneline[charcount]
+            char1 = ord(onechar)
+            if onechar == " ":
+                char2 = chr(char1)
             else:
-                ch2 = chr(ch1 - 1)
-            f += ch2
-            r += 1
-        print(f)
+                char2 = chr(char1 - 1)
+            fulltext += char2
+            charcount += 1
+        print(fulltext)
     my_file.close()
 decrypt(my_file)
