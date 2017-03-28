@@ -27,4 +27,5 @@ def decrypt(file_name):
             f += ch2
             r += 1
         print(f)
+    my_file.close()
 decrypt(my_file)

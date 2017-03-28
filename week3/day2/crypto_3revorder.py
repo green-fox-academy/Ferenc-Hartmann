@@ -17,4 +17,5 @@ def decrypt(file_name):
             f += a[r]
             r += 1
         print(f)
+    my_file.close()
 decrypt(my_file)
