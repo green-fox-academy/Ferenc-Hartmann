@@ -23,8 +23,3 @@ def middrawer():
 
 middrawer()
 root.mainloop()
-
-
-
-
-root.mainloop()
