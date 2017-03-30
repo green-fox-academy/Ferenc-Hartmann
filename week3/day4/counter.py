@@ -2,10 +2,11 @@
 
 number = input("Please enter a positiv number to start the count down from :" )
 
+
 def counter(n):
-    if n == 1: #base case
+    if n == 0: #base case
         #print(n)
-        return 1
+        return 0
     else:
         #print(n)
         return (counter(int(n)-1))
