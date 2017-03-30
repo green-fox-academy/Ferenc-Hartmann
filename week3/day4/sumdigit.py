@@ -5,7 +5,6 @@
 number = int(input("Please enter a positiv number to sum the digits :" ))
 
 def sumdigit(n):
-    sum = 0
     if n < 10: #base case
         return n
     else:
