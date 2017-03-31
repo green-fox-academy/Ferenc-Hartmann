@@ -10,22 +10,22 @@ canvas.create_rectangle(670, 0, 1340, 350, outline='black', fill='black', width=
 canvas.create_rectangle(0, 350, 670, 700, outline='black', fill='pink', width=2)
 canvas.create_rectangle(670, 350, 1340, 700, outline='black', fill='Beige', width=2)
 
-def behinddrawer(x, y, size):
+def behindhexadrawer(x, y, size):
     points=[x,y, x+size/2,y, x+3/4*size,y+260/600*size, x+size/2,y+520/600*size, x,y+520/600*size, x-size/4,y+260/600*size]
-    canvas.create_polygon(points, outline='black', width=1, fill='lightblue')
-behinddrawer(250, 40, 300)
+    canvas.create_polygon(points, outline='black', width=1, fill='black')
+behindhexadrawer(250, 40, 300)
 
 
 def largehexadrawer(x, y, size):
     points=[x,y, x+size/2,y, x+3/4*size,y+260/600*size, x+size/2,y+520/600*size, x,y+520/600*size, x-size/4,y+260/600*size]
-    canvas.create_polygon(points, outline='black', width=1, fill='')
+    canvas.create_polygon(points, outline='Light Goldenrod', width=1, fill='')
 def smallhexadrawer(x, y, size):
     points=[x,y, x+size/2,y, x+3/4*size,y+260/600*size, x+size/2,y+520/600*size, x,y+520/600*size, x-size/4,y+260/600*size]
-    canvas.create_polygon(points, outline='black', width=1, fill='Light Goldenrod')
+    canvas.create_polygon(points, outline='Light Goldenrod', width=1, fill='Light Goldenrod')
 
 def drawlargetriangle(x, y, size):
     points=[x,y, x+size, y, x+1/2*size,y+520/600*size,]
-    canvas.create_polygon(points, outline='black', width=1, fill='white')
+    canvas.create_polygon(points, outline='black', width=1, fill='pink')
 def drawsmalltriangle(x, y, size):
     points=[x,y, x+size, y, x+1/2*size,y+520/600*size,]
     canvas.create_polygon(points, outline='black', width=1, fill='black')
