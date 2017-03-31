@@ -4,7 +4,7 @@ root = Tk()
 canvas = Canvas(root, width='600', height='600', bg='white')
 canvas.pack()
 
-canvas.create_polygon([150,40, 450,40, 600,300, 450,560, 150,560, 0,300], outline='black', width=2, fill='white')
+#canvas.create_polygon([150,40, 450,40, 600,300, 450,560, 150,560, 0,300], outline='black', width=2, fill='white')
 
 
 def drawhexa(x, y, size):
@@ -13,8 +13,8 @@ def drawhexa(x, y, size):
 
 def recursive_sg(x, y, size):
     drawhexa(x, y, size)
-    #time.sleep(0.1)
-    #canvas.update()
+    time.sleep(0.1)
+    canvas.update()
     if size > 10:
         recursive_sg(x+size/3,y, size*1/3)
         recursive_sg(x+size/3,y+260/600*4/3*size, size*1/3)
