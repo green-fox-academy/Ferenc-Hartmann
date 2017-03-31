@@ -9,6 +9,7 @@ def firstpic():
     item = canvas.create_image(675, 400, image=pic)
     time.sleep(1)
     canvas.update()
+
 firstpic()
 time.sleep(5)
 canvas.update()
@@ -18,30 +19,29 @@ picture = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\week3\day5\bulldozer_pre
 
 def bulldozer(x, y, size):
     item = canvas.create_image(675, 400, image=pic)
-    canvas.create_rectangle(x-1340, 0, x+size, 700, outline='white', fill='white', width=2)
-    item = canvas.create_image(x+200, 350, image=picture)
+    canvas.create_rectangle(x-1700, 0, x+size, 700, outline='white', fill='white', width=2)
+    item = canvas.create_image(x-200, 350, image=picture)
 
 def movingbulldozer(x, y, size):
     bulldozer(x, y, size)
-    time.sleep(0.03)
+    time.sleep(0.01)
     canvas.update()
-    if (x+size) < 1400:
+    canvas.delete("all")
+    if (x+size) < 1800:
        movingbulldozer(x+size, y, size)
 
-movingbulldozer(0, 0, 15)
-time.sleep(1)
-canvas.update()
+movingbulldozer(0, 0, 5)
+canvas.delete("all")
 
 canvas.create_rectangle(0, 0, 670, 350, outline='black', fill='Light Goldenrod', width=2)
 canvas.create_rectangle(670, 0, 1340, 350, outline='black', fill='black', width=2)
 canvas.create_rectangle(0, 350, 670, 700, outline='black', fill='black', width=2)
-canvas.create_rectangle(670, 350, 1340, 700, outline='black', fill='Beige', width=2)
+canvas.create_rectangle(670, 350, 1340, 700, outline='black', fill='white', width=2)
 
 
 def behindhexadrawer(x, y, size):
     points=[x,y, x+size/2,y, x+3/4*size,y+260/600*size, x+size/2,y+520/600*size, x,y+520/600*size, x-size/4,y+260/600*size]
     canvas.create_polygon(points, outline='black', width=1, fill='black')
-behindhexadrawer(250, 40, 300)
 
 def largehexadrawer(x, y, size):
     points=[x,y, x+size/2,y, x+3/4*size,y+260/600*size, x+size/2,y+520/600*size, x,y+520/600*size, x-size/4,y+260/600*size]
@@ -116,10 +116,14 @@ def recursive_hexa2(x, y, size):
 
 
 def advanceddraw():
+    behindhexadrawer(250, 40, 300)
     recursive_hexa(150, 40, 300)
     recursive_triangle(870, 50, 300)
     behindhexadrawer(250, 390, 300)
     recursive_hexa2(150, 40, 300)
 advanceddraw()
+
+lastpic = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\week3\day5\lastpic.png")
+item = canvas.create_image(1000, 550, image=lastpic)
 
 root.mainloop()
