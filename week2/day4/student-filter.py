@@ -10,7 +10,7 @@ students = [
 
 # create a function that takes a list of students and prints:
 #  - how many candies they have on average
-
+print(students[0][0])
 
 def masscandy():
     rich = 0
