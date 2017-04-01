@@ -38,33 +38,27 @@ canvas.create_rectangle(670, 0, 1340, 350, outline='black', fill='black', width=
 canvas.create_rectangle(0, 350, 670, 700, outline='black', fill='black', width=2)
 canvas.create_rectangle(670, 350, 1340, 700, outline='black', fill='white', width=2)
 
-
 def behindhexadrawer(x, y, size):
     points=[x,y, x+size/2,y, x+3/4*size,y+260/600*size, x+size/2,y+520/600*size, x,y+520/600*size, x-size/4,y+260/600*size]
     canvas.create_polygon(points, outline='black', width=1, fill='black')
-
 def largehexadrawer(x, y, size):
     points=[x,y, x+size/2,y, x+3/4*size,y+260/600*size, x+size/2,y+520/600*size, x,y+520/600*size, x-size/4,y+260/600*size]
     canvas.create_polygon(points, outline='Light Goldenrod', width=1, fill='')
 def smallhexadrawer(x, y, size):
     points=[x,y, x+size/2,y, x+3/4*size,y+260/600*size, x+size/2,y+520/600*size, x,y+520/600*size, x-size/4,y+260/600*size]
     canvas.create_polygon(points, outline='Light Goldenrod', width=1, fill='Light Goldenrod')
-
 def drawlargetriangle(x, y, size):
     points=[x,y, x+size, y, x+1/2*size,y+520/600*size,]
     canvas.create_polygon(points, outline='black', width=1, fill='pink')
 def drawsmalltriangle(x, y, size):
     points=[x,y, x+size, y, x+1/2*size,y+520/600*size,]
     canvas.create_polygon(points, outline='black', width=1, fill='black')
-
 def drawlargehexa2(x, y, size):
     points=[x,y, x+size/2,y, x+3/4*size,y+260/600*size, x+size/2,y+520/600*size, x,y+520/600*size, x-size/4,y+260/600*size]
     canvas.create_polygon(points, fill='Antique White')
-
 def drawsmallhexa2(x, y, size):
     points=[x,y, x+size/2,y, x+3/4*size,y+260/600*size, x+size/2,y+520/600*size, x,y+520/600*size, x-size/4,y+260/600*size]
     canvas.create_polygon(points, outline='black', width=1, fill='black')
-
 def recursive_hexa(x, y, size):
     largehexadrawer(x+100, y, size)
     time.sleep(0.03)
@@ -78,7 +72,6 @@ def recursive_hexa(x, y, size):
         recursive_hexa(x,y, size*1/2)
         recursive_hexa(x+size*225/600,y+size*130/600, size*1/2)
         recursive_hexa(x,y+size*260/600, size*1/2)
-
 def recursive_triangle(x, y, size):
     time.sleep(0.03)
     canvas.update()
@@ -92,7 +85,6 @@ def recursive_triangle(x, y, size):
         recursive_triangle(x, y, size*1/2)
         recursive_triangle(x+size/2,y, size*1/2)
         recursive_triangle(x+size/4,y+260/600*size, size*1/2)
-
 def recursive_hexa2(x, y, size):
     time.sleep(0.03)
     canvas.update()
@@ -112,9 +104,6 @@ def recursive_hexa2(x, y, size):
         recursive_hexa2(x,y, size*1/3)
         recursive_hexa2(x+size*225/600*4/3,y+size*130/600*4/3, size*1/3)
         recursive_hexa2(x,y+size*260/600*4/3, size*1/3)
-
-
-
 def advanceddraw():
     behindhexadrawer(250, 40, 300)
     recursive_hexa(150, 40, 300)
