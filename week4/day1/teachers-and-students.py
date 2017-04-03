@@ -10,11 +10,11 @@ class Student:
     def learn(self):
         print("learn")
     def question(self):
-        Teacher.answer(self)
+        Teacher.answer()
 
 class Teacher:
     def teach(self):
-        Student.learn(self)
+        Student.learn()
     def answer(self):
         print("answer")
 

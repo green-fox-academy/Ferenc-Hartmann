@@ -6,7 +6,7 @@
 #which decreases inkAmount
 
 class Sharpie():
-    def __init__(self, color="", width=0.0):
+    def __init__(self, color="", width):
         self.color = color
         self.width = width
         self.ink_amount = 100
