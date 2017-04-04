@@ -26,12 +26,6 @@ def bgmap():
     bgpic = canvas.create_image(675, 400, image=picture)
 bgmap()
 canvas.update()
-
-
-
-
-
-
 item2 = canvas.create_image(20, 350, image=test_tank_pic)
 item3 = canvas.create_image(220, 350, image=test_tank_pic)
 item4 = 0
@@ -45,8 +39,11 @@ while health > 0:
         item4 = canvas.create_image((x+20), 350, image=projectile)
         canvas.move(item4, (220-40)/8, 0)
         time.sleep(0.03)
-        #canvas.lift(item3)
         canvas.update()
-    time.sleep(1.5)
+    canvas.lower(item4)
+    canvas.lower(item4)
     canvas.update()
+    time.sleep(1.5)
+canvas.update()
+canvas.lower(item3)
 root.mainloop()

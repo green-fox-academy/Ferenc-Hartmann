@@ -49,11 +49,20 @@ def move():
             health = 10
             while health > 0:
                 health-=2
-                canvas.delete(item4)
-                item4 = canvas.create_image((x+20), 350, image=projectile)
-                canvas.move(item4, 30, 0)
-                time.sleep(0.3)
+                x=0
+                while x < (220-40):
+                    x += (220-40)/8
+                    canvas.delete(item4)
+                    item4 = canvas.create_image((x+20), 350, image=projectile)
+                    canvas.move(item4, (220-40)/8, 0)
+                    time.sleep(0.03)
+                    canvas.update()
+                canvas.lower(item4)
+                canvas.lower(item4)
                 canvas.update()
+                time.sleep(1.5)
+            canvas.update()
+            canvas.lower(item3)
 
         canvas.update()
 move()
