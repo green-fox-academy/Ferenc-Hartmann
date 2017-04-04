@@ -1,0 +1,2 @@
+Commitokba azt írni, amik változtak! Nem ilyen "nincs még kész"-eket.
+Használni kell az öröklést, nem csak listék vannak.

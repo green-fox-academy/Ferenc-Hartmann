@@ -35,6 +35,3 @@ class Aircraft():
             return ("Type " + str(self.F16[0]) + ", Ammo: " + str(self.F16[2]) + " Base Damage: " + str(self.F16[3]) + ", " + str((self.F16[2] * self.F16[3]))
         if self.F35[0] = "F35":
             return ("Type " + str(self.F35[0]) + ", Ammo: " + str(self.F35[2]) + " Base Damage: " + str(self.F35[3]) + ", All damage: " + str((self.F35[2] * self.F35[3]))
-
-
-Type F35, Ammo: 10, Base Damage: 50, All Damage: 500
