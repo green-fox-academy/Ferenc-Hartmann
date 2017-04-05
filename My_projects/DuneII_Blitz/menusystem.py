@@ -22,7 +22,9 @@ canvas.update()
 load_screen = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\dune1.png")
 item = canvas.create_image(683, 384, image=load_screen)
 
-
+import vlc
+p = vlc.MediaPlayer("C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\main_menu.mp3")
+p.play()
 
 a = Button(width=20, height=1, fg="white", bg="black", text="Start New Game", font=("Harrington",30,"bold"))
 b = Button(width=20, height=1, fg="white", bg="black", text="Load Game", font=("Harrington",30,"bold"))
