@@ -2,6 +2,7 @@ import unittest
 from Ferenc_Hartmann_work import Needtest
 from Ferenc_Hartmann_work import Summarize
 from Ferenc_Hartmann_work import Anagram
+from Ferenc_Hartmann_work import Letter_Counter
 
 class Alma_tester(unittest.TestCase):
     def test_get_apple(self):
@@ -32,6 +33,20 @@ class Anagramtester(unittest.TestCase):
     def test_false(self):
         string = Anagram()
         self.assertEqual(string.anag("cica", "acitaaaa"), False)
+
+class Letters(unittest.TestCase):
+    def test_null(self):
+        string = Letter_Counter()
+        self.assertEqual(string.lc(""), {})
+    def test_one_letter(self):
+        string = Letter_Counter()
+        self.assertEqual(string.lc("a"), {'a': 1})
+    def test_long_letter(self):
+        string = Letter_Counter()
+        self.assertEqual(string.lc("abcdefghijk"), {'a': 1, 'b': 1, 'c': 1, 'd': 1, 'e': 1, 'f': 1, 'g': 1, 'h': 1, 'i': 1, 'j': 1, 'k': 1})
+    def test_double_long_letter(self):
+        string = Letter_Counter()
+        self.assertEqual(string.lc("aabbccdd"), {'a': 2, 'b': 2, 'c': 2, 'd': 2})
 
 if __name__ == '__main__':
     unittest.main()
