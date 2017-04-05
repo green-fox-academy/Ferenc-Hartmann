@@ -33,3 +33,34 @@ class Anagram():
             return True
         else:
             return False
+
+class Letter_counter():
+    def lc(self, a=""):
+        letter_numbers = {}
+        x = 0
+        y = 1
+        charcounter = 1
+        maxcharcounter = 0
+        sorted_a = sorted(a)
+        print(sorted_a)
+        for i in sorted_a:
+            print(i)
+            if i == " ":
+                pass
+            else:
+                if sorted_a[int(x)] == sorted_a[(int(y))]:
+                    charcounter += 1
+                    if charcounter > maxcharcounter:
+                        maxcharcounter = charcounter
+                    print(maxcharcounter)
+                    letter_numbers[sorted_a[int(x)]] = int(charcounter)
+                else:
+                    charcounter = 1
+                    letter_numbers[sorted_a[int(x)]] = int(charcounter)
+            x += 1
+            y += 1
+        return letter_numbers
+
+
+cucu = Letter_counter()
+cucu.lc("ciamicac")
