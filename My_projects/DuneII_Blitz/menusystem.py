@@ -4,22 +4,49 @@ import random
 from tkinter import*
 root = Tk()
 root.attributes('-fullscreen', True)
-canvas = Canvas(root, width='1366', height='768', bg='white')
+canvas = Canvas(root, width='1366', height='768', bg='black')
 canvas.pack()
-
-def loadscreen():
-    load_screen = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\dune1.png")
-    item = canvas.create_image(683, 384, image=load_screen)
-    canvas.update()
-
-loadscreen()
-time.sleep(1)
 canvas.update()
 
 
+def loadscreen():
+    a = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\hart10.png")
+    b = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\hart9.png")
+    c = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\hart8.png")
+    d = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\hart7.png")
+    e = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\hart6.png")
+    f = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\hart5.png")
+    g = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\hart4.png")
+    h = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\hart3.png")
+    i = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\hart2.png")
+    j = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\hart1.png")
+    pics=[a,b,c,d,e,f,g,h,i,j]
+
+    time.sleep(1)
+
+    for pic in pics:
+        loadscreen = canvas.create_image(670, 384, image=pic)
+        time.sleep(0.05)
+        canvas.update()
+        canvas.delete("all")
+
+    time.sleep(1)
+    pics=reversed(pics)
+
+    for pic in pics:
+        loadscreen = canvas.create_image(670, 384, image=pic)
+        time.sleep(0.05)
+        canvas.update()
+        canvas.delete("all")
+
+loadscreen()
+canvas.delete("all")
+canvas.update()
+time.sleep(1)
 
 
-load_screen = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\dune1.png")
+
+load_screen = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\dune1pro.png")
 item = canvas.create_image(683, 384, image=load_screen)
 
 import vlc
