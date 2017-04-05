@@ -30,7 +30,7 @@ class TestExtend(unittest.TestCase):
         self.assertTrue(extend.is_vovel('o'))
 
     def test_translate_bemutatkozik(self):
-        self.assertEqual(extend.translate('bemutatkozik'), 'bevemuvutavatkovozivik')
+        self.assertEqual(extend.translate('teve'), 'teveveve')
 
     def test_translate_kolbice(self):
         self.assertEqual(extend.translate('kolbice'), 'kovolbiviceve')

@@ -29,8 +29,8 @@ def is_vovel(char):
 
 # Create a method that translates hungarian into the teve language
 def translate(hungarian):
-    teve = hungarian
-    for char in teve:
+    boci = hungarian
+    for char in boci:
         if is_vovel(char):
-            teve = (char+'v'+char).join(teve.split(char))
+            teve = (char+'v'+char).join(boci.split(char))
     return teve
