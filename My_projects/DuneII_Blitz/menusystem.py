@@ -1,6 +1,5 @@
 #DuneII Blitz created by Ferenc Hartmann
 import time
-import random
 from tkinter import*
 root = Tk()
 root.attributes('-fullscreen', True)
@@ -44,26 +43,70 @@ canvas.delete("all")
 canvas.update()
 time.sleep(1)
 
+main_menu = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\dune1pro.png")
+item = canvas.create_image(683, 384, image=main_menu)
+
+def soundplayer():
+    import vlc
+    p = vlc.MediaPlayer("C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\main_menu.mp3")
+    p.play()
+
+soundplayer()
+time.sleep(1)
+
+def start_new_game_button_clicked():
+    global start_button
+    start_button = 0
+    start_button += 1
+    return start_new_game()
+
+start_new_game_button = Button(width=20, height=1, fg="white", bg="black", text="Start New Game", font=("Harrington",30,"bold"), command = start_new_game_button_clicked)
+load_saved_game_button = Button(width=20, height=1, fg="white", bg="black", text="Load Saved Game", font=("Harrington",30,"bold"))
+help_button = Button(width=20, height=1, fg="white", bg="black", text="Help", font=("Harrington",30,"bold"))
+quit_button = Button(width=20, height=1, fg="white", bg="black", text="Quit", font=("Harrington",30,"bold"), command = root.quit)
+
+house_atreides_button =0
+house_ordos_button = 0
+house_harkonnen_button = 0
 
 
-load_screen = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\dune1pro.png")
-item = canvas.create_image(683, 384, image=load_screen)
-
-import vlc
-p = vlc.MediaPlayer("C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\main_menu.mp3")
-p.play()
-
-a = Button(width=20, height=1, fg="white", bg="black", text="Start New Game", font=("Harrington",30,"bold"))
-b = Button(width=20, height=1, fg="white", bg="black", text="Load Game", font=("Harrington",30,"bold"))
-c = Button(width=20, height=1, fg="white", bg="black", text="Help", font=("Harrington",30,"bold"))
-d = Button(width=20, height=1, fg="white", bg="black", text="Quit", font=("Harrington",30,"bold"), command = root.quit)
-
-a.place(relx=0.5, y=400, anchor=CENTER)
-b.place(relx=0.5, y=500, anchor=CENTER)
-c.place(relx=0.5, y=600, anchor=CENTER)
-d.place(relx=0.5, y=700, anchor=CENTER)
+def main_menu_buttons():
+    start_new_game_button.place(relx=0.5, y=400, anchor=CENTER)
+    load_saved_game_button.place(relx=0.5, y=500, anchor=CENTER)
+    help_button.place(relx=0.5, y=600, anchor=CENTER)
+    quit_button.place(relx=0.5, y=700, anchor=CENTER)
 
 
+
+def start_new_game():
+    if start_button > 0:
+        canvas.delete("all")
+        start_new_game_button.place(relx=0.5, y=4000, anchor=CENTER)
+        load_saved_game_button.place(relx=0.5, y=4000, anchor=CENTER)
+        help_button.place(relx=0.5, y=4000, anchor=CENTER)
+        quit_button.place(relx=0.5, y=4000, anchor=CENTER)
+
+        canvas.update()
+        house_atreides_button = Button(width=15, height=1, fg="blue", bg="black", text="House Atreides", font=("Harrington",30,"bold"))
+        house_ordos_button = Button(width=15, height=1, fg="green", bg="black", text="House Ordos", font=("Harrington",30,"bold"))
+        house_harkonnen_button = Button(width=15, height=1, fg="red", bg="black", text="House Harkonnen", font=("Harrington",30,"bold"))
+
+        house_atreides_button.place(x=222, rely=0.75, anchor=CENTER)
+        house_ordos_button.place(x=694, rely=0.75, anchor=CENTER)
+        house_harkonnen_button.place(x=1156, rely=0.75, anchor=CENTER)
+        canvas.update()
+
+        house_atreides_pic = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\dune2\houseatreides.png")
+        house_ordos_pic = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\dune2\houseordos.png")
+        house_harkonnen_pic = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\dune2\househarkonnen.png")
+        item1 = canvas.create_image(222, 300, image=house_atreides_pic)
+        item2 = canvas.create_image(694, 300, image=house_ordos_pic)
+        item3 = canvas.create_image(1156, 300, image=house_harkonnen_pic)
+        print(megy)
+
+
+
+main_menu_buttons()
 
 
 
