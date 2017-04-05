@@ -64,3 +64,12 @@ class Letter_Counter():
             if letter_numbers[str(i)] < maxcharcounter:
                 letter_numbers[i] = maxcharcounter
         return (letter_numbers)
+
+class Fibonacci():
+    def fibonacci_m(self, n):
+        if n == 0 or n == 1: #base case
+            return n
+        if n < 0 or n/1 != n//1:
+            return ("Try with a natural number")
+        else:
+            return ((self.fibonacci_m(n-1) + self.fibonacci_m(n-2)))

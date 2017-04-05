@@ -3,6 +3,8 @@ from Ferenc_Hartmann_work import Needtest
 from Ferenc_Hartmann_work import Summarize
 from Ferenc_Hartmann_work import Anagram
 from Ferenc_Hartmann_work import Letter_Counter
+from Ferenc_Hartmann_work import Fibonacci
+
 
 class Alma_tester(unittest.TestCase):
     def test_get_apple(self):
@@ -47,6 +49,27 @@ class Letters(unittest.TestCase):
     def test_double_long_letter(self):
         string = Letter_Counter()
         self.assertEqual(string.lc("aabbccdd"), {'a': 2, 'b': 2, 'c': 2, 'd': 2})
+
+class Fibonacci_tester(unittest.TestCase):
+    def test_negative(self):
+        number = Fibonacci()
+        self.assertEqual(number.fibonacci_m(-1), "Try with a natural number")
+
+    def test_flow(self):
+        number = Fibonacci()
+        self.assertEqual(number.fibonacci_m(5.5), "Try with a natural number")
+
+    def test_zero(self):
+        number = Fibonacci()
+        self.assertEqual(number.fibonacci_m(0), 0)
+
+    def test_one(self):
+        number = Fibonacci()
+        self.assertEqual(number.fibonacci_m(1), 1)
+
+    def test_six(self):
+        number = Fibonacci()
+        self.assertEqual(number.fibonacci_m(6), 8)
 
 if __name__ == '__main__':
     unittest.main()
