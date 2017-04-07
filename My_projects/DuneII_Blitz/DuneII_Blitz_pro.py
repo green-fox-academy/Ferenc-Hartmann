@@ -7,7 +7,7 @@ canvas = Canvas(root, width='1366', height='768', bg='black')
 canvas.pack()
 canvas.update()
 
-class Dune2_blitz():
+class Dune2_Blitz():
     def __init__(self):
         self.a = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\hart10.png")
         self.b = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\hart9.png")
@@ -56,10 +56,24 @@ class Dune2_blitz():
         self.siege_tank_im = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\dune2\siege_tank.png")
         self.rocket_launcher_im = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\dune2\rocket_launcher.png")
 
+        self.battle_button = Button(width=8, height=1, fg="white", bg="black", text="Battle", font=("Harrington",30,"bold"), command=self.battle_start)
+
         self.loadscreens = 0
         self.start_button_int = 0
         self.back_button_int = 0
         self.game_int = 0
+
+#battle
+        self.battle_map = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\dune2\map1.png")
+        self.atreides_combat_tank = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\dune2\atreides_combat_tank.png")
+        self.projectile_img = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\dune2\projectile.png")
+
+        self.tank1 = 0
+        self.tank2 = 0
+        self.your_health = 10
+        self.enemy_health = 10
+        self.projectile = 0
+
 
     def loadscreen(self):
         self.pics=[self.a,self.b,self.c,self.d,self.e,self.f,self.g,self.h,self.i,self.j]
@@ -78,10 +92,10 @@ class Dune2_blitz():
             canvas.update()
             canvas.delete("all")
 
-    def soundplayer(self):
+    def soundplayer(self, music):
         import vlc
-        p = vlc.MediaPlayer("C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\main_menu.mp3")
-        p.play()
+        self.p = vlc.MediaPlayer(music)
+        self.p.play()
 
     def start_new_game_button_clicked(self):
         self.start_button_int += 1
@@ -155,21 +169,104 @@ class Dune2_blitz():
             self.level14_button.place(x=500, rely=0.46, anchor=CENTER)
             self.level15_button.place(x=600, rely=0.46, anchor=CENTER)
 
-            black_box = canvas.create_rectangle(810, 390, 1270, 710, fill="black", outline="grey", width=2)
-            self.cti = canvas.create_image(900, 450, image=self.combat_tank_im)
-            self.sti = canvas.create_image(900, 550, image=self.siege_tank_im)
-            self.rli = canvas.create_image(900, 650, image=self.rocket_launcher_im)
+            black_box = canvas.create_rectangle(810, 290, 1295, 610, fill="black", outline="grey", width=2)
+            self.cti = canvas.create_image(900, 350, image=self.combat_tank_im)
+            self.sti = canvas.create_image(900, 450, image=self.siege_tank_im)
+            self.rli = canvas.create_image(900, 550, image=self.rocket_launcher_im)
+
+            self.battle_button.place(x=1200, rely=0.92, anchor=CENTER)
+
+    def battle_start(self):
+        canvas.delete("all")
+        canvas.update()
+
+        self.level1_button.place(x=200, rely=4, anchor=CENTER)
+        self.level2_button.place(x=300, rely=4, anchor=CENTER)
+        self.level3_button.place(x=400, rely=4, anchor=CENTER)
+        self.level4_button.place(x=500, rely=4, anchor=CENTER)
+        self.level5_button.place(x=600, rely=4, anchor=CENTER)
+
+        self.level6_button.place(x=200, rely=4, anchor=CENTER)
+        self.level7_button.place(x=300, rely=4, anchor=CENTER)
+        self.level8_button.place(x=400, rely=4, anchor=CENTER)
+        self.level9_button.place(x=500, rely=4, anchor=CENTER)
+        self.level10_button.place(x=600, rely=4, anchor=CENTER)
+
+        self.level11_button.place(x=200, rely=4, anchor=CENTER)
+        self.level12_button.place(x=300, rely=4, anchor=CENTER)
+        self.level13_button.place(x=400, rely=4, anchor=CENTER)
+        self.level14_button.place(x=500, rely=4, anchor=CENTER)
+        self.level15_button.place(x=600, rely=4, anchor=CENTER)
+
+        self.battle_button.place(x=1200, rely=4, anchor=CENTER)
+
+        self.p.stop()
+
+        self.battle_map_method()
+
+
+    def battle_map_method(self):
+        self.battle_bg = canvas.create_image(675, 400, image=self.battle_map)
+        canvas.update()
+        import vlc
+        self.soundplayer(r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\battle.mp3")
+
+        self.move()
+
+    def move(self):
+        x=200
+        canvas.update()
+        while x < 501:
+            canvas.delete(self.tank1, self.tank2)
+            self.tank1 = canvas.create_image(x+20, 350, image=self.atreides_combat_tank)
+            self.tank2 = canvas.create_image(1326 - x, 350, image=self.atreides_combat_tank)
+            x = x+3
+            canvas.update()
+            canvas.move(self.tank1, 3, 0)
+            canvas.move(self.tank2, 3, 0)
+            canvas.update()
+            time.sleep(0.03)
+            canvas.update()
+        while self.enemy_health > 0:
+            self.enemy_health-=2
+            x=0
+            while x < 290:
+                canvas.delete(self.projectile)
+                self.projectile = canvas.create_image(x + 540, 350, image=self.projectile_img)
+                x += 290/8
+                canvas.update()
+                canvas.move(self.projectile, 290/8, 0)
+                time.sleep(0.03)
+            canvas.update()
+            canvas.lower(self.projectile)
+            canvas.update()
+            time.sleep(1.5)
+        canvas.update()
+        canvas.lower(self.tank2)
+        self.b.stop()
 
 
 
 
-dune = Dune2_blitz()
+
+
+
+
+
+dune = Dune2_Blitz()
 time.sleep(0.5)
 #dune.loadscreen()
 canvas.delete("all")
-dune.soundplayer()
+dune.soundplayer("C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\main_menu.mp3")
 canvas.delete("all")
 canvas.update()
 time.sleep(1)
 dune.main_menu_buttons()
+
+
+
+
+
+
+
 root.mainloop()
