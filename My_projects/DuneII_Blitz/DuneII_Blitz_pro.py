@@ -1,5 +1,6 @@
 #DuneII Blitz created by Ferenc Hartmann
 import time
+import vlc
 from tkinter import*
 root = Tk()
 root.attributes('-fullscreen', True)
@@ -67,6 +68,12 @@ class Dune2_Blitz():
         self.battle_map = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\dune2\map1.png")
         self.atreides_combat_tank = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\dune2\atreides_combat_tank.png")
         self.projectile_img = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\dune2\projectile.png")
+        self.battle_start3 = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\dune2\battle_starts_3.png")
+        self.battle_start2 = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\dune2\battle_starts_2.png")
+        self.battle_start1 = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\dune2\battle_starts_1.png")
+        self.explosion1 = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\dune2\explosion1.png")
+        self.explosion2 = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\dune2\explosion2.png")
+        self.mission_complete = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\dune2\mission_done.png")
 
         self.tank1 = 0
         self.tank2 = 0
@@ -93,7 +100,6 @@ class Dune2_Blitz():
             canvas.delete("all")
 
     def soundplayer(self, music):
-        import vlc
         self.p = vlc.MediaPlayer(music)
         self.p.play()
 
@@ -208,13 +214,27 @@ class Dune2_Blitz():
     def battle_map_method(self):
         self.battle_bg = canvas.create_image(675, 400, image=self.battle_map)
         canvas.update()
-        import vlc
-        self.soundplayer(r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\battle.mp3")
 
+        self.soundplayer(r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\battle.mp3")
+        self.battle_start_counter = canvas.create_image(675, 400, image=self.battle_start3)
+        canvas.update()
+        time.sleep(1)
+        canvas.delete(self.battle_start_counter)
+        self.battle_start_counter = canvas.create_image(675, 400, image=self.battle_start2)
+        canvas.update()
+        time.sleep(1)
+        canvas.update()
+        canvas.delete(self.battle_start_counter)
+        self.battle_start_counter = canvas.create_image(675, 400, image=self.battle_start1)
+        canvas.update()
+        time.sleep(1)
+        canvas.update()
+        canvas.delete(self.battle_start_counter)
+        canvas.update()
         self.move()
 
     def move(self):
-        x=200
+        x=0
         canvas.update()
         while x < 501:
             canvas.delete(self.tank1, self.tank2)
@@ -230,20 +250,38 @@ class Dune2_Blitz():
         while self.enemy_health > 0:
             self.enemy_health-=2
             x=0
+            if self.enemy_health == 10:
+                time.sleep(0.1)
+            else:
+                time.sleep(1.5)
+            canvas.update()
             while x < 290:
                 canvas.delete(self.projectile)
+                self.soundplayer(r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\tank_gun.mp3")
                 self.projectile = canvas.create_image(x + 540, 350, image=self.projectile_img)
                 x += 290/8
                 canvas.update()
                 canvas.move(self.projectile, 290/8, 0)
                 time.sleep(0.03)
-            canvas.update()
+                canvas.update()
             canvas.lower(self.projectile)
             canvas.update()
-            time.sleep(1.5)
+        self.exp = canvas.create_image(826, 350, image=self.explosion1)
+        time.sleep(0.05)
         canvas.update()
-        canvas.lower(self.tank2)
-        self.b.stop()
+        canvas.delete(self.exp)
+        self.exp = canvas.create_image(826, 350, image=self.explosion2)
+        time.sleep(0.2)
+        canvas.update()
+        canvas.delete(self.tank2)
+        canvas.update()
+        canvas.delete(self.exp)
+        canvas.update()
+        time.sleep(0.2)
+        self.mission_comp = canvas.create_image(675, 400, image=self.mission_complete)
+        canvas.update()
+        time.sleep(2)
+        self.p.stop()
 
 
 
