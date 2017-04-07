@@ -20,7 +20,7 @@ class Dune2_Blitz():
         self.h = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\dune2\hart3.png")
         self.i = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\dune2\hart2.png")
         self.j = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\dune2\hart1.png")
-        self.main_menu = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\dune1pro.png")
+        self.main_menu = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\dune2\dune1pro.png")
         self.game_bg = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\dune2\game_bg.png")
 
         self.start_new_game_button = Button(width=20, height=1, fg="white", bg="black", text="Start New Game", font=("Harrington",30,"bold"), command = self.start_new_game_button_clicked)
@@ -74,6 +74,7 @@ class Dune2_Blitz():
         self.back_button_int = 0
         self.game_int = 0
         self.gamecycle = 0
+        self.p_stopper = 0
 #battle
         self.battle_map = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\dune2\map1.png")
         self.atreides_combat_tank = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\dune2\atreides_combat_tank.png")
@@ -113,8 +114,11 @@ class Dune2_Blitz():
         self.main_menu_buttons()
 
     def soundplayer(self, music):
+        if self.p_stopper > 0:
+            self.p.stop()
         self.p = vlc.MediaPlayer(music)
         self.p.play()
+
 
     def start_new_game_button_clicked(self):
         self.start_button_int += 1
@@ -176,6 +180,10 @@ class Dune2_Blitz():
     def back_to_main_menu_clicked(self):
             self.gamecycle +=1
             self.main_menu_buttons()
+
+    def soundplayer2(self, music2):
+        self.pp = vlc.MediaPlayer(music2)
+        self.pp.play()
 
     def start_new_game(self):
         if self.start_button_int > 0:
@@ -280,7 +288,7 @@ class Dune2_Blitz():
         self.battle_bg = canvas.create_image(675, 400, image=self.battle_map)
         canvas.update()
 
-        self.soundplayer(r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\battle.mp3")
+        self.soundplayer2(r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\battle.mp3")
         self.battle_start_counter = canvas.create_image(675, 400, image=self.battle_start3)
         canvas.update()
         time.sleep(1)
@@ -346,15 +354,19 @@ class Dune2_Blitz():
         time.sleep(0.2)
         self.mission_comp = canvas.create_image(675, 400, image=self.mission_complete)
         canvas.update()
-        self.p.stop()
+        self.pp.stop()
         time.sleep(2)
 
         self.game2()
 
     def game2(self):
+        self.p_stopper +=1
+        self.soundplayer2("C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\main_menu.mp3")
         if self.game_int > 0:
             canvas.delete("all")
             canvas.update()
+            #self.soundplayer2("C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\main_menu.mp3")
+
             self.house_atreides_button.place(x=222, y=4000, anchor=CENTER)
             self.house_ordos_button.place(x=694, y=4000, anchor=CENTER)
             self.house_harkonnen_button.place(x=1156, y=4000, anchor=CENTER)
