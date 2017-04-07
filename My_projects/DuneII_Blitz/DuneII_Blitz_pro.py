@@ -67,6 +67,7 @@ class Dune2_Blitz():
 #battle
         self.battle_map = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\dune2\map1.png")
         self.atreides_combat_tank = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\dune2\atreides_combat_tank.png")
+        self.enemy_combat_tank = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\dune2\enemy_harkonnen_combat_tank.png")
         self.projectile_img = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\dune2\projectile.png")
         self.battle_start3 = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\dune2\battle_starts_3.png")
         self.battle_start2 = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\dune2\battle_starts_2.png")
@@ -239,7 +240,7 @@ class Dune2_Blitz():
         while x < 501:
             canvas.delete(self.tank1, self.tank2)
             self.tank1 = canvas.create_image(x+20, 350, image=self.atreides_combat_tank)
-            self.tank2 = canvas.create_image(1326 - x, 350, image=self.atreides_combat_tank)
+            self.tank2 = canvas.create_image(1326 - x, 350, image=self.enemy_combat_tank)
             x = x+3
             canvas.update()
             canvas.move(self.tank1, 3, 0)
@@ -293,7 +294,7 @@ class Dune2_Blitz():
 
 dune = Dune2_Blitz()
 time.sleep(0.5)
-#dune.loadscreen()
+dune.loadscreen()
 canvas.delete("all")
 dune.soundplayer("C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\main_menu.mp3")
 canvas.delete("all")
