@@ -788,7 +788,7 @@ while True:
                 archer_chosen()
                 health = 10
                 damage = 2
-                dex = 12
+                dex = 6
                 anykey = str(input(""))
                 prologue()
                 while True:

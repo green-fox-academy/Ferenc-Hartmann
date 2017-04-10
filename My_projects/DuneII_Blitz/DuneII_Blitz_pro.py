@@ -307,13 +307,13 @@ class Dune2_Blitz():
         self.move_n_battle()
 
     def move_n_battle(self):
-        x=0
+        pixel = 0
         canvas.update()
-        while x < 501:
+        while pixel < 501:
             canvas.delete(self.tank1, self.tank2)
-            self.tank1 = canvas.create_image(x+20, 350, image=self.atreides_combat_tank)
-            self.tank2 = canvas.create_image(1326 - x, 350, image=self.enemy_combat_tank)
-            x = x+3
+            self.tank1 = canvas.create_image(pixel + 20, 350, image=self.atreides_combat_tank)
+            self.tank2 = canvas.create_image(1326 - pixel, 350, image=self.enemy_combat_tank)
+            pixel = pixel + 3
             canvas.update()
             canvas.move(self.tank1, 3, 0)
             canvas.move(self.tank2, 3, 0)
@@ -323,17 +323,17 @@ class Dune2_Blitz():
             self.enemy_health = 10
         while self.enemy_health > 0:
             self.enemy_health-=2
-            x=0
+            pixel = 0
             if self.enemy_health == 10:
                 time.sleep(0.1)
             else:
                 time.sleep(1.5)
             canvas.update()
-            while x < 290:
+            while pixel < 290:
                 canvas.delete(self.projectile)
                 self.soundplayer(r"C:\Greenfox\Ferenc-Hartmann\My_projects\DuneII_Blitz\tank_gun.mp3")
-                self.projectile = canvas.create_image(x + 540, 350, image=self.projectile_img)
-                x += 290/8
+                self.projectile = canvas.create_image(pixel + 540, 350, image=self.projectile_img)
+                pixel += 290/8
                 canvas.update()
                 canvas.move(self.projectile, 290/8, 0)
                 time.sleep(0.03)
