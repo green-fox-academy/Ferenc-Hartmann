@@ -3,7 +3,7 @@ import vlc
 from tkinter import*
 root = Tk()
 canvas = Canvas(root, width='720', height='720', bg='white')
-canvas.pack()
+#canvas.pack()
 
 class Tile():
     def __init__(self):
@@ -13,7 +13,9 @@ class Tile():
         self.hero_right = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\week5\day2\images\hero-right.png")
         self.hero_up = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\week5\day2\images\hero-up.png")
         self.hero_down = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\week5\day2\images\hero-down.png")
-
+        canvas.bind("<KeyPress>", self.hero_draw)
+        self.char_x = 0
+        self.char_y = 0
 
     def map_draw(self):
         for x in range(10):
@@ -36,6 +38,7 @@ class Tile():
         for i in range(len(self.wall_tile)):
                 self.walls = canvas.create_image(36 + 72 * self.wall_tile[i][0], 36 + 72 * self.wall_tile[i][1], image=self.wall)
 
+        self.hero = canvas.create_image(36, 36, image=self.hero_down)
 
 
 
@@ -45,29 +48,31 @@ class Tile():
 #        self.hero_down = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\week5\day2\images\hero-down.png")
 
 
-        self.hero = canvas.create_image(36, 36, image=self.hero_down)
-#    def on_key_press(e):
-        # When the keycode is 111 (up arrow) we move the position of our box higher
-#        if e.keycode == 38:
-#            box.testBoxY = box.testBoxY - 100
-#        elif e.keycode == 40:
-#            box.testBoxY = box.testBoxY + 100
-        # and lower if the key that was pressed the down arrow
-        # draw the box again in the new position
-#        box.draw(canvas)
+    def hero_draw(self, e):
+        self.e = e
+        canvas.delete(self.hero)
+        print(self.e.keycode)
+        if self.e.keycode == 38:
+            self.char_y -= 72
+        elif self.e.keycode == 40:
+            self.char_y += 72
+        elif self.e.keycode == 37:
+            self.char_x -= 72
+        elif self.e.keycode == 39:
+            self.char_x += 72
 
-    # Tell the canvas that we prepared a function that can deal with the key press events
-#    canvas.bind("<KeyPress>", on_key_press)
-#    canvas.pack()
+        self.hero = canvas.create_image(36 + self.char_x, 36 + self.char_y, image=self.hero_down)
+        canvas.update
 
-    # Select the canvas to be in focused so it actually recieves the key hittings
-#    canvas.focus_set()
+class Game_Logic():
+    def __init__(self):
 
-    # Draw the box in the initial position
-#    box.draw(canvas)
 
+canvas.pack()
+canvas.focus_set()
 
 
 alma = Tile()
 alma.map_draw()
+#alma.hero_draw()
 root.mainloop()
