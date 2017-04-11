@@ -13,9 +13,9 @@ class Tile():
         self.hero_right = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\week5\day2\images\hero-right.png")
         self.hero_up = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\week5\day2\images\hero-up.png")
         self.hero_down = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\week5\day2\images\hero-down.png")
-        canvas.bind("<KeyPress>", self.hero_draw)
         self.char_x = 0
         self.char_y = 0
+        self.char_move = 0
 
     def map_draw(self):
         for x in range(10):
@@ -40,40 +40,55 @@ class Tile():
 
         self.hero = canvas.create_image(36, 36, image=self.hero_down)
 
-    def hero_draw(self, e):
-        self.e = e
+    def hero_draw(self):
         canvas.delete(self.hero)
+        if self.char_move == 1:
+            self.char_y -= 72
+        if self.char_move == 2:
+            self.char_y += 72
+        if self.char_move == 3:
+            self.char_y -= 72
+        if self.char_move == 4:
+            self.char_y -= 72
+
+        self.hero = canvas.create_image(36 + self.char_x, 36 + self.char_y, image=self.hero_down)
+        canvas.update
+
+class Game_Logic(Tile):
+    def __init__(self):
+        canvas.bind("<KeyPress>", self.char_move_check)
+
+    def char_move_check(self, e):
+        self.e = e
         if self.e.keycode == 38:
             up_case = 0
             for i in range(len(self.wall_tile)):
                 if ((self.char_x) // 72) == self.wall_tile[i][0] and ((self.char_y - 72) // 72) == self.wall_tile[i][1] or ((self.char_y - 72) // 72) == -1:
                     up_case +=1
             if up_case == 0:
-                self.char_y -= 72
+                self.char_move = 1
         elif self.e.keycode == 40:
             down_case = 0
             for i in range(len(self.wall_tile)):
                 if ((self.char_x) // 72) == self.wall_tile[i][0] and ((self.char_y + 72) // 72) == self.wall_tile[i][1] or ((self.char_y + 72) // 72) == 10:
                     down_case +=1
             if down_case == 0:
-                self.char_y += 72
+                self.char_move = 2
         elif self.e.keycode == 37:
             left_case = 0
             for i in range(len(self.wall_tile)):
                 if ((self.char_x - 72) // 72) == self.wall_tile[i][0] and ((self.char_y) // 72) == self.wall_tile[i][1] or ((self.char_x - 72) // 72) == -1:
                     left_case +=1
             if left_case == 0:
-                self.char_x -= 72
+                self.char_move = 3
         elif self.e.keycode == 39:
             right_case = 0
             for i in range(len(self.wall_tile)):
                 if ((self.char_x + 72) // 72) == self.wall_tile[i][0] and ((self.char_y) // 72) == self.wall_tile[i][1] or ((self.char_x + 72) // 72) == 10:
                     right_case +=1
             if right_case == 0:
-                self.char_x += 72
-
-        self.hero = canvas.create_image(36 + self.char_x, 36 + self.char_y, image=self.hero_down)
-        canvas.update
+                self.char_move = 4
+        self.hero_draw()
 
 
 
