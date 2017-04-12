@@ -10,10 +10,14 @@ class Tile():
         self.hero_right = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\week5\day2\images\hero-right.png")
         self.hero_up = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\week5\day2\images\hero-up.png")
         self.hero_down = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\week5\day2\images\hero-down.png")
+        self.skeleton = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\week5\day2\images\skeleton.png")
+        self.boss = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\week5\day2\images\boss.png")
+        canvas.bind("<KeyPress>", self.hero_draw)
         self.char_x = 0
         self.char_y = 0
-        self.char_move = 0
-        self.map_draw()
+        self.move_counter = 0
+        self.monster_x = 0
+        self.monster_y = 0
 
     def map_draw(self):
         for x in range(10):
@@ -34,69 +38,76 @@ class Tile():
                         ]
 
         for i in range(len(self.wall_tile)):
-                self.walls = canvas.create_image(36 + 72 * self.wall_tile[i][0], 36 + 72 * self.wall_tile[i][1], image=self.wall)
+            self.walls = canvas.create_image(36 + 72 * self.wall_tile[i][0], 36 + 72 * self.wall_tile[i][1], image=self.wall)
 
         self.hero = canvas.create_image(36, 36, image=self.hero_down)
+        self.skeleton1 = canvas.create_image(36 + 72 * 4, 36, image=self.skeleton)
+        self.skeleton2 = canvas.create_image(36 + 72 * 9, 36 + 72 * 4, image=self.skeleton)
+        self.skeleton3 = canvas.create_image(36 + 72 * 0, 36 + 72 * 5, image=self.skeleton)
+        self.skeleton4 = canvas.create_image(36 + 72 * 7, 36 + 72 * 8, image=self.skeleton)
+        self.boss1 = canvas.create_image(36 + 72 * 9, 36 + 72 * 0, image=self.boss)
 
-    def hero_draw(self, char_move):
-        self.char_move = char_move
+    def hero_draw(self, e):
+        self.e = e
+        self.case = 0
         canvas.delete(self.hero)
-        if self.char_move == 1:
-            self.char_y -= 72
-        if self.char_move == 2:
-            self.char_y += 72
-        if self.char_move == 3:
-            self.char_y -= 72
-        if self.char_move == 4:
-            self.char_y -= 72
+        for i in range(len(self.wall_tile)):
+            if self.e.keycode == 38 and ((self.char_x) // 72) == self.wall_tile[i][0] and ((self.char_y - 72) // 72) == self.wall_tile[i][1] or ((self.char_y - 72) // 72) == -1 and self.e.keycode == 38:
+                self.case = 1
+            if self.e.keycode == 40 and ((self.char_x) // 72) == self.wall_tile[i][0] and ((self.char_y + 72) // 72) == self.wall_tile[i][1] or ((self.char_y + 72) // 72) == 10 and self.e.keycode == 40:
+                self.case = 2
+            if self.e.keycode == 37 and ((self.char_x - 72) // 72) == self.wall_tile[i][0] and ((self.char_y) // 72) == self.wall_tile[i][1] or ((self.char_x - 72) // 72) == -1 and self.e.keycode == 37:
+                self.case = 3
+            if self.e.keycode == 39 and ((self.char_x + 72) // 72) == self.wall_tile[i][0] and ((self.char_y) // 72) == self.wall_tile[i][1] or ((self.char_x + 72) // 72) == 10 and self.e.keycode == 39:
+                self.case = 4
 
-        self.hero = canvas.create_image(36 + self.char_x, 36 + self.char_y, image=self.hero_down)
+        if self.e.keycode == 38:
+            if self.case == 0:
+                self.char_y -= 72
+                self.move_counter += 1
+                self.skeleton_draw()
+            self.hero = canvas.create_image(36 + self.char_x, 36 + self.char_y, image=self.hero_up)
+        elif self.e.keycode == 40:
+            if self.case == 0:
+                self.char_y += 72
+                self.move_counter += 1
+                self.skeleton_draw()
+            self.hero = canvas.create_image(36 + self.char_x, 36 + self.char_y, image=self.hero_down)
+        elif self.e.keycode == 37:
+            if self.case == 0:
+                self.char_x -= 72
+                self.move_counter += 1
+                self.skeleton_draw()
+            self.hero = canvas.create_image(36 + self.char_x, 36 + self.char_y, image=self.hero_left)
+        elif self.e.keycode == 39:
+            if self.case == 0:
+                self.char_x += 72
+                self.move_counter += 1
+                self.skeleton_draw()
+            self.hero = canvas.create_image(36 + self.char_x, 36 + self.char_y, image=self.hero_right)
+
         canvas.update
 
-class Game_Logic(Tile):
-    def __init__(self):
-        canvas.bind("<KeyPress>", self.char_move_check)
-        #self.char_move_check()
-    def char_move_check(self, e):
-        self.e = e
-        if self.e.keycode == 38:
-            up_case = 0
-            for i in range(len(self.wall_tile)):
-                if ((self.char_x) // 72) == self.wall_tile[i][0] and ((self.char_y - 72) // 72) == self.wall_tile[i][1] or ((self.char_y - 72) // 72) == -1:
-                    up_case +=1
-            if up_case == 0:
-                self.char_move = 1
-        elif self.e.keycode == 40:
-            down_case = 0
-            for i in range(len(self.wall_tile)):
-                if ((self.char_x) // 72) == self.wall_tile[i][0] and ((self.char_y + 72) // 72) == self.wall_tile[i][1] or ((self.char_y + 72) // 72) == 10:
-                    down_case +=1
-            if down_case == 0:
-                self.char_move = 2
-        elif self.e.keycode == 37:
-            left_case = 0
-            for i in range(len(self.wall_tile)):
-                if ((self.char_x - 72) // 72) == self.wall_tile[i][0] and ((self.char_y) // 72) == self.wall_tile[i][1] or ((self.char_x - 72) // 72) == -1:
-                    left_case +=1
-            if left_case == 0:
-                self.char_move = 3
-        elif self.e.keycode == 39:
-            right_case = 0
-            for i in range(len(self.wall_tile)):
-                if ((self.char_x + 72) // 72) == self.wall_tile[i][0] and ((self.char_y) // 72) == self.wall_tile[i][1] or ((self.char_x + 72) // 72) == 10:
-                    right_case +=1
-            if right_case == 0:
-                self.char_move = 4
-        Tile.map_draw()
-        Tile.hero_draw()
+    def skeleton_draw(self):
+        if self.move_counter % 2 == 0 and self.move_counter != 0:
+            canvas.delete(self.skeleton1, self.skeleton2, self.skeleton3, self.skeleton4, self.boss1)
+            if self.move_counter % 12 == 2 or self.move_counter % 12 == 4 or self.move_counter % 12 == 6:
+                self.monster_x += 1
+                self.monster_y += 1
+            if self.move_counter % 12 == 8 or self.move_counter % 12 == 10 or self.move_counter % 12 == 0:
+                self.monster_x -= 1
+                self.monster_y -= 1
 
-
+            self.skeleton1 = canvas.create_image(36 + 72 * 4, 36 + 72 * (0 + self.monster_y), image=self.skeleton)
+            self.skeleton2 = canvas.create_image(36 + 72 * 9, 36 + 72 * (4 + self.monster_y), image=self.skeleton)
+            self.skeleton3 = canvas.create_image(36 + 72 * 0, 36 + 72 * (5 + self.monster_y), image=self.skeleton)
+            self.skeleton4 = canvas.create_image(36 + 72 * (7 - self.monster_x), 36 + 72 * 8, image=self.skeleton)
+            self.boss1 = canvas.create_image(36 + 72 * (9 - self.monster_x), 36, image=self.boss)
 
 canvas.pack()
 canvas.focus_set()
 
 alma = Tile()
-
-korte = Game_Logic()
+alma.map_draw()
 
 root.mainloop()
