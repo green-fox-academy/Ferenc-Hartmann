@@ -1,6 +1,7 @@
 from tkinter import*
 root = Tk()
-canvas = Canvas(root, width='720', height='720', bg='white')
+root.attributes('-fullscreen', True)
+canvas = Canvas(root, width='1214', height='718', bg='white')
 
 class Tile():
     def __init__(self):
@@ -12,6 +13,7 @@ class Tile():
         self.hero_down = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\week5\day2\images\hero-down.png")
         self.skeleton = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\week5\day2\images\skeleton.png")
         self.boss = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\week5\day2\images\boss.png")
+        self.sidepic = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\week5\day2\images\rpg.png")
         canvas.bind("<KeyPress>", self.hero_draw)
         self.char_x = 0
         self.char_y = 0
@@ -46,6 +48,7 @@ class Tile():
         self.skeleton3 = canvas.create_image(36 + 72 * 0, 36 + 72 * 5, image=self.skeleton)
         self.skeleton4 = canvas.create_image(36 + 72 * 7, 36 + 72 * 8, image=self.skeleton)
         self.boss1 = canvas.create_image(36 + 72 * 9, 36 + 72 * 0, image=self.boss)
+        self.picture = canvas.create_image(720, 500, image=self.sidepic, anchor=W)
 
     def hero_draw(self, e):
         self.e = e
@@ -107,7 +110,11 @@ class Tile():
 canvas.pack()
 canvas.focus_set()
 
+widget = Label(canvas, font="Helvetica 16 bold", text="Your Hero's stat", fg='black', bg='white')
+widget.pack()
+canvas.create_window(950, 20, window=widget)
 alma = Tile()
 alma.map_draw()
+
 
 root.mainloop()
