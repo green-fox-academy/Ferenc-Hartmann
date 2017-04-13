@@ -7,6 +7,7 @@ canvas = Canvas(root, width='1214', height='718', bg='white')
 class Tile():
     def __init__(self):
         self.game_over = Button(width=30, height=4, fg="red", bg="black", text=r"You died. Game Over.", font=("Harrington",45,"bold"), command=root.quit)
+        self.game_win = Button(width=30, height=4, fg="gold", bg="white", text=r"You win the game!", font=("Harrington",45,"bold"), command=root.quit)
         self.floor = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\week5\day2\images\floor.png")
         self.wall = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\week5\day2\images\wall.png")
         self.hero_left = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\week5\day2\images\hero-left.png")
@@ -31,7 +32,7 @@ class Tile():
         self.dead_switch4 = 0
         self.dead_switch5 = 0
         self.hp_resetter = 0
-        self.hero_max_hp = 1
+        self.hero_max_hp = 20 + 3 * random.randrange(1,6)
         self.hero_cur_hp = self.hero_max_hp
         self.hero_dp = 2 * random.randrange(1,6)
         self.hero_sp = 5 + random.randrange(1,6)
@@ -202,8 +203,6 @@ class Tile():
             self.monster_id = 1
             self.battle_calculation()
             self.monster_hud()
-        else:
-            self.no_hud()
         if (36 + self.char_x) == 684 and \
         (36 + self.char_y) == (36 + 72 * (4 + self.monster_y)) and \
         self.dead_switch2 == 0:
@@ -218,8 +217,6 @@ class Tile():
             self.monster_id = 2
             self.battle_calculation()
             self.monster_hud()
-        else:
-            self.no_hud()
         if (36 + self.char_x) == 36 and \
         (36 + self.char_y) == (36 + 72 * (5 + self.monster_y)) and \
         self.dead_switch3 == 0:
@@ -234,8 +231,6 @@ class Tile():
             self.monster_id = 3
             self.battle_calculation()
             self.monster_hud()
-        else:
-            self.no_hud()
         if (36 + self.char_x) == (36 + 72 * (7 - self.monster_x)) and \
         (36 + self.char_y) == 612 and \
         self.dead_switch4 == 0:
@@ -250,8 +245,6 @@ class Tile():
             self.monster_id = 4
             self.battle_calculation()
             self.monster_hud()
-        else:
-            self.no_hud()
         if (36 + self.char_x) == (36 + 72 * (9 - self.monster_x)) and \
         (36 + self.char_y) == 36 and \
         self.dead_switch5 == 0:
@@ -287,22 +280,33 @@ class Tile():
             canvas.delete(self.skeleton1)
             self.dead_switch1 = 1
             self.hp_resetter = 0
+            self.no_hud()
         if self.monster_cur_hp <= 0 and self.monster_id == 2:
             canvas.delete(self.skeleton2)
             self.dead_switch2 = 1
             self.hp_resetter = 0
+            self.no_hud()
         if self.monster_cur_hp <= 0 and self.monster_id == 3:
             canvas.delete(self.skeleton3)
             self.dead_switch3 = 1
             self.hp_resetter = 0
+            self.no_hud()
+            self.win_condition()
         if self.monster_cur_hp <= 0 and self.monster_id == 4:
             canvas.delete(self.skeleton4)
             self.dead_switch4 = 1
             self.hp_resetter = 0
+            self.no_hud()
         if self.monster_cur_hp <= 0 and self.monster_id == 5:
             canvas.delete(self.boss1)
             self.dead_switch5 = 1
             self.hp_resetter = 0
+            self.no_hud()
+            self.win_condition()
+
+    def win_condition(self):
+        if self.dead_switch5 == 1 and self.dead_switch3 == 1:
+            self.game_win.place(relx=0.5, rely=0.5, anchor=CENTER)
 
     def hero_hud(self):
         text_hero = ("Hero (level " + str(self.hero_level) + ")    HP: " + str(self.hero_cur_hp) + r"/" + str(self.hero_max_hp) + r"    |    DP: " + str(self.hero_dp) + r"    |    SP: " + str(self.hero_sp))
@@ -314,17 +318,18 @@ class Tile():
         canvas.create_window(960, 70, window=hero_text)
 
     def monster_hud(self):
-        text_monster = ("Monster (level " + str(self.monster_level) + ")    HP: " + str(self.monster_cur_hp) + r"/" + str(self.monster_max_hp) + r"    |    DP: " + str(self.monster_dp) + r"    |    SP: " + str(self.monster_sp))
-        midler = Label(canvas, font="Harrington 16 bold", text="Monster's stat", fg='black', bg='white')
-        monster_text = Label(canvas, font="Harrington 12 bold", text=text_monster, fg='black', bg='white')
-        midler.pack()
-        monster_text.pack()
-        canvas.create_window(960, 120, window=midler)
-        canvas.create_window(960, 170, window=monster_text)
+        self.text_monster = ("Monster (level " + str(self.monster_level) + ")    HP: " + str(self.monster_cur_hp) + r"/" + str(self.monster_max_hp) + r"    |    DP: " + str(self.monster_dp) + r"    |    SP: " + str(self.monster_sp))
+        self.midler = Label(canvas, font="Harrington 16 bold", text="Monster's stat", fg='black', bg='white')
+        self.monster_text = Label(canvas, font="Harrington 12 bold", text=self.text_monster, fg='black', bg='white')
+        self.midler.pack()
+        self.monster_text.pack()
+        canvas.create_window(960, 120, window=self.midler)
+        canvas.create_window(960, 170, window=self.monster_text)
 
     def no_hud(self):
-        pass
-        #no_hud_box = canvas.create_rectangle(730, 145, 1200, 195, fill="white", outline="white", width=2)
+        canvas.create_window(1960, 120, window=self.midler)
+        canvas.create_window(1960, 170, window=self.monster_text)
+
 
 
 canvas.pack()
