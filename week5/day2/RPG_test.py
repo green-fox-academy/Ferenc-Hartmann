@@ -6,6 +6,7 @@ canvas = Canvas(root, width='1214', height='718', bg='white')
 
 class Tile():
     def __init__(self):
+        self.game_over = Button(width=30, height=4, fg="red", bg="black", text=r"You died. Game Over.", font=("Harrington",45,"bold"), command=root.quit)
         self.floor = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\week5\day2\images\floor.png")
         self.wall = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\week5\day2\images\wall.png")
         self.hero_left = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\week5\day2\images\hero-left.png")
@@ -29,15 +30,14 @@ class Tile():
         self.dead_switch3 = 0
         self.dead_switch4 = 0
         self.dead_switch5 = 0
-
-        self.hero_max_hp = 20 + 3 * random.randrange(1,6)
+        self.hp_resetter = 0
+        self.hero_max_hp = 1
         self.hero_cur_hp = self.hero_max_hp
         self.hero_dp = 2 * random.randrange(1,6)
         self.hero_sp = 5 + random.randrange(1,6)
         self.hero_level = 1
         self.map_level = 1
         self.hero_hud()
-        self.create_monster_stats()
 
     def map_draw(self):
         for x in range(10):
@@ -78,12 +78,12 @@ class Tile():
         if self.monster_level_calculator > 0.9:
             self.monster_level = self.map_level + 2
 
-        self.monster1_max_hp = 2 * self.monster_level * random.randrange(1,6)
+        self.monster1_max_hp = + 2 * self.monster_level * random.randrange(1,6)
         self.monster1_cur_hp = self.monster1_max_hp
         self.monster1_dp = self.monster_level / 2 * random.randrange(1,6)
         self.monster1_sp = self.monster_level * random.randrange(1,6)
 
-        self.monster2_max_hp = 2 * self.monster_level * random.randrange(1,6)
+        self.monster2_max_hp = + 2 * self.monster_level * random.randrange(1,6)
         self.monster2_cur_hp = self.monster2_max_hp
         self.monster2_dp = self.monster_level / 2 * random.randrange(1,6)
         self.monster2_sp = self.monster_level * random.randrange(1,6)
@@ -188,41 +188,79 @@ class Tile():
             self.boss1 = canvas.create_image(36 + 72 * (9 - self.monster_x), 36, image=self.boss)
 
     def battle_coordinator(self):
-        if (36 + self.char_x) == 324 and (36 + self.char_y) == (36 + 72 * (0 + self.monster_y)) and self.dead_switch1 == 0:
+        if (36 + self.char_x) == 324 and \
+        (36 + self.char_y) == (36 + 72 * (0 + self.monster_y)) and \
+        self.dead_switch1 == 0:
             self.monster_max_hp = self.monster1_max_hp
-            self.monster_cur_hp = self.monster1_cur_hp
+            if self.hp_resetter == 0:
+                self.monster_cur_hp = self.monster1_cur_hp
+                self.hp_resetter = 1
+            elif self.hp_resetter == 1:
+                self.monster_cur_hp = self.monster_cur_hp
             self.monster_dp = self.monster1_dp
             self.monster_sp = self.monster1_sp
             self.monster_id = 1
             self.battle_calculation()
             self.monster_hud()
-        if (36 + self.char_x) == 684 and (36 + self.char_y) == (36 + 72 * (4 + self.monster_y)) and self.dead_switch2 == 0:
+        else:
+            self.no_hud()
+        if (36 + self.char_x) == 684 and \
+        (36 + self.char_y) == (36 + 72 * (4 + self.monster_y)) and \
+        self.dead_switch2 == 0:
             self.monster_max_hp = self.monster2_max_hp
-            self.monster_cur_hp = self.monster2_cur_hp
+            if self.hp_resetter == 0:
+                self.monster_cur_hp = self.monster2_cur_hp
+                self.hp_resetter = 2
+            elif self.hp_resetter == 2:
+                self.monster_cur_hp = self.monster_cur_hp
             self.monster_dp = self.monster2_dp
             self.monster_sp = self.monster2_sp
             self.monster_id = 2
             self.battle_calculation()
             self.monster_hud()
-        if (36 + self.char_x) == 36 and (36 + self.char_y) == (36 + 72 * (5 + self.monster_y)) and self.dead_switch3 == 0:
+        else:
+            self.no_hud()
+        if (36 + self.char_x) == 36 and \
+        (36 + self.char_y) == (36 + 72 * (5 + self.monster_y)) and \
+        self.dead_switch3 == 0:
             self.monster_max_hp = self.monster3_max_hp
-            self.monster_cur_hp = self.monster3_cur_hp
+            if self.hp_resetter == 0:
+                self.monster_cur_hp = self.monster3_cur_hp
+                self.hp_resetter = 3
+            elif self.hp_resetter == 3:
+                self.monster_cur_hp = self.monster_cur_hp
             self.monster_dp = self.monster3_dp
             self.monster_sp = self.monster3_sp
             self.monster_id = 3
             self.battle_calculation()
             self.monster_hud()
-        if (36 + self.char_x) == (36 + 72 * (7 - self.monster_x)) and (36 + self.char_y) == 612 and self.dead_switch4 == 0:
+        else:
+            self.no_hud()
+        if (36 + self.char_x) == (36 + 72 * (7 - self.monster_x)) and \
+        (36 + self.char_y) == 612 and \
+        self.dead_switch4 == 0:
             self.monster_max_hp = self.monster4_max_hp
-            self.monster_cur_hp = self.monster4_cur_hp
+            if self.hp_resetter == 0:
+                self.monster_cur_hp = self.monster4_cur_hp
+                self.hp_resetter = 4
+            elif self.hp_resetter == 4:
+                self.monster_cur_hp = self.monster_cur_hp
             self.monster_dp = self.monster4_dp
             self.monster_sp = self.monster4_sp
             self.monster_id = 4
             self.battle_calculation()
             self.monster_hud()
-        if (36 + self.char_x) == (36 + 72 * (9 - self.monster_x)) and (36 + self.char_y) == 36 and self.dead_switch5 == 0:
+        else:
+            self.no_hud()
+        if (36 + self.char_x) == (36 + 72 * (9 - self.monster_x)) and \
+        (36 + self.char_y) == 36 and \
+        self.dead_switch5 == 0:
             self.monster_max_hp = self.monster5_max_hp
-            self.monster_cur_hp = self.monster5_cur_hp
+            if self.hp_resetter == 0:
+                self.monster_cur_hp = self.monster5_cur_hp
+                self.hp_resetter = 5
+            elif self.hp_resetter == 5:
+                self.monster_cur_hp = self.monster_cur_hp
             self.monster_dp = self.monster5_dp
             self.monster_sp = self.monster5_sp
             self.monster_id = 5
@@ -236,25 +274,35 @@ class Tile():
             strike_value = self.hero_sp + 2 * random.randrange(1,6)
             if strike_value > self.monster_dp:
                 self.monster_cur_hp = self.monster_cur_hp - (strike_value - self.monster_dp)
-            strike_value = self.monster_sp + 2 * random.randrange(1,6)
-            if strike_value > self.hero_dp:
-                self.hero_cur_hp = self.hero_cur_hp - (strike_value - self.hero_dp)
+            strike_value2 = self.monster_sp + 2 * random.randrange(1,6)
+            if strike_value2 > self.hero_dp:
+                self.hero_cur_hp = self.hero_cur_hp - (strike_value2 - self.hero_dp)
+                self.hero_hud()
+
+        if self.hero_cur_hp <= 0:
+            canvas.delete(self.hero)
+            self.game_over.place(relx=0.5, rely=0.5, anchor=CENTER)
 
         if self.monster_cur_hp <= 0 and self.monster_id == 1:
             canvas.delete(self.skeleton1)
             self.dead_switch1 = 1
+            self.hp_resetter = 0
         if self.monster_cur_hp <= 0 and self.monster_id == 2:
             canvas.delete(self.skeleton2)
             self.dead_switch2 = 1
+            self.hp_resetter = 0
         if self.monster_cur_hp <= 0 and self.monster_id == 3:
             canvas.delete(self.skeleton3)
             self.dead_switch3 = 1
+            self.hp_resetter = 0
         if self.monster_cur_hp <= 0 and self.monster_id == 4:
             canvas.delete(self.skeleton4)
             self.dead_switch4 = 1
+            self.hp_resetter = 0
         if self.monster_cur_hp <= 0 and self.monster_id == 5:
             canvas.delete(self.boss1)
             self.dead_switch5 = 1
+            self.hp_resetter = 0
 
     def hero_hud(self):
         text_hero = ("Hero (level " + str(self.hero_level) + ")    HP: " + str(self.hero_cur_hp) + r"/" + str(self.hero_max_hp) + r"    |    DP: " + str(self.hero_dp) + r"    |    SP: " + str(self.hero_sp))
@@ -274,7 +322,9 @@ class Tile():
         canvas.create_window(960, 120, window=midler)
         canvas.create_window(960, 170, window=monster_text)
 
-no_hud_box = canvas.create_rectangle(730, 145, 1200, 195, fill="white", outline="white", width=2)
+    def no_hud(self):
+        pass
+        #no_hud_box = canvas.create_rectangle(730, 145, 1200, 195, fill="white", outline="white", width=2)
 
 
 canvas.pack()
@@ -282,6 +332,7 @@ canvas.focus_set()
 
 alma = Tile()
 alma.map_draw()
+alma.create_monster_stats()
 
 
 root.mainloop()
