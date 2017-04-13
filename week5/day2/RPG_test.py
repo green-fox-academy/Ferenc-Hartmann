@@ -1,5 +1,6 @@
 from tkinter import*
 import random
+import vlc
 root = Tk()
 root.attributes('-fullscreen', True)
 canvas = Canvas(root, width='1214', height='718', bg='white')
@@ -68,6 +69,11 @@ class Tile():
         self.skeleton4 = canvas.create_image(36 + 72 * 7, 36 + 72 * 8, image=self.skeleton)
         self.boss1 = canvas.create_image(36 + 72 * 9, 36 + 72 * 0, image=self.boss)
         self.picture = canvas.create_image(720, 500, image=self.sidepic, anchor=W)
+        self.soundplayer(r"C:\Greenfox\Ferenc-Hartmann\week5\day2\audio.mp3")
+
+    def soundplayer(self, music):
+        self.pp = vlc.MediaPlayer(music)
+        self.pp.play()
 
     def create_monster_stats(self):
         self.monster_level_calculator = random.random()
