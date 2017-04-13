@@ -24,6 +24,11 @@ class Tile():
         self.space_counter = 0
         self.space_counter_max = 0
         self.monster_id = 0
+        self.dead_switch1 = 0
+        self.dead_switch2 = 0
+        self.dead_switch3 = 0
+        self.dead_switch4 = 0
+        self.dead_switch5 = 0
 
         self.hero_max_hp = 20 + 3 * random.randrange(1,6)
         self.hero_cur_hp = self.hero_max_hp
@@ -73,35 +78,30 @@ class Tile():
         if self.monster_level_calculator > 0.9:
             self.monster_level = self.map_level + 2
 
-        if self.monster_id == 1:
-            self.monster_max_hp = 2 * self.monster_level * random.randrange(1,6)
-            self.monster_cur_hp = self.monster_max_hp
-            self.monster_dp = self.monster_level / 2 * random.randrange(1,6)
-            self.monster_sp = self.monster_level * random.randrange(1,6)
+        self.monster1_max_hp = 2 * self.monster_level * random.randrange(1,6)
+        self.monster1_cur_hp = self.monster1_max_hp
+        self.monster1_dp = self.monster_level / 2 * random.randrange(1,6)
+        self.monster1_sp = self.monster_level * random.randrange(1,6)
 
-        if self.monster_id == 2:
-            self.monster_max_hp = 2 * self.monster_level * random.randrange(1,6)
-            self.monster_cur_hp = self.monster_max_hp
-            self.monster_dp = self.monster_level / 2 * random.randrange(1,6)
-            self.monster_sp = self.monster_level * random.randrange(1,6)
+        self.monster2_max_hp = 2 * self.monster_level * random.randrange(1,6)
+        self.monster2_cur_hp = self.monster2_max_hp
+        self.monster2_dp = self.monster_level / 2 * random.randrange(1,6)
+        self.monster2_sp = self.monster_level * random.randrange(1,6)
 
-        if self.monster_id == 3:
-            self.monster_max_hp = 2 * self.monster_level * random.randrange(1,6)
-            self.monster_cur_hp = self.monster_max_hp
-            self.monster_dp = self.monster_level / 2 * random.randrange(1,6)
-            self.monster_sp = self.monster_level * random.randrange(1,6)
+        self.monster3_max_hp = 2 * self.monster_level * random.randrange(1,6)
+        self.monster3_cur_hp = self.monster3_max_hp
+        self.monster3_dp = self.monster_level / 2 * random.randrange(1,6)
+        self.monster3_sp = self.monster_level * random.randrange(1,6)
 
-        if self.monster_id == 4:
-            self.monster_max_hp = 2 * self.monster_level * random.randrange(1,6)
-            self.monster_cur_hp = self.monster_max_hp
-            self.monster_dp = self.monster_level / 2 * random.randrange(1,6)
-            self.monster_sp = self.monster_level * random.randrange(1,6)
+        self.monster4_max_hp = 2 * self.monster_level * random.randrange(1,6)
+        self.monster4_cur_hp = self.monster4_max_hp
+        self.monster4_dp = self.monster_level / 2 * random.randrange(1,6)
+        self.monster4_sp = self.monster_level * random.randrange(1,6)
 
-        if self.monster_id == 5:
-            self.monster_max_hp = 2 * self.monster_level * random.randrange(1,6) + random.randrange(1,6)
-            self.monster_cur_hp = self.monster_max_hp
-            self.monster_dp = self.monster_level / 2 * random.randrange(1,6) + 1 / 2 * random.randrange(1,6)
-            self.monster_sp = self.monster_level * random.randrange(1,6) + self.monster_level
+        self.monster5_max_hp = 2 * self.monster_level * random.randrange(1,6) + random.randrange(1,6)
+        self.monster5_cur_hp = self.monster5_max_hp
+        self.monster5_dp = self.monster_level / 2 * random.randrange(1,6) + 1 / 2 * random.randrange(1,6)
+        self.monster5_sp = self.monster_level * random.randrange(1,6) + self.monster_level
 
     def main_logic(self, e):
         self.e = e
@@ -167,8 +167,8 @@ class Tile():
         self.battle_coordinator()
 
     def npc_move(self):
+        canvas.delete(self.skeleton1, self.skeleton2, self.skeleton3, self.skeleton4, self.boss1)
         if self.move_counter % 2 == 0 and self.move_counter != 0:
-            canvas.delete(self.skeleton1, self.skeleton2, self.skeleton3, self.skeleton4, self.boss1)
             if self.move_counter % 12 == 2 or self.move_counter % 12 == 4 or self.move_counter % 12 == 6:
                 self.monster_x += 1
                 self.monster_y += 1
@@ -176,30 +176,55 @@ class Tile():
                 self.monster_x -= 1
                 self.monster_y -= 1
 
+        if self.dead_switch1 == 0:
             self.skeleton1 = canvas.create_image(324, 36 + 72 * (0 + self.monster_y), image=self.skeleton)
+        if self.dead_switch2 == 0:
             self.skeleton2 = canvas.create_image(684, 36 + 72 * (4 + self.monster_y), image=self.skeleton)
+        if self.dead_switch3 == 0:
             self.skeleton3 = canvas.create_image(36, 36 + 72 * (5 + self.monster_y), image=self.skeleton)
+        if self.dead_switch4 == 0:
             self.skeleton4 = canvas.create_image(36 + 72 * (7 - self.monster_x), 612, image=self.skeleton)
+        if self.dead_switch5 == 0:
             self.boss1 = canvas.create_image(36 + 72 * (9 - self.monster_x), 36, image=self.boss)
 
     def battle_coordinator(self):
-        if (36 + self.char_x) == 324 and (36 + self.char_y) == (36 + 72 * (0 + self.monster_y)):
+        if (36 + self.char_x) == 324 and (36 + self.char_y) == (36 + 72 * (0 + self.monster_y)) and self.dead_switch1 == 0:
+            self.monster_max_hp = self.monster1_max_hp
+            self.monster_cur_hp = self.monster1_cur_hp
+            self.monster_dp = self.monster1_dp
+            self.monster_sp = self.monster1_sp
             self.monster_id = 1
             self.battle_calculation()
             self.monster_hud()
-        if (36 + self.char_x) == 684 and (36 + self.char_y) == (36 + 72 * (4 + self.monster_y)):
+        if (36 + self.char_x) == 684 and (36 + self.char_y) == (36 + 72 * (4 + self.monster_y)) and self.dead_switch2 == 0:
+            self.monster_max_hp = self.monster2_max_hp
+            self.monster_cur_hp = self.monster2_cur_hp
+            self.monster_dp = self.monster2_dp
+            self.monster_sp = self.monster2_sp
             self.monster_id = 2
             self.battle_calculation()
             self.monster_hud()
-        if (36 + self.char_x) == 36 and (36 + self.char_y) == (36 + 72 * (5 + self.monster_y)):
+        if (36 + self.char_x) == 36 and (36 + self.char_y) == (36 + 72 * (5 + self.monster_y)) and self.dead_switch3 == 0:
+            self.monster_max_hp = self.monster3_max_hp
+            self.monster_cur_hp = self.monster3_cur_hp
+            self.monster_dp = self.monster3_dp
+            self.monster_sp = self.monster3_sp
             self.monster_id = 3
             self.battle_calculation()
             self.monster_hud()
-        if (36 + self.char_x) == (36 + 72 * (7 - self.monster_x)) and (36 + self.char_y) == 612:
+        if (36 + self.char_x) == (36 + 72 * (7 - self.monster_x)) and (36 + self.char_y) == 612 and self.dead_switch4 == 0:
+            self.monster_max_hp = self.monster4_max_hp
+            self.monster_cur_hp = self.monster4_cur_hp
+            self.monster_dp = self.monster4_dp
+            self.monster_sp = self.monster4_sp
             self.monster_id = 4
             self.battle_calculation()
             self.monster_hud()
-        if (36 + self.char_x) == (36 + 72 * (9 - self.monster_x)) and (36 + self.char_y) == 36:
+        if (36 + self.char_x) == (36 + 72 * (9 - self.monster_x)) and (36 + self.char_y) == 36 and self.dead_switch5 == 0:
+            self.monster_max_hp = self.monster5_max_hp
+            self.monster_cur_hp = self.monster5_cur_hp
+            self.monster_dp = self.monster5_dp
+            self.monster_sp = self.monster5_sp
             self.monster_id = 5
             self.battle_calculation()
             self.monster_hud()
@@ -214,6 +239,22 @@ class Tile():
             strike_value = self.monster_sp + 2 * random.randrange(1,6)
             if strike_value > self.hero_dp:
                 self.hero_cur_hp = self.hero_cur_hp - (strike_value - self.hero_dp)
+
+        if self.monster_cur_hp <= 0 and self.monster_id == 1:
+            canvas.delete(self.skeleton1)
+            self.dead_switch1 = 1
+        if self.monster_cur_hp <= 0 and self.monster_id == 2:
+            canvas.delete(self.skeleton2)
+            self.dead_switch2 = 1
+        if self.monster_cur_hp <= 0 and self.monster_id == 3:
+            canvas.delete(self.skeleton3)
+            self.dead_switch3 = 1
+        if self.monster_cur_hp <= 0 and self.monster_id == 4:
+            canvas.delete(self.skeleton4)
+            self.dead_switch4 = 1
+        if self.monster_cur_hp <= 0 and self.monster_id == 5:
+            canvas.delete(self.boss1)
+            self.dead_switch5 = 1
 
     def hero_hud(self):
         text_hero = ("Hero (level " + str(self.hero_level) + ")    HP: " + str(self.hero_cur_hp) + r"/" + str(self.hero_max_hp) + r"    |    DP: " + str(self.hero_dp) + r"    |    SP: " + str(self.hero_sp))
