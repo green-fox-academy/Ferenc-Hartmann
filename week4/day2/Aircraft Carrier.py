@@ -1,7 +1,5 @@
 class Aircraft():
     def __init__(self, airplane):
-#        self.F16 = [0, 0, 0, 0]
-#        self.F35 = [0, 0, 0, 0]
         if airplane == "F16":
             self.F16 = ["F16", 8, 0, 30]    #[type, max_ammo, stored_ammo, basedamage]
             return self.F16
@@ -18,19 +16,12 @@ class Aircraft():
             self.F35[2] = 0
             return damagef35
 
-    def refill(self, number):
-        if self.F16[0] == "F16":
-            ammorefillf16 = (self.F16[1] - self.F16[2])
-            if number > ammorefillf16:
-                return number - ammorefillf16
-            if ammorefillf16 > number:
-                return 0
-        if self.F35[0] == "F35":
-            ammorefillf35 = (self.F35[1] - self.F35[2])
-            if number > ammorefillf35:
-                return number - ammorefillf35
-            if ammorefillf35 > number:
-                return 0
+    def refill(self, max_ammo, stored_ammo, number):
+            ammorefill = (max_ammo - stored_ammo)
+            if number > ammorefill:
+                return [ammorefill, number - ammorefill]
+            if ammorefill > number:
+                return [number, 0]
 
     def get_type(self):
         if self.F16[0] == "F16":
@@ -58,14 +49,10 @@ class Carrier():
             self.plane.append(Aircraft.__init__(self, airplane))
 
     def fill(self):
-        self.counter = 0
         for i in range(len(self.plane)):
-            Aircraft.refill(self, self.plane[int(i)])
-
-#sky = Aircraft("F16")
-#skynet = Aircraft("F35")
-#print(sky.get_status())
-#print(skynet.get_status())
+            return_list = Aircraft.refill(self, self.plane[int(i)][1], self.plane[int(i)][2], self.ammo)
+            self.plane[int(i)][2] = return_list[0]
+            self.ammo = return_list[1]
 
 water = Carrier(1000, 1000, 5000)
 water.add_aircraft("F35")
@@ -74,5 +61,10 @@ water.add_aircraft("F35")
 water.add_aircraft("F16")
 water.add_aircraft("F16")
 
+print(water.ammo)
 print(water.plane)
+water.fill()
+print(water.ammo)
+print(water.plane)
+
 #print(sky.get_status())
