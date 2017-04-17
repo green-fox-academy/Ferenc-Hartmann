@@ -1,11 +1,13 @@
 class Aircraft():
     def __init__(self, airplane):
-        self.F16 = [0, 0, 0, 0]
-        self.F35 = [0, 0, 0, 0]
+#        self.F16 = [0, 0, 0, 0]
+#        self.F35 = [0, 0, 0, 0]
         if airplane == "F16":
-            self.F16 = ["F16", 8, 0, 30]    #[type, max_ammo, stored_ammo, damage]
+            self.F16 = ["F16", 8, 0, 30]    #[type, max_ammo, stored_ammo, basedamage]
+            return self.F16
         if airplane == "F35":
             self.F35 = ["F35", 12, 0, 50]
+            return self.F35
     def fight(self):
         damagef16 = self.F16[2] * self.F16[3]
         damagef35 = self.F35[2] * self.F35[3]
@@ -51,9 +53,14 @@ class Carrier():
 
     def add_aircraft(self, airplane):
         if airplane == "F16":
-            self.plane.append("F16")
+            self.plane.append(Aircraft.__init__(self, airplane))
         if airplane == "F35":
-            self.plane.append("F35")
+            self.plane.append(Aircraft.__init__(self, airplane))
+
+    def fill(self):
+        self.counter = 0
+        for i in range(len(self.plane)):
+            Aircraft.refill(self, self.plane[int(i)])
 
 #sky = Aircraft("F16")
 #skynet = Aircraft("F35")
@@ -62,6 +69,10 @@ class Carrier():
 
 water = Carrier(1000, 1000, 5000)
 water.add_aircraft("F35")
-print(water.plane[0])
-sky = Aircraft(water.plane[0])
-print(sky.get_status())
+water.add_aircraft("F35")
+water.add_aircraft("F35")
+water.add_aircraft("F16")
+water.add_aircraft("F16")
+
+print(water.plane)
+#print(sky.get_status())
