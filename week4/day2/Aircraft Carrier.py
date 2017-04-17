@@ -49,22 +49,21 @@ class Carrier():
             self.plane.append(Aircraft.__init__(self, airplane))
 
     def fill(self):
+        sorted_planes = sorted(self.plane)
+        self.plane = sorted_planes[::-1]
         for i in range(len(self.plane)):
             return_list = Aircraft.refill(self, self.plane[int(i)][1], self.plane[int(i)][2], self.ammo)
             self.plane[int(i)][2] = return_list[0]
             self.ammo = return_list[1]
 
-water = Carrier(1000, 1000, 5000)
-water.add_aircraft("F35")
-water.add_aircraft("F35")
+water = Carrier(1000, 30, 5000)
 water.add_aircraft("F35")
 water.add_aircraft("F16")
 water.add_aircraft("F16")
+water.add_aircraft("F35")
+water.add_aircraft("F35")
 
-print(water.ammo)
-print(water.plane)
+
+
 water.fill()
-print(water.ammo)
 print(water.plane)
-
-#print(sky.get_status())
