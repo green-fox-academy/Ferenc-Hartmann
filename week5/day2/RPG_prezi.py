@@ -5,6 +5,10 @@ root = Tk()
 root.attributes('-fullscreen', True)
 canvas = Canvas(root, width='1214', height='718', bg='white')
 
+#image = PhotoImage(file=r"C:\Greenfox\Ferenc-Hartmann\week5\day2\prezi1.png")
+#item = canvas.create_image(683, 384, image=image)
+#user_input_1 = input("")
+
 class Tile():
     def __init__(self):
         self.game_over = Button(width=30, height=4, fg="red", bg="black", text=r"You died. Game Over.", font=("Harrington",45,"bold"), command=root.quit)
