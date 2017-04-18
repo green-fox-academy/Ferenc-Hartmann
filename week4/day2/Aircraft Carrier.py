@@ -1,6 +1,6 @@
 class Aircraft():
     def __init__(self, airplane):
-        self.airplane = [airplane, 8, 0, 30]
+        self.plane_data_list = [airplane, 8, 0, 30]
 #        if airplane == "F16":
 #            self.F16 = ["F16", 8, 0, 30]    #[type, max_ammo, stored_ammo, basedamage]
 #            return self.F16
@@ -43,7 +43,7 @@ class Carrier():
     def add_aircraft(self, airplane):
         #if airplane == "F16":
             #self.plane.append(Aircraft.__init__(self, airplane))
-        self.plane.append(Aircraft(airplane).airplane)
+        self.plane.append(Aircraft(airplane).plane_data_list)
         #if airplane == "F35":
             #self.plane.append(Aircraft.__init__(self, airplane))
         #    self.plane.append(Aircraft("F35"))
