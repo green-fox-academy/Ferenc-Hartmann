@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    width: 800px;
+
+}
+
+.container{
+    width: 100%;
+    height: 250px;
+    background-color: gold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item{
+    background-color: purple;
+    width: 100px;
+    height: 100px;
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+}
