@@ -13,7 +13,6 @@
 
 .purple{
     background-color: purple;
-    top: 0;
     width: 600px;
     height: 50px;
 }
@@ -55,8 +54,4 @@
     margin-left: 400px;
     width: 200px;
     height: 550px;
-
-
-
-
 }
