@@ -3,11 +3,11 @@
     padding: 0;
 }
 
-
 .basic{
     width: 600px;
     height: 600px;
     margin: auto;
+    margin-top: 20px;
     background-color: yellow;
 }
 
