@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    width: 800px;
+    height: 250px;
+    background-color: gold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.item.purple{
+    background-color: purple;
+    width: 100px;
+    height: 100px;
+}
