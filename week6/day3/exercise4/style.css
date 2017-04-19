@@ -1,0 +1,62 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+
+.basic{
+    width: 600px;
+    height: 600px;
+    margin: auto;
+    background-color: yellow;
+}
+
+.purple{
+    background-color: purple;
+    top: 0;
+    width: 600px;
+    height: 50px;
+}
+
+.cyan1{
+    background-color: cyan;
+    height: 30px;
+    width: 100px;
+    z-index: 1;
+    position: relative;
+    margin-top: -40px;
+    margin-left: 10px;
+}
+
+.cyan2{
+    background-color: cyan;
+    height: 30px;
+    width: 70px;
+    z-index: 1;
+    position: relative;
+    margin-top: -30px;
+    margin-left: 120px;
+}
+
+.cyan3{
+    background-color: cyan;
+    height: 30px;
+    width: 85px;
+    z-index: 1;
+    position: relative;
+    margin-top: -30px;
+    margin-left: 200px;
+}
+
+.sidebar{
+    background-color: green;
+    position: relative;
+    margin-top: 10px;
+    margin-left: 400px;
+    width: 200px;
+    height: 550px;
+
+
+
+
+}
