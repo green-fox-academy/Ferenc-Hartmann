@@ -1,0 +1,28 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    width: 900px;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.item{
+    height: 225px;
+    min-width: 225px;
+}
+
+.item.green{
+    background-color: limegreen;
+}
+
+.item.yellow{
+    background-color: gold;
+    flex-grow: 2;
+}
+
+.item.purple{
+    background-color: purple;
+}
