@@ -4,21 +4,22 @@
 }
 
 .container{
-    width: 675px;
+    width: 900px;
     display: flex;
 }
 
 .item{
     height: 225px;
-    width: 225px;
+    min-width: 225px;
 }
 
 .item.green{
-    background-color: green;
+    background-color: limegreen;
 }
 
 .item.yellow{
-    background-color: yellow;
+    background-color: gold;
+    flex-grow: 2;
 }
 
 .item.purple{
