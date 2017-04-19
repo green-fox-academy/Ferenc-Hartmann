@@ -1,0 +1,29 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    width: 300px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+}
+
+.item.green{
+    background-color: limegreen;
+    flex-grow: 1;
+    order: -1;
+}
+
+.item.yellow{
+    background-color: gold;
+    flex-grow: 2;
+    order: 2;
+}
+
+.item.purple{
+    background-color: purple;
+    flex-grow: 1;
+    order: 1;
+}
