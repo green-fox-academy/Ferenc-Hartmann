@@ -1,4 +1,4 @@
-class Aircraft():
+class Aircraft(object):
     def __init__(self, airplane):
         self.plane_data_list = [airplane, 8, 0, 30]
 #        if airplane == "F16":
@@ -33,7 +33,7 @@ class Aircraft():
     def get_status(self, plane_type, stored_ammo, base_damage):
         return ("Type " + str(plane_type) + ", Ammo: " + str(stored_ammo) + " Base Damage: " + str(base_damage) + ", All damage: " + str((stored_ammo * base_damage)))
 
-class Carrier():
+class Carrier(object):
     def __init__(self, maxammo, ammo, health):
         self.maxammo = maxammo
         self.ammo = ammo
