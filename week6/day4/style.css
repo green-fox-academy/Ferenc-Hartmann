@@ -64,7 +64,7 @@ header {
 
 .star {
     position: relative;
-    margin-top: 25px;
+    margin-top: 10px;
     margin-left: -2px;
     color: rgb(220, 86, 86);
     font-size: 12px;
@@ -233,6 +233,15 @@ input[type=mail] {
     width: 140px;
 }
 
+.comment {
+    margin-top: 20px;
+    position: relative;
+    color: rgb(179, 176, 172);
+    font-size: 14px;
+    display: inline-block;
+    float: left;
+}
+
 input[type=face] {
     margin-left: 25px;
     margin-top: 10px;
@@ -274,4 +283,63 @@ input[type=twitter] {
     background: linear-gradient(to top, rgba(255, 255, 255, 1) 31px, rgba(220, 214, 205, 1));
     display: inline-block;
     float: left;
+}
+
+.right6 {
+    position: relative;
+    margin-top: 25px;
+    margin-left: 25px;
+    color: rgb(74, 66, 97);
+    font-size: 15px;
+    font-weight: 900;
+    display: inline-block;
+    float: left;
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+
+    margin-left: 425px;
+    margin-top: 10px;
+    padding-left: 10px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    color: rgb(153, 153, 153);
+    line-height: 35px;
+    width: 300px;
+    border: 1px solid;
+    border-color: rgb(147, 140, 151);
+    border-radius: 3px;
+    background: linear-gradient(to top, rgba(255, 255, 255, 1) 31px, rgba(220, 214, 205, 1));
+    display: inline-block;
+    clear: both;
+}
+
+.left7 {
+    position: relative;
+    margin-top: 10px;
+    margin-left: 100px;
+    color: rgb(74, 66, 97);
+    font-size: 15px;
+    font-weight: 900;
+    display: inline-block;
+}
+
+input[type=introducing] {
+    margin-left: 100px;
+    margin-top: 10px;
+    padding-left: 10px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    width: 613px;
+    height: 170px;
+    border: 1px solid;
+    border-color: rgb(147, 140, 151);
+    border-radius: 3px;
+    background: linear-gradient(to top, rgba(255, 255, 255, 1) 165px, rgba(220, 214, 205, 1));
+    display: inline-block;
 }
