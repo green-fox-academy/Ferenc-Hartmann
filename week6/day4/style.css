@@ -192,3 +192,41 @@ input[type=mail] {
     background: linear-gradient(to top, rgba(255, 255, 255, 1) 31px, rgba(220, 214, 205, 1));
     display: inline-block;
 }
+
+.left4 {
+    position: relative;
+    margin-top: 25px;
+    margin-left: 100px;
+    margin-bottom: 15px;
+    color: rgb(74, 66, 97);
+    font-size: 15px;
+    font-weight: 900;
+    display: inline-block;
+}
+
+.right4 {
+    position: relative;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    margin-left: 138px;
+    color: rgb(74, 66, 97);
+    font-size: 15px;
+    font-weight: 900;
+    display: inline-block;
+}
+
+.container {
+    margin-left: 100px;
+    width: 300px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    color: rgb(74, 66, 97);
+}
+
+.boxelem {
+    margin-bottom: 10px;
+}
