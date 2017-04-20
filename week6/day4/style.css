@@ -75,23 +75,89 @@ header {
 .right2 {
     position: relative;
     margin-top: 25px;
-    margin-left: 286px;
+    margin-left: 285px;
     color: rgb(74, 66, 97);
     font-size: 15px;
     font-weight: 900;
     display: inline-block;
 }
 
-
-input[type=text] {
+input[type=name] {
     margin-left: 100px;
     margin-top: 10px;
+    padding-left: 10px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
     line-height: 35px;
-    width: 300px;
+    width: 288px;
     border: 1px solid;
     border-color: rgb(147, 140, 151);
     border-radius: 3px;
     background: linear-gradient(to top, rgba(255, 255, 255, 1) 31px, rgba(220, 214, 205, 1));
-    display: block
+    display: inline-block;
+}
 
+input[type=phone] {
+    margin-left: 20px;
+    margin-top: 10px;
+    padding-left: 10px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    line-height: 35px;
+    width: 288px;
+    border: 1px solid;
+    border-color: rgb(147, 140, 151);
+    border-radius: 3px;
+    background: linear-gradient(to top, rgba(255, 255, 255, 1) 31px, rgba(220, 214, 205, 1));
+    display: inline-block;
+}
+
+.left3 {
+    position: relative;
+    margin-top: 25px;
+    margin-left: 100px;
+    color: rgb(74, 66, 97);
+    font-size: 15px;
+    font-weight: 900;
+    display: inline-block;
+}
+
+.midle3 {
+    position: relative;
+    margin-top: 25px;
+    margin-left: 70px;
+    color: rgb(74, 66, 97);
+    font-size: 15px;
+    font-weight: 900;
+    display: inline-block;
+}
+
+.right3 {
+    position: relative;
+    margin-top: 25px;
+    margin-left: 97px;
+    color: rgb(74, 66, 97);
+    font-size: 15px;
+    font-weight: 900;
+    display: inline-block;
+}
+
+.newline {
+    margin-left: 150px;
+    display: inline-block;
+}
+
+input[type=borndate] {
+    margin-left: 100px;
+    margin-top: 10px;
+    padding-left: 10px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    line-height: 35px;
+    width: 75px;
+    border: 1px solid;
+    border-color: rgb(147, 140, 151);
+    border-radius: 3px;
+    background: linear-gradient(to top, rgba(255, 255, 255, 1) 31px, rgba(220, 214, 205, 1));
+    display: inline-block;
 }
