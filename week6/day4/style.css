@@ -197,7 +197,6 @@ input[type=mail] {
     position: relative;
     margin-top: 25px;
     margin-left: 100px;
-    margin-bottom: 15px;
     color: rgb(74, 66, 97);
     font-size: 15px;
     font-weight: 900;
@@ -207,7 +206,6 @@ input[type=mail] {
 .right4 {
     position: relative;
     margin-top: 25px;
-    margin-bottom: 15px;
     margin-left: 138px;
     color: rgb(74, 66, 97);
     font-size: 15px;
@@ -217,16 +215,63 @@ input[type=mail] {
 
 .container {
     margin-left: 100px;
+    margin-top: 15px;
     width: 300px;
     height: 150px;
-    display: flex;
+    display: flex inline-block;
     flex-direction: column;
     flex-wrap: wrap;
     font-family: 'Open Sans', sans-serif;
     font-size: 15px;
     color: rgb(74, 66, 97);
+    float: left;
 }
 
 .boxelem {
     margin-bottom: 10px;
+    display: inline-block;
+    width: 140px;
+}
+
+input[type=face] {
+    margin-left: 25px;
+    margin-top: 10px;
+    padding-left: 10px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    line-height: 35px;
+    width: 288px;
+    border: 1px solid;
+    border-color: rgb(147, 140, 151);
+    border-radius: 3px;
+    background: linear-gradient(to top, rgba(255, 255, 255, 1) 31px, rgba(220, 214, 205, 1));
+    display: inline-block;
+    float: left;
+}
+
+.right5 {
+    position: relative;
+    margin-top: 25px;
+    margin-left: 25px;
+    color: rgb(74, 66, 97);
+    font-size: 15px;
+    font-weight: 900;
+    display: inline-block;
+    float: left;
+}
+
+input[type=twitter] {
+    margin-left: 25px;
+    margin-top: 10px;
+    padding-left: 10px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    line-height: 35px;
+    width: 288px;
+    border: 1px solid;
+    border-color: rgb(147, 140, 151);
+    border-radius: 3px;
+    background: linear-gradient(to top, rgba(255, 255, 255, 1) 31px, rgba(220, 214, 205, 1));
+    display: inline-block;
+    float: left;
 }
