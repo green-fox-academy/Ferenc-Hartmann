@@ -35,3 +35,63 @@ header {
     border: 0px solid;
     border-radius: 3px;
 }
+
+.right1 {
+    position: relative;
+    margin-top: 0px;
+    margin-left: 20px;
+    padding-left: 13px;
+    padding-top: 5px;
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    background-color: rgb(147, 140, 151);
+    display: inline-block;
+    width: 287px;
+    height: 35px;
+    border: 0px solid;
+    border-radius: 3px;
+}
+
+.left2 {
+    position: relative;
+    margin-top: 25px;
+    margin-left: 100px;
+    color: rgb(74, 66, 97);
+    font-size: 15px;
+    font-weight: 900;
+    display: inline-block;
+}
+
+.star {
+    position: relative;
+    margin-top: 25px;
+    margin-left: -2px;
+    color: rgb(220, 86, 86);
+    font-size: 12px;
+    font-weight: 900;
+    display: inline-block;
+}
+
+.right2 {
+    position: relative;
+    margin-top: 25px;
+    margin-left: 286px;
+    color: rgb(74, 66, 97);
+    font-size: 15px;
+    font-weight: 900;
+    display: inline-block;
+}
+
+
+input[type=text] {
+    margin-left: 100px;
+    margin-top: 10px;
+    line-height: 35px;
+    width: 300px;
+    border: 1px solid;
+    border-color: rgb(147, 140, 151);
+    border-radius: 3px;
+    background: linear-gradient(to top, rgba(255, 255, 255, 1) 31px, rgba(220, 214, 205, 1));
+    display: block
+
+}
