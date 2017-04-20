@@ -110,8 +110,25 @@
 .text3 {
     background-color: none;
     text-align: justify;
-    max-width: 80%;
+    min-width: 80%;
+    max-height: 150px;
     margin-top: 20px;
     margin-left: 1%;
     margin-right: 1%;
+}
+
+.boxcontainer {
+    margin-top: 200px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    float: left;
+}
+
+.redbox{
+    background-color: red;
+    width: 100px;
+    height: 100px;
+    margin: 1%;
+
 }
