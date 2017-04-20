@@ -17,7 +17,7 @@ header {
     padding-top: 58px;
     color: rgb(93, 86, 111);
     font-weight: 100;
-    font-size: 30px;
+    font-size: 25px;
 }
 
 .left1 {
@@ -150,11 +150,42 @@ input[type=phone] {
 input[type=borndate] {
     margin-left: 100px;
     margin-top: 10px;
+    margin-right: 53px;
     padding-left: 10px;
     font-family: 'Open Sans', sans-serif;
     font-size: 15px;
     line-height: 35px;
     width: 75px;
+    border: 1px solid;
+    border-color: rgb(147, 140, 151);
+    border-radius: 3px;
+    background: linear-gradient(to top, rgba(255, 255, 255, 1) 31px, rgba(220, 214, 205, 1));
+    display: inline-block;
+}
+
+input[type=radio] {
+    margin-left: 30px;
+    display: inline-block;
+    position: relative;
+}
+
+label[for=female], label[for=male] {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    color: rgb(74, 66, 97);
+    display: inline-block;
+    top: -4px;
+    position: relative;
+}
+
+input[type=mail] {
+    margin-left: 31px;
+    margin-top: 10px;
+    padding-left: 10px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    line-height: 35px;
+    width: 288px;
     border: 1px solid;
     border-color: rgb(147, 140, 151);
     border-radius: 3px;
