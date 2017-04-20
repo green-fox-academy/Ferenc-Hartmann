@@ -329,17 +329,28 @@ select {
     display: inline-block;
 }
 
-input[type=introducing] {
-    margin-left: 100px;
+textarea[id=introducing] {
+    margin-left: 95px;
     margin-top: 10px;
     padding-left: 10px;
+    padding-top: 10px;
     font-family: 'Open Sans', sans-serif;
     font-size: 15px;
     width: 613px;
     height: 170px;
     border: 1px solid;
-    border-color: rgb(147, 140, 151);
+    color: rgb(153, 153, 153);
     border-radius: 3px;
-    background: linear-gradient(to top, rgba(255, 255, 255, 1) 165px, rgba(220, 214, 205, 1));
+    background: linear-gradient(to top, rgba(255, 255, 255, 1) 175px, rgba(220, 214, 205, 1));
+    display: inline-block;
+}
+
+.left8 {
+    position: relative;
+    margin-top: 10px;
+    margin-left: 100px;
+    color: rgb(74, 66, 97);
+    font-size: 15px;
+    font-weight: 900;
     display: inline-block;
 }
