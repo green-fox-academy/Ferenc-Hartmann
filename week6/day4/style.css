@@ -21,46 +21,45 @@ header {
     font-size: 25px;
 }
 
-.left1 {
+div .personaldata, div .contacts {
     position: relative;
+    padding-left: 13px;
+    padding-top: 5px;
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    background-color: rgb(147, 140, 151);
+    display: inline-block;
+    width: 287px;
+    height: 35px;
+    border: 0px solid;
+    border-radius: 3px;
+}
+
+.personaldata {
     margin-top: 40px;
     margin-left: 100px;
-    padding-left: 13px;
-    padding-top: 5px;
-    color: rgb(255, 255, 255);
-    font-size: 20px;
-    background-color: rgb(147, 140, 151);
-    display: inline-block;
-    width: 287px;
-    height: 35px;
-    border: 0px solid;
-    border-radius: 3px;
 }
 
-.right1 {
-    position: relative;
+.contacts {
     margin-top: 0px;
     margin-left: 20px;
-    padding-left: 13px;
-    padding-top: 5px;
-    color: rgb(255, 255, 255);
-    font-size: 20px;
-    background-color: rgb(147, 140, 151);
-    display: inline-block;
-    width: 287px;
-    height: 35px;
-    border: 0px solid;
-    border-radius: 3px;
 }
 
-.left2 {
+.nametext, .phonetext, .borndate, .gender, .mail, .marks, .facebook, .twitter, .house, .intro, .cvupload {
     position: relative;
     margin-top: 25px;
-    margin-left: 100px;
     color: rgb(74, 66, 97);
     font-size: 15px;
     font-weight: 900;
     display: inline-block;
+}
+
+.nametext {
+    margin-left: 100px;
+}
+
+.phonetext {
+    margin-left: 285px;
 }
 
 .star {
@@ -73,74 +72,38 @@ header {
     display: inline-block;
 }
 
-.right2 {
-    position: relative;
-    margin-top: 25px;
-    margin-left: 285px;
-    color: rgb(74, 66, 97);
+input[type=name], input[type=phone], input[type=borndate], input[type=mail], input[type=face], input[type=twitter] {
+    margin-top: 10px;
+    padding-left: 10px;
+    font-family: 'Open Sans', sans-serif;
     font-size: 15px;
-    font-weight: 900;
+    line-height: 35px;
+    width: 288px;
+    border: 1px solid;
+    border-color: rgb(147, 140, 151);
+    border-radius: 3px;
+    background: linear-gradient(to top, rgba(255, 255, 255, 1) 31px, rgba(220, 214, 205, 1));
     display: inline-block;
 }
 
 input[type=name] {
     margin-left: 100px;
-    margin-top: 10px;
-    padding-left: 10px;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 15px;
-    line-height: 35px;
-    width: 288px;
-    border: 1px solid;
-    border-color: rgb(147, 140, 151);
-    border-radius: 3px;
-    background: linear-gradient(to top, rgba(255, 255, 255, 1) 31px, rgba(220, 214, 205, 1));
-    display: inline-block;
 }
 
 input[type=phone] {
     margin-left: 20px;
-    margin-top: 10px;
-    padding-left: 10px;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 15px;
-    line-height: 35px;
-    width: 288px;
-    border: 1px solid;
-    border-color: rgb(147, 140, 151);
-    border-radius: 3px;
-    background: linear-gradient(to top, rgba(255, 255, 255, 1) 31px, rgba(220, 214, 205, 1));
-    display: inline-block;
 }
 
-.left3 {
-    position: relative;
-    margin-top: 25px;
+.borndate {
     margin-left: 100px;
-    color: rgb(74, 66, 97);
-    font-size: 15px;
-    font-weight: 900;
-    display: inline-block;
 }
 
-.midle3 {
-    position: relative;
-    margin-top: 25px;
+.gender {
     margin-left: 70px;
-    color: rgb(74, 66, 97);
-    font-size: 15px;
-    font-weight: 900;
-    display: inline-block;
 }
 
-.right3 {
-    position: relative;
-    margin-top: 25px;
+.mail {
     margin-left: 97px;
-    color: rgb(74, 66, 97);
-    font-size: 15px;
-    font-weight: 900;
-    display: inline-block;
 }
 
 .newline {
@@ -150,18 +113,8 @@ input[type=phone] {
 
 input[type=borndate] {
     margin-left: 100px;
-    margin-top: 10px;
     margin-right: 53px;
-    padding-left: 10px;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 15px;
-    line-height: 35px;
     width: 75px;
-    border: 1px solid;
-    border-color: rgb(147, 140, 151);
-    border-radius: 3px;
-    background: linear-gradient(to top, rgba(255, 255, 255, 1) 31px, rgba(220, 214, 205, 1));
-    display: inline-block;
 }
 
 input[type=radio] {
@@ -171,7 +124,6 @@ input[type=radio] {
 }
 
 label[for=female], label[for=male] {
-    font-family: 'Open Sans', sans-serif;
     font-size: 15px;
     color: rgb(74, 66, 97);
     display: inline-block;
@@ -181,37 +133,14 @@ label[for=female], label[for=male] {
 
 input[type=mail] {
     margin-left: 31px;
-    margin-top: 10px;
-    padding-left: 10px;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 15px;
-    line-height: 35px;
-    width: 288px;
-    border: 1px solid;
-    border-color: rgb(147, 140, 151);
-    border-radius: 3px;
-    background: linear-gradient(to top, rgba(255, 255, 255, 1) 31px, rgba(220, 214, 205, 1));
-    display: inline-block;
 }
 
-.left4 {
-    position: relative;
-    margin-top: 25px;
+.marks {
     margin-left: 100px;
-    color: rgb(74, 66, 97);
-    font-size: 15px;
-    font-weight: 900;
-    display: inline-block;
 }
 
-.right4 {
-    position: relative;
-    margin-top: 25px;
+.facebook {
     margin-left: 138px;
-    color: rgb(74, 66, 97);
-    font-size: 15px;
-    font-weight: 900;
-    display: inline-block;
 }
 
 .container {
@@ -219,7 +148,8 @@ input[type=mail] {
     margin-top: 15px;
     width: 300px;
     height: 150px;
-    display: flex inline-block;
+    display: flex;
+    display: inline-block;
     flex-direction: column;
     flex-wrap: wrap;
     font-family: 'Open Sans', sans-serif;
@@ -246,67 +176,30 @@ input[type=mail] {
 input[type=face] {
     margin-left: 25px;
     margin-top: 10px;
-    padding-left: 10px;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 15px;
-    line-height: 35px;
-    width: 288px;
-    border: 1px solid;
-    border-color: rgb(147, 140, 151);
-    border-radius: 3px;
-    background: linear-gradient(to top, rgba(255, 255, 255, 1) 31px, rgba(220, 214, 205, 1));
-    display: inline-block;
     float: left;
 }
 
-.right5 {
-    position: relative;
-    margin-top: 25px;
+.twitter {
     margin-left: 25px;
-    color: rgb(74, 66, 97);
-    font-size: 15px;
-    font-weight: 900;
-    display: inline-block;
     float: left;
 }
 
 input[type=twitter] {
     margin-left: 25px;
-    margin-top: 10px;
-    padding-left: 10px;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 15px;
-    line-height: 35px;
-    width: 288px;
-    border: 1px solid;
-    border-color: rgb(147, 140, 151);
-    border-radius: 3px;
-    background: linear-gradient(to top, rgba(255, 255, 255, 1) 31px, rgba(220, 214, 205, 1));
-    display: inline-block;
     float: left;
 }
 
-.right6 {
-    position: relative;
-    margin-top: 25px;
+.house {
     margin-left: 25px;
-    color: rgb(74, 66, 97);
-    font-size: 15px;
-    font-weight: 900;
-    display: inline-block;
     float: left;
 }
 
-select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    -o-appearance: none;
-    -ms-appearance: none;
-    appearance: none;
-
+select{
     margin-left: 425px;
     margin-top: 10px;
     padding-left: 10px;
+    padding-top: 7px;
+    padding-bottom: 7px;
     font-family: 'Open Sans', sans-serif;
     font-size: 15px;
     color: rgb(153, 153, 153);
@@ -320,17 +213,12 @@ select {
     clear: both;
 }
 
-.left7 {
-    position: relative;
+.intro {
     margin-top: 10px;
     margin-left: 100px;
-    color: rgb(74, 66, 97);
-    font-size: 15px;
-    font-weight: 900;
-    display: inline-block;
 }
 
-textarea[id=introducing] {
+#introducing {
     margin-left: 95px;
     margin-top: 10px;
     padding-left: 10px;
@@ -346,13 +234,10 @@ textarea[id=introducing] {
     display: inline-block;
 }
 
-.left8 {
-    position: relative;
-    margin-top: 10px;
+.cvupload {
     margin-left: 100px;
-    color: rgb(74, 66, 97);
-    font-size: 15px;
-    font-weight: 900;
+    margin-right: 400px;
+    display: inline;
 }
 
 .inputfile {
@@ -364,7 +249,7 @@ textarea[id=introducing] {
 	z-index: -1;
 }
 
-.inputfile + label {
+.inputfile + label, .reset + label {
     text-transform: uppercase;
     margin-top: 10px;
     margin-left: 100px;
@@ -437,19 +322,7 @@ label[for=save] {
 }
 
 .reset + label {
-    text-transform: uppercase;
-    margin-top: 10px;
     margin-left: 224px;
     padding-left: 25px;
     padding-right: 25px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    color: rgb(74, 66, 97);
-    font-size: 15px;
-    text-shadow: 1px 0px rgb(175, 172, 184);
-    display: inline-block;
-    border: 1px solid;
-    border-radius: 3px;
-    border-color: rgb(147, 140, 151);
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(220, 214, 205, 1));
 }

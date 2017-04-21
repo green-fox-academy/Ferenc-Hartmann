@@ -10,19 +10,19 @@
     <body>
         <div class="maincontent">
             <header>Profil</header>
-            <div class="left1">Személyes adatok</div>
-            <div class="right1">Kapcsolat</div>
-            <div class="left2">Név</div>
+            <label class="personaldata">Személyes adatok</label>
+            <label class="contacts">Kapcsolat</label>
+            <label class="nametext">Név</label>
             <div class="star">*</div>
-            <div class="right2">Telefonszám</div>
+            <label class="phonetext">Telefonszám</label>
             <div class="star">*</div>
             <input type="name" required/>
             <span class="tick"></span>
             <input type="phone" placeholder="+36 -- --- ----" required/>
             <span class="tick"></span>
-            <div class="left3">Születési éved</div>
-            <div class="midle3">Nemed</div>
-            <div class="right3">E-mail cím</div>
+            <label class="borndate">Születési éved</label>
+            <label class="gender">Nemed</label>
+            <label class="mail">E-mail cím</label>
             <div class="star">*</div>
             <div class="newline"></div>
             <input type="borndate" placeholder="pl.1984"/>
@@ -33,8 +33,8 @@
             <label for="male">férfi</label>
             <input type="mail" placeholder="nev@domain.hu" required/>
             <span class="tick"></span>
-            <div class="left4">Milyen márkákat szeretsz?</div>
-            <div class="right4">Facebook profilod</div>
+            <label class="marks">Milyen márkákat szeretsz?</label>
+            <label class="facebook">Facebook profilod</label>
             <div class="container">
                 <div class="boxelem">
                     <input type="checkbox" id="adidas"/>
@@ -80,20 +80,20 @@
             </div>
             <input type="face" placeholder="http://facebook.com/..."/>
             <span class="tick"></span>
-            <div class="right5">Twitter profilod</div>
+            <div class="twitter">Twitter profilod</div>
             <input type="twitter" placeholder="http://twitter.com/..."/>
             <span class="tick"></span>
-            <div class="right6">Milyen házban laksz?</div>
+            <label class="house">Milyen házban laksz?</label>
             <select>
                 <option>Válassz típust!</option>
                 <option>Házikó</option>
                 <option>Lakáska</option>
             </select>
-            <div class="left7">Bemutatkozás</div>
+            <label class="intro">Bemutatkozás</label>
             <div class="star">*</div></br>
 ​            <textarea id="introducing" placeholder="Írj magadról pár mondatot!" rows="10" cols="70"></textarea>
             <span class="tick"></span>
-            <div class="left8">CV feltöltése</div>
+            <label class="cvupload">CV feltöltése</label>
             <input type="file" name="file" id="file" class="inputfile" />
             <label for="file">file kiválasztása</label>
             <div>
