@@ -5,9 +5,10 @@
 
 .maincontent {
     width: 820px;
-    height: 1200px;
+    height: 1120px;
     margin: auto;
     margin-top: 50px;
+    margin-bottom: 50px;
     background-color: rgb(220, 214, 205);
     font-family: 'Open Sans', sans-serif;
 }
@@ -373,7 +374,6 @@ textarea[id=introducing] {
     padding-bottom: 10px;
     color: rgb(74, 66, 97);
     font-size: 15px;
-    font-weight: bold;
     display: inline-block;
     border: 1px solid;
     border-radius: 3px;
@@ -398,4 +398,57 @@ label[for=check] {
     font-family: 'Open Sans', sans-serif;
     font-size: 15px;
     color: rgb(98, 98, 98);
+}
+
+.saveform {
+    width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+label[for=save] {
+    text-transform: uppercase;
+    margin-top: 30px;
+    margin-left: 100px;
+    padding-left: 68px;
+    padding-right: 68px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: rgb(220, 214, 205);
+    font-size: 20px;
+    letter-spacing: 2px;
+    display: inline-block;
+    border: 1px solid;
+    border-radius: 3px;
+    background: linear-gradient(to bottom, rgba(82, 73, 107, 1), rgba(66, 59, 87, 1));
+}
+
+.reset {
+    width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.reset + label {
+    text-transform: uppercase;
+    margin-top: 10px;
+    margin-left: 224px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: rgb(74, 66, 97);
+    font-size: 15px;
+    display: inline-block;
+    border: 1px solid;
+    border-radius: 3px;
+    border-color: rgb(147, 140, 151);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(220, 214, 205, 1));
+
 }
