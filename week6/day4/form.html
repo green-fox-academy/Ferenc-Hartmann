@@ -9,90 +9,96 @@
     </head>
     <body>
         <div class="maincontent">
-            <header>Profil</header>
-            <label class="personaldata">Személyes adatok</label>
-            <label class="contacts">Kapcsolat</label>
-            <label class="nametext">Név</label>
-            <div class="star">*</div>
-            <label class="phonetext">Telefonszám</label>
-            <div class="star">*</div>
-            <input type="name" required/>
-            <span class="tick"></span>
-            <input type="phone" placeholder="+36 -- --- ----" required/>
-            <span class="tick"></span>
-            <label class="borndate">Születési éved</label>
-            <label class="gender">Nemed</label>
-            <label class="mail">E-mail cím</label>
-            <div class="star">*</div>
-            <div class="newline"></div>
-            <input type="borndate" placeholder="pl.1984"/>
-            <span class="tick"></span>
-            <input type="radio" id="female" name="gender"/>
-            <label for="female">nő</label>
-            <input type="radio" id="male" name="gender"/>
-            <label for="male">férfi</label>
-            <input type="mail" placeholder="nev@domain.hu" required/>
-            <span class="tick"></span>
-            <label class="marks">Milyen márkákat szeretsz?</label>
-            <label class="facebook">Facebook profilod</label>
-            <div class="container">
-                <div class="boxelem">
-                    <input type="checkbox" id="adidas"/>
-                    <label for="adidas">Adidas</label>
+            <div class="mainflexbox">
+                <div class="leftflexbox">
+                    <header>Profil</header>
+                    <label class="personaldata">Személyes adatok</label>
+                    <label class="nametext">Név</label>
+                    <div class="star">*</div>
+                    <input type="name" required/>
+                    <span class="tick"></span>
+                    <label class="borndate">Születési éved</label>
+                    <label class="gender">Nemed</label>
+                    <input type="borndate" placeholder="pl.1984"/>
+                    <span class="tick"></span>
+                    <input type="radio" id="female" name="gender"/>
+                    <label for="female">nő</label>
+                    <input type="radio" id="male" name="gender"/>
+                    <label for="male">férfi</label>
+                    <label class="marks">Milyen márkákat szeretsz?</label>
+                    <div class="container">
+                        <div class="boxelem">
+                            <input type="checkbox" id="adidas"/>
+                            <label for="adidas">Adidas</label>
+                        </div>
+                        <div class="boxelem">
+                            <input type="checkbox" id="apple"/>
+                            <label for="apple">Apple</label>
+                        </div>
+                        <div class="boxelem">
+                            <input type="checkbox" id="cola"/>
+                            <label for="cola">Coca-cola</label>
+                        </div>
+                        <div class="boxelem">
+                            <input type="checkbox" id="mazda"/>
+                            <label for="mazda">Mazda</label>
+                        </div>
+                        <div class="boxelem">
+                            <input type="checkbox" id="nike"/>
+                            <label for="nike">Nike</label>
+                        </div>
+                        <div class="boxelem">
+                            <input type="checkbox" id="opel"/>
+                            <label for="opel">Opel</label>
+                        </div>
+                        <div class="boxelem">
+                            <input type="checkbox" id="ray"/>
+                            <label for="ray">Ray-ban</label>
+                        </div>
+                        <div class="boxelem">
+                            <input type="checkbox" id="starbucks"/>
+                            <label for="starbucks">Starbucks</label>
+                        </div>
+                        <div class="boxelem">
+                            <input type="checkbox" id="tesla"/>
+                            <label for="tesla">Tesla</label>
+                        </div>
+                        <div class="boxelem">
+                            <input type="checkbox" id="yahoo"/>
+                            <label for="yahoo">Yahoo</label>
+                        </div>
+                        <div class="comment">Többet is választhatsz!</div>
+                    </div>
                 </div>
-                <div class="boxelem">
-                    <input type="checkbox" id="apple"/>
-                    <label for="apple">Apple</label>
+                <div class="rightflexbox">
+                    <label class="contacts">Kapcsolat</label>
+                    <label class="phonetext">Telefonszám</label>
+                    <div class="star">*</div>
+                    <input type="phone" placeholder="+36 -- --- ----" required/>
+                    <span class="tick"></span>
+                    <label class="mail">E-mail cím</label>
+                    <div class="star">*</div>
+                    <input type="mail" placeholder="nev@domain.hu" required/>
+                    <span class="tick"></span>
+                    <label class="facebook">Facebook profilod</label>
+                    <input type="face" placeholder="http://facebook.com/..."/>
+                    <span class="tick"></span>
+                    <div class="twitter">Twitter profilod</div>
+                    <input type="twitter" placeholder="http://twitter.com/..."/>
+                    <span class="tick"></span>
+                    <label class="house">Milyen házban laksz?</label>
+                    <select>
+                        <option>Válassz típust!</option>
+                        <option>Házikó</option>
+                        <option>Lakáska</option>
+                    </select>
                 </div>
-                <div class="boxelem">
-                    <input type="checkbox" id="cola"/>
-                    <label for="cola">Coca-cola</label>
-                </div>
-                <div class="boxelem">
-                    <input type="checkbox" id="mazda"/>
-                    <label for="mazda">Mazda</label>
-                </div>
-                <div class="boxelem">
-                    <input type="checkbox" id="nike"/>
-                    <label for="nike">Nike</label>
-                </div>
-                <div class="boxelem">
-                    <input type="checkbox" id="opel"/>
-                    <label for="opel">Opel</label>
-                </div>
-                <div class="boxelem">
-                    <input type="checkbox" id="ray"/>
-                    <label for="ray">Ray-ban</label>
-                </div>
-                <div class="boxelem">
-                    <input type="checkbox" id="starbucks"/>
-                    <label for="starbucks">Starbucks</label>
-                </div>
-                <div class="boxelem">
-                    <input type="checkbox" id="tesla"/>
-                    <label for="tesla">Tesla</label>
-                </div>
-                <div class="boxelem">
-                    <input type="checkbox" id="yahoo"/>
-                    <label for="yahoo">Yahoo</label>
-                </div>
-                <div class="comment">Többet is választhatsz!</div>
             </div>
-            <input type="face" placeholder="http://facebook.com/..."/>
-            <span class="tick"></span>
-            <div class="twitter">Twitter profilod</div>
-            <input type="twitter" placeholder="http://twitter.com/..."/>
-            <span class="tick"></span>
-            <label class="house">Milyen házban laksz?</label>
-            <select>
-                <option>Válassz típust!</option>
-                <option>Házikó</option>
-                <option>Lakáska</option>
-            </select>
             <label class="intro">Bemutatkozás</label>
-            <div class="star">*</div></br>
+            <div class="star">*</div>
 ​            <textarea id="introducing" placeholder="Írj magadról pár mondatot!" rows="10" cols="70"></textarea>
             <span class="tick"></span>
+            <div class=newline></div>
             <label class="cvupload">CV feltöltése</label>
             <input type="file" name="file" id="file" class="inputfile" />
             <label for="file">file kiválasztása</label>

@@ -13,18 +13,38 @@
     font-family: 'Open Sans', sans-serif;
 }
 
+.mainflexbox {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.leftflexbox {
+    display: flex;
+    display: inline-block;
+    flex-direction: column;
+    margin-left: 100px;
+    max-width: 300px;
+}
+
+.rightflexbox {
+    display: flex;
+    display: inline-block;
+    flex-direction: column;
+    margin: 132px 0px 0px 20px;
+    max-width: 300px;
+}
+
 header {
-    margin-left: 102px;
     padding-top: 58px;
     color: rgb(93, 86, 111);
     font-weight: 100;
     font-size: 25px;
 }
 
-div .personaldata, div .contacts {
+.personaldata, .contacts {
     position: relative;
-    padding-left: 13px;
-    padding-top: 5px;
+    padding: 5px 0px 0px 13px;
     color: rgb(255, 255, 255);
     font-size: 20px;
     background-color: rgb(147, 140, 151);
@@ -37,35 +57,19 @@ div .personaldata, div .contacts {
 
 .personaldata {
     margin-top: 40px;
-    margin-left: 100px;
-}
-
-.contacts {
-    margin-top: 0px;
-    margin-left: 20px;
 }
 
 .nametext, .phonetext, .borndate, .gender, .mail, .marks, .facebook, .twitter, .house, .intro, .cvupload {
-    position: relative;
-    margin-top: 25px;
+    margin: 15px 0px 10px 0px;
     color: rgb(74, 66, 97);
     font-size: 15px;
     font-weight: 900;
     display: inline-block;
 }
 
-.nametext {
-    margin-left: 100px;
-}
-
-.phonetext {
-    margin-left: 285px;
-}
-
 .star {
     position: relative;
-    margin-top: 10px;
-    margin-left: -2px;
+    margin: 10px 0px 0px -2px;
     color: rgb(220, 86, 86);
     font-size: 12px;
     font-weight: 900;
@@ -73,7 +77,6 @@ div .personaldata, div .contacts {
 }
 
 input[type=name], input[type=phone], input[type=borndate], input[type=mail], input[type=face], input[type=twitter] {
-    margin-top: 10px;
     padding-left: 10px;
     font-family: 'Open Sans', sans-serif;
     font-size: 15px;
@@ -86,33 +89,11 @@ input[type=name], input[type=phone], input[type=borndate], input[type=mail], inp
     display: inline-block;
 }
 
-input[type=name] {
-    margin-left: 100px;
-}
-
-input[type=phone] {
-    margin-left: 20px;
-}
-
-.borndate {
-    margin-left: 100px;
-}
-
 .gender {
     margin-left: 70px;
 }
 
-.mail {
-    margin-left: 97px;
-}
-
-.newline {
-    margin-left: 150px;
-    display: inline-block;
-}
-
 input[type=borndate] {
-    margin-left: 100px;
     margin-right: 53px;
     width: 75px;
 }
@@ -131,31 +112,16 @@ label[for=female], label[for=male] {
     position: relative;
 }
 
-input[type=mail] {
-    margin-left: 31px;
-}
-
-.marks {
-    margin-left: 100px;
-}
-
-.facebook {
-    margin-left: 138px;
-}
-
 .container {
-    margin-left: 100px;
-    margin-top: 15px;
+    margin-top: 10px;
     width: 300px;
     height: 150px;
     display: flex;
     display: inline-block;
     flex-direction: column;
     flex-wrap: wrap;
-    font-family: 'Open Sans', sans-serif;
     font-size: 15px;
     color: rgb(74, 66, 97);
-    float: left;
 }
 
 .boxelem {
@@ -165,7 +131,7 @@ input[type=mail] {
 }
 
 .comment {
-    margin-top: 20px;
+    margin: 20px 100px 0px 0px;
     position: relative;
     color: rgb(179, 176, 172);
     font-size: 14px;
@@ -173,33 +139,9 @@ input[type=mail] {
     float: left;
 }
 
-input[type=face] {
-    margin-left: 25px;
-    margin-top: 10px;
-    float: left;
-}
-
-.twitter {
-    margin-left: 25px;
-    float: left;
-}
-
-input[type=twitter] {
-    margin-left: 25px;
-    float: left;
-}
-
-.house {
-    margin-left: 25px;
-    float: left;
-}
-
 select{
-    margin-left: 425px;
     margin-top: 10px;
-    padding-left: 10px;
-    padding-top: 7px;
-    padding-bottom: 7px;
+    padding: 7px 0px 7px 10px;
     font-family: 'Open Sans', sans-serif;
     font-size: 15px;
     color: rgb(153, 153, 153);
@@ -214,18 +156,15 @@ select{
 }
 
 .intro {
-    margin-top: 10px;
-    margin-left: 100px;
+    margin: 20px 0px 10px 100px;
 }
 
 #introducing {
-    margin-left: 95px;
-    margin-top: 10px;
-    padding-left: 10px;
-    padding-top: 10px;
+    margin-left: 100px;
+    padding: 10px 0px 0px 10px;
     font-family: 'Open Sans', sans-serif;
     font-size: 15px;
-    width: 613px;
+    width: 608px;
     height: 170px;
     border: 1px solid;
     color: rgb(153, 153, 153);
@@ -234,9 +173,12 @@ select{
     display: inline-block;
 }
 
+.newline {
+    margin-top: 15px;
+}
+
 .cvupload {
-    margin-left: 100px;
-    margin-right: 400px;
+    margin: 0px 400px 0px 100px;
     display: inline;
 }
 
@@ -251,12 +193,8 @@ select{
 
 .inputfile + label, .reset + label {
     text-transform: uppercase;
-    margin-top: 10px;
-    margin-left: 100px;
-    padding-left: 45px;
-    padding-right: 45px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    margin: 10px 0px 0px 100px;
+    padding: 10px 45px;
     color: rgb(74, 66, 97);
     font-size: 15px;
     text-shadow: 1px 0px rgb(175, 172, 184);
@@ -268,27 +206,21 @@ select{
 }
 
 input[id=check] {
-    margin-left: 100px;
-    margin-top: 25px;
-
+    margin: 35px 0px 0px 100px;
 }
 
 label[for=check] {
     margin-bottom: 10px;
-    font-family: 'Open Sans', sans-serif;
     font-size: 15px;
     color: rgb(74, 66, 97);
 }
 
 .linken {
-    font-family: 'Open Sans', sans-serif;
     font-size: 15px;
     color: rgb(98, 98, 98);
 }
 
 .saveform {
-    width: 0.1px;
-	height: 0.1px;
 	opacity: 0;
 	overflow: hidden;
 	position: absolute;
@@ -297,12 +229,8 @@ label[for=check] {
 
 label[for=save] {
     text-transform: uppercase;
-    margin-top: 30px;
-    margin-left: 100px;
-    padding-left: 68px;
-    padding-right: 68px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    margin: 30px 0px 0px 100px;
+    padding: 10px 68px 10px 68px;
     color: rgb(220, 214, 205);
     font-size: 20px;
     letter-spacing: 2px;
@@ -323,6 +251,5 @@ label[for=save] {
 
 .reset + label {
     margin-left: 224px;
-    padding-left: 25px;
-    padding-right: 25px;
+    padding: 10px 25px 10px 25px;
 }
