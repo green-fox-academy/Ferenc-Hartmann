@@ -59,7 +59,7 @@ header {
     margin-top: 40px;
 }
 
-.nametext, .phonetext, .borndate, .gender, .mail, .marks, .facebook, .twitter, .house, .intro, .cvupload {
+.standardlabel, .intro, .cvupload, .gender {
     margin: 15px 0px 10px 0px;
     color: rgb(74, 66, 97);
     font-size: 15px;
@@ -76,7 +76,7 @@ header {
     display: inline-block;
 }
 
-input[type=name], input[type=phone], input[type=borndate], input[type=mail], input[type=face], input[type=twitter] {
+.standardinput {
     padding-left: 10px;
     font-family: 'Open Sans', sans-serif;
     font-size: 15px;
@@ -93,7 +93,7 @@ input[type=name], input[type=phone], input[type=borndate], input[type=mail], inp
     margin-left: 70px;
 }
 
-input[type=borndate] {
+#nameinput {
     margin-right: 53px;
     width: 75px;
 }
