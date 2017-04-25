@@ -38,7 +38,7 @@
     margin-left: 200px;
     margin-right: 100px;
     margin-top: 25px;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -64,11 +64,11 @@ a {
     text-decoration: none;
 }
 
-a:active {
+.navigation:active {
     color: #eda869;
 }
 
-a:hover {
+.navigation:hover {
     color: #eda869;
     transition: 0.5s;
 }
@@ -91,7 +91,7 @@ img {
 }
 
 .lifecoaching {
-    margin-top: 50px;
+    margin-top: 100px;
     margin-bottom: 30px;
     text-transform: uppercase;
     font-size: 36px;
@@ -116,7 +116,6 @@ img {
 }
 
 .image1 {
-    margin: 10px;
     height: 270px;
     width: 270px;
     background-color: red;
@@ -126,7 +125,6 @@ img {
 }
 
 .image2 {
-    margin: 10px;
     height: 270px;
     width: 270px;
     background-color: yellow;
@@ -136,7 +134,6 @@ img {
 }
 
 .image3 {
-    margin: 10px;
     height: 270px;
     width: 270px;
     background-color: green;
@@ -146,7 +143,6 @@ img {
 }
 
 .image4 {
-    margin: 10px;
     height: 270px;
     width: 270px;
     background-color: violet;
@@ -258,5 +254,41 @@ h2 {
 
 .contactdetails {
     margin-top: 10px;
+}
+
+.facebooklink {
+    font-size: 16px;
+}
+
+.facebooklink:link {
+    color: #666666;
+}
+
+.facebooklink:visited {
+    color: #666666;
+}
+
+.fee {
+    margin-top: 100px;
+    margin-bottom: 30px;
+    width: 100%;
+    padding-top: 30px;
+    padding-bottom: 60px;
+    text-transform: uppercase;
+    font-size: 36px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    background-color: rgb(238, 168, 106);
+}
+
+.feedetails {
+    margin-top: 50px;
+    font-size: 16px;
+    font-weight: normal;
+    color: #666666;
+    text-align: center;
+    line-height: 3;
+
 
 }
