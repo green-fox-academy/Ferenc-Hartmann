@@ -24,14 +24,14 @@
     font-size: 20px;
     font-weight: bolder;
     letter-spacing: 5px;
-    color: #333333;
+    color: rgb(33, 33, 33);
 }
 
 .logo2 {
     margin-left: 100px;
     font-family: 'Open Sans', sans-serif;
     font-size: 16px;
-    color: #333333;
+    color: rgb(33, 33, 33);
 }
 
 .topcontainer {
@@ -91,7 +91,7 @@ img {
 }
 
 .lifecoaching {
-    margin-top: 30px;
+    margin-top: 50px;
     margin-bottom: 30px;
     text-transform: uppercase;
     font-size: 36px;
@@ -173,4 +173,90 @@ img {
     color: #666666;
     text-align: center;
     line-height: 1.1;
+}
+
+.aboutmecontainer {
+    margin-left: 100px;
+    margin-right: 100px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.leftsidecontainer {
+    max-width: 64%;
+    text-align: justify;
+    color: #666666;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+    font-size: 16px;
+}
+
+.rightsidecontainer {
+    max-width: 32%;
+    text-align: justify;
+    color: #666666;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+    font-size: 16px;
+}
+
+.image5 {
+    margin-top: 20px;
+    width: 90%;
+    height: 850px;
+    background-color: gold;
+    border-radius: 50%;
+}
+
+h2 {
+    margin-top: 15px;
+    margin-bottom: 10px;
+    font-size: 24px;
+    font-weight: normal;
+    color: #666666;
+    text-align: left;
+    line-height: 1.1;
+}
+
+.contact {
+    margin-top: 15px;
+    margin-bottom: 10px;
+    width: 80%;
+    height: 125px;
+    font-size: 24px;
+    font-weight: normal;
+    color: #666666;
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.leftsidecontact {
+    width: 15%;
+    height: 100px;
+    margin: 0;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.rightsidecontact {
+    width: 85%;
+    height: 100px;
+    margin: 0;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.fa {
+    margin-top: 16px;
+}
+
+.contactdetails {
+    margin-top: 10px;
+
 }
