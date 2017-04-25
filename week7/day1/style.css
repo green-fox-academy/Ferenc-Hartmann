@@ -6,7 +6,7 @@
 .topbackground {
     background-color: rgb(0, 0, 0);
     width: 100%;
-    height: 8em;
+    height: 7em;
     position: absolute;
 }
 
@@ -37,7 +37,7 @@
 .topcontainer {
     margin-left: 200px;
     margin-right: 100px;
-    margin-top: 25px;
+    margin-top: 10px;
     padding-bottom: 20px;
     display: flex;
     justify-content: space-between;
@@ -54,6 +54,7 @@
     font-size: 12px;
     font-weight: bold;
     color: white;
+    transition: 0.5s;
 }
 
 ul {
@@ -64,13 +65,13 @@ a {
     text-decoration: none;
 }
 
-.navigation:active {
-    color: #eda869;
-}
-
 .navigation:hover {
     color: #eda869;
     transition: 0.5s;
+}
+
+.navigation:active {
+    color: #eda869;
 }
 
 img {
@@ -91,8 +92,8 @@ img {
 }
 
 .lifecoaching {
-    margin-top: 100px;
     margin-bottom: 30px;
+    padding-top: 100px;
     text-transform: uppercase;
     font-size: 36px;
     font-weight: bold;
@@ -289,6 +290,34 @@ h2 {
     color: #666666;
     text-align: center;
     line-height: 3;
-
-
 }
+
+.contactcontainer {
+    margin-top: 100px;
+    background-image: url("contactimage.jpg");
+    width: 100%;
+    height: 600px;
+    background-position: top left;
+}
+
+.contactheader {
+    padding-top: 30px;
+    text-transform: uppercase;
+    font-size: 36px;
+    font-weight: bold;
+    color: #666666;
+    text-align: center;
+}
+
+/*.standardinput {
+    padding-left: 10px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    line-height: 35px;
+    width: 288px;
+    border: 1px solid;
+    border-color: rgb(147, 140, 151);
+    border-radius: 3px;
+    background: linear-gradient(to top, rgba(255, 255, 255, 1) 31px, rgba(220, 214, 205, 1));
+    display: inline-block;
+}*/
