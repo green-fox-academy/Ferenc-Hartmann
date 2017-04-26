@@ -45,7 +45,6 @@
 }
 
 .navigation {
-    margin-left: 10px;
     margin-left: 20px;
     padding-top: 15px;
     padding-bottom: 15px;
@@ -93,7 +92,7 @@ img {
 
 .lifecoaching {
     margin-bottom: 30px;
-    padding-top: 100px;
+    padding-top: 50px;
     text-transform: uppercase;
     font-size: 36px;
     font-weight: bold;
@@ -101,6 +100,10 @@ img {
     text-align: center;
 }
 
+#lifecoaching {
+    padding-top: 60px;
+
+}
 .midcontainer {
     margin-left: 100px;
     margin-right: 100px;
@@ -172,6 +175,10 @@ img {
     line-height: 1.1;
 }
 
+#aboutme {
+    padding-top: 60px;
+
+}
 .aboutmecontainer {
     margin-left: 100px;
     margin-right: 100px;
@@ -182,7 +189,7 @@ img {
 }
 
 .leftsidecontainer {
-    max-width: 64%;
+    width: 60%;
     text-align: justify;
     color: #666666;
     line-height: 1.5;
@@ -191,7 +198,7 @@ img {
 }
 
 .rightsidecontainer {
-    max-width: 32%;
+    max-width: 36%;
     text-align: justify;
     color: #666666;
     line-height: 1.5;
@@ -269,8 +276,12 @@ h2 {
     color: #666666;
 }
 
+#fee {
+    padding-top: 50px;
+}
+
 .fee {
-    margin-top: 100px;
+    margin-top: 50px;
     margin-bottom: 30px;
     width: 100%;
     padding-top: 30px;
@@ -292,8 +303,12 @@ h2 {
     line-height: 3;
 }
 
-.contactcontainer {
-    margin-top: 100px;
+#contactheader {
+    padding-top: 50px;
+}
+
+.contactbackground {
+    margin-top: 57px;
     background-image: url("contactimage.jpg");
     width: 100%;
     height: 600px;
@@ -309,15 +324,47 @@ h2 {
     text-align: center;
 }
 
-/*.standardinput {
+.contactcontainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.standardinput {
+    margin: auto;
     padding-left: 10px;
     font-family: 'Open Sans', sans-serif;
-    font-size: 15px;
+    font-size: 18px;
     line-height: 35px;
-    width: 288px;
+    color: #666666;
+    width: 40%;
     border: 1px solid;
-    border-color: rgb(147, 140, 151);
-    border-radius: 3px;
-    background: linear-gradient(to top, rgba(255, 255, 255, 1) 31px, rgba(220, 214, 205, 1));
-    display: inline-block;
-}*/
+    border-color: #666666;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+textarea {
+   resize: none;
+}
+
+.submit {
+    margin: auto;
+    padding-left: 10px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    line-height: 35px;
+    color: #666666;
+    width: 41%;
+    border: 1px solid;
+    border-color: #666666;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+footer {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+    background-color: black;
+    color: white;
+    font-size: 12px;
+}
