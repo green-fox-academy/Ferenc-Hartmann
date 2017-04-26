@@ -53,7 +53,6 @@
     font-size: 12px;
     font-weight: bold;
     color: white;
-    transition: 0.5s;
 }
 
 ul {
@@ -69,8 +68,12 @@ a {
     transition: 0.5s;
 }
 
-.navigation:active {
-    color: #eda869;
+.bigimagecontainer {
+    margin: auto;
+    padding-top: 100px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 img {
@@ -277,15 +280,15 @@ h2 {
 }
 
 #fee {
-    padding-top: 50px;
+    padding-top: 57px;
 }
 
 .fee {
     margin-top: 50px;
     margin-bottom: 30px;
     width: 100%;
-    padding-top: 30px;
-    padding-bottom: 60px;
+    padding-top: 35px;
+    padding-bottom: 50px;
     text-transform: uppercase;
     font-size: 36px;
     font-weight: bold;
