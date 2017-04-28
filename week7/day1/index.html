@@ -6,32 +6,22 @@
         <meta charset="utf-8">
         <link rel="stylesheet" href="indexstyle.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
         <script>
         $(document).ready(function(){
-          // Add smooth scrolling to all links
           $("a").on('click', function(event) {
-
-            // Make sure this.hash has a value before overriding default behavior
             if (this.hash !== "") {
-              // Prevent default anchor click behavior
               event.preventDefault();
-
-              // Store hash
               var hash = this.hash;
-
-              // Using jQuery's animate() method to add smooth page scroll
-              // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
               $('html, body').animate({
                 scrollTop: $(hash).offset().top
               }, 800, function(){
-
-                // Add hash (#) to URL when done scrolling (default click behavior)
                 window.location.hash = hash;
               });
-            } // End if
+            }
           });
         });
         </script>
@@ -58,31 +48,67 @@
             <img src="balloon.jpg" alt="cover image">
         </div>
         <q class="quotation">A Coach az, aki mindent megtesz az ügyfeléért, de semmit nem tesz meg helyette.</q>
-        <div class="smoothScroll" id="lifecoaching"></div>
+        <div id="lifecoaching"></div>
         <h1 class="lifecoaching">life coaching</h1>
         <div class="midcontainer">
             <div class="imagecontainer">
-                <div class="image1"></div>
-                <h2 class="imagetext1">személyes coaching</h2>
-                <p class="imagetext2">Önismeretfejlesztés</p>
+                <a href="#motivation" class="image1"></a>
+                <a href="#motivation" class="imagetext1">motiváció</a>
+                <!-- <p class="imagetext2">Önismeretfejlesztés</p> -->
             </div>
             <div class="imagecontainer">
-                <div class="image2"></div>
-                <h2 class="imagetext1">család coaching</h2>
-                <p class="imagetext2">Életszervezés, életvezetés</p>
+                <a href="#selfknowledge" class="image2"></a>
+                <a href="#selfknowledge" class="imagetext1">önismeret</a>
+                <!-- <p class="imagetext2">Életszervezés, életvezetés</p> -->
             </div>
             <div class="imagecontainer">
-                <div class="image3"></div>
-                <h2 class="imagetext1">kamasz coaching</h2>
-                <p class="imagetext2">Testi, szellemi, lelki jólét növelése.</p>
+                <a href="#mediation" class="image3"></a>
+                <a href="#mediation" class="imagetext1">mediáció</a>
+                <!-- <p class="imagetext2">Testi, szellemi, lelki jólét növelése.</p> -->
             </div>
             <div class="imagecontainer">
-                <div class="image4"></div>
-                <h2 class="imagetext1">mediáció</h2>
-                <p class="imagetext2">Családi, szülői, párkapcsolati<br>problémák megoldása.</p>
+                <a href="#lifecoach" class="image4"></a>
+                <a href="#lifecoach" class="imagetext1">life coaching</a>
+                <!-- <p class="imagetext2">Családi, szülői, párkapcsolati<br>problémák megoldása.</p> -->
             </div>
         </div>
-        <div class="smoothScroll" id="aboutme"></div>
+        <div class="smoothScroll" id="motivation"></div>
+        <h2 class="lifecoachheader">motiváció</h2>
+        <div class="lifecoachtext">
+            <p>Annyira hihetetlen, hogy ha elképzeljük, ha hisszük, akkor TÉNYLEG bármire képesek vagyunk. Miért is ne?</p><br>
+            <p>Én valahogy mindig evidenciának éreztem, hogy a jobbra, a <span class="beautytext">szebbre</span> törekedjem és emiatt valahogy sikerült húznom a környezetemet is. Ez nem azt jelenti, hogy minden nap versenyt kell futnunk a megelégedett Önmagunkkal , de igenis, néha körbe kell néznünk magunk körül és ha valami nem tetszik, akarjunk változtatni.</p><br>
+            <p>Ezt lehet okosan, NEM kimerítve, nem mindig versenyezve, hanem erőt merítve magunkból, kellemes olykor kihívásszerű célokat találva, ami kedvet ad a lépésekhez, változásokhoz.</p><br>
+            <p>Mert a VÁLTOZÁS jó! Új! Ami új ízt ad a szánkba, új vágyakat ébreszt és tágítja az ismertet, kíváncsiságot ébreszt az ismeretlenre.</p><br>
+            <p>A MOTIVÁCIÓ a mindennapjaink mozgatórugója. Ha ezt a rugót be szeretnéd indítani, akkor megtaláljuk a módját. Ebben biztos vagyok.</p>
+        </div>
+        <div class="smoothScroll" id="selfknowledge"></div>
+        <h2 class="lifecoachheader">önismeret</h2>
+        <div class="lifecoachtext">
+            <p>Az önismeret a motiváción kívül a másik kedvenc témaköröm.</p><br>
+            <p>Szeretem az embereket, szeretek ismerkedni, történteket megismerni. Elképesztő sokszor tapasztaltam már, hogy az emberek mennyire nincsenek tisztába Önmagukkal. Mindenkinek, tényleg MINDENKINEK van erőssége és természetesen gyengesége is.</p><br>
+            <p>A profi teniszező lehet, hogy rémesen főz, de remekül játszik. A gimi legjobb töritanára pedig nem tud autót vezetni, de tanítani zseniális.</p><br>
+            <p>Mindig ott csúszik el az önértékelésünk, hogy nem jól ismerjük, nem jól értékeljük magunkat.</p><br>
+            <p>Én segíteni fogok Neked, hogy eszedbe ne jusson a saját tulajdonságaidat máséhoz hasonlítani, mert nem éri meg. Te TE vagy. Arra fogunk koncentrálni, hogy megismerjünk Téged. Mi az ami ERŐS benned, melyik személyiségjegyed kér egy kis edzést és melyik az amit ideje pihentetned.</p><br>
+            <p>Az önismeret önbizalommal jár. Az önbizalom pedig <strong>ERŐ</strong>, ami a Tied.</p>
+        </div>
+        <div class="smoothScroll" id="mediation"></div>
+        <h2 class="lifecoachheader">mediáció</h2>
+        <div class="lifecoachtext">
+            <p>Egy mediáció mindig egy speciális helyzet. Leginkább két ember 1 témakörről alkotott másfajta véleménye.</p><br>
+            <p>A mediáció során ketten , egymás mellett és nem egymás ellenfeleként ültök le velem beszélgetni. Hoztok egy témát, egy problémát, amit körüljárunk, kibeszélünk.</p><br>
+            <p>Nekem nem posztom igazságot tenni, hisz mindkét félnek megvan a maga igazsága. Én abban segítek, hogy megismerjétek, megértsétek egymás véleményét. Meghallgatni a másikat, közben elkerülni az egymással szembeni és az egymás mellett folytatott beszélgetéseket.</p><br>
+            <p>A mediáció abban segítség, hogy mindenki a szobán kívül hagyja a gombostűket, amivel eddig szúrkáltátok egymást, mellőzzük a személyeskedést és valóban CSAK egy megoldásra koncentrálunk, bántás nélkül, egymást végighallgatva és szerencsés esetben megértve.</p><br>
+            <p>Ez néha nehéz feladat, de ha már ide eljöttök, akkor közösen ezt akarjátok. Én ebben segítek, hogy ez menjen, létrejöjjön.</p>
+        </div>
+        <div class="smoothScroll" id="lifecoach"></div>
+        <h2 class="lifecoachheader">life coaching</h2>
+        <div class="lifecoachtext">
+            <p>Emlékszem amikor gyerekek voltunk. Egyáltalán nem volt nehéz prioritási listát állítani. Az volt az első helyen ami JÓ volt.</p><br>
+            <p>Ha felnőtt az ember, ez egy kissé zavarosabb. Még ezt is nehéz megmondani, hogy mi az amit igazán szeretnénk …. és akkor még ott a következő lépés, ennek megvalósítása. Ekkor még nem beszéltünk arról, hogy mi van ha ezeket a célokat különböző problémák, nehézségek akadályozzák.</p><br>
+            <p>Ha ezek mind összekuszálódnak, akkor jövök én a képbe. Sokszor abba a hibába esünk, hogy nem látjuk a fától az erdőt. Én segítek Neked megtalálni azt az erdőt, kikerülni vagy kivágni azt a fát. Vagy csak megismerni. Néha egy külső, objektív szemlélő segítségével sokkal eredményesebben tudjuk megtalálni, megérteni saját meglátásainkat.</p><br>
+            <p>Egy ilyen találkozás alkalmával kötetlenül, Rád figyelve, Téged kérdezve, Veled beszélgetve együtt találjuk meg azt, hogy mi akadályoz Téged, mi zavar és ezeket meghatározva és ezekre megoldást találva éred el a kitűzött céljaidat.</p>
+        </div>
+        <div id="aboutme"></div>
         <h1 class="lifecoaching">rólam</h1>
         <div class="aboutmecontainer">
             <div class="leftsidecontainer">
@@ -113,7 +139,7 @@
                 </div>
             </div>
         </div>
-        <div class="smoothScroll" id="fee"></div>
+        <div id="fee"></div>
         <div class="fee">Díjazás</div>
         <ul class="feedetails">
             <li>15.000 Ft per ülés</li>
@@ -123,19 +149,53 @@
             <li>Ajánlott ülések gyakorisága: hetente 1 alkalom</li>
             <li>A lezáró ülés díjmentes</li>
         </ul>
-        <div class="smoothScroll" id="contactheader"></div>
+        <div id="contactheader"></div>
         <div class="contactbackground">
             <h1 class="contactheader">kapcsolat</h1>
-            <form action="mailto:ferenc.hartmann@gmail.com" method="post" enctype="text/plain">
+                <!-- <form name="contactform" method="post" action="send_form_email.php">
+                    <table width="450px">
+                        <tr>
+                            <td valign="top">
+                                <input  type="text" name="first_name" maxlength="50" size="30">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top">
+                                <input  type="text" name="last_name" maxlength="50" size="30">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top">
+                                <input  type="text" name="email" maxlength="80" size="30">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top">
+                                <input  type="text" name="telephone" maxlength="30" size="30">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top">
+                                <textarea  name="comments" maxlength="1000" cols="25" rows="6"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align:center">
+                                <input type="submit" value="Submit">   <a href="http://www.freecontactform.com/email_form.php">Email Form</a>
+                            </td>
+                        </tr>
+                    </table>
+                </form> -->
+            <form name="contactform" method="post" action="send_form_email.php">
             <br>
-            <div class="contactcontainer">
+            <table class="contactcontainer">
                 <input type="text" name="name" placeholder="Név" class="standardinput" required><br>
                 <br>
                 <input type="text" name="mail" placeholder="Email" class="standardinput" required><br>
                 <br>
                 <textarea name="comment" placeholder="Üzenet" rows="6" class="standardinput" required></textarea><br><br>
                 <input type="submit" value="Küldés" class="submit">
-            </div>
+            </table>
             </form>
         </div>
         <footer>Copyright © 2017 - VANDACOACH</footer>

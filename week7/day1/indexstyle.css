@@ -63,7 +63,7 @@ a {
     text-decoration: none;
 }
 
-.navigation:hover {
+.navigation:hover, .imagetext1:hover {
     color: #eda869;
     transition: 0.5s;
 }
@@ -167,6 +167,38 @@ img {
     color: #666666;
     text-align: center;
     line-height: 1.1;
+}
+
+.smoothScroll {
+    padding-top: 60px;
+    padding-bottom: 50px;
+}
+
+.lifecoachheader {
+    margin-top: 0;
+    margin-bottom: 25px;
+    margin-left: 100px;
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: normal;
+    color: #666666;
+    line-height: 1.1;
+}
+
+.lifecoachtext{
+    margin-left: 100px;
+    margin-right: 100px;
+    display: inline-block;
+    text-align: justify;
+    color: #666666;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+    font-size: 16px;
+}
+
+.beautytext {
+    font-family: 'Dancing Script', cursive;
+    font-size: 20px;
 }
 
 .imagetext2 {
@@ -331,6 +363,10 @@ h2 {
     display: flex;
     justify-content: center;
     flex-direction: column;
+}
+
+form {
+    text-align: center;
 }
 
 .standardinput {
