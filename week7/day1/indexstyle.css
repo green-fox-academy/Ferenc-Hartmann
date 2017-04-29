@@ -282,35 +282,6 @@ img {
     padding-bottom: 50px;
 }
 
-.lifecoachheader {
-    margin-top: 0;
-    margin-bottom: 25px;
-    margin-left: 100px;
-    font-family: 'Open Sans', sans-serif;
-    text-transform: uppercase;
-    font-size: 18px;
-    font-weight: normal;
-    color: #666666;
-    line-height: 1.1;
-}
-
-.lifecoachtext{
-    margin-left: 100px;
-    margin-right: 100px;
-    font-family: 'Open Sans', sans-serif;
-    display: inline-block;
-    text-align: justify;
-    color: #666666;
-    line-height: 1.5;
-    letter-spacing: 0.5px;
-    font-size: 16px;
-}
-
-.beautytext {
-    font-family: 'Dancing Script', cursive;
-    font-size: 20px;
-}
-
 .imagetext2 {
     margin-bottom: 10px;
     font-family: 'Open Sans', sans-serif;
@@ -500,7 +471,7 @@ form {
     width: 40%;
     border: 1px solid;
     border-color: rgb(100, 100, 100);
-    background-color: rgba(0, 0, 0, 0);
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 textarea {
@@ -517,7 +488,7 @@ textarea {
     width: 41%;
     border: 1px solid;
     border-color: rgb(100, 100, 100);
-    background-color: rgba(0, 0, 0, 0);
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 .submit:hover {
