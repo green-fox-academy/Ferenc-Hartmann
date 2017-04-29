@@ -3,10 +3,18 @@
     padding: 0;
 }
 
+ul {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+}
+
 .topbackground {
     background-color: rgb(0, 0, 0);
     width: 100%;
-    height: 7em;
+    height: 68px;
     position: absolute;
 }
 
@@ -16,41 +24,33 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+    z-index: 2;
 }
 
-.logo1 {
+.logo {
+    position: relative;
+    padding-top: 20px;
+    padding-bottom: 10px;
     margin-left: 100px;
-    margin-top: 10px;
-    text-transform: uppercase;
     font-family: 'Open Sans', sans-serif;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bolder;
-    letter-spacing: 5px;
+    letter-spacing: 2px;
     color: rgb(33, 33, 33);
-    display: inline-block;
-}
-
-.logo2 {
-    margin-left: 100px;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 16px;
-    color: rgb(33, 33, 33);
-    display: inline-block;
 }
 
 .topcontainer {
+    margin-left: 100px;
     margin-right: 100px;
-    margin-top: 10px;
+    margin-top: 25px;
     padding-bottom: 20px;
-    height: 80px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
     flex-wrap: wrap;
 }
 
 .navigation {
-    margin-left: 30px;
+    margin-left: 25px;
     padding-top: 15px;
     padding-bottom: 15px;
     text-transform: uppercase;
@@ -58,15 +58,8 @@
     font-size: 12px;
     font-weight: bold;
     color: white;
-    transition: 0.5s;
-}
-
-ul {
-    list-style-type: none;
-}
-
-a {
-    text-decoration: none;
+    letter-spacing: 2px;
+    line-height: 2em;
 }
 
 .navigation:hover {
@@ -78,17 +71,9 @@ a {
     color: #eda869;
 }
 
-img {
-    width: 100%;
-    margin: auto;
-}
-
-#aboutme {
-    padding-top: 160px;
-}
-
 .lifecoaching {
     margin-bottom: 30px;
+    padding-top: 160px;
     text-transform: uppercase;
     font-size: 30px;
     font-weight: bold;
@@ -106,6 +91,20 @@ img {
     line-height: 1.5;
     letter-spacing: 0.5px;
     font-size: 16px;
+}
+
+.underlined {
+    text-decoration: underline;
+}
+
+.list {
+    margin-left: 15px;
+}
+
+h2 {
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 footer {
