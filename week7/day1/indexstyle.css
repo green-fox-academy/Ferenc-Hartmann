@@ -131,6 +131,16 @@ img {
     flex-direction: column;
 }
 
+.image1:hover {
+    height: 300px;
+    width: 300px;
+    background-color: black;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+}
+
 .image2 {
     height: 270px;
     width: 270px;
@@ -243,10 +253,8 @@ img {
 
 .image5 {
     margin-top: 20px;
-    width: 90%;
-    height: 850px;
+    width: 100%;
     background-color: gold;
-    border-radius: 50%;
 }
 
 h2 {
@@ -326,7 +334,7 @@ h2 {
     font-weight: bold;
     color: white;
     text-align: center;
-    background-color: rgb(238, 168, 106);
+    background-color: rgb(150, 150, 150);
 }
 
 .feedetails {
