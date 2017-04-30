@@ -17,7 +17,6 @@
 
 .video {
     height: 500px;
-
 }
 
 video#bgvid {
@@ -38,23 +37,40 @@ video#bgvid {
     overflow: hidden;
 }
 
-.logo {
+.logocontainer {
     margin-left: 100px;
     margin-top: 25px;
     margin-bottom: 10px;
-    padding: 10px;
-    height: 1.5em;
-    min-width: 72px;
-    text-transform: uppercase;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 20px;
-    font-weight: bolder;
-    letter-spacing: 5px;
-    color: white;
-    display: inline-block;
+    padding: 5px 10px 5px 10px;
     border-color: white;
     border-style: solid;
     border-width: 2px;
+    max-height: 60px;
+
+}
+
+.logo1 {
+    height: 1.5em;
+    min-width: 72px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+    font-weight: bolder;
+    text-align: center;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+}
+
+.logo2 {
+    height: 1.5em;
+    min-width: 72px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    font-weight: lighter;
+    text-align: center;
+    color: white;
+    display: flex;
+    justify-content: space-between;
 }
 
 .topcontainer {
@@ -130,15 +146,60 @@ a {
     font-weight: bold;
     letter-spacing: 3px;
     color: white;
-    /*text-shadow:
-    3px 0px white,
-    2px 0px white,
-    1px 0px white;*/
+}
+
+.buttoncontainer {
+    margin-top: 50px;
+    margin-left: 35%;
+    margin-right: 35%;
+    width: 30%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.button1 {
+    padding: 20px;
+    text-transform: uppercase;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    color: white;
+    border-color: white;
+    border-style: solid;
+    border-width: 2px;
+    background-color: rgba(255, 255, 255, 0)
+}
+
+.button1:hover {
+    color: black;
+    background-color: rgba(255, 255, 255, 1);
+    transition: 0.2s;
+}
+
+.button2 {
+    padding: 20px;
+    text-transform: uppercase;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    color: white;
+    border-color: white;
+    border-style: solid;
+    border-width: 2px;
+    background-color: rgba(255, 255, 255, 0)
+}
+
+.button2:hover {
+    color: black;
+    background-color: rgba(255, 255, 255, 1);
+    transition: 0.2s;
 }
 
 .quotation {
     margin: auto;
-    padding: 50px 0px;
+    padding: 65px 0px;
     width: 100%;
     background-color: #eeeeee;
     display: inline-block;
@@ -148,268 +209,10 @@ a {
     color: rgba(26,26,26,.9);
 }
 
-.lifecoaching {
-    margin-bottom: 30px;
-    padding-top: 50px;
-    text-transform: uppercase;
-    font-size: 36px;
-    font-weight: bold;
-    color: #666666;
-    text-align: center;
-}
-
-#lifecoaching {
-    padding-top: 60px;
-
-}
-.midcontainer {
-    margin-left: 100px;
-    margin-right: 100px;
-    text-align: center;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
-.imagecontainer {
-    width: 270px;
-    display: flex;
-    flex-direction: column;
-}
-
-.image1 {
-    height: 270px;
-    width: 270px;
-    background-color: red;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-}
-
-.image1:hover {
-    height: 300px;
-    width: 300px;
-    background-color: black;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    z-index: 2;
-}
-
-.image2 {
-    height: 270px;
-    width: 270px;
-    background-color: yellow;
-    border-radius: 60px;
-    display: flex;
-    flex-direction: column;
-}
-
-.image3 {
-    height: 270px;
-    width: 270px;
-    background-color: green;
-    border-radius: 100px;
-    display: flex;
-    flex-direction: column;
-}
-
-.image4 {
-    height: 270px;
-    width: 270px;
-    background-color: violet;
-    border-radius: 135px;
-    display: flex;
-    flex-direction: column;
-}
-
-.imagetext1 {
-    margin-top: 15px;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-    font-size: 18px;
-    font-weight: normal;
-    color: #666666;
-    text-align: center;
-    line-height: 1.1;
-}
-
-.smoothScroll {
-    padding-top: 60px;
-    padding-bottom: 50px;
-}
-
-.lifecoachheader {
-    margin-top: 0;
-    margin-bottom: 25px;
-    margin-left: 100px;
-    text-transform: uppercase;
-    font-size: 18px;
-    font-weight: normal;
-    color: #666666;
-    line-height: 1.1;
-}
-
-.lifecoachtext{
-    margin-left: 100px;
-    margin-right: 100px;
-    display: inline-block;
-    text-align: justify;
-    color: #666666;
-    line-height: 1.5;
-    letter-spacing: 0.5px;
-    font-size: 16px;
-}
-
-.beautytext {
-    font-family: 'Dancing Script', cursive;
-    font-size: 20px;
-}
-
-.imagetext2 {
-    margin-bottom: 10px;
-    font-size: 18px;
-    font-weight: normal;
-    color: #666666;
-    text-align: center;
-    line-height: 1.1;
-}
-
-#aboutme {
-    padding-top: 60px;
-
-}
-.aboutmecontainer {
-    margin-left: 100px;
-    margin-right: 100px;
-    text-align: center;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
-.leftsidecontainer {
-    width: 60%;
-    text-align: justify;
-    color: #666666;
-    line-height: 1.5;
-    letter-spacing: 0.5px;
-    font-size: 16px;
-}
-
-.rightsidecontainer {
-    max-width: 36%;
-    text-align: justify;
-    color: #666666;
-    line-height: 1.5;
-    letter-spacing: 0.5px;
-    font-size: 16px;
-}
-
-.image5 {
-    margin-top: 20px;
-    width: 100%;
-    background-color: gold;
-}
-
-h2 {
-    margin-top: 15px;
-    margin-bottom: 10px;
-    font-size: 24px;
-    font-weight: normal;
-    color: #666666;
-    text-align: left;
-    line-height: 1.1;
-}
-
-.contact {
-    margin-top: 15px;
-    margin-bottom: 10px;
-    width: 80%;
-    height: 125px;
-    font-size: 24px;
-    font-weight: normal;
-    color: #666666;
-    text-align: left;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.leftsidecontact {
-    width: 15%;
-    height: 100px;
-    margin: 0;
-    font-size: 16px;
-    display: flex;
-    flex-direction: column;
-}
-
-.rightsidecontact {
-    width: 85%;
-    height: 100px;
-    margin: 0;
-    font-size: 16px;
-    display: flex;
-    flex-direction: column;
-}
-
-.fa {
-    margin-top: 16px;
-}
-
-.contactdetails {
-    margin-top: 10px;
-}
-
-.facebooklink {
-    font-size: 16px;
-}
-
-.facebooklink:link {
-    color: #666666;
-}
-
-.facebooklink:visited {
-    color: #666666;
-}
-
-#fee {
-    padding-top: 57px;
-}
-
-.fee {
-    margin-top: 50px;
-    margin-bottom: 30px;
-    width: 100%;
-    padding-top: 35px;
-    padding-bottom: 50px;
-    text-transform: uppercase;
-    font-size: 36px;
-    font-weight: bold;
-    color: white;
-    text-align: center;
-    background-color: rgb(150, 150, 150);
-}
-
-.feedetails {
-    margin-top: 50px;
-    font-size: 16px;
-    font-weight: normal;
-    color: #666666;
-    text-align: center;
-    line-height: 3;
-}
-
-#contactheader {
-    padding-top: 50px;
-}
-
 .contactbackground {
-    margin-top: 57px;
-    background-image: url("contactimage.jpg");
+    background-image: url("images/contactimage.jpg");
     width: 100%;
-    height: 600px;
+    height: 615px;
     background-position: top left;
 }
 
@@ -441,8 +244,8 @@ form {
     color: #666666;
     width: 40%;
     border: 1px solid;
-    border-color: #666666;
-    background-color: rgba(0, 0, 0, 0);
+    border-color: rgb(100, 100, 100);
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 textarea {
@@ -458,8 +261,14 @@ textarea {
     color: #666666;
     width: 41%;
     border: 1px solid;
-    border-color: #666666;
-    background-color: rgba(0, 0, 0, 0);
+    border-color: rgb(100, 100, 100);
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.submit:hover {
+    color: black;
+    background-color: rgba(255, 255, 255, 0.5);
+    transition: 0.3s;
 }
 
 footer {

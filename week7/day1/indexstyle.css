@@ -131,7 +131,7 @@ img {
 }
 
 #lifecoaching {
-    padding-top: 60px;
+    padding-top: 20px;
 
 }
 .midcontainer {
@@ -293,7 +293,7 @@ img {
 }
 
 #aboutme {
-    padding-top: 60px;
+    padding-top: 20px;
 
 }
 .aboutmecontainer {
@@ -399,7 +399,7 @@ h2 {
 }
 
 #fee {
-    padding-top: 57px;
+    padding-top: 19px;
 }
 
 .fee {
@@ -429,7 +429,7 @@ h2 {
 }
 
 #contactheader {
-    padding-top: 50px;
+    padding-top: 12px;
 }
 
 .contactbackground {
@@ -495,8 +495,8 @@ textarea {
     color: black;
     background-color: rgba(255, 255, 255, 0.5);
     transition: 0.3s;
-
 }
+
 footer {
     padding-top: 20px;
     padding-bottom: 20px;
