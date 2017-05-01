@@ -3,6 +3,14 @@
     padding: 0;
 }
 
+ul {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+}
+
 .menubar {
     height: 500px;
     background-color: rgba(0, 0, 0, 0.7);
@@ -46,16 +54,15 @@ video#bgvid {
     border-style: solid;
     border-width: 2px;
     max-height: 60px;
-
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
 }
 
 .logo1 {
     height: 1.5em;
     min-width: 72px;
-    font-family: 'Open Sans', sans-serif;
     font-size: 20px;
     font-weight: bolder;
-    text-align: center;
     color: white;
     display: flex;
     justify-content: space-around;
@@ -64,10 +71,8 @@ video#bgvid {
 .logo2 {
     height: 1.5em;
     min-width: 72px;
-    font-family: 'Open Sans', sans-serif;
     font-size: 14px;
     font-weight: lighter;
-    text-align: center;
     color: white;
     display: flex;
     justify-content: space-between;
@@ -83,49 +88,28 @@ video#bgvid {
     flex-wrap: wrap;
 }
 
-.navigation {
-    margin-left: 40px;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    text-transform: uppercase;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
-    font-weight: bold;
-    letter-spacing: 3px;
-    color: rgb(200, 200, 200);
-}
-
-ul {
-    list-style-type: none;
-}
-
-a {
-    text-decoration: none;
-}
-
-.navigation:hover, .imagetext1:hover {
-    color: white;
-    transition: 0.5s;
-}
-
 .navigation2 {
     margin-left: 40px;
     padding: 10px 10px;
+    width: 120px;
     text-transform: uppercase;
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;
     font-weight: bold;
     letter-spacing: 3px;
     color: white;
-    border-color: white;
+    border-color: rgba(255, 255, 255, 0);
     border-style: solid;
     border-width: 2px;
+    border-radius: 50%;
 }
 
 .navigation2:hover{
-    color: black;
-    background-color: white;
-    transition: 0.3s;
+    border-color: white;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 0%;
+    transition: 0.5s;
 }
 
 .head1 {
@@ -155,46 +139,35 @@ a {
     width: 30%;
     display: flex;
     justify-content: space-around;
+    text-transform: uppercase;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 3px;
 }
 
 .button1 {
     padding: 20px;
-    text-transform: uppercase;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
-    font-weight: bold;
-    letter-spacing: 3px;
-    color: white;
     border-color: white;
     border-style: solid;
     border-width: 2px;
-    background-color: rgba(255, 255, 255, 0)
-}
-
-.button1:hover {
-    color: black;
-    background-color: rgba(255, 255, 255, 1);
-    transition: 0.2s;
+    background-color: rgba(255, 255, 255, 0);
+    color: white;
 }
 
 .button2 {
     padding: 20px;
-    text-transform: uppercase;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
-    font-weight: bold;
-    letter-spacing: 3px;
-    color: white;
     border-color: white;
     border-style: solid;
     border-width: 2px;
-    background-color: rgba(255, 255, 255, 0)
+    background-color: rgba(255, 255, 255, 0);
+    color: white;
 }
 
-.button2:hover {
+.button1:hover, .button2:hover {
     color: black;
     background-color: rgba(255, 255, 255, 1);
-    transition: 0.2s;
+    transition: 0.3s;
 }
 
 .quotation {
@@ -272,6 +245,7 @@ textarea {
 }
 
 footer {
+    font-family: 'Open Sans', sans-serif;
     padding-top: 20px;
     padding-bottom: 20px;
     text-align: center;
