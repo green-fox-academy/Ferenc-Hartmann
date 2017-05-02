@@ -1,28 +1,53 @@
 'use strict';
 
-var a = 3;
-// make it bigger by 10
-a += 10;
+var a = 24;
+var out = 0;
+// if a is even increment out by one
+if (a % 2 === 0) {
+  out++;
+}
 
 
-console.log(a);
-
-
-
-
-var b = 100;
-// make it smaller by 7
-b = b - 7;
-
-
-console.log(b);
+console.log(out);
 
 
 
 
-var c = 44;
-// double c's value
-c = c * 2;
+var b = 13;
+var out2 = '';
+// if b is between 10 and 20 set out2 to "Sweet!"
+// if less than 10 set out2 to "More!",
+// if more than 20 set out2 to "Less!"
+if (10 < b < 20) {
+  out2 = 'Sweet!';
+} else if (b < 10) {
+    out2 = 'More!';
+} else if (b > 20) {
+    out2 = 'Less!';
+}
+
+
+
+console.log(out2);
+
+
+
+var c = 123;
+var credits = 100;
+var isBonus = false;
+// if credits are at least 50,
+// and is_bonus is false decrement c by 2
+// if credits are smaller than 50,
+// and is_bonus is false decrement c by 1
+// if is_bonus is true c should remain the same
+
+if (credits >= 50 && isBonus === false) {
+  c -= 2;
+} else if (50 > credits && isBonus === false) {
+    c -= 1;
+} else if (isBonus === true) {
+    c = c;
+}
 
 
 console.log(c);
@@ -30,88 +55,22 @@ console.log(c);
 
 
 
-var d = 125;
-// divide d's value by 5
-d = d / 5;
-
-
-console.log(d);
-
-
-
-
-var e = 8;
-// what's the cube of e's value?
-e = e * e * e;
-
-
-console.log(e);
-
-
-
-
-var f1 = 123;
-var f2 = 345;
-// tell if f1 is bigger than f2 (as a boolean)
-if (f1 > f2) {
-  console.log(true);
+var d = 8;
+var time = 120;
+var out3 = '';
+// if d is dividable by 4
+// and time is not more than 200
+// set out3 to "check"
+// if time is more than 200
+// set out3 to "Time out"
+// otherwise set out3 to "Run Forest Run!"
+if ((d % 4 === 0) && time <= 200) {
+  out3 = 'check';
+} else if (time > 200) {
+    out3 = 'Time out';
 } else {
-    console.log(false);
+    out3 = 'Run Forest Run!';
 }
 
 
-
-
-var g1 = 350;
-var g2 = 200;
-// tell if the double of g2 is bigger than g1 (pras a boolean)
-if ((g2 * 2) > g2) {
-  console.log(true);
-} else {
-    console.log(false);
-}
-
-
-
-
-var h = 1357988018575474;
-// tell if h has 11 as a divisor (as a boolean)
-if (h % 11 === 0) {
-  console.log(true);
-} else {
-    console.log(false);
-}
-
-
-
-
-
-var i1 = 10;
-var i2 = 3;
-// tell if i1 is higher than i2 squared and smaller than i2 cubed (as a boolean)
-if (i1 > (i2 * i2) && i1 < (i2 * i2 * i2)) {
-  console.log(true);
-} else {
-    console.log(false);
-}
-
-
-
-
-var j = 1521;
-// tell if j is dividable by 3 or 5 (as a boolean)
-if (j % 3 === 0 || j % 5 === 0) {
-  console.log(true);
-} else {
-    console.log(false);
-}
-
-
-
-
-var k = 'Apple';
-// fill the k variable with its content 4 times
-k = k + k + k + k;
-
-
-console.log(k);
+console.log(out3);

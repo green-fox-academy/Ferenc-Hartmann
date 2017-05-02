@@ -2,7 +2,7 @@
 
 var a = 3;
 // make it bigger by 10
-var a = a + 10;
+a += 10;
 
 
 console.log(a);
@@ -12,7 +12,7 @@ console.log(a);
 
 var b = 100;
 // make it smaller by 7
-var b = b - 7;
+b = b - 7;
 
 
 console.log(b);
@@ -22,7 +22,7 @@ console.log(b);
 
 var c = 44;
 // double c's value
-var c = c * 2;
+c = c * 2;
 
 
 console.log(c);
@@ -32,7 +32,7 @@ console.log(c);
 
 var d = 125;
 // divide d's value by 5
-var d = d / 5;
+d = d / 5;
 
 
 console.log(d);
@@ -42,7 +42,7 @@ console.log(d);
 
 var e = 8;
 // what's the cube of e's value?
-var e = e * e * e;
+e = e * e * e;
 
 
 console.log(e);
@@ -111,7 +111,7 @@ if (j % 3 === 0 || j % 5 === 0) {
 
 var k = 'Apple';
 // fill the k variable with its content 4 times
-var k = k + k + k + k;
+k = k + k + k + k;
 
 
 console.log(k);
