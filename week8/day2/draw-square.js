@@ -15,8 +15,8 @@ var lineCount = 10;
 //
 // The square should have as many lines as lineCount is
 
-var block = '%'
-var space = ' '
+var block = '%';
+var space = ' ';
 
 console.log(block.repeat((lineCount-1)));
 for (var i = 0; i < (lineCount - 2); i++) {

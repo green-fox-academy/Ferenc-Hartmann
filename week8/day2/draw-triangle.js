@@ -12,9 +12,9 @@ var lineCount = 4;
 //
 // The triangle should have as many lines as lineCount is
 
-var star = '*'
+var star = '*';
 
 for (var i = 0; i < 4; i++) {
   console.log(star);
-  star += '*'
+  star += '*';
 }

@@ -18,8 +18,8 @@ var lineCount = 7;
 //
 // The diamond should have as many lines as lineCount is
 
-var star = '*'
-var space = ' '
+var star = '*';
+var space = ' ';
 var j = 1;
 var k = 0;
 

@@ -13,10 +13,10 @@ var lineCount = 4;
 //
 // The pyramid should have as many lines as lineCount is
 
-var star = '*'
-var space = ' '
+var star = '*';
+var space = ' ';
 
 for (var i = 0; i < lineCount; i++) {
   console.log(space.repeat((lineCount-(i+1))) + star + space.repeat((lineCount-(i+1))));
-  star += '**'
+  star += '**';
 }
