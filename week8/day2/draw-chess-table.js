@@ -13,10 +13,10 @@
 //
 
 
-var block = '%'
-var space = ' '
-var x = block + space
-var y = space + block
+var block = '%';
+var space = ' ';
+var x = block + space;
+var y = space + block;
 
 for (var i = 0; i < (5); i++) {
     console.log(x.repeat(4));
