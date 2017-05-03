@@ -11,4 +11,4 @@ function greet(bambi = 'Master') {
     var greeting = 'Greetings, dear ' + bambi;
     return greeting;
 }
-console.log(greet(al));
+console.log(greet());
