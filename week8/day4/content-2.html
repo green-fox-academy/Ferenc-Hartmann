@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Workshop: innerHTML, textContent</title>
+</head>
+<body>
+  <p class="apple">apple</p>
+  <p class="balloon">banana</p>
+  <p class="cat">car</p>
+  <p class="dog">dolphin</p>
+
+  <script>
+      var paragraphs = document.querySelectorAll('body p');
+      paragraphs[0].innerHTML = paragraphs[3].innerText;
+      paragraphs[1].innerHTML = paragraphs[3].innerText;
+      paragraphs[2].innerHTML = paragraphs[3].innerText;
+  </script>
+
+  <!-- You can work in the html or in a separate js file. Like:
+  <script>
+    fill every paragraph with the last one's content.
+  </script>
+  OR
+  <script src="content-2.js"></script> -->
+</body>
+</html>
