@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Workshop: CreateElement</title>
+</head>
+<body>
+  <ul class="asteroids">
+    <li>The King</li>
+  </ul>
+
+  <script>
+    'use strict';
+    var asteroidclass = document.querySelector('ul.asteroids');
+
+    var remover = document.querySelector('li');
+    asteroidclass.removeChild(remover);
+
+    var newAsteroid1 = document.createElement('li');
+    newAsteroid1.innerHTML = 'The Fox';
+    asteroidclass.appendChild(newAsteroid1);
+
+    var newAsteroid2 = document.createElement('li');
+    newAsteroid2.innerHTML = 'The Fox';
+    asteroidclass.appendChild(newAsteroid2);
+
+    var newAsteroid3 = document.createElement('li');
+    newAsteroid3.innerHTML = 'The Fox';
+    asteroidclass.appendChild(newAsteroid3);
+
+  </script>
+
+  <!-- You can work in the html or in a separate js file. Like:
+  <script>
+    Remove the king from the list.
+    Add 3 list items saying 'The Fox' to the list.
+  </script>
+  OR
+  <script src="createelement-2.js"></script> -->
+</body>
+</html>
