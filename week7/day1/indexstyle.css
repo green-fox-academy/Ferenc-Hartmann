@@ -118,7 +118,7 @@ img {
     color: #666666
 }
 
-.lifecoaching {
+.lifecoachingheader {
     margin-bottom: 30px;
     padding-top: 50px;
     font-family: 'Open Sans', sans-serif;
@@ -132,8 +132,94 @@ img {
 
 #lifecoaching {
     padding-top: 20px;
-
 }
+
+.lifecoaching {
+    margin-bottom: 50px;
+    padding-top: 150px;
+    text-transform: uppercase;
+    font-size: 30px;
+    font-weight: bold;
+    color: #666666;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.lifecoachingcontainer {
+    margin: auto;
+    padding-bottom: 200px;
+    max-width: 70%;
+    text-align: justify;
+    color: #666666;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+    font-size: 16px;
+}
+
+.underlined {
+    text-decoration: underline;
+}
+
+.list {
+    margin-left: 15px;
+}
+
+.header2 {
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.eventcontainer {
+    margin: auto;
+    padding-bottom: 200px;
+    max-width: 700px;
+    font-family: 'Open Sans', sans-serif;
+    text-align: justify;
+    color: #666666;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+    font-size: 16px;
+    background-image: url("images/no1.jpg");
+    background-position: top center;
+    background-repeat: no-repeat;
+}
+
+.topright {
+    padding-top: 10px;
+    padding-right: 10px;
+    text-align: right;
+    font-family: 'Indie Flower', cursive;
+    color: rgba(255, 255, 255, 1);
+    font-weight: bold;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+    font-size: 30px;
+    text-shadow:
+    1px 0px black,
+    -1px 0px black,
+    0px 1px black,
+    0px -1px black;
+}
+
+.bottomleft {
+    padding-top: 400px;
+    padding-left: 10px;
+    padding-bottom: 75px;
+    text-align: left;
+    font-family: 'Indie Flower', cursive;
+    color: white;
+    font-weight: bold;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+    font-size: 30px;
+    text-shadow:
+    1px 0px black,
+    -1px 0px black,
+    0px 1px black,
+    0px -1px black;
+}
+
 .midcontainer {
     margin-left: 100px;
     margin-right: 100px;
@@ -332,7 +418,7 @@ img {
     background-color: gold;
 }
 
-h2 {
+.indextext {
     margin-top: 15px;
     margin-bottom: 10px;
     font-family: 'Open Sans', sans-serif;
