@@ -27,10 +27,13 @@ a {
     z-index: 2;
 }
 
+.logocontainer {
+    min-width: 375px;
+}
+
 .logo {
     position: relative;
-    padding-top: 20px;
-    padding-bottom: 10px;
+    padding: 20px 0px;
     margin-left: 100px;
     font-family: 'Open Sans', sans-serif;
     font-size: 18px;
@@ -40,8 +43,9 @@ a {
 }
 
 .topcontainer {
-    margin: 25px 100px 0px 100px;
+    margin: 25px 100px 0px 0px;
     padding-bottom: 20px;
+    min-width: 150px;
     text-transform: uppercase;
     font-family: 'Open Sans', sans-serif;
     font-size: 12px;
@@ -57,6 +61,8 @@ a {
     margin-left: 25px;
     padding: 15px 0px;
     color: white;
+    text-align: left;
+    line-height: 2em;
 }
 
 .navigation2 {
@@ -86,7 +92,7 @@ a {
     width: 100%;
     display: flex;
     flex-direction: column;
-    top: -300px;
+    top: -49%;
     z-index: -1;
 }
 
@@ -96,8 +102,7 @@ img {
 }
 
 .quotation {
-    margin: auto;
-    margin-top: 590px;
+    margin-top: 42%;
     padding: 30px 0px;
     width: 100%;
     background-color: #eeeeee;
@@ -130,6 +135,7 @@ img {
     padding-top: 150px;
     text-transform: uppercase;
     font-size: 30px;
+    font-family: 'Open Sans', sans-serif;
     font-weight: bold;
     color: #666666;
     text-align: center;
@@ -140,6 +146,7 @@ img {
     margin: auto;
     padding-bottom: 200px;
     max-width: 70%;
+    font-family: 'Open Sans', sans-serif;
     text-align: justify;
     color: #666666;
     line-height: 1.5;
@@ -177,8 +184,7 @@ img {
 }
 
 .topright {
-    padding-top: 10px;
-    padding-right: 10px;
+    padding: 10px 10px 0px 0px;
     text-align: right;
     font-family: 'Indie Flower', cursive;
     color: rgba(255, 255, 255, 1);
@@ -194,9 +200,7 @@ img {
 }
 
 .bottomleft {
-    padding-top: 400px;
-    padding-left: 10px;
-    padding-bottom: 75px;
+    padding: 400px 0px 75px 10px;
     text-align: left;
     font-family: 'Indie Flower', cursive;
     color: white;
@@ -212,8 +216,7 @@ img {
 }
 
 .midcontainer {
-    margin-left: 100px;
-    margin-right: 100px;
+    margin:  0px 100px;
     text-align: center;
     display: flex;
     justify-content: space-between;
@@ -226,124 +229,41 @@ img {
     flex-direction: column;
 }
 
-.image1 {
+.image {
     margin: 20px;
     padding: 0px;
     height: 270px;
     width: 270px;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0);
+    border-width: 1px;
+    display: flex;
+    flex-direction: column;
+}
+
+.first {
     background-image: url("images/motivacio.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-    border-style: solid;
-    border-color: rgba(0, 0, 0, 0);
-    border-width: 1px;
-    display: flex;
-    flex-direction: column;
 }
 
-.image1:hover {
-    margin: 0px;
-    padding: 20px;
-    background-image: url("images/motivacio.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-    border-style: solid;
-    border-color: black;
-    border-radius: 20px;
-    border-width: 1px;
-    display: flex;
-    flex-direction: column;
-    z-index: 1;
-    transition: 0.5s;
-}
-
-.image2 {
-    margin: 20px;
-    height: 270px;
-    width: 270px;
+.second {
     background-image: url("images/onismeret.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-    border-style: solid;
-    border-color: rgba(0, 0, 0, 0);
-    border-radius: 20px;
-    border-width: 1px;
-    display: flex;
-    flex-direction: column;
 }
 
-.image2:hover {
-    margin: 0px;
-    padding: 20px;
-    background-image: url("images/onismeret.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-    border-style: solid;
-    border-color: black;
-    border-radius: 20px;
-    border-width: 1px;
-    display: flex;
-    flex-direction: column;
-    z-index: 1;
-    transition: 0.5s;
-}
-
-.image3 {
-    margin: 20px;
-    height: 270px;
-    width: 270px;
+.third {
     background-image: url("images/mediacio.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-    border-style: solid;
-    border-color: rgba(0, 0, 0, 0);
-    border-radius: 20px;
-    border-width: 1px;
-    display: flex;
-    flex-direction: column;
 }
 
-.image3:hover {
+.fourth {
+    background-image: url("images/lifecoach.jpg");
+}
+
+.image:hover {
     margin: 0px;
     padding: 20px;
-    background-image: url("images/mediacio.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-    border-style: solid;
     border-color: black;
     border-radius: 20px;
-    border-width: 1px;
-    display: flex;
-    flex-direction: column;
-    z-index: 1;
-    transition: 0.5s;
-}
-
-.image4 {
-    margin: 20px;
-    height: 270px;
-    width: 270px;
-    background-image: url("images/lifecoach.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-    border-style: solid;
-    border-color: rgba(0, 0, 0, 0);
-    border-radius: 20px;
-    border-width: 1px;
-    display: flex;
-    flex-direction: column;
-}
-
-.image4:hover {
-    margin: 0px;
-    padding: 20px;
-    background-image: url("images/lifecoach.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-    border-style: solid;
-    border-color: black;
-    border-radius: 20px;
-    border-width: 1px;
     display: flex;
     flex-direction: column;
     z-index: 1;
@@ -351,9 +271,7 @@ img {
 }
 
 .imagetext1 {
-    margin-top: 15px;
-    margin-bottom: 10px;
-    margin-left: 20px;
+    margin: 15px 0px 10px 20px;
     min-width: 270px;
     font-family: 'Open Sans', sans-serif;
     text-transform: uppercase;
@@ -364,55 +282,51 @@ img {
     line-height: 1.1;
 }
 
-.smoothScroll {
-    padding-top: 60px;
-    padding-bottom: 50px;
-}
-
 #aboutme {
     padding-top: 20px;
-
 }
+
 .aboutmecontainer {
-    margin-left: 100px;
-    margin-right: 100px;
+    margin: 0px 100px;
     font-family: 'Open Sans', sans-serif;
     text-align: center;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    color: #666666;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+    font-size: 16px;
+}
+
+.lifecoachtext {
+    margin: 0px 100px 100px 100px;
+    font-family: 'Open Sans', sans-serif;
+    text-align: justify;
+    color: #666666;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+    font-size: 16px;
 }
 
 .leftsidecontainer {
     width: 35%;
     text-align: justify;
-    font-family: 'Open Sans', sans-serif;
-    color: #666666;
-    line-height: 1.5;
-    letter-spacing: 0.5px;
-    font-size: 16px;
 }
 
 .rightsidecontainer {
     max-width: 61%;
     text-align: justify;
-    font-family: 'Open Sans', sans-serif;
-    color: #666666;
-    line-height: 1.5;
-    letter-spacing: 0.5px;
-    font-size: 16px;
 }
 
 .image5 {
     margin-top: 20px;
     width: 100%;
-    background-color: gold;
 }
 
 .indextext {
     margin-top: 15px;
     margin-bottom: 10px;
-    font-family: 'Open Sans', sans-serif;
     font-size: 24px;
     font-weight: normal;
     color: #666666;
@@ -421,8 +335,7 @@ img {
 }
 
 .contact {
-    margin-top: 15px;
-    margin-bottom: 10px;
+    margin: 15px 0px 10px 0px;
     width: 80%;
     height: 125px;
     font-family: 'Open Sans', sans-serif;
@@ -436,9 +349,9 @@ img {
 }
 
 .leftsidecontact {
+    margin: 0;
     width: 15%;
     height: 100px;
-    margin: 0;
     font-family: 'Open Sans', sans-serif;
     font-size: 16px;
     display: flex;
@@ -446,9 +359,9 @@ img {
 }
 
 .rightsidecontact {
+    margin: 0;
     width: 85%;
     height: 100px;
-    margin: 0;
     font-family: 'Open Sans', sans-serif;
     font-size: 16px;
     display: flex;
@@ -480,11 +393,9 @@ img {
 }
 
 .fee {
-    margin-top: 50px;
-    margin-bottom: 30px;
+    margin: 50px 0px 30px 0px;
     width: 100%;
-    padding-top: 35px;
-    padding-bottom: 50px;
+    padding: 35px 0px 50px 0px;
     font-family: 'Open Sans', sans-serif;
     text-transform: uppercase;
     font-size: 36px;
@@ -575,8 +486,7 @@ textarea {
 }
 
 footer {
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding: 20px 0px;
     font-family: 'Open Sans', sans-serif;
     text-align: center;
     background-color: black;
