@@ -40,10 +40,14 @@ a {
 }
 
 .topcontainer {
-    margin-left: 100px;
-    margin-right: 100px;
-    margin-top: 25px;
+    margin: 25px 100px 0px 100px;
     padding-bottom: 20px;
+    text-transform: uppercase;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    line-height: 2em;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -51,30 +55,17 @@ a {
 
 .navigation {
     margin-left: 25px;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    text-transform: uppercase;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 12px;
-    font-weight: bold;
+    padding: 15px 0px;
     color: white;
-    letter-spacing: 2px;
-    line-height: 2em;
 }
 
 .navigation2 {
     margin-left: 25px;
     padding: 5px;
-    text-transform: uppercase;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 12px;
-    font-weight: bold;
     color: white;
-    letter-spacing: 2px;
     border-color: white;
     border-style: solid;
     border-width: 2px;
-    line-height: 2em;
 }
 
 .navigation2:hover{
@@ -236,21 +227,23 @@ img {
 }
 
 .image1 {
-    margin: 15px;
+    margin: 20px;
+    padding: 0px;
     height: 270px;
     width: 270px;
     background-image: url("images/motivacio.jpg");
     background-repeat: no-repeat;
     background-position: center;
-    border-radius: 20px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0);
+    border-width: 1px;
     display: flex;
     flex-direction: column;
 }
 
 .image1:hover {
     margin: 0px;
-    height: 300px;
-    width: 300px;
+    padding: 20px;
     background-image: url("images/motivacio.jpg");
     background-repeat: no-repeat;
     background-position: center;
@@ -265,21 +258,23 @@ img {
 }
 
 .image2 {
-    margin: 15px;
+    margin: 20px;
     height: 270px;
     width: 270px;
     background-image: url("images/onismeret.jpg");
     background-repeat: no-repeat;
     background-position: center;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0);
     border-radius: 20px;
+    border-width: 1px;
     display: flex;
     flex-direction: column;
 }
 
 .image2:hover {
     margin: 0px;
-    height: 300px;
-    width: 300px;
+    padding: 20px;
     background-image: url("images/onismeret.jpg");
     background-repeat: no-repeat;
     background-position: center;
@@ -294,21 +289,23 @@ img {
 }
 
 .image3 {
-    margin: 15px;
+    margin: 20px;
     height: 270px;
     width: 270px;
     background-image: url("images/mediacio.jpg");
     background-repeat: no-repeat;
     background-position: center;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0);
     border-radius: 20px;
+    border-width: 1px;
     display: flex;
     flex-direction: column;
 }
 
 .image3:hover {
     margin: 0px;
-    height: 300px;
-    width: 300px;
+    padding: 20px;
     background-image: url("images/mediacio.jpg");
     background-repeat: no-repeat;
     background-position: center;
@@ -323,21 +320,23 @@ img {
 }
 
 .image4 {
-    margin: 15px;
+    margin: 20px;
     height: 270px;
     width: 270px;
     background-image: url("images/lifecoach.jpg");
     background-repeat: no-repeat;
     background-position: center;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0);
     border-radius: 20px;
+    border-width: 1px;
     display: flex;
     flex-direction: column;
 }
 
 .image4:hover {
     margin: 0px;
-    height: 300px;
-    width: 300px;
+    padding: 20px;
     background-image: url("images/lifecoach.jpg");
     background-repeat: no-repeat;
     background-position: center;
@@ -354,6 +353,8 @@ img {
 .imagetext1 {
     margin-top: 15px;
     margin-bottom: 10px;
+    margin-left: 20px;
+    min-width: 270px;
     font-family: 'Open Sans', sans-serif;
     text-transform: uppercase;
     font-size: 18px;
@@ -366,16 +367,6 @@ img {
 .smoothScroll {
     padding-top: 60px;
     padding-bottom: 50px;
-}
-
-.imagetext2 {
-    margin-bottom: 10px;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 18px;
-    font-weight: normal;
-    color: #666666;
-    text-align: center;
-    line-height: 1.1;
 }
 
 #aboutme {
@@ -557,7 +548,7 @@ form {
     width: 40%;
     border: 1px solid;
     border-color: rgb(100, 100, 100);
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.4);
 }
 
 textarea {
@@ -574,7 +565,7 @@ textarea {
     width: 41%;
     border: 1px solid;
     border-color: rgb(100, 100, 100);
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.4);
 }
 
 .submit:hover {
