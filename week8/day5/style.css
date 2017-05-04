@@ -1,0 +1,91 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    width: 100%;
+    height: 630px;
+    background: radial-gradient(rgb(255, 255, 255), rgb(165, 165, 165));
+}
+
+.maincontainer {
+    text-align: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+header {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: inline-block;
+    font-family: 'Indie Flower', cursive;
+    text-transform: uppercase;
+    font-size: 30px;
+    font-weight: bold;
+    color: black;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.buttimgcontainer {
+    margin: auto;
+    height: 450px;
+    width: 960px;
+    display: flex;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.leftbutton {
+    height: 450px;
+    width: 80px;
+    background-color: rgba(0, 0, 0, 0.5)
+}
+
+.rightbutton {
+    height: 450px;
+    width: 80px;
+    background-color: rgba(0, 0, 0, 0.5)
+}
+
+.mainimagecontainer {
+    margin: auto;
+    width: 800px;
+    height: 450px;
+}
+
+.textcontainer {
+    position: absolute;
+    bottom: 44px;
+    width: 800px;
+    height: 100px;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: space-between;
+    z-index: 2;
+}
+
+.mainimage {
+    width: 800px;
+    height: 450px;
+    background: url(images/1.jpg);
+    background-size: cover;
+}
+
+.thumbnailcontainer {
+    margin-top: 25px;
+}
+
+.thumbnail {
+    max-width: 80px;
+    max-height: 45px;
+
+}
