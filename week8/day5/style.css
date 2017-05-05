@@ -44,16 +44,42 @@ header {
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 }
 
-.leftbutton {
+.button {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
     height: 450px;
     width: 80px;
-    background-color: rgba(0, 0, 0, 0.5)
+    background-color: rgba(0, 0, 0, 0.5);
+    background: linear-gradient(0deg, rgb(226, 226, 226), rgb(255, 255, 255));
+    font-family: 'Merriweather', serif;
+    font-size: 30px;
+    font-weight: bold;
+    color: rgb(78, 78, 78);
+    text-shadow:
+    1px 0px rgba(78, 78, 78, 0.5),
+    -1px 0px rgba(78, 78, 78, 0.5),
+    0px 1px rgba(78, 78, 78, 0.5),
+    0px -1px rgba(78, 78, 78, 0.5),
+    1px 1px rgba(78, 78, 78, 0.5),
+    -1px 1px rgba(78, 78, 78, 0.5),
+    1px 1px rgba(78, 78, 78, 0.5),
+    1px -1px rgba(78, 78, 78, 0.5);
+    cursor: pointer;
 }
 
-.rightbutton {
-    height: 450px;
-    width: 80px;
-    background-color: rgba(0, 0, 0, 0.5)
+.button:hover {
+    color: rgba(78, 78, 78, 0.1);
+    text-shadow:
+    1px 0px rgba(78, 78, 78, 0.1),
+    -1px 0px rgba(78, 78, 78, 0.1),
+    0px 1px rgba(78, 78, 78, 0.1),
+    0px -1px rgba(78, 78, 78, 0.1),
+    1px 1px rgba(78, 78, 78, 0.1),
+    -1px 1px rgba(78, 78, 78, 0.1),
+    1px 1px rgba(78, 78, 78, 0.1),
+    1px -1px rgba(78, 78, 78, 0.1);
+
 }
 
 .mainimagecontainer {
@@ -63,20 +89,30 @@ header {
 }
 
 .textcontainer {
+    padding: 10px 20px;
     position: absolute;
     bottom: 44px;
-    width: 800px;
-    height: 100px;
-    display: flex;
+    width: 760px;
+    height: 80px;
     background-color: rgba(0, 0, 0, 0.5);
-    justify-content: space-between;
+    font-family: 'Open Sans', sans-serif;
+    text-align: justify;
+    color: rgb(180, 180, 180);
     z-index: 2;
+}
+
+.headertext {
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: white;
+    line-height: 1.5em;
 }
 
 .mainimage {
     width: 800px;
     height: 450px;
-    background: url(images/1.jpg);
+    background-image: url(images/1.jpg);
     background-size: cover;
 }
 
