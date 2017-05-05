@@ -23,13 +23,27 @@
                 <div class="right button">></div>
             </div>
             <div class = "thumbnailcontainer">
-                <img class = "thumbnail" src="images/1.jpg" alt="1">
-                <img class = "thumbnail" src="images/2.jpg" alt="1">
+                <div class = "thumbnail first"></div>
+                <div class = "thumbnail second"></div>
+                <div class = "thumbnail third"></div>
+                <div class = "thumbnail fourth"></div>
+                <div class = "thumbnail fifth"></div>
             </div>
         </div>
 
         <script>
             'use strict';
+
+            var displaygrabber = [
+                ['background-image: url(images/1.jpg);', 'Forest Coding', 'At Greenfox Academy we like to code in the forest. The pure nature simply give us such a creative thinking. Our mind simply speeds up like a running fox.'],
+                ['background-image: url(images/2.jpg);', 'Mountain Coding', 'At Greenfox Academy we like to code in the mountains. The pure air simply give us such a creative thinking. Our mind simply speeds up like a running fox.'],
+                ['background-image: url(images/3.jpg);', 'Deers and Coding', 'At Greenfox Academy we like to code withdeer s. Deers simply give us such a creative thinking. Our mind simply speeds up like a running fox.'],
+                ['background-image: url(images/4.jpg);', 'Rafting and Coding', 'At Greenfox Academy we like to code while rafting. The pure water simply give us such a creative thinking. Our mind simply speeds up like a running fox.'],
+                ['background-image: url(images/5.jpg);', 'Mountain Coding 2', 'At Greenfox Academy we like to code in the mountains. The pure air simply give us such a creative thinking. Our mind simply speeds up like a running fox.'],
+                ['background-image: url(images/6.jpg);', 'Cloud Coding', 'At Greenfox Academy we like to code in the clouds. The pure air simply give us such a creative thinking. Our mind simply speeds up like a running fox.'],
+                ['background-image: url(images/7.jpg);', 'Hard Rock Coding', 'At Greenfox Academy we like to code on hard rocks. The hard rock simply give us such a creative thinking. Our mind simply speeds up like a running fox.'],
+                ['background-image: url(images/8.jpg);', 'Northern Lights Coding', 'At Greenfox Academy we like to code under the Northern Lights. The colors simply give us such a creative thinking. Our mind simply speeds up like a running fox.']
+            ];
 
             var imagenumber = 0;
 
@@ -40,40 +54,150 @@
             var headtext = document.querySelector('.headertext');
             var normaltext = document.querySelector('p');
 
+            var thumb1 = document.querySelector('.thumbnail.first');
+            var thumb2 = document.querySelector('.thumbnail.second');
+            var thumb3 = document.querySelector('.thumbnail.third');
+            var thumb4 = document.querySelector('.thumbnail.fourth');
+            var thumb5 = document.querySelector('.thumbnail.fifth');
 
-            var displaygrabber = [
-                ['background-image: url(images/1.jpg);', 'Forest Coding', 'At Greenfox Academy we like to code in the forest. The pure nature simply give us such a creative thinking. Our mind simply speeds up like a running fox.'],
-                ['background-image: url(images/2.jpg);', 'Mountain Coding', 'At Greenfox Academy we like to code in the mountains. The pure air simply give us such a creative thinking. Our mind simply speeds up like a running fox.']
+            var length = displaygrabber.length;
 
-            ];
-
-            console.log(document.querySelector('.mainimage').style.backgroundImage);
+            thumb1.style.cssText = displaygrabber[6][0];
+            thumb2.style.cssText = displaygrabber[7][0];
+            thumb3.style.cssText = displaygrabber[0][0];
+            thumb4.style.cssText = displaygrabber[1][0];
+            thumb5.style.cssText = displaygrabber[2][0];
 
             function nextright() {
-                if (imagenumber < (displaygrabber.length - 1)){
-                imagenumber++;
-                imgsrc.style.cssText = displaygrabber[imagenumber][0];
-                headtext.innerHTML = displaygrabber[imagenumber][1];
-                normaltext.innerHTML = displaygrabber[imagenumber][2];
+                if (imagenumber < (length - 1)){
+                    imagenumber++;
+                    imgsrc.style.cssText = displaygrabber[imagenumber][0];
+                    headtext.innerHTML = displaygrabber[imagenumber][1];
+                    normaltext.innerHTML = displaygrabber[imagenumber][2];
+
+                    if (length + imagenumber - 2 >= length) {
+                        thumb1.style.cssText = displaygrabber[imagenumber - 2][0];
+                    } else {
+                        thumb1.style.cssText = displaygrabber[length + imagenumber - 2][0];
+                    }
+
+                    if (length + imagenumber - 1 >= length) {
+                        thumb2.style.cssText = displaygrabber[imagenumber - 1][0];
+                    } else {
+                        thumb2.style.cssText = displaygrabber[length + imagenumber - 1][0];
+                    }
+
+                    thumb3.style.cssText = displaygrabber[imagenumber][0];
+
+                    if (imagenumber + 1 >= length) {
+                        thumb4.style.cssText = displaygrabber[imagenumber + 1 - length][0];
+                    } else {
+                        thumb4.style.cssText = displaygrabber[imagenumber + 1][0];
+                    }
+
+                    if (imagenumber + 2 >= length) {
+                        thumb5.style.cssText = displaygrabber[imagenumber + 2 - length][0];
+                    } else {
+                        thumb5.style.cssText = displaygrabber[imagenumber + 2][0];
+                    }
+
                 } else {
-                imagenumber = 0;
-                imgsrc.style.cssText = displaygrabber[imagenumber][0];
-                headtext.innerHTML = displaygrabber[imagenumber][1];
-                normaltext.innerHTML = displaygrabber[imagenumber][2];
+                    imagenumber = 0;
+                    imgsrc.style.cssText = displaygrabber[imagenumber][0];
+                    headtext.innerHTML = displaygrabber[imagenumber][1];
+                    normaltext.innerHTML = displaygrabber[imagenumber][2];
+
+                    if (length + imagenumber - 2 >= length) {
+                        thumb1.style.cssText = displaygrabber[imagenumber - 2][0];
+                    } else {
+                        thumb1.style.cssText = displaygrabber[length + imagenumber - 2][0];
+                    }
+
+                    if (length + imagenumber - 1 >= length) {
+                        thumb2.style.cssText = displaygrabber[imagenumber - 1][0];
+                    } else {
+                        thumb2.style.cssText = displaygrabber[length + imagenumber - 1][0];
+                    }
+
+                    thumb3.style.cssText = displaygrabber[imagenumber][0];
+
+                    if (imagenumber + 1 >= length) {
+                        thumb4.style.cssText = displaygrabber[imagenumber + 1 - length][0];
+                    } else {
+                        thumb4.style.cssText = displaygrabber[imagenumber + 1][0];
+                    }
+
+                    if (imagenumber + 2 >= length) {
+                        thumb5.style.cssText = displaygrabber[imagenumber + 2 - length][0];
+                    } else {
+                        thumb5.style.cssText = displaygrabber[imagenumber + 2][0];
+                    }
                 }
             }
 
             function nextleft() {
                 if (imagenumber > 0){
-                imagenumber--;
-                imgsrc.style.cssText = displaygrabber[imagenumber][0];
-                headtext.innerHTML = displaygrabber[imagenumber][1];
-                normaltext.innerHTML = displaygrabber[imagenumber][2];
+                    imagenumber--;
+                    imgsrc.style.cssText = displaygrabber[imagenumber][0];
+                    headtext.innerHTML = displaygrabber[imagenumber][1];
+                    normaltext.innerHTML = displaygrabber[imagenumber][2];
+
+                    if (length + imagenumber - 2 >= length) {
+                        thumb1.style.cssText = displaygrabber[imagenumber - 2][0];
+                    } else {
+                        thumb1.style.cssText = displaygrabber[length + imagenumber - 2][0];
+                    }
+
+                    if (length + imagenumber - 1 >= length) {
+                        thumb2.style.cssText = displaygrabber[imagenumber - 1][0];
+                    } else {
+                        thumb2.style.cssText = displaygrabber[length + imagenumber - 1][0];
+                    }
+
+                    thumb3.style.cssText = displaygrabber[imagenumber][0];
+
+                    if (imagenumber + 1 >= length) {
+                        thumb4.style.cssText = displaygrabber[imagenumber + 1 - length][0];
+                    } else {
+                        thumb4.style.cssText = displaygrabber[imagenumber + 1][0];
+                    }
+
+                    if (imagenumber + 2 >= length) {
+                        thumb5.style.cssText = displaygrabber[imagenumber + 2 - length][0];
+                    } else {
+                        thumb5.style.cssText = displaygrabber[imagenumber + 2][0];
+                    }
                 } else {
-                imagenumber = (displaygrabber.length - 1);
-                imgsrc.style.cssText = displaygrabber[imagenumber][0];
-                headtext.innerHTML = displaygrabber[imagenumber][1];
-                normaltext.innerHTML = displaygrabber[imagenumber][2];
+                    imagenumber = (displaygrabber.length - 1);
+                    imgsrc.style.cssText = displaygrabber[imagenumber][0];
+                    headtext.innerHTML = displaygrabber[imagenumber][1];
+                    normaltext.innerHTML = displaygrabber[imagenumber][2];
+
+                    if (length + imagenumber - 2 >= length) {
+                        thumb1.style.cssText = displaygrabber[imagenumber - 2][0];
+                    } else {
+                        thumb1.style.cssText = displaygrabber[length + imagenumber - 2][0];
+                    }
+
+                    if (length + imagenumber - 1 >= length) {
+                        thumb2.style.cssText = displaygrabber[imagenumber - 1][0];
+                    } else {
+                        thumb2.style.cssText = displaygrabber[length + imagenumber - 1][0];
+                    }
+
+                    thumb3.style.cssText = displaygrabber[imagenumber][0];
+
+                    if (imagenumber + 1 >= length) {
+                        thumb4.style.cssText = displaygrabber[imagenumber + 1 - length][0];
+                    } else {
+                        thumb4.style.cssText = displaygrabber[imagenumber + 1][0];
+                    }
+
+                    if (imagenumber + 2 >= length) {
+                        thumb5.style.cssText = displaygrabber[imagenumber + 2 - length][0];
+                    } else {
+                        thumb5.style.cssText = displaygrabber[imagenumber + 2][0];
+                    }
                 }
             }
 
