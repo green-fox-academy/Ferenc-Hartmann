@@ -178,9 +178,9 @@ img {
     line-height: 1.5;
     letter-spacing: 0.5px;
     font-size: 16px;
-    background-image: url("images/no1.jpg");
-    background-position: top center;
-    background-repeat: no-repeat;
+    background:
+    linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 1) 500px),
+    url("images/no1.jpg") no-repeat top center;
 }
 
 .topright {
@@ -200,7 +200,7 @@ img {
 }
 
 .bottomleft {
-    padding: 400px 0px 75px 10px;
+    padding: 300px 0px 75px 10px;
     text-align: left;
     font-family: 'Indie Flower', cursive;
     color: white;
