@@ -485,6 +485,55 @@ textarea {
     transition: 0.3s;
 }
 
+.thankyoutext {
+    margin-bottom: 50px;
+    padding-top: 150px;
+    font-family: 'Lobster', cursive;
+    font-size: 36px;
+    color: black;
+    text-align: center;
+    font-weight: normal;
+}
+
+.backtomaincontainer {
+    display: flex;
+    justify-content: space-around;
+}
+
+.backtomain {
+    margin: 25px;
+    margin-bottom: 300px;
+    padding: 15px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0);
+    border-width: 2px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0);
+    color: black;
+    font-size: 20px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    text-align: center;
+    display: inline-block;
+
+}
+
+.backtomain:hover {
+    margin: 25px;
+    margin-bottom: 300px;
+    padding: 15px;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+    border-radius: 0px;
+    background-color: rgba(0, 0, 0, 0);
+    color: black;
+    z-index: 1;
+    transition: 0.5s;
+    text-align: center;
+    display: block;
+}
+
 footer {
     padding: 20px 0px;
     font-family: 'Open Sans', sans-serif;
