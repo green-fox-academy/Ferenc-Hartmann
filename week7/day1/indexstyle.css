@@ -39,7 +39,7 @@ a {
     font-size: 18px;
     font-weight: bolder;
     letter-spacing: 2px;
-    color: rgb(33, 33, 33);
+    color: rgb(60, 60, 60);
 }
 
 .topcontainer {
@@ -92,7 +92,7 @@ a {
     width: 100%;
     display: flex;
     flex-direction: column;
-    top: -49%;
+    top: -10%;
     z-index: -1;
 }
 
@@ -186,33 +186,41 @@ img {
 .topright {
     padding: 10px 10px 0px 0px;
     text-align: right;
-    font-family: 'Indie Flower', cursive;
+    font-family: 'Josefin Sans', sans-serif;
     color: rgba(255, 255, 255, 1);
     font-weight: bold;
     line-height: 1.5;
     letter-spacing: 0.5px;
     font-size: 30px;
     text-shadow:
-    1px 0px black,
-    -1px 0px black,
-    0px 1px black,
-    0px -1px black;
+    1px 0px rgb(100, 100, 100),
+    -1px 0px rgb(100, 100, 100),
+    0px 1px rgb(100, 100, 100),
+    0px -1px rgb(100, 100, 100),
+    2px 0px rgb(100, 100, 100),
+    -2px 0px rgb(100, 100, 100),
+    0px 2px rgb(100, 100, 100),
+    0px -2px rgb(100, 100, 100);
 }
 
 .bottomleft {
     padding: 300px 0px 75px 10px;
     text-align: left;
-    font-family: 'Indie Flower', cursive;
+    font-family: 'Josefin Sans', sans-serif;
     color: white;
     font-weight: bold;
     line-height: 1.5;
     letter-spacing: 0.5px;
     font-size: 30px;
     text-shadow:
-    1px 0px black,
-    -1px 0px black,
-    0px 1px black,
-    0px -1px black;
+    1px 0px rgb(100, 100, 100),
+    -1px 0px rgb(100, 100, 100),
+    0px 1px rgb(100, 100, 100),
+    0px -1px rgb(100, 100, 100),
+    2px 0px rgb(100, 100, 100),
+    -2px 0px rgb(100, 100, 100),
+    0px 2px rgb(100, 100, 100),
+    0px -2px rgb(100, 100, 100);
 }
 
 .midcontainer {
@@ -515,7 +523,6 @@ textarea {
     font-weight: bold;
     text-align: center;
     display: inline-block;
-
 }
 
 .backtomain:hover {
