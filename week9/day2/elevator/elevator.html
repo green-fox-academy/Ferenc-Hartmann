@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Elevator exercise</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="elevator.css">
+    </head>
+    <body>
+        <div class="leftcontainer">
+            <div class="topcontainer">
+                <button class="button top1">Up</button>
+                <button class="button top2">Down</button>
+            </div>
+            <div class="bottomcontainer">
+                <button class="button bottom1">Add People</button>
+                <button class="button bottom2">Remove People</button>
+            </div>
+        </div>
+        <div class="rightcontainer">
+            <ul class="levels">
+                <li class="floor">0</li>
+                <li class="floor">0</li>
+                <li class="floor">0</li>
+                <li class="floor">0</li>
+                <li class="floor">0</li>
+                <li class="floor">0</li>
+                <li class="floor">0</li>
+                <li class="floor">0</li>
+                <li class="floor">0</li>
+                <li class="floor">0</li>
+            </ul>
+        </div>
+
+        <script>
+            'use strict';
+
+            function elevatorController(maxFloor, maxPeople) {
+                var maxFloor = maxFloor;
+                var maxPeople = maxPeople;
+                var x = maxFloor;
+                var y = x;
+                var people = 0;
+
+                var elevator = document.querySelector('li:nth-child(10)');
+                elevator.setAttribute('style', 'background: green');
+
+                this.uppress = function() {
+                    if (x > 1) {
+                        x = x - 1
+                        y = x + 1
+
+                        elevator = document.querySelector('li:nth-child(' + y + ')');
+                        elevator.setAttribute('style', 'background: white');
+
+                        elevator = document.querySelector('li:nth-child(' + x + ')');
+                        elevator.setAttribute('style', 'background: green');
+
+                        elevator = document.querySelector('li:nth-child(' + x + ')');
+                        elevator.innerHTML = people;
+                    }
+                }
+
+                this.downpress = function() {
+                    if (x < maxFloor) {
+                        x = x + 1
+                        y = x - 1
+                        elevator = document.querySelector('li:nth-child(' + y + ')');
+                        elevator.setAttribute('style', 'background: white');
+
+                        elevator = document.querySelector('li:nth-child(' + x + ')');
+                        elevator.setAttribute('style', 'background: green');
+
+                        elevator = document.querySelector('li:nth-child(' + x + ')');
+                        elevator.innerHTML = people;
+                    }
+                }
+
+                this.addpress = function() {
+                    if (people < maxPeople) {
+                        people = people + 1;
+
+                        elevator = document.querySelector('li:nth-child(' + x + ')');
+                        elevator.innerHTML = people;
+                    }
+                }
+
+                this.removepress = function() {
+                    if (people > 0) {
+                        people = people - 1;
+
+                        elevator = document.querySelector('li:nth-child(' + x + ')');
+                        elevator.innerHTML = people;
+                    }
+                }
+
+
+            }
+
+            var a = new elevatorController(10, 12)
+
+            // function elevatorModel() {
+            //
+            // }
+            //
+            // function elevatorView() {
+            //
+            // }
+
+            let up = document.querySelector('.button.top1');
+            up.addEventListener('click', a.uppress);
+            let down = document.querySelector('.button.top2');
+            down.addEventListener('click',  a.downpress);
+            let add = document.querySelector('.button.bottom1');
+            add.addEventListener('click',  a.addpress);
+            let remove = document.querySelector('.button.bottom2');
+            remove.addEventListener('click',  a.removepress);
+
+        </script>
+
+
+
+
+    </body>
+</html>
