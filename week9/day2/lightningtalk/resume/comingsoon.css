@@ -1,0 +1,376 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.topbackground {
+    background-color: rgb(0, 0, 0);
+    width: 100%;
+    height: 100px;
+    position: absolute;
+}
+
+.menubar {
+    background-color: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    z-index: 2;
+}
+
+.logocontainer {
+    margin-left: 100px;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    padding: 5px 10px 5px 10px;
+    border-color: white;
+    border-style: solid;
+    border-width: 2px;
+    max-height: 60px;
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+}
+
+.logo1 {
+    height: 1.5em;
+    min-width: 72px;
+    font-size: 20px;
+    font-weight: bolder;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+}
+
+.logo2 {
+    height: 1.5em;
+    min-width: 72px;
+    font-size: 14px;
+    font-weight: lighter;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navigation, .navigation2 {
+    margin-left: 40px;
+    padding: 10px 10px;
+    width: 120px;
+    text-transform: uppercase;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    color: white;
+    border-color: rgba(255, 255, 255, 0);
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 50%;
+}
+
+.navigation2:hover{
+    border-color: white;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 0%;
+    transition: 0.5s;
+}
+
+.navigation {
+    border-color: white;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 0%;
+}
+
+.navigation:hover {
+    color: black;
+    background-color: white;
+    transition: 0.5s;
+}
+
+.topcontainer {
+    margin-left: 100px;
+    margin-right: 50px;
+    margin-top: 50px;
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.codesnippets {
+    margin-bottom: 50px;
+    padding-top: 275px;
+    font-family: 'Lobster', cursive;
+    font-size: 36px;
+    color: black;
+    text-align: center;
+    font-weight: normal;
+}
+
+footer {
+    margin-top: 350px;
+    font-family: 'Open Sans', sans-serif;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+    background-color: black;
+    color: white;
+    font-size: 12px;
+}
+
+.backtomaincontainer {
+    display: flex;
+    justify-content: space-around;
+}
+
+.backtomain {
+    margin: 25px;
+    padding: 15px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0);
+    border-width: 2px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0);
+    color: black;
+    font-size: 24px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    text-align: center;
+    display: inline-block;
+
+}
+
+.backtomain:hover {
+    margin: 25px;
+    padding: 15px;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+    border-radius: 0px;
+    background-color: rgba(0, 0, 0, 0);
+    color: black;
+    z-index: 1;
+    transition: 0.5s;
+    text-align: center;
+    display: block;
+}
+
+.spaceholder {
+    padding-top: 150px;
+}
+
+.resumemainbox {
+    position: relative;
+    margin: auto;
+    padding-top: 50px;
+    width: 90%;
+    height: 1000px;
+    border-style: solid;
+    border-width: 1px;
+    z-index: -5;
+}
+
+.resumeheaderbox {
+    position: relative;
+    margin: auto;
+    width: 80%;
+    height: 400px;
+    border-style: solid;
+    border-width: 1px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.resumeheaderboxleft {
+    margin: 25px 0px 25px 25px;
+    width: 35%;
+}
+
+.resumeheaderboxright {
+    margin: 25px;
+    width: 65%;
+    background-color: grey;
+}
+
+.resumeimageholder {
+    max-width:100%;
+    height: 100%;
+    background-image: url(me.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    left: -25px;
+    border-radius: 10%;
+}
+
+.resumeheader{
+    text-transform: uppercase;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.resumeagecontainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.resumeageleftbox {
+    min-width: 45%;
+    text-transform: uppercase;
+    color: red;
+    display: flex;
+    justify-content: space-between;
+}
+
+.resumeageleftfirstbox {
+    max-width: 30%;
+}
+
+.resumeageleftsecondbox {
+    max-width: 60%;
+}
+
+.resumeagerightbox {
+    min-width: 45%;
+    text-transform: uppercase;
+    color: red;
+    display: flex;
+    justify-content: space-between;
+}
+
+.resumesectionheader {
+    padding: 50px 0px;
+    text-transform: uppercase;
+    font-family: 'Open Sans', sans-serif;
+    color: grey;
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.resumemidbox {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin: auto;
+    width: 80%;
+    height: 400px;
+    border-style: solid;
+    border-width: 1px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.resumeskillsleftbox {
+    padding: 20px;
+    min-width: 33%;
+    height: 250px;
+    border-style: solid;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.resumeskillsrightbox {
+    padding: 20px;
+    min-width: 53%;
+    height: 250px;
+    border-style: solid;
+}
+
+.resumeskillcontainer {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.resumeskilllabelbox {
+    margin: auto;
+    margin: 0px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.resumeskillabeltext {
+    color: gray;
+}
+
+.resumeskillbarbox {
+    margin: auto;
+    margin: 0px;
+    min-width: 90%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.resumeskillbarleft {
+    width: 80%;
+    height: 20px;
+    background-color: yellow;
+}
+
+.resumeskillbarright {
+    width: 20%;
+    height: 20px;
+    background-color: red;
+}
+
+.resumeskillcirclerowcontainer {
+    margin-bottom: 20px;
+    max-width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.resumeskillcirclecontainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.resumeskillcircle {
+    margin-bottom: 10px;
+    width: 100px;
+    height: 100px;
+    background-color: brown;
+    border-radius: 50%;
+}
+
+.resumeskilcircletext {
+    color: gray;
+    text-align: center;
+}
+
+.papucs {
+    max-width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.mandula {
+    min-width: 30%;
+    text-transform: uppercase;
+    color: red;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.alma {
+    color: gray;
+    line-height: 2em;
+}
+
+.alma2 {
+    padding-left: 20px;
+    color: gray;
+    line-height: 2em;
+}

@@ -1,0 +1,551 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.topbackground {
+    background-color: rgb(0, 0, 0);
+    width: 100%;
+    height: 68px;
+    position: absolute;
+}
+
+.menubar {
+    background-color: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    z-index: 2;
+}
+
+.logocontainer {
+    min-width: 375px;
+}
+
+.logo {
+    position: relative;
+    padding: 20px 0px;
+    margin-left: 100px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    font-weight: bolder;
+    letter-spacing: 2px;
+    color: rgb(60, 60, 60);
+}
+
+.topcontainer {
+    margin: 25px 100px 0px 0px;
+    padding-bottom: 20px;
+    min-width: 150px;
+    text-transform: uppercase;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    line-height: 2em;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.navigation {
+    margin-left: 25px;
+    padding: 15px 0px;
+    color: white;
+    text-align: left;
+    line-height: 2em;
+}
+
+.navigation2 {
+    margin-left: 25px;
+    padding: 5px;
+    color: white;
+    border-color: white;
+    border-style: solid;
+    border-width: 2px;
+}
+
+.navigation2:hover{
+    color: black;
+    background-color: white;
+    transition: 0.3s;
+}
+
+.navigation:hover, .imagetext1:hover {
+    color: #eda869;
+    transition: 0.5s;
+}
+
+.bigimagecontainer {
+    position: absolute;
+    margin: auto;
+    padding-top: 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    top: -10%;
+    z-index: -1;
+}
+
+img {
+    width: 100%;
+    margin: auto;
+}
+
+.quotation {
+    margin-top: 42%;
+    padding: 30px 0px;
+    width: 100%;
+    background-color: #eeeeee;
+    font-family: 'Open Sans', sans-serif;
+    display: inline-block;
+    text-align: center;
+    font-size: 24px;
+    line-height: 1.1;
+    color: #666666
+}
+
+.lifecoachingheader {
+    margin-bottom: 30px;
+    padding-top: 50px;
+    font-family: 'Open Sans', sans-serif;
+    text-transform: uppercase;
+    font-size: 36px;
+    font-weight: bold;
+    color: #666666;
+    text-align: center;
+    letter-spacing: 4px;
+}
+
+#lifecoaching {
+    padding-top: 20px;
+}
+
+.lifecoaching {
+    margin-bottom: 50px;
+    padding-top: 150px;
+    text-transform: uppercase;
+    font-size: 30px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    color: #666666;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.lifecoachingcontainer {
+    margin: auto;
+    padding-bottom: 200px;
+    max-width: 70%;
+    font-family: 'Open Sans', sans-serif;
+    text-align: justify;
+    color: #666666;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+    font-size: 16px;
+}
+
+.underlined {
+    text-decoration: underline;
+}
+
+.list {
+    margin-left: 15px;
+}
+
+.header2 {
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.eventcontainer {
+    margin: auto;
+    padding-bottom: 200px;
+    max-width: 700px;
+    font-family: 'Open Sans', sans-serif;
+    text-align: justify;
+    color: #666666;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+    font-size: 16px;
+    background:
+    linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 1) 500px),
+    url("images/no1.jpg") no-repeat top center;
+}
+
+.topright {
+    padding: 10px 10px 0px 0px;
+    text-align: right;
+    font-family: 'Josefin Sans', sans-serif;
+    color: rgba(255, 255, 255, 1);
+    font-weight: bold;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+    font-size: 30px;
+    text-shadow:
+    1px 0px rgb(100, 100, 100),
+    -1px 0px rgb(100, 100, 100),
+    0px 1px rgb(100, 100, 100),
+    0px -1px rgb(100, 100, 100),
+    2px 0px rgb(100, 100, 100),
+    -2px 0px rgb(100, 100, 100),
+    0px 2px rgb(100, 100, 100),
+    0px -2px rgb(100, 100, 100);
+}
+
+.bottomleft {
+    padding: 300px 0px 75px 10px;
+    text-align: left;
+    font-family: 'Josefin Sans', sans-serif;
+    color: white;
+    font-weight: bold;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+    font-size: 30px;
+    text-shadow:
+    1px 0px rgb(100, 100, 100),
+    -1px 0px rgb(100, 100, 100),
+    0px 1px rgb(100, 100, 100),
+    0px -1px rgb(100, 100, 100),
+    2px 0px rgb(100, 100, 100),
+    -2px 0px rgb(100, 100, 100),
+    0px 2px rgb(100, 100, 100),
+    0px -2px rgb(100, 100, 100);
+}
+
+.midcontainer {
+    margin:  0px 100px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.imagecontainer {
+    width: 270px;
+    display: flex;
+    flex-direction: column;
+}
+
+.image {
+    margin: 20px;
+    padding: 0px;
+    height: 270px;
+    width: 270px;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0);
+    border-width: 1px;
+    display: flex;
+    flex-direction: column;
+}
+
+.first {
+    background-image: url("images/motivacio.jpg");
+}
+
+.second {
+    background-image: url("images/onismeret.jpg");
+}
+
+.third {
+    background-image: url("images/mediacio.jpg");
+}
+
+.fourth {
+    background-image: url("images/lifecoach.jpg");
+}
+
+.image:hover {
+    margin: 0px;
+    padding: 20px;
+    border-color: black;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+    transition: 0.5s;
+}
+
+.imagetext1 {
+    margin: 15px 0px 10px 20px;
+    min-width: 270px;
+    font-family: 'Open Sans', sans-serif;
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: normal;
+    color: #666666;
+    text-align: center;
+    line-height: 1.1;
+}
+
+#aboutme {
+    padding-top: 20px;
+}
+
+.aboutmecontainer {
+    margin: 0px 100px;
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    color: #666666;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+    font-size: 16px;
+}
+
+.lifecoachtext {
+    margin: 0px 100px 100px 100px;
+    font-family: 'Open Sans', sans-serif;
+    text-align: justify;
+    color: #666666;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+    font-size: 16px;
+}
+
+.leftsidecontainer {
+    width: 35%;
+    text-align: justify;
+}
+
+.rightsidecontainer {
+    max-width: 61%;
+    text-align: justify;
+}
+
+.image5 {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.indextext {
+    margin-top: 15px;
+    margin-bottom: 10px;
+    font-size: 24px;
+    font-weight: normal;
+    color: #666666;
+    text-align: left;
+    line-height: 1.1;
+}
+
+.contact {
+    margin: 15px 0px 10px 0px;
+    width: 80%;
+    height: 125px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 24px;
+    font-weight: normal;
+    color: #666666;
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.leftsidecontact {
+    margin: 0;
+    width: 15%;
+    height: 100px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.rightsidecontact {
+    margin: 0;
+    width: 85%;
+    height: 100px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.fa {
+    margin-top: 16px;
+}
+
+.contactdetails {
+    margin-top: 10px;
+}
+
+.facebooklink {
+    font-size: 16px;
+}
+
+.facebooklink:link {
+    color: #666666;
+}
+
+.facebooklink:visited {
+    color: #666666;
+}
+
+#fee {
+    padding-top: 19px;
+}
+
+.fee {
+    margin: 50px 0px 30px 0px;
+    width: 100%;
+    padding: 35px 0px 50px 0px;
+    font-family: 'Open Sans', sans-serif;
+    text-transform: uppercase;
+    font-size: 36px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    background-color: rgb(150, 150, 150);
+    letter-spacing: 4px;
+}
+
+.feedetails {
+    margin-top: 50px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    color: #666666;
+    text-align: center;
+    line-height: 3;
+}
+
+#contactheader {
+    padding-top: 12px;
+}
+
+.contactbackground {
+    margin-top: 57px;
+    background-image: url("images/contactimage.jpg");
+    width: 100%;
+    height: 600px;
+    background-repeat: no-repeat;
+}
+
+.contactheader {
+    padding-top: 30px;
+    font-family: 'Open Sans', sans-serif;
+    text-transform: uppercase;
+    font-size: 36px;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.8);
+    text-align: center;
+    letter-spacing: 4px;
+}
+
+.contactcontainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+form {
+    text-align: center;
+}
+
+.standardinput {
+    margin: auto;
+    padding-left: 10px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    line-height: 35px;
+    color: rgba(0, 0, 0, 0.8);
+    width: 40%;
+    border: 1px solid;
+    border-color: rgb(100, 100, 100);
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+textarea {
+   resize: none;
+}
+
+.submit {
+    margin: auto;
+    padding-left: 10px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    line-height: 35px;
+    color: rgba(0, 0, 0, 0.8);
+    width: 41%;
+    border: 1px solid;
+    border-color: rgb(100, 100, 100);
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.submit:hover {
+    color: black;
+    background-color: rgba(255, 255, 255, 0.5);
+    transition: 0.3s;
+}
+
+.thankyoutext {
+    margin-bottom: 50px;
+    padding-top: 150px;
+    font-family: 'Lobster', cursive;
+    font-size: 36px;
+    color: black;
+    text-align: center;
+    font-weight: normal;
+}
+
+.backtomaincontainer {
+    display: flex;
+    justify-content: space-around;
+}
+
+.backtomain {
+    margin: 25px;
+    margin-bottom: 300px;
+    padding: 15px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0);
+    border-width: 2px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0);
+    color: black;
+    font-size: 20px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    text-align: center;
+    display: inline-block;
+}
+
+.backtomain:hover {
+    margin: 25px;
+    margin-bottom: 300px;
+    padding: 15px;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+    border-radius: 0px;
+    background-color: rgba(0, 0, 0, 0);
+    color: black;
+    z-index: 1;
+    transition: 0.5s;
+    text-align: center;
+    display: block;
+}
+
+footer {
+    padding: 20px 0px;
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    background-color: black;
+    color: white;
+    font-size: 12px;
+}
