@@ -39,20 +39,20 @@
 		var rainNumber = 1;
 
 		var creator = function() {
-			clickCounter++
+			clickCounter += 1000;
 			candies.innerHTML = clickCounter;
 		}
 
 		var lolliCreator = function() {
-			if (clickCounter >= 5) {
-				clickCounter = clickCounter - 5;
+			if (clickCounter >= 100) {
+				clickCounter = clickCounter - 100;
 				lolliCounter === '0' ? lolliCounter = '🍭' : lolliCounter = lolliCounter + '🍭';
 			} else if (lolliCounter === '') {
 				lolliCounter = '0';
 			} else {
 				lolliCounter = lolliCounter;
 			}
-			speedMeter = Math.floor(lolliCounter.length / 20);
+			speedMeter = Math.floor(lolliCounter.length / 20) * rainNumber;
 			candies.innerHTML = clickCounter;
 			lollypops.innerHTML = lolliCounter;
 			speed.innerHTML = speedMeter;
@@ -60,9 +60,10 @@
 
 		var rapidity = function() {
 			clickCounter += speedMeter * rainNumber;
-			console.log(clickCounter);
+			speedMeter = Math.floor(lolliCounter.length / 20) * rainNumber;
 			candies.innerHTML = clickCounter;
-		}
+			speed.innerHTML = speedMeter;
+	}
 
 		var rainyDay = function() {
 			rainNumber *= 10;
