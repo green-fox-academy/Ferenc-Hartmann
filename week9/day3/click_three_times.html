@@ -9,21 +9,37 @@
         <link rel="stylesheet">
     </head>
     <body>
-        <button class="button">Up</button>
+        <button class="button">Button</button>
         <div class="div"></div>
         <script>
             'use strict';
 
             let button = document.querySelector('.button');
-            button.addEventListener('click', minuteMan);
 
             let div = document.querySelector('.div');
 
-            var press = function() {
-                div.innerHTML = '2 seconds ellapsed';
+            var bolean = false;
+            var clickCounter = 0;
+
+            window.onload = function() {
+                setTimeout(boleanRe, 5000);
             }
 
-            var minuteMan = setTimeout(press, 3000);
+            var boleanRe = function() {
+                bolean = true;
+                if (clickCounter > 2 && bolean === true) {
+                    div.innerHTML = '5 seconds ellapsed and clicked 3 times';
+                }
+            }
+
+            var press = function() {
+                clickCounter++
+                if (clickCounter > 2 && bolean === true) {
+                    div.innerHTML = '5 seconds ellapsed and clicked 3 times';
+                }
+            }
+
+            button.addEventListener('click', press);
 
         </script>
     </body>
