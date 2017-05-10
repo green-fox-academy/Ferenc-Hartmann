@@ -1,4 +1,4 @@
-<!-- Create a simple HTML document with one button. If the user clicks the button it should wait 2 seconds and it should show a text under the button: 2 seconds ellapsed -->
+<!-- Create a simple HTML document with one button. If the user clicks the button 3 times, and 5 seconds is already ellapsed since the page is loaded, a text should apper under the button: 5 seconds ellapsed and clicked 3 times -->
 
 
 <!doctype html>
@@ -9,12 +9,13 @@
         <link rel="stylesheet">
     </head>
     <body>
-        <button class="button">Button</button>
-        <div class="div">...</div>
+        <button class="button">Up</button>
+        <div class="div"></div>
         <script>
             'use strict';
 
             let button = document.querySelector('.button');
+            button.addEventListener('click', minuteMan);
 
             let div = document.querySelector('.div');
 
@@ -22,11 +23,7 @@
                 div.innerHTML = '2 seconds ellapsed';
             }
 
-            let minuteMan = function() {
-                setTimeout(press, 3000);
-            }
-            
-            button.addEventListener('click', minuteMan);
+            var minuteMan = setTimeout(press, 3000);
 
         </script>
     </body>
