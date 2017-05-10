@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<style>
+			body {
+				font-family: arial;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>🍬Candy shop🍬</h1>
+		<dl class="stats">
+			<dt>Candies</dt>
+			<dd class="candies">0</dd>
+			<dt>Lollypops</dt>
+			<dd class="lollypops">0</dd>
+			<dt>Candies / Second</dt>
+			<dd class="speed">0</dd>
+		</dl>
+		<button class="create-candies">Create candies</button>
+		<button class="buy-lollypops">Buy Lollypops</button>
+		<button class="candy-machine">Make candy rain</button>
+		<script>
+
+		'use strict';
+
+		let create = document.querySelector('.create-candies');
+		let buy = document.querySelector('.buy-lollypops');
+		let rain = document.querySelector('.candy-machine');
+
+		let candies = document.querySelector('.candies');
+		let lollypops = document.querySelector('.lollypops');
+		let speed = document.querySelector('.speed');
+
+		var clickCounter = 0;
+		var lolliCounter = '';
+		var speedMeter = 0;
+		var rainNumber = 1;
+
+		var creator = function() {
+			clickCounter++
+			candies.innerHTML = clickCounter;
+		}
+
+		var lolliCreator = function() {
+			if (clickCounter >= 5) {
+				clickCounter = clickCounter - 5;
+				lolliCounter === '0' ? lolliCounter = '🍭' : lolliCounter = lolliCounter + '🍭';
+			} else if (lolliCounter === '') {
+				lolliCounter = '0';
+			} else {
+				lolliCounter = lolliCounter;
+			}
+			speedMeter = Math.floor(lolliCounter.length / 20);
+			candies.innerHTML = clickCounter;
+			lollypops.innerHTML = lolliCounter;
+			speed.innerHTML = speedMeter;
+		}
+
+		var rapidity = function() {
+			clickCounter += speedMeter * rainNumber;
+			console.log(clickCounter);
+			candies.innerHTML = clickCounter;
+		}
+
+		var rainyDay = function() {
+			rainNumber *= 10;
+		}
+
+		setInterval(rapidity, 1000);
+		create.addEventListener('click', creator);
+		buy.addEventListener('click', lolliCreator);
+		rain.addEventListener('click', rainyDay);
+
+		</script>
+	</body>
+</html>
