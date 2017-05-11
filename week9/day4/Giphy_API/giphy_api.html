@@ -6,43 +6,26 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <div class="image1"></div>
-        <div class="image2"></div>
-        <div class="image3"></div>
-        <div class="image4"></div>
-        <div class="image5"></div>
-        <div class="image6"></div>
-        <div class="image7"></div>
-        <div class="image8"></div>
-        <div class="image9"></div>
-        <div class="image10"></div>
-        <div class="image11"></div>
-        <div class="image12"></div>
-        <div class="image13"></div>
-        <div class="image14"></div>
-        <div class="image15"></div>
-        <div class="image16"></div>
+        <ul class="first"></ul>
 
         <script>
             'use strict';
 
             var http = new XMLHttpRequest();
-
-            var onePic = document.querySelector('div:nth-child(1)');
-            onePic.setAttribute('style', 'background: white');
+            var container = document.querySelector('ul');
 
             http.onreadystatechange = function() {
                 if (http.readyState === 4 && http.status === 200) {
                     var fullDataArray = JSON.parse(http.response);
 
                     for (let i = 1; i < 17; i++) {
-                        onePic = document.querySelector('div:nth-child(' + i + ')');
-                        onePic.setAttribute('style', 'background-image: url(' + fullDataArray.data[i].images.original_still.url + ')');
+                        var newGif = document.createElement('li');
+                        container.appendChild(newGif);
+                        newGif.setAttribute('style', 'background-image: url(' + fullDataArray.data[i].images.original_still.url + ')');
                         var clicked = function() {
                             this.setAttribute('style', 'background-image: url(' + fullDataArray.data[i].images.fixed_height.url + ')');
                         }
-                        onePic.addEventListener('click', clicked);
-
+                        newGif.addEventListener('click', clicked);
                     }
                 }
             }
