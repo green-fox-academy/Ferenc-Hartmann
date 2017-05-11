@@ -17,7 +17,7 @@
                 if (http.readyState === 4 && http.status === 200) {
                     var fullDataArray = JSON.parse(http.response);
                     console.log(fullDataArray);
-                    
+
                     for (let i = 0; i < 10; i++) {
                         var container = document.createElement('ul');
                         document.body.appendChild(container);
@@ -25,7 +25,7 @@
                         var header = document.createElement('li');
                         container.appendChild(header);
                         header.innerHTML = fullDataArray.response.docs[i].headline.main;
-                        header.setAttribute('style', 'font-weight:bold; font-size: 24px;');
+                        header.setAttribute('class', 'main;');
 
                         var snippet = document.createElement('li');
                         container.appendChild(snippet);
@@ -37,6 +37,7 @@
 
                         var linken = document.createElement('a');
                         container.appendChild(linken);
+                        linken.innerHTML = 'Please click here to see the full Article';
                         linken.setAttribute('href', fullDataArray.response.docs[i].web_url);
                     }
                 }

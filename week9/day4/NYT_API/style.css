@@ -22,3 +22,8 @@ li:first-child {
     font-weight: bold;
     font-size: 24px;
 }
+
+.main {
+    font-size: 24px;
+    font-weight: bold;
+}
