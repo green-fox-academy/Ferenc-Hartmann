@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>New York Times api exercise</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <label class="label">Please enter the location of your city:</label><br>
+        <input class="input"></input><br>
+        <button class="send">Send</button>
+
+        <div id="map"></div>
+
+        <script>
+            'use strict';
+
+            var http = new XMLHttpRequest();
+
+            var input = document.querySelector('.input');
+            var send = document.querySelector('.send');
+
+            var latit = -34.397;
+            var longit = 150.644;
+
+            var sender = function() {
+                http.onreadystatechange = function() {
+                    if (http.readyState === 4 && http.status === 200) {
+                        var locationData = JSON.parse(http.response);
+                        latit = parseInt(locationData.Results[0].lat);
+                        longit = parseInt(locationData.Results[0].lon);
+                        initMap();
+                    }
+                }
+                http.open('GET', 'https://devru-latitude-longitude-find-v1.p.mashape.com/latlon.php?location=' + input.value);
+                http.setRequestHeader('X-Mashape-Key', '2M3OuWp1JCmshv0O07v1d2yVOBpip1BWjjejsnlh0vy90YjKn7');
+                http.send();
+            }
+
+            function initMap() {
+            // Create a map object and specify the DOM element for display.
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    center: {lat: latit, lng: longit},
+                    scrollwheel: false,
+                    zoom: 8
+                });
+            }
+
+            send.addEventListener('click', sender);
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrwqctLRUi0Oq_rUMxaol9FDRFglz_2JE&callback=initMap"
+        async defer></script>
+
+    </body>
+</html>
