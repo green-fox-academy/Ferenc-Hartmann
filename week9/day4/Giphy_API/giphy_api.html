@@ -33,7 +33,6 @@
 
             http.onreadystatechange = function() {
                 if (http.readyState === 4 && http.status === 200) {
-                    console.log(JSON.parse(http.response));
                     var fullDataArray = JSON.parse(http.response);
 
                     for (let i = 1; i < 17; i++) {
@@ -41,14 +40,10 @@
                         onePic.setAttribute('style', 'background-image: url(' + fullDataArray.data[i].images.original_still.url + ')');
                         var clicked = function() {
                             this.setAttribute('style', 'background-image: url(' + fullDataArray.data[i].images.fixed_height.url + ')');
-                            console.log(this);
                         }
                         onePic.addEventListener('click', clicked);
 
                     }
-
-
-
                 }
             }
 
@@ -56,9 +51,5 @@
             http.send();
 
         </script>
-
-
-
-
     </body>
 </html>
