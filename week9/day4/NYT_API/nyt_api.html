@@ -6,96 +6,39 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <ul class="mainlist">
-            <li class="headline1"></li>
-            <li class="snippet1"></li>
-            <li class="date1"></li>
-            <a class="link1">Click here to open Article</a>
-        </ul>
-        <ul class="mainlist">
-            <li class="headline2"></li>
-            <li class="snippet2"></li>
-            <li class="date2"></li>
-            <a class="link2">Click here to open Article</a>
-        </ul>
-        <ul class="mainlist">
-            <li class="headline3"></li>
-            <li class="snippet3"></li>
-            <li class="date3"></li>
-            <a class="link3">Click here to open Article</a>
-        </ul>
-        <ul class="mainlist">
-            <li class="headline4"></li>
-            <li class="snippet4"></li>
-            <li class="date4"></li>
-            <a class="link4">Click here to open Article</a>
-        </ul>
-        <ul class="mainlist">
-            <li class="headline5"></li>
-            <li class="snippet5"></li>
-            <li class="date5"></li>
-            <a class="link5">Click here to open Article</a>
-        </ul>
-        <ul class="mainlist">
-            <li class="headline6"></li>
-            <li class="snippet6"></li>
-            <li class="date6"></li>
-            <a class="link6">Click here to open Article</a>
-        </ul>
-        <ul class="mainlist">
-            <li class="headline7"></li>
-            <li class="snippet7"></li>
-            <li class="date7"></li>
-            <a class="link7">Click here to open Article</a>
-        </ul>
-        <ul class="mainlist">
-            <li class="headline8"></li>
-            <li class="snippet8"></li>
-            <li class="date8"></li>
-            <a class="link8">Click here to open Article</a>
-        </ul>
-        <ul class="mainlist">
-            <li class="headline9"></li>
-            <li class="snippet9"></li>
-            <li class="date9"></li>
-            <a class="link9">Click here to open Article</a>
-        </ul>
-        <ul class="mainlist">
-            <li class="headline10"></li>
-            <li class="snippet10"></li>
-            <li class="date10"></li>
-            <a class="link10">Click here to open Article</a>
-        </ul>
+        <ul class="mainlist"></ul>
 
         <script>
             'use strict';
 
             var http = new XMLHttpRequest();
 
-            var header = document.querySelector('.headline1');
-            var snippet = document.querySelector('.headline1');
-            var date = document.querySelector('.headline1');
-            var linken = document.querySelector('.link1');
-
             http.onreadystatechange = function() {
                 if (http.readyState === 4 && http.status === 200) {
                     var fullDataArray = JSON.parse(http.response);
                     console.log(fullDataArray);
+                    
                     for (let i = 0; i < 10; i++) {
-                        header = document.querySelector('.headline' + (i+1));
-                        header.innerHTML = fullDataArray.response.docs[i].headline.main;
+                        var container = document.createElement('ul');
+                        document.body.appendChild(container);
 
-                        snippet = document.querySelector('.snippet' + (i+1));
+                        var header = document.createElement('li');
+                        container.appendChild(header);
+                        header.innerHTML = fullDataArray.response.docs[i].headline.main;
+                        header.setAttribute('style', 'font-weight:bold; font-size: 24px;');
+
+                        var snippet = document.createElement('li');
+                        container.appendChild(snippet);
                         snippet.innerHTML = fullDataArray.response.docs[i].snippet;
 
-                        date = document.querySelector('.date' + (i+1));
+                        var date = document.createElement('li');
+                        container.appendChild(date);
                         date.innerHTML = fullDataArray.response.docs[i].pub_date;
 
-                        linken = document.querySelector('.link' + (i+1));
+                        var linken = document.createElement('a');
+                        container.appendChild(linken);
                         linken.setAttribute('href', fullDataArray.response.docs[i].web_url);
-
                     }
-
                 }
             }
 
