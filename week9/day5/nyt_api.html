@@ -24,8 +24,11 @@
                     console.log(fullDataArray);
 
                     var posts = fullDataArray.posts.length;
+                    var j = 0;
 
-                    for (let i = 0; i < posts; i++) {
+                    for (let i = posts-1; i >= 0; i--) {
+
+                        j++;
 
                         var timecalc = Math.floor((finedate - fullDataArray.posts[i].timestamp) / 60000);
 
@@ -35,7 +38,7 @@
 
                         var number = document.createElement('div');
                         onepost.appendChild(number);
-                        number.innerHTML = (i + 1);
+                        number.innerHTML = j;
                         number.setAttribute('class', 'number');
 
                         var arrowcontainer = document.createElement('div');
