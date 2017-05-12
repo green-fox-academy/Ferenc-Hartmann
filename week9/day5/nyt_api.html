@@ -13,18 +13,21 @@
             'use strict';
 
             var http = new XMLHttpRequest();
-            var posts = 10;
             var score = 0;
             var navigation = document.querySelector('.navigation');
 
+            var finedate = Date.now();
 
             http.onreadystatechange = function() {
                 if (http.readyState === 4 && http.status === 200) {
                     var fullDataArray = JSON.parse(http.response);
-                    // console.log(fullDataArray);
+                    console.log(fullDataArray);
+
+                    var posts = fullDataArray.posts.length;
 
                     for (let i = 0; i < posts; i++) {
-                        var score = 0;
+
+                        var timecalc = Math.floor((finedate - fullDataArray.posts[i].timestamp) / 60000);
 
                         var onepost = document.createElement('div');
                         document.body.appendChild(onepost);
@@ -58,14 +61,15 @@
                         onepost.appendChild(textcontainer);
                         textcontainer.setAttribute('class', 'textcontainer');
 
-                        var header = document.createElement('div');
+                        var header = document.createElement('a');
                         textcontainer.appendChild(header);
-                        header.innerHTML = fullDataArray.response.docs[i].headline.main;
+                        header.innerHTML = fullDataArray.posts[i].title;
                         header.setAttribute('class', 'header');
+                        header.setAttribute('href', fullDataArray.posts[i].href);
 
                         var submitdata = document.createElement('div');
                         textcontainer.appendChild(submitdata);
-                        submitdata.innerHTML = 'submitted 3 months ago by anonymus';
+                        submitdata.innerHTML = 'submitted ' + timecalc + ' minutes ago by anonymous';
                         submitdata.setAttribute('class', 'submitdata');
 
                         var modrem = document.createElement('div');
@@ -82,9 +86,11 @@
                         remove.innerHTML = 'remove';
                         remove.setAttribute('class', 'remove');
                     }
+
                     function voteplus (e) {
-                        score++;
                         let onclick = e.target.parentNode.querySelector('.votes');
+                        score = onclick.innerHTML;
+                        score++;
                         onclick.innerHTML = score;
 
                         let colorChangeArrow = e.target.parentNode.querySelector('.upvote');
@@ -97,9 +103,10 @@
                     }
 
                     function voteminus (e) {
+                        let onclick = e.target.parentNode.querySelector('.votes');
+                        score = onclick.innerHTML;
                         if (score > 0){
                             score--;
-                            let onclick = e.target.parentNode.querySelector('.votes');
                             onclick.innerHTML = score;
 
                             let colorChangeArrow = e.target.parentNode.querySelector('.downvote');
@@ -114,7 +121,8 @@
                 }
             }
 
-            http.open('GET', 'https://api.nytimes.com/svc/search/v2/articlesearch.json?q=moon+landing+by+Apollo+11&api_key=5e046f32d45647abb78492eea38611b2');
+            http.open('GET', 'https://time-radish.glitch.me/posts');
+            http.setRequestHeader('Accept', 'application/json');
             http.send();
 
         </script>
