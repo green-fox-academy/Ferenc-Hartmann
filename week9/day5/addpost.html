@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>New York Times api exercise</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="navigation"><a href="nyt_api.html">back to main page</a></div>
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line2">submit to the page</div>
+
+        <!-- <script>
+            'use strict';
+
+            var http = new XMLHttpRequest();
+            var posts = 10;
+            var score = 0;
+            var navigation = document.querySelector('.navigation');
+
+
+            http.onreadystatechange = function() {
+                if (http.readyState === 4 && http.status === 200) {
+                    var fullDataArray = JSON.parse(http.response);
+                    console.log(fullDataArray);
+
+                    for (let i = 0; i < posts; i++) {
+                        var onepost = document.createElement('div');
+                        document.body.appendChild(onepost);
+                        onepost.setAttribute('class', 'onepost');
+
+                        var number = document.createElement('div');
+                        onepost.appendChild(number);
+                        number.innerHTML = (i + 1);
+                        number.setAttribute('class', 'number');
+
+                        var arrowcontainer = document.createElement('div');
+                        onepost.appendChild(arrowcontainer);
+                        arrowcontainer.setAttribute('class', 'arrowcontainer');
+
+                        var upvote = document.createElement('div');
+                        arrowcontainer.appendChild(upvote);
+                        upvote.setAttribute('class', 'upvote');
+                        upvote.addEventListener('click', voteplus);
+
+                        var votes = document.createElement('div');
+                        arrowcontainer.appendChild(votes);
+                        var scoreRefresh = function () {
+                            votes.innerHTML = score;
+                        }();
+                        votes.setAttribute('class', 'votes');
+
+                        var downvote = document.createElement('div');
+                        arrowcontainer.appendChild(downvote);
+                        downvote.setAttribute('class', 'downvote');
+                        downvote.addEventListener('click', voteminus);
+
+                        var textcontainer = document.createElement('div');
+                        onepost.appendChild(textcontainer);
+                        textcontainer.setAttribute('class', 'textcontainer');
+
+                        var header = document.createElement('div');
+                        textcontainer.appendChild(header);
+                        header.innerHTML = fullDataArray.response.docs[i].headline.main;
+                        header.setAttribute('class', 'header');
+
+                        var submitdata = document.createElement('div');
+                        textcontainer.appendChild(submitdata);
+                        submitdata.innerHTML = 'submitted 3 months ago by anonymus';
+                        submitdata.setAttribute('class', 'submitdata');
+
+                        var modrem = document.createElement('div');
+                        textcontainer.appendChild(modrem);
+                        modrem.setAttribute('class', 'modrem');
+
+                        var modify = document.createElement('div');
+                        modrem.appendChild(modify);
+                        modify.innerHTML = 'modify';
+                        modify.setAttribute('class', 'modify');
+
+                        var remove = document.createElement('div');
+                        modrem.appendChild(remove);
+                        remove.innerHTML = 'remove';
+                        remove.setAttribute('class', 'remove');
+                    }
+                }
+
+                var voteplus = function () {
+                    score++;
+                    scoreRefresh();
+                    console.log(score);
+                }
+
+                var voteminus = function () {
+                    score--;
+                    scoreRefresh();
+                    console.log(score);
+                }
+            }
+
+            http.open('GET', 'https://api.nytimes.com/svc/search/v2/articlesearch.json?q=moon+landing+by+Apollo+11&api_key=5e046f32d45647abb78492eea38611b2');
+            http.send();
+
+        </script> -->
+    </body>
+</html>
