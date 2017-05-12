@@ -9,7 +9,40 @@
         <div class="navigation"><a href="nyt_api.html">back to main page</a></div>
         <div class="line1"></div>
         <div class="line2"></div>
-        <div class="line2">submit to the page</div>
+        <form name="contactform" method="post">
+            <div class="postmaincont">
+                <div class="postcont">
+                    <div class="header1">submit to</div>
+                    <div class="header2">the page</div>
+                </div>
+                <div class="line3"></div>
+                <div class="divider"></div>
+                <div class="urlcont">
+                    <label>url</label>
+                    <input class="urlinput"></input>
+                </div>
+                <div class="divider"></div>
+                <div class="titlecont">
+                    <div class="titlelabelcont">
+                        <label class="star">*</label>
+                        <label class="titlelabel">title</label>
+                    </div>
+                    <textarea class="titleinput" required></textarea>
+                </div>
+                <div class="divider"></div>
+                <div class="optionscont">
+                    <label>options</label>
+                    <div class="titlelabelcont">
+                        <input type="checkbox" id="check" checked disabled>
+                        <div class="anonym">post as anonymous</div>
+                    </div>
+                </div>
+            </div>
+            <div class="required">*required</div>
+            <input type="submit" value="submit" class="submit">
+        </form>
+
+
 
         <!-- <script>
             'use strict';

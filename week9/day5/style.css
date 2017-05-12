@@ -34,6 +34,7 @@ a {
     width: 100%;
     background-color: rgb(128, 128, 128);
 }
+
 .line2 {
     height: 1px;
     width: 100%;
@@ -153,4 +154,103 @@ a {
     color: rgb(140, 140, 140);
     font-size: 14px;
     font-weight: bold;
+}
+
+.postmaincont {
+    width: 300px;
+}
+
+.postcont {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    display: flex;
+}
+
+.header1 {
+    font-size: 20px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.header2 {
+    padding-left: 0.3em;
+    font-size: 20px;
+    font-weight: bold;
+    color: blue;
+}
+
+.divider {
+    width: 100%;
+    height: 10px;
+    background-color: white;
+}
+
+.line3 {
+    height: 3px;
+    width: 100%;
+    background-color: rgb(95, 150, 205);
+}
+
+.urlcont {
+    padding: 5px;
+    height: 50px;
+    background-color: rgb(206, 227, 248);
+    display: flex;
+}
+
+.urlinput {
+    width: 285px;
+    position: absolute;
+    top: 95px;
+    line-height: 1.2em;
+}
+
+.titlecont {
+    padding: 5px;
+    height: 60px;
+    background-color: rgb(206, 227, 248);
+}
+
+.titlelabelcont {
+    margin-left: 5px;
+    display: flex;
+}
+
+.star {
+    color: red;
+}
+
+.titleinput {
+    width: 285px;
+    position: absolute;
+    top: 165px;
+    line-height: 1.2em;
+}
+
+.optionscont {
+    padding: 5px;
+    height: 50px;
+    background-color: rgb(206, 227, 248);
+    display: flex;
+    flex-direction: column;
+}
+
+#check {
+    margin-top: 5px;
+}
+
+.anonym {
+    margin-left: 10px;
+    margin-top: 3px;
+    font-size: 14px;
+}
+
+.required {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.submit {
+    margin-top: 10px;
+    min-width: 50px;
 }
