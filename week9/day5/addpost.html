@@ -39,10 +39,8 @@
                 </div>
             </div>
             <div class="required">*required</div>
-            <input type="submit" value="submit" class="submit">
+            <input type="button" value="submit" class="submit">
         </form>
-
-
 
         <script>
             'use strict';
@@ -52,17 +50,15 @@
             var title = document.querySelector('.titleinput');
 
             function send() {
-                console.log('sended');
                 var http = new XMLHttpRequest();
 
                 var data = {
-                  "title": 'Tesla',
-                  "href": 'https://www.tesla.com'
+                  'title': title.value,
+                  'href': url.value
                 }
-                console.log(url);
-                console.log(title);
                 http.open('POST', 'https://time-radish.glitch.me/posts');
                 http.setRequestHeader('Accept', 'application/json');
+                http.setRequestHeader('Content-Type', 'application/json');
                 http.send(JSON.stringify(data));
 
             }
