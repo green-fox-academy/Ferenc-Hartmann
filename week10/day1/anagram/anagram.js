@@ -1,20 +1,8 @@
 'use strict'
 
-// var sum = function(integers) {
-//     var summarize = 0;
-//     for (var i = 0; i < integers.length; i++) {
-//         if (typeof integers[i] === 'number') {
-//         summarize += integers[i];
-//         }
-//     }
-//     return summarize;
-// }
+var anagramCheck = function(str1, str2) {
+    return str1.split('').sort().join().toLowerCase() ===
+     str2.split('').sort().join().toLowerCase() ? true : false;
+};
 
-
-var sum = function(integers) {
-    if (typeof integers[i] === 'number') {
-        return integers.reduce((a, b) => a + b, 0);
-    }
-}
-
-module.exports = sum;
+module.exports = anagramCheck;

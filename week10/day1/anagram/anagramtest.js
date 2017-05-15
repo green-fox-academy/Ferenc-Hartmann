@@ -2,39 +2,19 @@
 
 var test = require('tape');
 
-var sum = require('./sum');
+var anagramCheck = require('./anagram');
 
-test('sum test', function (t) {
-    t.equal(sum([0, 1, 2, 3]), 6);
+test('basic true test', function (t) {
+    t.equal(anagramCheck('alma', 'mala'), true);
     t.end();
 });
 
-test('zero list test', function (t) {
-    t.equal(sum([]), 0);
+test('basic false test', function (t) {
+    t.equal(anagramCheck('alma', 'malc'), false);
     t.end();
 });
 
-test('one element in test', function (t) {
-    t.equal(sum([6]), 6);
-    t.end();
-});
-
-test('sum test not ordered list', function (t) {
-    t.equal(sum([3, 1, 2]), 6);
-    t.end();
-});
-
-test('sum test for null', function (t) {
-    t.equal(sum([null]), 0);
-    t.end();
-});
-
-test('sum test for null and numbers', function (t) {
-    t.equal(sum([1, null, 2]), 3);
-    t.end();
-});
-
-test('sum test for null and numbers', function (t) {
-    t.equal(sum([1, 'string', 2]), 3);
+test('length test', function (t) {
+    t.equal(anagramCheck('alma', 'mal'), false);
     t.end();
 });
