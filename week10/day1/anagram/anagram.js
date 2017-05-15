@@ -12,7 +12,9 @@
 
 
 var sum = function(integers) {
-    return (integers.filter((x) => typeof x === 'number')).reduce((a, b) => a + b, 0);
-};
+    if (typeof integers[i] === 'number') {
+        return integers.reduce((a, b) => a + b, 0);
+    }
+}
 
 module.exports = sum;
