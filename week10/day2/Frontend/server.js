@@ -118,5 +118,27 @@ app.post ('/arrays', function(req, res) {
     }
 });
 
+app.post ('/sith', function(req, res) {
+    if (typeof req.body.text === 'string') {
+        var input = req.body.text.split(' ');
+        var length = input.length;
+        var respond = '';
+        for (var i = 0; i < (length - 1); i += 2) {
+            respond = respond + input[i + 1] + ' ' + input[i] + ' ';
+        }
+        res.send(
+            {
+         sith_text: respond
+        });
+    }
+    else {
+        res.send(
+            {
+         error: "Feed me some text you have to, padawan young you are. Hmmm."
+        });
+
+    }
+});
+
 
 app.listen(8080);
