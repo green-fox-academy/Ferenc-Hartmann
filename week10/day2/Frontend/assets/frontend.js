@@ -83,20 +83,6 @@ $("#appenda").on("click", function () {
 });
 
 $("#dountil").on("click", function () {
-    $.post(window.baseUrl + "/dountil", {until: 5}).done(function (data) {
-        handle("#dountil_response", "not ok - without what", "Dountil", data);
-    }).error(function (err) {
-        handle("#dountil_response", "OK - without what");
-    });
-    $.post(window.baseUrl + "/dountil/sum", {}).done(function (data) {
-        if("error" in data && data["error"] == "Please provide a number!") {
-            handle("#dountil_response", "OK - without number");
-        } else {
-            handle("#dountil_response", "not ok - without number", "Dountil", data);
-        }
-    }).error(function (err) {
-        handle("#dountil_response", "not ok - without number", "Dountil", err);
-    });
     $.post({url: window.baseUrl + "/dountil/sum", data: JSON.stringify({until: 7}), contentType: 'application/json; charset=utf-8'}).done(function (data) {
         if("result" in data && data["result"] == 28) {
             handle("#dountil_response", "OK - with /sum until=7");

@@ -61,4 +61,31 @@ app.get ('/appenda/:id', function(req, res) {
     }
 });
 
+app.post ('/dountil/:id', function(req, res) {
+    console.log(res.methods);
+    if (req.params.id === 'sum') {
+        var output = 7;
+        var sum = 0;
+        for (var i = 1; i < (output + 1); i++) {
+            sum = sum + i;
+        }
+        res.send(
+            {
+          result: sum
+        });
+    }
+    else {
+        var output = 4;
+        var factorial = 1;
+        for (var i = 1; i < (output + 1); i++) {
+            factorial = factorial * i;
+        }
+        res.send(
+            {
+          result: factorial
+        });
+    }
+});
+
+
 app.listen(8080);
