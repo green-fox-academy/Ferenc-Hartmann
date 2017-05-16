@@ -9,14 +9,6 @@ app.get ('/', function(req, res) {
     res.sendFile(__dirname + '/index.html');
 });
 
-// app.get ('/doubling/input=:id', function(req, res) {
-//     res.send(
-//         {
-//       "received": req.params.id,
-//       "result": 2 * req.params.id
-//     });
-// });
-
 app.get ('/doubling', function(req, res) {
     if (req.query.input === undefined) {
         var output = '';
@@ -57,5 +49,16 @@ app.get ('/greeter', function(req, res) {
     };
 });
 
+app.get ('/appenda/:id', function(req, res) {
+    if (req.params.id === undefined) {
+        req.params.id = bikicsunaj;
+    }
+    else {
+        res.send(
+            {
+          appended: req.params.id + 'a',
+        });
+    }
+});
 
 app.listen(8080);
