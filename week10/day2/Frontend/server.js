@@ -1,9 +1,11 @@
 'use strict'
 //localhost:8080
 var express = require('express');
+var bodyParser = require('body-parser');
 
 var app = express();
 app.use('/assets', express.static('assets'));
+app.use(bodyParser.json());
 
 app.get ('/', function(req, res) {
     res.sendFile(__dirname + '/index.html');
@@ -62,9 +64,8 @@ app.get ('/appenda/:id', function(req, res) {
 });
 
 app.post ('/dountil/:id', function(req, res) {
-    console.log(res.methods);
     if (req.params.id === 'sum') {
-        var output = 7;
+        var output = req.body.until;
         var sum = 0;
         for (var i = 1; i < (output + 1); i++) {
             sum = sum + i;
@@ -75,7 +76,7 @@ app.post ('/dountil/:id', function(req, res) {
         });
     }
     else {
-        var output = 4;
+        var output = req.body.until;
         var factorial = 1;
         for (var i = 1; i < (output + 1); i++) {
             factorial = factorial * i;
