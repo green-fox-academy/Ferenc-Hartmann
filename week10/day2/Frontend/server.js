@@ -88,5 +88,35 @@ app.post ('/dountil/:id', function(req, res) {
     }
 });
 
+app.post ('/arrays', function(req, res) {
+    if (req.body.what === undefined || typeof req.body.what === 'number') {
+        res.send(
+            {
+         error: 'Please provide what to do with the numbers!'
+        });
+    }
+    if (req.body.what === 'sum') {
+        var respond = req.body.numbers.reduce((a, b) => a + b, 0);
+        res.send(
+            {
+        result: respond
+        });
+    }
+    if (req.body.what === 'multiply') {
+        var respond = req.body.numbers.reduce((a, b) => a * b, 1);
+        res.send(
+            {
+        result: respond
+        });
+    }
+    if (req.body.what === 'double') {
+        var respond = req.body.numbers.map(x => x * 2);
+        res.send(
+            {
+        result: respond
+        });
+    }
+});
+
 
 app.listen(8080);
