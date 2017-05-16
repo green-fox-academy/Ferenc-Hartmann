@@ -34,3 +34,10 @@ test('only integer input test', function (t) {
 	t.equals( product.width, 75);
     t.end();
 });
+
+test('no input', function (t) {
+    var product = new sharpie();
+    t.equals( product.color, 0);
+	t.equals( product.width, 0);
+    t.end();
+});

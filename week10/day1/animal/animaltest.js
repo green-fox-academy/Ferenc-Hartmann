@@ -2,14 +2,14 @@
 
 var test = require('tape');
 
-var newSharpie = require('./sharpie');
+var animal = require('./animal');
 
-test('basic function test', function (t) {
-    t.deepEquals(newSharpie('green', 30), { color: 'green', width: 30, inkAmount: 100, use: [Function] });
-    t.end();
-});
-
-test('basic function test', function (t) {
-    t.equal(newSharpie('green', 30).use, 70);
+test('Initalizing variables', function (t) {
+    var product = new animal();
+	t.equals( product.hunger, 50);
+	t.equals( product.thirst, 50);
+    t.equals( typeof product.eat, 'function');
+    t.equals( typeof product.drink, 'function');
+    t.equals( typeof product.play, 'function');
     t.end();
 });
