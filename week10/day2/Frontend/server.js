@@ -24,12 +24,34 @@ app.get ('/doubling', function(req, res) {
             error: "Please provide an input!"
         };
         res.send(output);
-
     } else {
         var delta = '';
         delta = {
             received: (1 * req.query.input),
             result: (2 * req.query.input)
+        };
+        res.send(delta);
+    };
+});
+
+app.get ('/greeter', function(req, res) {
+    if (req.query.name === undefined) {
+        var output = '';
+        output = {
+            error: 'Please provide a name!'
+        };
+        res.send(output);
+    }
+    if (req.query.title === undefined) {
+        var output = '';
+        output = {
+            error: 'Please provide a title!'
+        };
+        res.send(output);
+    } else {
+        var delta = '';
+        delta = {
+            welcome_message: 'Oh, hi there ' + req.query.name + ', my dear ' + req.query.title + '!'
         };
         res.send(delta);
     };
