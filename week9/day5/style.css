@@ -66,6 +66,7 @@ a {
     background-repeat: no-repeat;
     background-position: center;
     transition: 0.5s;
+    cursor: pointer;
 }
 
 .upvoteclicked {
@@ -111,6 +112,7 @@ a {
     background-repeat: no-repeat;
     background-position: center;
     transition: 0.5s;
+    cursor: pointer;
 }
 
 .downvoteclicked {
@@ -149,6 +151,7 @@ a {
     color: rgb(140, 140, 140);
     font-size: 14px;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .remove {
@@ -156,6 +159,7 @@ a {
     color: rgb(140, 140, 140);
     font-size: 14px;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .postmaincont {

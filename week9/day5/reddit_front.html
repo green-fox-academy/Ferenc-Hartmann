@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <title>New York Times api exercise</title>
+        <title>Reddit clone exercise</title>
         <meta charset="utf-8">
         <link rel="stylesheet" href="style.css">
     </head>
@@ -23,14 +23,8 @@
                     var fullDataArray = JSON.parse(http.response);
                     console.log(fullDataArray);
 
-                    var posts = fullDataArray.posts.length;
-                    var j = 0;
-
-                    for (let i = posts-1; i >= 0; i--) {
-
-                        j++;
-
-                        var timecalc = Math.floor((finedate - fullDataArray.posts[i].timestamp) / 60000);
+                    var timeManagement = function (tim) {
+                        var timecalc = Math.floor((finedate - tim) / 60000);
                         var hours = 0;
                         var days = 0;
                         var weeks = 0;
@@ -58,6 +52,16 @@
                             years = Math.floor(months / 12);
                             timer = years + ' years';
                         }
+                        return timer
+                    }
+
+
+                    var posts = fullDataArray.posts.length;
+                    var j = 0;
+
+                    for (let i = posts-1; i >= 0; i--) {
+
+                        j++;
 
                         var onepost = document.createElement('div');
                         document.body.appendChild(onepost);
@@ -99,7 +103,7 @@
 
                         var submitdata = document.createElement('div');
                         textcontainer.appendChild(submitdata);
-                        submitdata.innerHTML = 'submitted ' + timer + ' ago by anonymous';
+                        submitdata.innerHTML = 'submitted ' + timeManagement (fullDataArray.posts[i].timestamp) + ' ago by anonymous';
                         submitdata.setAttribute('class', 'submitdata');
 
                         var modrem = document.createElement('div');
@@ -110,11 +114,14 @@
                         modrem.appendChild(modify);
                         modify.innerHTML = 'modify';
                         modify.setAttribute('class', 'modify');
+                        modify.addEventListener('click', voteplus);
 
                         var remove = document.createElement('div');
                         modrem.appendChild(remove);
                         remove.innerHTML = 'remove';
                         remove.setAttribute('class', 'remove');
+                        remove.addEventListener('click', voteplus);
+
                     }
 
                     function voteplus (e) {

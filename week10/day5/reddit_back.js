@@ -1,5 +1,11 @@
 'use strict'
 
+//javaslatok:
+// milyen adatbázist csinálok hozzá?
+// endpointok létrhozása, elsőre üresen(értsd stringet küld)
+// json fájl jöjjön vissza
+// dinamizálni adatbázis lekérdezésekkel
+
 const mysql = require("mysql");
 const express = require('express');
 const app = express();
