@@ -5,10 +5,10 @@ const express = require('express');
 const app = express();
 
 var conn = mysql.createConnection({
-  host: "localhost",
-  user: "'Fekapapa'",
-  password: "1q2w3ezv8ta4",
-  database: "bookstore"
+    host: "localhost",
+    user: "'Fekapapa'",
+    password: "1q2w3ezv8ta4",
+    database: "bookstore"
 });
 
 app.get('/', function(req, res) {

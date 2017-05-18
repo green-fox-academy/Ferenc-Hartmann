@@ -31,6 +31,33 @@
                         j++;
 
                         var timecalc = Math.floor((finedate - fullDataArray.posts[i].timestamp) / 60000);
+                        var hours = 0;
+                        var days = 0;
+                        var weeks = 0;
+                        var months = 0;
+                        var years = 0;
+                        var timer = timecalc + ' minutes';
+
+                        if (timecalc >= 60) {
+                            hours = Math.floor(timecalc / 60);
+                            timer = hours + ' hours';
+                        }
+                        if (hours >= 24) {
+                            days = Math.floor(hours / 24);
+                            timer = days + ' days';
+                        }
+                        if (days >= 7) {
+                            weeks = Math.floor(days / 7);
+                            timer = weeks + ' weeks';
+                        }
+                        if (weeks >= 4) {
+                            months = Math.floor(weeks / 4);
+                            timer = months + ' months';
+                        }
+                        if (months >= 12) {
+                            years = Math.floor(months / 12);
+                            timer = years + ' years';
+                        }
 
                         var onepost = document.createElement('div');
                         document.body.appendChild(onepost);
@@ -72,7 +99,7 @@
 
                         var submitdata = document.createElement('div');
                         textcontainer.appendChild(submitdata);
-                        submitdata.innerHTML = 'submitted ' + timecalc + ' minutes ago by anonymous';
+                        submitdata.innerHTML = 'submitted ' + timer + ' ago by anonymous';
                         submitdata.setAttribute('class', 'submitdata');
 
                         var modrem = document.createElement('div');
