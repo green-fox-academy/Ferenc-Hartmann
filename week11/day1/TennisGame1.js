@@ -1,16 +1,24 @@
 var TennisGame1 = function() {
     this.scorePlayer1 = 0;
     this.scorePlayer2 = 0;
+    this.wonPoint = function(playerName) {
+        if (playerName === "player1") {
+            this.scorePlayer1 += 1;
+        }
+        else {
+            this.scorePlayer2 += 1;
+        }
+    };
 };
 
-TennisGame1.prototype.wonPoint = function(playerName) {
-    if (playerName === "player1") {
-        this.scorePlayer1 += 1;
-    }
-    else {
-        this.scorePlayer2 += 1;
-    }
-};
+// TennisGame1.prototype.wonPoint = function(playerName) {
+//     if (playerName === "player1") {
+//         this.scorePlayer1 += 1;
+//     }
+//     else {
+//         this.scorePlayer2 += 1;
+//     }
+// };
 
 TennisGame1.prototype.getScore = function() {
     var scoreBoard = "";
