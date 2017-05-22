@@ -84,17 +84,9 @@ TennisGame2.prototype.getScore = function() {
     return score;
 };
 
-TennisGame2.prototype.P1Score = function() {
-    this.P1point++;
-};
-
-TennisGame2.prototype.P2Score = function() {
-    this.P2point++;
-};
-
 TennisGame2.prototype.wonPoint = function(player) {
     if (player === "player1")
-        this.P1Score();
+        this.P1point++;
     else
-        this.P2Score();
+        this.P2point++;
 };
