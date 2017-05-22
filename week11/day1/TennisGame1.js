@@ -1,8 +1,6 @@
-var TennisGame1 = function(player1Name, player2Name) {
+var TennisGame1 = function() {
     this.m_score1 = 0;
     this.m_score2 = 0;
-    this.player1Name = player1Name;
-    this.player2Name = player2Name;
 };
 
 TennisGame1.prototype.wonPoint = function(playerName) {
@@ -48,7 +46,9 @@ TennisGame1.prototype.getScore = function() {
         }
     } else {
         for (var i = 1; i < 3; i++) {
-            if (i === 1) tempScore = this.m_score1;
+            if (i === 1) {
+                tempScore = this.m_score1;
+            }
             else {
                 score += "-";
                 tempScore = this.m_score2;
