@@ -71,7 +71,3 @@ TennisGame1.prototype.getScore = function() {
     }
     return scoreBoard;
 };
-
-if (typeof window === "undefined") {
-    module.exports = TennisGame1;
-}
