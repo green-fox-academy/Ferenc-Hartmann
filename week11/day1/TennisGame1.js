@@ -1,6 +1,7 @@
 var TennisGame1 = function() {
     this.scorePlayer1 = 0;
     this.scorePlayer2 = 0;
+    this.scoreboard = "";
 };
 
 TennisGame1.prototype.wonPoint = function(playerName) {
@@ -12,25 +13,29 @@ TennisGame1.prototype.wonPoint = function(playerName) {
 };
 
 TennisGame1.prototype.getScore = function() {
-    var scoreBoard = "";
     var tempScore = 0;
     if (this.scorePlayer1 === this.scorePlayer2) {
         var options = ["Love-All", "Fifteen-All", "Thirty-All"];
-        scoreBoard = (this.scorePlayer1 < 3) ? options[this.scorePlayer1] : "Deuce";
+        this.scoreBoard = (this.scorePlayer1 < 3) ? options[this.scorePlayer1] : "Deuce";
 
-    } else if (this.scorePlayer1 >= 4 || this.scorePlayer2 >= 4) {
+    } else TennisGame1.prototype.getScore2();
+    console.log(this.scoreBoard);
+};
+
+TennisGame1.prototype.getScore2 = function() {
+    if (this.scorePlayer1 >= 4 || this.scorePlayer2 >= 4) {
         var minusResult = this.scorePlayer1 - this.scorePlayer2;
         if (minusResult === 1) {
-             scoreBoard = "Advantage player1";
+             this.scoreBoard = "Advantage player1";
          }
         else if (minusResult === -1) {
-            scoreBoard = "Advantage player2";
+            this.scoreBoard = "Advantage player2";
         }
         else if (minusResult >= 2) {
-            scoreBoard = "Win for player1";
+            this.scoreBoard = "Win for player1";
         }
         else {
-            scoreBoard = "Win for player2";
+            this.scoreBoard = "Win for player2";
         }
     } else {
         for (var i = 1; i < 3; i++) {
@@ -38,24 +43,24 @@ TennisGame1.prototype.getScore = function() {
                 tempScore = this.scorePlayer1;
             }
             else {
-                scoreBoard += "-";
+                this.scoreBoard += "-";
                 tempScore = this.scorePlayer2;
             }
             switch (tempScore) {
                 case 0:
-                    scoreBoard += "Love";
+                    this.scoreBoard += "Love";
                     break;
                 case 1:
-                    scoreBoard += "Fifteen";
+                    this.scoreBoard += "Fifteen";
                     break;
                 case 2:
-                    scoreBoard += "Thirty";
+                    this.scoreBoard += "Thirty";
                     break;
                 case 3:
-                    scoreBoard += "Forty";
+                    this.scoreBoard += "Forty";
                     break;
             }
         }
     }
-    return scoreBoard;
+    return this.scoreBoard;
 };
