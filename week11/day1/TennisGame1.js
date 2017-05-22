@@ -1,75 +1,75 @@
 var TennisGame1 = function() {
-    this.m_score1 = 0;
-    this.m_score2 = 0;
+    this.scorePlayer1 = 0;
+    this.scorePlayer2 = 0;
 };
 
 TennisGame1.prototype.wonPoint = function(playerName) {
     if (playerName === "player1") {
-        this.m_score1 += 1;
+        this.scorePlayer1 += 1;
     }
     else {
-        this.m_score2 += 1;
+        this.scorePlayer2 += 1;
     }
 };
 
 TennisGame1.prototype.getScore = function() {
-    var score = "";
+    var scoreBoard = "";
     var tempScore = 0;
-    if (this.m_score1 === this.m_score2) {
-        switch (this.m_score1) {
+    if (this.scorePlayer1 === this.scorePlayer2) {
+        switch (this.scorePlayer1) {
             case 0:
-                score = "Love-All";
+                scoreBoard = "Love-All";
                 break;
             case 1:
-                score = "Fifteen-All";
+                scoreBoard = "Fifteen-All";
                 break;
             case 2:
-                score = "Thirty-All";
+                scoreBoard = "Thirty-All";
                 break;
             default:
-                score = "Deuce";
+                scoreBoard = "Deuce";
                 break;
         }
-    } else if (this.m_score1 >= 4 || this.m_score2 >= 4) {
-        var minusResult = this.m_score1 - this.m_score2;
+    } else if (this.scorePlayer1 >= 4 || this.scorePlayer2 >= 4) {
+        var minusResult = this.scorePlayer1 - this.scorePlayer2;
         if (minusResult === 1) {
-             score = "Advantage player1";
+             scoreBoard = "Advantage player1";
          }
         else if (minusResult === -1) {
-            score = "Advantage player2";
+            scoreBoard = "Advantage player2";
         }
         else if (minusResult >= 2) {
-            score = "Win for player1";
+            scoreBoard = "Win for player1";
         }
         else {
-            score = "Win for player2";
+            scoreBoard = "Win for player2";
         }
     } else {
         for (var i = 1; i < 3; i++) {
             if (i === 1) {
-                tempScore = this.m_score1;
+                tempScore = this.scorePlayer1;
             }
             else {
-                score += "-";
-                tempScore = this.m_score2;
+                scoreBoard += "-";
+                tempScore = this.scorePlayer2;
             }
             switch (tempScore) {
                 case 0:
-                    score += "Love";
+                    scoreBoard += "Love";
                     break;
                 case 1:
-                    score += "Fifteen";
+                    scoreBoard += "Fifteen";
                     break;
                 case 2:
-                    score += "Thirty";
+                    scoreBoard += "Thirty";
                     break;
                 case 3:
-                    score += "Forty";
+                    scoreBoard += "Forty";
                     break;
             }
         }
     }
-    return score;
+    return scoreBoard;
 };
 
 if (typeof window === "undefined") {
