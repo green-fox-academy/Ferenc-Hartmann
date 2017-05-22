@@ -56,7 +56,7 @@
                     }
 
 
-                    var posts = fullDataArray.posts.length;
+                    var posts = fullDataArray.length;
                     var j = 0;
 
                     for (let i = posts-1; i >= 0; i--) {
@@ -97,13 +97,13 @@
 
                         var header = document.createElement('a');
                         textcontainer.appendChild(header);
-                        header.innerHTML = fullDataArray.posts[i].title;
+                        header.innerHTML = fullDataArray[i].title;
                         header.setAttribute('class', 'header');
-                        header.setAttribute('href', fullDataArray.posts[i].href);
+                        header.setAttribute('href', fullDataArray[i].href);
 
                         var submitdata = document.createElement('div');
                         textcontainer.appendChild(submitdata);
-                        submitdata.innerHTML = 'submitted ' + timeManagement (fullDataArray.posts[i].timestamp) + ' ago by anonymous';
+                        submitdata.innerHTML = 'submitted ' + timeManagement (fullDataArray[i].timestamp) + ' ago by anonymous';
                         submitdata.setAttribute('class', 'submitdata');
 
                         var modrem = document.createElement('div');
@@ -158,8 +158,9 @@
                 }
             }
 
-            http.open('GET', 'https://time-radish.glitch.me/posts');
-            http.setRequestHeader('Accept', 'application/json');
+            // http.open('GET', 'https://time-radish.glitch.me/posts');
+            http.open('GET', 'http://localhost:3000/');
+            // http.setRequestHeader('Accept', 'application/json');
             http.send();
 
         </script>

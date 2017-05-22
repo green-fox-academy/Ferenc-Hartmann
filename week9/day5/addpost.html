@@ -56,11 +56,12 @@
                   'title': title.value,
                   'href': url.value
                 }
-                http.open('POST', 'https://time-radish.glitch.me/posts');
+                // http.open('POST', 'https://time-radish.glitch.me/posts');
+                http.open('POST', 'http://localhost:3000/');
                 http.setRequestHeader('Accept', 'application/json');
                 http.setRequestHeader('Content-Type', 'application/json');
                 http.send(JSON.stringify(data));
-
+                console.log(data);
             }
 
             sender.addEventListener('click', send);
