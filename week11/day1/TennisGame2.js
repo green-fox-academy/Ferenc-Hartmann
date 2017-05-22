@@ -1,12 +1,9 @@
-var TennisGame2 = function(player1Name, player2Name) {
+var TennisGame2 = function() {
     this.P1point = 0;
     this.P2point = 0;
 
     this.P1res = "";
     this.P2res = "";
-
-    this.player1Name = player1Name;
-    this.player2Name = player2Name;
 };
 
 TennisGame2.prototype.getScore = function() {
@@ -115,7 +112,3 @@ TennisGame2.prototype.wonPoint = function(player) {
     else
         this.P2Score();
 };
-
-if (typeof window === "undefined") {
-    module.exports = TennisGame2;
-}
