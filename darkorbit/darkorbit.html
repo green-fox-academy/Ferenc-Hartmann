@@ -26,6 +26,7 @@
     var DistanceX = 0;
     var DistanceY = 0;
     var speed = 100;
+    var rad = 0;
 
     function onDown(event) {
         onClickX = event.pageX;
@@ -52,20 +53,25 @@
         c.drawImage(base_image, x-50, y-25);
       }
     }
-    // c.beginPath();
-    // c.arc(x, y, 30, 0, Math.PI * 2, false);
-    // c.strokeStyle = 'blue';
-    // c.stroke();
-
+    // c.rotate(45 * Math.PI / 180);
+    // c.setTransform(1, 0, 0, 1, 0, 0);
+    c.save();
+    c.rotate(0.17);
+    c.restore();
     function animate() {
+        if (rad < 1) {
+            rad += 0.1;
+        };
         if (Math.abs(x - onClickX) > 1 || Math.abs(y - onClick) > 1) {
             requestAnimationFrame(animate);
-        }
+        };
         c.clearRect(0, 0, innerWidth, innerHeight);
         c.drawImage(base_image, x-50, y-25);
+        // c.save();
+        // c.rotate(rad);
+        // c.restore();
 
         x += DistanceX/speed;
         y += DistanceY/speed;
     }
-
 </script>

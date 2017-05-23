@@ -118,16 +118,42 @@
             <div class="pause"></div>
             <div class="forward"></div>
             <div class="remaintime"> 4:17</div>
-            <input type=range class="seekbarfilled">
-            <div class="seekbarbullet"></div>
-            <div class="seekbarleft"></div>
-            <div class="totallength"></div>
+            <input type=range class="seekbar" value="50">
+            <div class="totallength">5:26</div>
             <div class="shuffle"></div>
             <div class="volumeimg"></div>
-            <div class="volumebarfilled"></div>
-            <div class="volumebarbullet"></div>
-            <div class="volumebarleft"></div>
+            <input type=range class="volumebar"value="50">
         </div>
     </div>
 </body>
 </html>
+
+<script>
+    'use strict';
+    var seekbarInput = document.querySelector('input:nth-child(5)');
+    var volumebarInput = document.querySelector('input:nth-child(9)');
+
+    seekbarInput.setAttribute('style', 'background: linear-gradient(to right, rgb(60, 210, 205) ' + seekbarInput.value + '%, rgb(220, 220, 220)' + (100-seekbarInput.value) + '%); height: 4px; width: 320px; cursor: pointer; border-radius: 2px; -webkit-appearance: none; margin-top: 13px');
+
+    volumebarInput.setAttribute('style', 'background: linear-gradient(to right, rgb(60, 210, 205) ' + volumebarInput.value + '%, rgb(220, 220, 220)' + (100-volumebarInput.value) + '%); height: 4px; width: 80px; cursor: pointer; border-radius: 2px; -webkit-appearance: none; margin-top: 13px');
+
+    var seekbar = function () {
+        if (seekbarInput.value >= 50) {
+            seekbarInput.setAttribute('style', 'background: linear-gradient(to right, rgb(60, 210, 205) ' + seekbarInput.value + '%, rgb(220, 220, 220)' + (100-seekbarInput.value) + '%); height: 4px; width: 320px; cursor: pointer; border-radius: 2px; -webkit-appearance: none; margin-top: 13px');
+        } else {
+            seekbarInput.setAttribute('style', 'background: linear-gradient(to left, rgb(220, 220, 220) ' + (100-seekbarInput.value) + '%, rgb(60, 210, 205)' + seekbarInput.value + '%); height: 4px; width: 320px; cursor: pointer; border-radius: 2px; -webkit-appearance: none; margin-top: 13px');
+        }
+    }
+
+    var volumebar = function () {
+        if (volumebarInput.value >= 50) {
+            volumebarInput.setAttribute('style', 'background: linear-gradient(to right, rgb(60, 210, 205) ' + volumebarInput.value + '%, rgb(220, 220, 220)' + (100-volumebarInput.value) + '%); height: 4px; width: 80px; cursor: pointer; border-radius: 2px; -webkit-appearance: none; margin-top: 13px');
+        } else {
+            volumebarInput.setAttribute('style', 'background: linear-gradient(to left, rgb(220, 220, 220) ' + (100-volumebarInput.value) + '%, rgb(60, 210, 205)' + volumebarInput.value + '%); height: 4px; width: 80px; cursor: pointer; border-radius: 2px; -webkit-appearance: none; margin-top: 13px');
+        }
+    }
+
+    seekbarInput.onchange = seekbar;
+    volumebarInput.onchange = volumebar;
+
+</script>
