@@ -1,0 +1,10 @@
+canvas {
+    border: 1px solid black;
+    background-image: url(images/1.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+body {
+    margin: 0;

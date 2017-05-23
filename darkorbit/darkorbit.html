@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>gamedevelopment</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="darkorbit.css">
+</head>
+<body>
+    <canvas></canvas>
+</body>
+</html>
+
+<script>
+    var canvas = document.querySelector('canvas');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    var c = canvas.getContext('2d');
+    canvas.addEventListener('mousedown', onDown, false)
+    var x = 0;
+    var y = 0;
+    var onClickX = 0;
+    var onClickY = 0;
+    var DistanceX = 0;
+    var DistanceY = 0;
+    var speed = 100;
+
+    function onDown(event) {
+        onClickX = event.pageX;
+        onClickY = event.pageY;
+        distanceCalculator()
+        animate();
+        console.log(onClickX, onClickY);
+    }
+
+    function distanceCalculator() {
+        DistanceX = onClickX - x;
+        DistanceY = onClickY - y;
+    }
+
+
+
+    make_base();
+
+    function make_base()
+    {
+      base_image = new Image();
+      base_image.src = 'images/v1201.png';
+      base_image.onload = function(){
+        c.drawImage(base_image, x-50, y-25);
+      }
+    }
+    // c.beginPath();
+    // c.arc(x, y, 30, 0, Math.PI * 2, false);
+    // c.strokeStyle = 'blue';
+    // c.stroke();
+
+    function animate() {
+        if (Math.abs(x - onClickX) > 1 || Math.abs(y - onClick) > 1) {
+            requestAnimationFrame(animate);
+        }
+        c.clearRect(0, 0, innerWidth, innerHeight);
+        c.drawImage(base_image, x-50, y-25);
+
+        x += DistanceX/speed;
+        y += DistanceY/speed;
+    }
+
+</script>
