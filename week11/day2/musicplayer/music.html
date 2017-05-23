@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
 </head>
 <body>
+    <div class="positioner"></div>
     <div class="container">
         <div class="maincontainer">
             <div class="leftside">
@@ -27,14 +28,14 @@
                 <div class="playlistbox">
                     <div class="onelist1">All tracks</div>
                     <div class="onelist2">Favourites</div>
-                    <div class="onelist1">Junkfood</div>
-                    <div class="onelist2">Kung-fu Panda</div>
-                    <div class="onelist1">Icy veins reloaded</div>
-                    <div class="onelist2"></div>
-                    <div class="onelist1"></div>
-                    <div class="onelist2"></div>
-                    <div class="onelist1"></div>
-                    <div class="onelist2"></div>
+                    <div class="onelist1">
+                        <div class="listbox">Junkfood</div>
+                        <div class="listex">&#10006</div>
+                    </div>
+                    <div class="onelist2">
+                        <div class="listbox">Kung-fu Panda</div>
+                        <div class="listex">&#10006</div>
+                    </div>
                 </div>
             </div>
             <div class="rightside">
@@ -111,21 +112,21 @@
                     </div>
                 </div>
             </div>
-            <div class="controlbar">
-                <div class="rewind"></div>
-                <div class="pause"></div>
-                <div class="forward"></div>
-                <div class="remaintime"></div>
-                <div class="seekbarfilled"></div>
-                <div class="seekbarbullet"></div>
-                <div class="seekbarleft"></div>
-                <div class="totallength"></div>
-                <div class="shuffle"></div>
-                <div class="volumeimg"></div>
-                <div class="volumebarfilled"></div>
-                <div class="volumebarbullet"></div>
-                <div class="volumebarleft"></div>
-            </div>
+        </div>
+        <div class="controlbar">
+            <div class="rewind"></div>
+            <div class="pause"></div>
+            <div class="forward"></div>
+            <div class="remaintime"> 4:17</div>
+            <input type=range class="seekbarfilled">
+            <div class="seekbarbullet"></div>
+            <div class="seekbarleft"></div>
+            <div class="totallength"></div>
+            <div class="shuffle"></div>
+            <div class="volumeimg"></div>
+            <div class="volumebarfilled"></div>
+            <div class="volumebarbullet"></div>
+            <div class="volumebarleft"></div>
         </div>
     </div>
 </body>

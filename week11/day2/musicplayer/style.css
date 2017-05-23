@@ -1,16 +1,26 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.positioner {
+    margin-top: 125px;
+}
+
 .container {
-    margin-top: 8%;
+    margin: auto;
     height: 100%;
-    width: 100%;
+    width: 700px;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     font-family: 'PT Sans', sans-serif;
 }
 
 .maincontainer {
     width: 700px;
-    height: 400px;
+    height: 340px;
     border-radius: 10px;
     background-color: rgba(245, 245, 245, 1);
     display: flex;
@@ -101,7 +111,7 @@
 
 .playlistbox{
     width: 100%;
-    height: 230px;
+    height: 210px;
     background-color: rgba(245, 245, 245, 1);
     display: flex;
     align-items:flex-start;
@@ -126,21 +136,34 @@
 
 .onelist1{
     padding: 5px 5px 5px 10px;
-    width: 100%;
+    width: 330px;
     min-height: 25px;
     background-color: rgba(245, 245, 245, 1);
     text-align: left;
     line-height: 25px;
     color: rgb(80, 80, 80);
     font-size: 16px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .onelist2{
     padding: 5px 5px 5px 10px;
-    width: 100%;
+    width: 330px;
     min-height: 25px;
     background-color: rgba(234, 234, 234, 1);
     text-align: left;
+    line-height: 25px;
+    color: rgb(80, 80, 80);
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.listex {
+    width: 20px;
+    height: 20px;
+    text-align: right;
     line-height: 25px;
     color: rgb(80, 80, 80);
     font-size: 16px;
@@ -149,7 +172,6 @@
 .rightside {
     width: 50%;
     height: 90%;
-    background-color: rgba(0, 0, 0, 0.3);
 }
 
 .infobar {
@@ -206,7 +228,7 @@
 }
 
 .songbox {
-    height: 300px;
+    height: 280px;
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
@@ -262,9 +284,90 @@
 }
 
 .length {
-    width: 15px;
-    text-align: left;
+    width: 35px;
+    text-align: right;
     line-height: 30px;
     color: rgb(85, 85, 85);
     font-size: 14px;
+}
+
+.controlbar {
+    padding: 10px 5px 10px 20px;
+    height: 30px;
+    width: 675px;
+    display: flex;
+}
+
+.rewind {
+    width: 30px;
+    height: 30px;
+    background-image: url(images/rewind.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto;
+}
+
+.pause {
+    width: 50px;
+    height: 30px;
+    background-image: url(images/pause.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto;
+}
+
+.forward {
+    width: 30px;
+    height: 30px;
+    background-image: url(images/forward.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto;
+}
+
+.remaintime {
+    width: 35px;
+    text-align: right;
+    line-height: 30px;
+    color: rgb(85, 85, 85);
+    font-size: 14px;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  margin-left: 10px;
+  width: 320px;
+}
+
+input[type=range]:focus {
+  outline: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 4px;
+  cursor: pointer;
+  background: rgb(60, 210, 205);
+  border-radius: 1.3px;
+  -webkit-appearance: none;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  height: 13px;
+  width: 13px;
+  border-radius: 50%;
+  border-style: solid;
+  border-color: white;
+  border-width: 4px;
+  background: rgb(60, 210, 205);
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -4px;
+  box-shadow:
+  1px 0px rgb(200, 200, 200),
+  -1px 0px rgb(200, 200, 200),
+  0px 1px rgb(200, 200, 200),
+  0px -1px rgb(200, 200, 200),
+  20px 0px rgb(200, 200, 200);
+  overflow: hidden;
 }
