@@ -28,14 +28,6 @@
                 <div class="playlistbox">
                     <div class="onelist2">All tracks</div>
                     <div class="onelist1">Favourites</div>
-                    <div class="onelist2">
-                        <div class="listbox">Junkfood</div>
-                        <div class="listex">&#10006</div>
-                    </div>
-                    <div class="onelist1">
-                        <div class="listbox">Kung-fu Panda</div>
-                        <div class="listex">&#10006</div>
-                    </div>
                 </div>
             </div>
             <div class="rightside">
@@ -50,66 +42,6 @@
                     </div>
                 </div>
                 <div class="songbox">
-                    <div class="onesong1">
-                        <div class="ordernumber">1</div>
-                        <div class="title">Tesla motors: Model S accelerate</div>
-                        <div class="length">4:52</div>
-                    </div>
-                    <div class="onesong2">
-                        <div class="ordernumber">1</div>
-                        <div class="title">Tesla motors: Model S accelerate</div>
-                        <div class="length">4:52</div>
-                    </div>
-                    <div class="onesong1">
-                        <div class="ordernumber">1</div>
-                        <div class="title">Tesla motors: Model S accelerate</div>
-                        <div class="length">4:52</div>
-                    </div>
-                    <div class="onesong2">
-                        <div class="ordernumber">1</div>
-                        <div class="title">Tesla motors: Model S accelerate</div>
-                        <div class="length">4:52</div>
-                    </div>
-                    <div class="onesong1">
-                        <div class="ordernumber">1</div>
-                        <div class="title">Tesla motors: Model S accelerate</div>
-                        <div class="length">4:52</div>
-                    </div>
-                    <div class="onesong2">
-                        <div class="ordernumber">1</div>
-                        <div class="title">Tesla motors: Model S accelerate</div>
-                        <div class="length">4:52</div>
-                    </div>
-                    <div class="onesong1">
-                        <div class="ordernumber">1</div>
-                        <div class="title">Tesla motors: Model S accelerate</div>
-                        <div class="length">4:52</div>
-                    </div>
-                    <div class="onesong2">
-                        <div class="ordernumber">1</div>
-                        <div class="title">Tesla motors: Model S accelerate</div>
-                        <div class="length">4:52</div>
-                    </div>
-                    <div class="onesong1">
-                        <div class="ordernumber">1</div>
-                        <div class="title">Tesla motors: Model S accelerate</div>
-                        <div class="length">4:52</div>
-                    </div>
-                    <div class="onesong2">
-                        <div class="ordernumber">1</div>
-                        <div class="title">Tesla motors: Model S accelerate</div>
-                        <div class="length">4:52</div>
-                    </div>
-                    <div class="onesong1">
-                        <div class="ordernumber">1</div>
-                        <div class="title">Tesla motors: Model S accelerate</div>
-                        <div class="length">4:52</div>
-                    </div>
-                    <div class="onesong2">
-                        <div class="ordernumber">1</div>
-                        <div class="title">Tesla motors: Model S accelerate</div>
-                        <div class="length">4:52</div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -130,6 +62,8 @@
 
 <script>
     'use strict';
+
+    // Range input format
     var seekbarInput = document.querySelector('input:nth-child(5)');
     var volumebarInput = document.querySelector('input:nth-child(9)');
 
@@ -153,23 +87,90 @@
     volumebarInput.oninput = volumebar;
 
 
-
-
-
-
-
-
+// Server control: getting playlists
 
     var http = new XMLHttpRequest();
 
     http.onreadystatechange = function() {
         if (http.readyState === 4 && http.status === 200) {
             var playlists = JSON.parse(http.response);
-            console.log(playlists);
+            playlistGenerator(playlists);
         }
     }
+
+    var playlistGenerator = function(playlists) {
+        var playlists = playlists;
+        var playlistbox = document.querySelector('.playlistbox');
+        console.log(playlists);
+
+        for (let i = 1; i < playlists.length; i++) {
+
+            var onelistcont = document.createElement('div');
+            playlistbox.appendChild(onelistcont);
+            onelistcont.setAttribute('class', 'onelist' + ((i % 2) + 1));
+
+            var listbox = document.createElement('div');
+            onelistcont.appendChild(listbox);
+            listbox.innerHTML = playlists[i].title;
+            listbox.setAttribute('class', 'listbox');
+
+            var listex = document.createElement('div');
+            onelistcont.appendChild(listex);
+            listex.innerHTML = '&#10006';
+            listex.setAttribute('class', 'listex');
+        }
+
+    }
+
     http.open('GET', 'http://localhost:3000/playlists');
     http.send();
+
+// Server control: getting tracks
+
+    var getTrack = new XMLHttpRequest();
+
+    getTrack.onreadystatechange = function() {
+        if (getTrack.readyState === 4 && getTrack.status === 200) {
+            var tracks = JSON.parse(getTrack.response);
+            // console.log(tracks);
+
+            var songbox = document.querySelector('.songbox');
+
+            for (let i = 0; i < tracks.length; i++) {
+
+                if (tracks[i].duration > 60) {
+                    var minuteMan = Math.floor(tracks[i].duration / 60) + ':' + Math.floor(tracks[i].duration % 60);
+                    if (Math.floor(tracks[i].duration % 60)  < 10) {
+                        minuteMan = Math.floor(tracks[i].duration / 60) + ':0' + Math.floor(tracks[i].duration % 60);
+                    }
+                } else {
+                    var minuteMan = Math.floor(tracks[i].duration);
+                }
+
+                var onesongcont = document.createElement('div');
+                songbox.appendChild(onesongcont);
+                onesongcont.setAttribute('class', 'onesong' + ((i % 2) + 1));
+
+                var ordernumber = document.createElement('div');
+                onesongcont.appendChild(ordernumber);
+                ordernumber.innerHTML = i + 1;
+                ordernumber.setAttribute('class', 'ordernumber');
+
+                var title = document.createElement('div');
+                onesongcont.appendChild(title);
+                title.innerHTML = tracks[i].title;
+                title.setAttribute('class', 'title');
+
+                var length = document.createElement('div');
+                onesongcont.appendChild(length);
+                length.innerHTML = minuteMan;
+                length.setAttribute('class', 'length');
+            }
+        }
+    }
+
+    getTrack.open('GET', 'http://localhost:3000/tracks');
+    getTrack.send();
 
 
 
