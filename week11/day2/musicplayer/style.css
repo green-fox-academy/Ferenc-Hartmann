@@ -11,11 +11,16 @@ body {
     margin: auto;
     height: 100%;
     width: 700px;
+    border-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     font-family: 'PT Sans', sans-serif;
+    box-shadow:
+    -2px 0px 2px rgb(220, 220, 220),
+    2px 0px 2px rgb(220, 220, 220),
+    0px 3px 3px rgb(180, 180, 180);
 }
 
 .maincontainer {
@@ -110,9 +115,10 @@ body {
 }
 
 .playlistbox{
-    width: 100%;
+    width: 348px;
     height: 210px;
     background-color: rgba(245, 245, 245, 1);
+    border-right: 2px solid rgba(220, 220, 220, 1);
     display: flex;
     align-items:flex-start;
     flex-direction: column;
@@ -121,12 +127,13 @@ body {
 }
 
 .playlistbox::-webkit-scrollbar {
-    width: 5px;
+    width: 0px;
 }
 
 .playlistbox::-webkit-scrollbar-thumb {
     background: rgba(100, 100, 100, 0.5);
     border-radius: 10px;
+    width: 10px;
 }
 
 .playlistbox::-webkit-scrollbar-track {
@@ -135,8 +142,8 @@ body {
 }
 
 .onelist1{
-    padding: 5px 5px 5px 10px;
-    width: 330px;
+    padding: 5px 3px 5px 10px;
+    width: 335px;
     min-height: 25px;
     background-color: rgba(245, 245, 245, 1);
     text-align: left;
@@ -148,8 +155,8 @@ body {
 }
 
 .onelist2{
-    padding: 5px 5px 5px 10px;
-    width: 330px;
+    padding: 5px 3px 5px 10px;
+    width: 335px;
     min-height: 25px;
     background-color: rgba(234, 234, 234, 1);
     text-align: left;
@@ -163,7 +170,7 @@ body {
 .listex {
     width: 20px;
     height: 20px;
-    text-align: right;
+    text-align: left;
     line-height: 25px;
     color: rgb(80, 80, 80);
     font-size: 16px;
@@ -175,8 +182,8 @@ body {
 }
 
 .infobar {
-    padding: 10px;
-    width: 330px;
+    padding: 10px 5px 10px 10px;
+    width: 335px;
     height: 40px;
     background-color: rgba(245, 245, 245, 1);
     display: flex;
@@ -204,23 +211,23 @@ body {
 }
 
 .rightinfo {
-    width: 50px;
+    width: 45px;
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
 
 .plus {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     background-image: url(images/greyadd.png);
     background-position: right;
     background-repeat: no-repeat;
     background-size: contain;
 }
 .star {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     background-image: url(images/star.png);
     background-position: right;
     background-repeat: no-repeat;
@@ -242,17 +249,19 @@ body {
 .songbox::-webkit-scrollbar-thumb {
     background: rgba(100, 100, 100, 0.5);
     border-radius: 10px;
+    width: 5px;
 }
 
 .songbox::-webkit-scrollbar-track {
     background: rgba(0, 0, 0, 0);
     border-radius: 10px;
+    width: 0px;
 }
 
 .onesong1{
     padding: 5px 5px 5px 10px;
     width: 335px;
-    min-height: 30px;
+    min-height: 25px;
     background-color: rgba(234, 234, 234, 1);
     display: flex;
     justify-content: flex-start;
@@ -261,7 +270,7 @@ body {
 .onesong2{
     padding: 5px 5px 5px 10px;
     width: 335px;
-    min-height: 30px;
+    min-height: 25px;
     background-color: rgba(245, 245, 245, 1);
     display: flex;
     justify-content: flex-start;
@@ -370,10 +379,7 @@ input:nth-child(5)[type=range]::-webkit-slider-thumb {
   0px 1px rgb(200, 200, 200),
   0px -1px rgb(200, 200, 200);
 }
-#grad {
-  background: rgb(60, 210, 205);
-  background: linear-gradient(to right, rgb(60, 210, 205), rgb(220, 220, 220));
-}
+
 .totallength {
     width: 40px;
     text-align: center;

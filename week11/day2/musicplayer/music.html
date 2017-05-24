@@ -26,13 +26,13 @@
                     <div class="imageholder"></div>
                 </div>
                 <div class="playlistbox">
-                    <div class="onelist1">All tracks</div>
-                    <div class="onelist2">Favourites</div>
-                    <div class="onelist1">
+                    <div class="onelist2">All tracks</div>
+                    <div class="onelist1">Favourites</div>
+                    <div class="onelist2">
                         <div class="listbox">Junkfood</div>
                         <div class="listex">&#10006</div>
                     </div>
-                    <div class="onelist2">
+                    <div class="onelist1">
                         <div class="listbox">Kung-fu Panda</div>
                         <div class="listex">&#10006</div>
                     </div>
@@ -144,6 +144,16 @@
             seekbarInput.setAttribute('style', 'background: linear-gradient(to left, rgb(220, 220, 220) ' + (100-seekbarInput.value) + '%, rgb(60, 210, 205)' + seekbarInput.value + '%); height: 4px; width: 320px; cursor: pointer; border-radius: 2px; -webkit-appearance: none; margin-top: 13px');
         }
     }
+
+
+    // var seekbar = function () {
+    //     if (seekbarInput.value >= 50) {
+    //         seekbarInput.style.background = 'linear-gradient(to right, rgb(60, 210, 205) ' + seekbarInput.value + '%, rgb(220, 220, 220)' + (100-seekbarInput.value) + '%';
+    //     } else {
+    //         seekbarInput.style.background = 'linear-gradient(to left, rgb(220, 220, 220) ' + (100-seekbarInput.value) + '%, rgb(60, 210, 205)' + seekbarInput.value + '%';
+    //     }
+    // }
+
 
     var volumebar = function () {
         if (volumebarInput.value >= 50) {
