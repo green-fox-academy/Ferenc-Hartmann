@@ -298,7 +298,7 @@ body {
     line-height: 30px;
     color: rgb(85, 85, 85);
     font-size: 14px;
-    letter-spacing: 
+    letter-spacing:
 }
 
 .controlbar {
@@ -459,6 +459,10 @@ input:nth-child(9) {
   background: linear-gradient(to right, rgb(60, 210, 205) 50%, rgb(220, 220, 220) 50%);
   -webkit-appearance: none;
   margin-top: 13px;
+}
+
+audio {
+    visibility: hidden;
 }
 
 /*linear-gradient(to right, rgb(60, 183, 214), rgb(60, 213, 205))*/

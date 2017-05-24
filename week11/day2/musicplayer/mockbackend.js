@@ -21,8 +21,8 @@ app.get('/playlists', function(req, res) {
 
 app.get('/tracks', function(req, res) {
     var tracks= [
-	{ "id": 21, "title": "Halahula", "artist": "Untitled artist", "duration": 545, "path": "c:/music/halahula.mp3" },
-	{ "id": 412, "title": "No sleep till Brooklyn", "artist": "Beastie Boys", "duration": 312.12, "path": "c:/music/beastie boys/No sleep till Brooklyn.mp3" }
+	{ "id": 21, "title": "Drift", "artist": "Untitled artist", "duration": 545, "path": "style/drift.mp3" },
+	{ "id": 412, "title": "No sleep till Brooklyn", "artist": "Beastie Boys", "duration": 312.12, "path": "style/drift2.mp3" }
     ]
     res.send(tracks);
 });
