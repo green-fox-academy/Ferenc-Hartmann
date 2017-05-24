@@ -259,8 +259,8 @@ body {
 }
 
 .onesong1{
-    padding: 5px 5px 5px 10px;
-    width: 335px;
+    padding: 5px 0px 5px 10px;
+    width: 340px;
     min-height: 25px;
     background-color: rgba(234, 234, 234, 1);
     display: flex;
@@ -268,8 +268,8 @@ body {
 }
 
 .onesong2{
-    padding: 5px 5px 5px 10px;
-    width: 335px;
+    padding: 5px 0px 5px 10px;
+    width: 340px;
     min-height: 25px;
     background-color: rgba(245, 245, 245, 1);
     display: flex;
@@ -356,8 +356,6 @@ input:nth-child(5)[type=range]::-webkit-slider-runnable-track {
   width: 100%;
   height: 4px;
   cursor: pointer;
-  /*background: rgb(220, 220, 220);
-  background: linear-gradient(90deg, rgb(60, 210, 205) 50%, rgb(220, 220, 220) 50%);*/
   border-radius: 2px;
   -webkit-appearance: none;
 }
@@ -378,6 +376,16 @@ input:nth-child(5)[type=range]::-webkit-slider-thumb {
   -1px 0px rgb(200, 200, 200),
   0px 1px rgb(200, 200, 200),
   0px -1px rgb(200, 200, 200);
+}
+
+input:nth-child(5) {
+  height: 4px;
+  width: 320px;
+  cursor: pointer;
+  border-radius:2px;
+  background: linear-gradient(to right, rgb(60, 210, 205) 50%, rgb(220, 220, 220) 50%);
+  -webkit-appearance: none;
+  margin-top: 13px;
 }
 
 .totallength {
@@ -420,8 +428,6 @@ input:nth-child(9)[type=range]::-webkit-slider-runnable-track {
   width: 100%;
   height: 4px;
   cursor: pointer;
-  /*background: rgb(60, 210, 205);
-  background: linear-gradient(to right, rgb(60, 210, 205) 50%, rgb(220, 220, 220) 50%);*/
   border-radius: 2px;
   -webkit-appearance: none;
 }
@@ -443,3 +449,15 @@ input:nth-child(9)[type=range]::-webkit-slider-thumb {
   0px 1px rgb(200, 200, 200),
   0px -1px rgb(200, 200, 200);
 }
+
+input:nth-child(9) {
+  height: 4px;
+  width: 80px;
+  cursor: pointer;
+  border-radius:2px;
+  background: linear-gradient(to right, rgb(60, 210, 205) 50%, rgb(220, 220, 220) 50%);
+  -webkit-appearance: none;
+  margin-top: 13px;
+}
+
+/*linear-gradient(to right, rgb(60, 183, 214), rgb(60, 213, 205))*/

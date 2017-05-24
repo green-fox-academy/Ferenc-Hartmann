@@ -133,37 +133,23 @@
     var seekbarInput = document.querySelector('input:nth-child(5)');
     var volumebarInput = document.querySelector('input:nth-child(9)');
 
-    seekbarInput.setAttribute('style', 'background: linear-gradient(to right, rgb(60, 210, 205) ' + seekbarInput.value + '%, rgb(220, 220, 220)' + (100-seekbarInput.value) + '%); height: 4px; width: 320px; cursor: pointer; border-radius: 2px; -webkit-appearance: none; margin-top: 13px');
-
-    volumebarInput.setAttribute('style', 'background: linear-gradient(to right, rgb(60, 210, 205) ' + volumebarInput.value + '%, rgb(220, 220, 220)' + (100-volumebarInput.value) + '%); height: 4px; width: 80px; cursor: pointer; border-radius: 2px; -webkit-appearance: none; margin-top: 13px');
-
     var seekbar = function () {
         if (seekbarInput.value >= 50) {
-            seekbarInput.setAttribute('style', 'background: linear-gradient(to right, rgb(60, 210, 205) ' + seekbarInput.value + '%, rgb(220, 220, 220)' + (100-seekbarInput.value) + '%); height: 4px; width: 320px; cursor: pointer; border-radius: 2px; -webkit-appearance: none; margin-top: 13px');
+            seekbarInput.setAttribute('style', 'background: linear-gradient(to right, rgb(60, 210, 205) ' + seekbarInput.value + '%, rgb(220, 220, 220)' + (100-seekbarInput.value) + '%);');
         } else {
-            seekbarInput.setAttribute('style', 'background: linear-gradient(to left, rgb(220, 220, 220) ' + (100-seekbarInput.value) + '%, rgb(60, 210, 205)' + seekbarInput.value + '%); height: 4px; width: 320px; cursor: pointer; border-radius: 2px; -webkit-appearance: none; margin-top: 13px');
+            seekbarInput.setAttribute('style', 'background: linear-gradient(to left, rgb(220, 220, 220) ' + (100-seekbarInput.value) + '%, rgb(60, 210, 205)' + seekbarInput.value + '%);');
         }
     }
-
-
-    // var seekbar = function () {
-    //     if (seekbarInput.value >= 50) {
-    //         seekbarInput.style.background = 'linear-gradient(to right, rgb(60, 210, 205) ' + seekbarInput.value + '%, rgb(220, 220, 220)' + (100-seekbarInput.value) + '%';
-    //     } else {
-    //         seekbarInput.style.background = 'linear-gradient(to left, rgb(220, 220, 220) ' + (100-seekbarInput.value) + '%, rgb(60, 210, 205)' + seekbarInput.value + '%';
-    //     }
-    // }
-
 
     var volumebar = function () {
         if (volumebarInput.value >= 50) {
-            volumebarInput.setAttribute('style', 'background: linear-gradient(to right, rgb(60, 210, 205) ' + volumebarInput.value + '%, rgb(220, 220, 220)' + (100-volumebarInput.value) + '%); height: 4px; width: 80px; cursor: pointer; border-radius: 2px; -webkit-appearance: none; margin-top: 13px');
+            volumebarInput.setAttribute('style', 'background: linear-gradient(to right, rgb(60, 210, 205) ' + volumebarInput.value + '%, rgb(220, 220, 220)' + (100-volumebarInput.value) + '%);');
         } else {
-            volumebarInput.setAttribute('style', 'background: linear-gradient(to left, rgb(220, 220, 220) ' + (100-volumebarInput.value) + '%, rgb(60, 210, 205)' + volumebarInput.value + '%); height: 4px; width: 80px; cursor: pointer; border-radius: 2px; -webkit-appearance: none; margin-top: 13px');
+            volumebarInput.setAttribute('style', 'background: linear-gradient(to left, rgb(220, 220, 220) ' + (100-volumebarInput.value) + '%, rgb(60, 210, 205)' + volumebarInput.value + '%);');
         }
     }
 
-    seekbarInput.onchange = seekbar;
-    volumebarInput.onchange = volumebar;
+    seekbarInput.oninput = seekbar;
+    volumebarInput.oninput = volumebar;
 
 </script>
