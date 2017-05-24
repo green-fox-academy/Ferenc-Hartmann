@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Foxplayer</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style/style.css">
     <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
 </head>
 <body>
@@ -151,5 +151,28 @@
 
     seekbarInput.oninput = seekbar;
     volumebarInput.oninput = volumebar;
+
+
+
+
+
+
+
+
+
+    var http = new XMLHttpRequest();
+
+    http.onreadystatechange = function() {
+        if (http.readyState === 4 && http.status === 200) {
+            var playlists = JSON.parse(http.response);
+            console.log(playlists);
+        }
+    }
+    http.open('GET', 'http://localhost:3000/playlists');
+    http.send();
+
+
+
+
 
 </script>
