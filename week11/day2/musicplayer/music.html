@@ -49,12 +49,12 @@
             <div class="rewind"></div>
             <div class="play"></div>
             <div class="forward"></div>
-            <div class="remaintime"> 4:17</div>
-            <input type=range class="seekbar" value="50">
-            <div class="totallength">5:26</div>
+            <div class="remaintime">-:--</div>
+            <input type=range class="seekbar" value="0">
+            <div class="totallength">-:--</div>
             <div class="shuffle"></div>
             <div class="volumeimg"></div>
-            <input type=range class="volumebar"value="50">
+            <input type=range class="volumebar"value="100">
         </div>
     </div>
     <audio></audio>
@@ -63,30 +63,6 @@
 
 <script>
     'use strict';
-
-    // Range input format
-    var seekbarInput = document.querySelector('input:nth-child(5)');
-    var volumebarInput = document.querySelector('input:nth-child(9)');
-
-    var seekbar = function () {
-        if (seekbarInput.value >= 50) {
-            seekbarInput.setAttribute('style', 'background: linear-gradient(to right, rgb(60, 210, 205) ' + seekbarInput.value + '%, rgb(220, 220, 220)' + (100-seekbarInput.value) + '%);');
-        } else {
-            seekbarInput.setAttribute('style', 'background: linear-gradient(to left, rgb(220, 220, 220) ' + (100-seekbarInput.value) + '%, rgb(60, 210, 205)' + seekbarInput.value + '%);');
-        }
-    }
-
-    var volumebar = function () {
-        if (volumebarInput.value >= 50) {
-            volumebarInput.setAttribute('style', 'background: linear-gradient(to right, rgb(60, 210, 205) ' + volumebarInput.value + '%, rgb(220, 220, 220)' + (100-volumebarInput.value) + '%);');
-        } else {
-            volumebarInput.setAttribute('style', 'background: linear-gradient(to left, rgb(220, 220, 220) ' + (100-volumebarInput.value) + '%, rgb(60, 210, 205)' + volumebarInput.value + '%);');
-        }
-    }
-
-    seekbarInput.oninput = seekbar;
-    volumebarInput.oninput = volumebar;
-
 
 // Server control: getting playlists
 
@@ -189,24 +165,121 @@
         var tracklist = tracks;
         var audio = document.querySelector('audio');
         var playButton = document.querySelector('.play');
+        var rewind = document.querySelector('.rewind');
+        var forward = document.querySelector('.forward');
+        var remaintime = document.querySelector('.remaintime');
+        var seekbarInput = document.querySelector('input:nth-child(5)');
+        var totallength = document.querySelector('.totallength');
+        var shuffle = document.querySelector('.shuffle');
+        var volume = document.querySelector('.volumeimg');
+        var volumebarInput = document.querySelector('input:nth-child(9)');
+
         var path = tracklist[0].path;
+        var interval;
+        var shuffleOn = false;
         audio.setAttribute('src', path);
 
         var playButtonClicked = function() {
-            console.log('playButtonClicked');
-            console.log(playButton);
             counter++;
 
             if (counter % 2 === 1) {
                 playButton.setAttribute('style', 'background-image: url(style/images/pause.svg);');
+                interval = setInterval(remaintimeCalculator, 1000);
                 audio.play();
             } else {
                 playButton.setAttribute('style', 'background-image: url(style/images/play.svg);');
+                clearInterval(interval);
                 audio.pause();
             }
-        }
+            if (counter === 1) {
+                remaintime.innerHTML = timeManagement(tracklist[0].duration);
+            }
+            totallengthFun();
+        };
 
-        addEventListener('click', playButtonClicked);
+        var rewindClicked = function() {
+            audio.playbackRate--;
+        };
+
+        var forwardClicked = function() {
+            audio.playbackRate++;
+        };
+
+        var remaintimeCalculator = function() {
+            seekbarInput.value = (audio.currentTime / tracklist[0].duration) * 100;
+            seekbar();
+            remaintimeFun();
+        };
+
+        var remaintimeFun = function() {
+            remaintime.innerHTML = timeManagement(tracklist[0].duration - Math.floor(audio.currentTime));
+        };
+
+        var seekbar = function () {
+            if (seekbarInput.value >= 50) {
+                seekbarInput.setAttribute('style', 'background: linear-gradient(to right, rgb(60, 210, 205) ' + seekbarInput.value + '%, rgb(220, 220, 220)' + (100-seekbarInput.value) + '%);');
+            } else {
+                seekbarInput.setAttribute('style', 'background: linear-gradient(to left, rgb(220, 220, 220) ' + (100-seekbarInput.value) + '%, rgb(60, 210, 205)' + seekbarInput.value + '%);');
+            }
+        };
+
+        var timeManagement = function(fulltime) {
+            if (fulltime > 60) {
+                var minuteMan = Math.floor(fulltime / 60) + ':' + Math.floor(fulltime % 60);
+                if (Math.floor(fulltime % 60)  < 10) {
+                    minuteMan = Math.floor(fulltime / 60) + ':0' + Math.floor(fulltime % 60);
+                }
+            } else {
+                var minuteMan = Math.floor(fulltime);
+            }
+            return minuteMan
+        };
+
+        var totallengthFun = function() {
+            totallength.innerHTML = timeManagement(tracklist[0].duration);
+        };
+
+        var shuffleClicked = function() {
+            if (shuffleOn === false) {
+                shuffleOn = true;
+            } else {
+                shuffleOn = false;
+            }
+
+            if (shuffleOn === true) {
+                return Math.floor(Math.random() * tracklist.length);
+            }
+        };
+
+        var volumeClicked = function() {
+            if (audio.muted === false) {
+                audio.muted = true;
+            } else {
+                audio.muted = false;
+            }
+        };
+
+        var volumebar = function () {
+            audio.volume = volumebarInput.value / 100;
+
+            if (volumebarInput.value >= 50) {
+                volumebarInput.setAttribute('style', 'background: linear-gradient(to right, rgb(60, 210, 205) ' + volumebarInput.value + '%, rgb(220, 220, 220)' + (100-volumebarInput.value) + '%);');
+            } else {
+                volumebarInput.setAttribute('style', 'background: linear-gradient(to left, rgb(220, 220, 220) ' + (100-volumebarInput.value) + '%, rgb(60, 210, 205)' + volumebarInput.value + '%);');
+            }
+        };
+
+        var seek = function () {
+            audio.currentTime = seekbarInput.value / 100 * tracklist[0].duration;
+        };
+
+        playButton.addEventListener('click', playButtonClicked);
+        rewind.addEventListener('click', rewindClicked);
+        forward.addEventListener('click', forwardClicked);
+        seekbarInput.onchange = seek;
+        shuffle.addEventListener('click', shuffleClicked);
+        volume.addEventListener('click', volumeClicked);
+        volumebarInput.oninput = volumebar;
     };
 
 </script>

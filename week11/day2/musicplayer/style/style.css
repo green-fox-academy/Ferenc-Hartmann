@@ -385,7 +385,7 @@ input:nth-child(5) {
   width: 320px;
   cursor: pointer;
   border-radius:2px;
-  background: linear-gradient(to right, rgb(60, 210, 205) 50%, rgb(220, 220, 220) 50%);
+  background: rgb(220, 220, 220);
   -webkit-appearance: none;
   margin-top: 13px;
 }
@@ -457,7 +457,7 @@ input:nth-child(9) {
   width: 80px;
   cursor: pointer;
   border-radius:2px;
-  background: linear-gradient(to right, rgb(60, 210, 205) 50%, rgb(220, 220, 220) 50%);
+  background: rgb(60, 210, 205);
   -webkit-appearance: none;
   margin-top: 13px;
 }
