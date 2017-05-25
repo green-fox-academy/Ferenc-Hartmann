@@ -80,14 +80,14 @@
     var playlistGenerator = function(playlists) {
         var playlists = playlists;
         var playlistbox = document.querySelector('.playlistbox');
-        console.log(playlists);
+        // console.log(playlists);
 
         for (let i = 1; i < playlists.length; i++) {
 
             var onelistcont = document.createElement('div');
             playlistbox.appendChild(onelistcont);
             onelistcont.setAttribute('class', 'onelist type' + ((i % 2) + 1));
-            onelistcont.addEventListener('click', listClicked);
+            onelistcont.addEventListener('click', colorOnClick);
 
             var listbox = document.createElement('div');
             onelistcont.appendChild(listbox);
@@ -111,17 +111,17 @@
         if (getTrack.readyState === 4 && getTrack.status === 200) {
             var tracks = JSON.parse(getTrack.response);
             songListGenerator(tracks);
-            var AudioController = new AudioControl(tracks);
-            // audioControl(tracks);
-            console.log(tracks);
+            AudioControl(tracks);
+            // console.log(tracks);
         }
     }
     getTrack.open('GET', 'http://localhost:3000/tracks');
     getTrack.send();
 
+    var songbox = document.querySelector('.songbox');
+
     var songListGenerator = function(tracks) {
         var tracks = tracks;
-        var songbox = document.querySelector('.songbox');
 
         for (let i = 0; i < tracks.length; i++) {
 
@@ -130,7 +130,7 @@
             var onesongcont = document.createElement('div');
             songbox.appendChild(onesongcont);
             onesongcont.setAttribute('class', 'onesong' + ((i % 2) + 1));
-            onesongcont.addEventListener('click', songClicked);
+            onesongcont.addEventListener('click', colorOnClick);
 
             var ordernumber = document.createElement('div');
             onesongcont.appendChild(ordernumber);
@@ -147,6 +147,7 @@
             length.innerHTML = time;
             length.setAttribute('class', 'length');
         }
+        staticHtmlSelector();
     }
 
     var timeManagement = function(duration, i) {
@@ -159,34 +160,33 @@
             var minuteMan = Math.floor(duration);
         }
         return minuteMan
-    }
+    };
 
-    function songClicked (e) {
-        let color = e.target.parentNode;
-        color.setAttribute('style', 'background: rgb(170, 230, 230);');
-    }
+    var staticHtmlSelector = function() {
+        var standard1 = document.querySelector('.standard1');
+        var standard2 = document.querySelector('.standard2');
+        standard1.addEventListener('click', colorOnClick);
+        standard2.addEventListener('click', colorOnClick);
+    };
 
-    function listClicked (e) {
-        let color = e.target.parentNode;
-        color.setAttribute('style', 'background: rgb(170, 230, 230);');
-    }
-
-    var standard1 = document.querySelector('.standard1');
-    var standard2 = document.querySelector('.standard2');
-    standard1.addEventListener('click', standard1Clicked);
-    standard2.addEventListener('click', standard2Clicked);
-
-    function standard1Clicked (e) {
-        console.log(e);
-        let color = e.target.parentNode.querySelector('.standard1');
-        color.setAttribute('style', 'background: rgb(170, 230, 230);');
-    }
-
-    function standard2Clicked (e) {
-        console.log(e);
-        let color = e.target.parentNode.querySelector('.standard2');
-        color.setAttribute('style', 'background: rgb(170, 230, 230);');
-    }
+    var colorOnClick = function(e) {
+        if (e.target.parentNode.classList[0] === 'onelist') {
+            let color = e.target.parentNode;
+            color.setAttribute('class', color.getAttribute('class') + ' selected');
+        }
+        if (e.target.classList[2] === 'standard1') {
+            let color = e.target.parentNode.querySelector('.standard1');
+            color.setAttribute('class', color.getAttribute('class') + ' selected');
+        }
+        if (e.target.classList[2] === 'standard2') {
+            let color = e.target.parentNode.querySelector('.standard2');
+            color.setAttribute('class', color.getAttribute('class') + ' selected');
+        }
+        if (e.target.parentNode.className === 'onesong1' || e.target.parentNode.className === 'onesong2') {
+            let color = e.target.parentElement;
+            color.setAttribute('class', color.getAttribute('class') + ' selected');
+        }
+    };
 
     var AudioControl = function(tracks) {
         var i = 0;
@@ -205,6 +205,7 @@
         var volumebarInput = document.querySelector('input:nth-child(9)');
         var titleholder = document.querySelector('.titleholder');
         var artistholder = document.querySelector('.artistholder');
+        var songList = document.querySelectorAll('.songbox>div');
         var path = tracklist[i].path;
         var interval;
         var shuffleOn = false;
@@ -213,14 +214,22 @@
         titleholder.innerHTML = tracklist[0].title;
         artistholder.innerHTML = tracklist[0].artist;
 
-// function songClicked (e) {
-//     let onclick = e.target.parentNode.querySelector('.onesongcont');
-//     onclick.setAttribute('style', 'background: rgb(170, 230, 230);');
-// }
+        var colorChecker = function() {
+            for (let i = 0; i < 2; i++) {
+                let elements = document.getElementsByClassName(songList[i].getAttribute("class"));
 
+                for (let i = 0; i < 4; i++) {
+                    if (elements[i].className === 'onesong2 selected') {
+                        elements[i].className = 'onesong2';
+                        console.log(elements[i].className);
+                    }
+                    if (elements[i].className === 'onesong1 selected') {
+                        elements[i].className = 'onesong1';
+                    }
 
-
-
+                }
+            }
+        }
 
 
         var playNextTrack = function() {
@@ -258,6 +267,7 @@
                 remaintime.innerHTML = timeManagement(tracklist[i].duration);
             }
             totallengthFun();
+            colorChecker();
         };
 
         var rewindClicked = function() {

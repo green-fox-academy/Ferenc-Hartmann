@@ -475,4 +475,6 @@ audio {
     visibility: hidden;
 }
 
-/*linear-gradient(to right, rgb(60, 183, 214), rgb(60, 213, 205))*/
+.selected {
+    background-color: rgb(170, 230, 230);
+}
