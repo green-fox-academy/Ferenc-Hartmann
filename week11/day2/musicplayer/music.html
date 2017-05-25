@@ -71,16 +71,47 @@
     http.onreadystatechange = function() {
         if (http.readyState === 4 && http.status === 200) {
             var playlists = JSON.parse(http.response);
+            console.log(playlists);
             playlistGenerator(playlists);
         }
     }
     http.open('GET', 'http://localhost:3000/playlists');
     http.send();
 
+    // function send() {
+    //     var http = new XMLHttpRequest();
+    //
+    //     var data = {
+    //         "title": "Drift",
+    //         "artist": "Untitled artist",
+    //         "path": "style/drift.mp3",
+    //         "duration": 209,
+    //         "favorite": 0,
+    //         "playlist": "none"}
+    //
+    //     http.open('POST', 'http://localhost:3000/tracks');
+    //     http.setRequestHeader('Content-Type', 'application/json');
+    //     http.send(JSON.stringify(data));
+    //     console.log(data);
+    // }
+    // send();
+
+    // function send() {
+    //     var http = new XMLHttpRequest();
+    //
+    //     var data = {
+    //         "title": "Favorites",
+    //         "system": 1,
+    //     }
+    //     http.open('POST', 'http://localhost:3000/playlists');
+    //     http.setRequestHeader('Content-Type', 'application/json');
+    //     http.send(JSON.stringify(data));
+    // }
+    // send();
+
     var playlistGenerator = function(playlists) {
         var playlists = playlists;
         var playlistbox = document.querySelector('.playlistbox');
-        // console.log(playlists);
 
         for (let i = 1; i < playlists.length; i++) {
 
@@ -214,19 +245,17 @@
         titleholder.innerHTML = tracklist[0].title;
         artistholder.innerHTML = tracklist[0].artist;
 
-        var colorChecker = function() {
+        var colorPurification = function() {
             for (let i = 0; i < 2; i++) {
                 let elements = document.getElementsByClassName(songList[i].getAttribute("class"));
 
                 for (let i = 0; i < 4; i++) {
                     if (elements[i].className === 'onesong2 selected') {
                         elements[i].className = 'onesong2';
-                        console.log(elements[i].className);
                     }
                     if (elements[i].className === 'onesong1 selected') {
                         elements[i].className = 'onesong1';
                     }
-
                 }
             }
         }
@@ -267,7 +296,7 @@
                 remaintime.innerHTML = timeManagement(tracklist[i].duration);
             }
             totallengthFun();
-            colorChecker();
+            colorPurification();
         };
 
         var rewindClicked = function() {
