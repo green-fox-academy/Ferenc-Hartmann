@@ -184,29 +184,40 @@
     }
 
     var AudioControl = function(tracks) {
-        var isPlay = 0;
-        var counter = 0;
-        var tracklist = tracks;
-        var audio = document.querySelector('audio');
-        var playButton = document.querySelector('.play');
-        var path = tracklist[0].path;
-        audio.setAttribute('src', path);
+        this.isPlay = 0;
+        this.counter = 0;
+        this.tracklist = tracks;
+        this.audio = document.querySelector('audio');
+        this.playButton = document.querySelector('.play');
+        this.path = this.tracklist[0].path;
+        this.audio.setAttribute('src', this.path);
 
-        var playButtonClicked = function() {
+        this.playButtonClicked = function() {
             console.log('playButtonClicked');
-            console.log(playButton);
-            counter++;
+            console.log(this.playButton);
+            this.counter++;
 
-            if (counter % 2 === 1) {
-                playButton.setAttribute('style', 'background-image: url(style/images/pause.svg);');
-                audio.play();
+            if (this.counter % 2 === 1) {
+                this.isPlay = true;
             } else {
-                playButton.setAttribute('style', 'background-image: url(style/images/play.svg);');
-                audio.pause();
+                this.isPlay = false;
             }
+            this.playPause();
         }
 
-        addEventListener('click', playButtonClicked);
+        this.playPause = function() {
+            console.log(this.playButton);
+            if (this.isPlay === true) {
+                this.playButton.setAttribute('style', 'background-image: url(style/images/pause.svg);');
+                this.audio.play();
+                console.log('play pressed');
+            } else {
+                this.playButton.setAttribute('style', 'background-image: url(style/images/play.svg);');
+                this.audio.pause();
+                console.log('pause pressed');
+            }
+        }
+        this.playButton.addEventListener('click', this.playButtonClicked.bind(this));
     };
 
 </script>

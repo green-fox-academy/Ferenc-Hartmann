@@ -317,13 +317,14 @@ body {
     background-size: auto;
 }
 
-.pause {
+.play {
+    margin-top: 7px;
     width: 45px;
-    height: 30px;
-    background-image: url(images/pause.svg);
+    height: 16px;
+    background-image: url(images/play.svg);
     background-position: center;
     background-repeat: no-repeat;
-    background-size: auto;
+    background-size: contain;
 }
 
 .forward {
