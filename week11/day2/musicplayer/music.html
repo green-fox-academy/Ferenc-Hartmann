@@ -26,15 +26,15 @@
                     <div class="imageholder"></div>
                 </div>
                 <div class="playlistbox">
-                    <div class="onelist2">All tracks</div>
-                    <div class="onelist1">Favourites</div>
+                    <div class="onelist type2 standard1">All tracks</div>
+                    <div class="onelist type1 standard2">Favourites</div>
                 </div>
             </div>
             <div class="rightside">
                 <div class="infobar">
                     <div class="leftinfo">
-                        <div class="titleholder">Tesla motors: Model S accelerate</div>
-                        <div class="artistholder">Tesla Funk</div>
+                        <div class="titleholder">--</div>
+                        <div class="artistholder">--</div>
                     </div>
                     <div class="rightinfo">
                         <div class="plus"></div>
@@ -86,7 +86,8 @@
 
             var onelistcont = document.createElement('div');
             playlistbox.appendChild(onelistcont);
-            onelistcont.setAttribute('class', 'onelist' + ((i % 2) + 1));
+            onelistcont.setAttribute('class', 'onelist type' + ((i % 2) + 1));
+            onelistcont.addEventListener('click', listClicked);
 
             var listbox = document.createElement('div');
             onelistcont.appendChild(listbox);
@@ -110,7 +111,7 @@
         if (getTrack.readyState === 4 && getTrack.status === 200) {
             var tracks = JSON.parse(getTrack.response);
             songListGenerator(tracks);
-            var audioControlelr = new AudioControl(tracks);
+            var AudioController = new AudioControl(tracks);
             // audioControl(tracks);
             console.log(tracks);
         }
@@ -129,6 +130,7 @@
             var onesongcont = document.createElement('div');
             songbox.appendChild(onesongcont);
             onesongcont.setAttribute('class', 'onesong' + ((i % 2) + 1));
+            onesongcont.addEventListener('click', songClicked);
 
             var ordernumber = document.createElement('div');
             onesongcont.appendChild(ordernumber);
@@ -159,6 +161,33 @@
         return minuteMan
     }
 
+    function songClicked (e) {
+        let color = e.target.parentNode;
+        color.setAttribute('style', 'background: rgb(170, 230, 230);');
+    }
+
+    function listClicked (e) {
+        let color = e.target.parentNode;
+        color.setAttribute('style', 'background: rgb(170, 230, 230);');
+    }
+
+    var standard1 = document.querySelector('.standard1');
+    var standard2 = document.querySelector('.standard2');
+    standard1.addEventListener('click', standard1Clicked);
+    standard2.addEventListener('click', standard2Clicked);
+
+    function standard1Clicked (e) {
+        console.log(e);
+        let color = e.target.parentNode.querySelector('.standard1');
+        color.setAttribute('style', 'background: rgb(170, 230, 230);');
+    }
+
+    function standard2Clicked (e) {
+        console.log(e);
+        let color = e.target.parentNode.querySelector('.standard2');
+        color.setAttribute('style', 'background: rgb(170, 230, 230);');
+    }
+
     var AudioControl = function(tracks) {
         var i = 0;
         var isPlay = 0;
@@ -174,26 +203,43 @@
         var shuffle = document.querySelector('.shuffle');
         var volume = document.querySelector('.volumeimg');
         var volumebarInput = document.querySelector('input:nth-child(9)');
+        var titleholder = document.querySelector('.titleholder');
+        var artistholder = document.querySelector('.artistholder');
         var path = tracklist[i].path;
         var interval;
         var shuffleOn = false;
         var currentPlay = tracklist[i];
         audio.setAttribute('src', path);
+        titleholder.innerHTML = tracklist[0].title;
+        artistholder.innerHTML = tracklist[0].artist;
+
+// function songClicked (e) {
+//     let onclick = e.target.parentNode.querySelector('.onesongcont');
+//     onclick.setAttribute('style', 'background: rgb(170, 230, 230);');
+// }
+
+
+
+
+
 
         var playNextTrack = function() {
             if (audio.ended === true && shuffleOn === false) {
                 i < tracklist.length - 1 ? i++ : i = 0;
-                audio.setAttribute('src', tracklist[i].path)
+                audio.setAttribute('src', tracklist[i].path);
                 totallengthFun();
+                titleholder.innerHTML = tracklist[i].title;
+                artistholder.innerHTML = tracklist[i].artist;
                 audio.play()
             }
             if (audio.ended === true && shuffleOn === true) {
                 i = Math.floor(Math.random() * tracklist.length);
-                audio.setAttribute('src', tracklist[i].path)
+                audio.setAttribute('src', tracklist[i].path);
                 totallengthFun();
+                titleholder.innerHTML = tracklist[i].title;
+                artistholder.innerHTML = tracklist[i].artist;
                 audio.play()
             }
-
         };
 
         var playButtonClicked = function() {

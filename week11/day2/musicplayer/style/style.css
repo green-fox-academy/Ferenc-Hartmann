@@ -141,37 +141,38 @@ body {
     border-radius: 10px;
 }
 
-.onelist1{
-    padding: 5px 3px 5px 10px;
-    width: 335px;
-    min-height: 25px;
-    background-color: rgba(245, 245, 245, 1);
-    text-align: left;
-    line-height: 25px;
-    color: rgb(80, 80, 80);
-    font-size: 16px;
-    display: flex;
-    justify-content: space-between;
+.listbox {
+    padding-left: 10px;
+    width: 318px;
 }
 
-.onelist2{
-    padding: 5px 3px 5px 10px;
-    width: 335px;
-    min-height: 25px;
-    background-color: rgba(234, 234, 234, 1);
+.onelist {
+    width: 348px;
+    min-height: 35px;
+    background-color: rgba(245, 245, 245, 1);
     text-align: left;
-    line-height: 25px;
+    line-height: 35px;
     color: rgb(80, 80, 80);
     font-size: 16px;
     display: flex;
     justify-content: space-between;
+    cursor: pointer;
+}
+
+.type2 {
+    background-color: rgba(234, 234, 234, 1);
+}
+
+.standard1, .standard2 {
+    padding-left: 10px;
+    width: 338px;
 }
 
 .listex {
     width: 20px;
     height: 20px;
     text-align: left;
-    line-height: 25px;
+    line-height: 35px;
     color: rgb(80, 80, 80);
     font-size: 16px;
 }
@@ -259,27 +260,28 @@ body {
 }
 
 .onesong1{
-    padding: 5px 0px 5px 10px;
-    width: 340px;
-    min-height: 25px;
+    width: 355px;
+    min-height: 35px;
     background-color: rgba(234, 234, 234, 1);
     display: flex;
     justify-content: flex-start;
+    cursor: pointer;
 }
 
 .onesong2{
-    padding: 5px 0px 5px 10px;
-    width: 340px;
-    min-height: 25px;
+    width: 355px;
+    min-height: 35px;
     background-color: rgba(245, 245, 245, 1);
     display: flex;
     justify-content: flex-start;
+    cursor: pointer;
 }
 
 .ordernumber {
+    padding-left: 10px;
     width: 15px;
     text-align: left;
-    line-height: 30px;
+    line-height: 35px;
     color: rgb(165, 165, 165);
     font-size: 14px;
 }
@@ -287,7 +289,7 @@ body {
 .title {
     width: 280px;
     text-align: left;
-    line-height: 30px;
+    line-height: 35px;
     color: rgb(85, 85, 85);
     font-size: 14px;
 }
@@ -295,7 +297,7 @@ body {
 .length {
     width: 35px;
     text-align: right;
-    line-height: 30px;
+    line-height: 35px;
     color: rgb(85, 85, 85);
     font-size: 14px;
     letter-spacing:
@@ -315,6 +317,7 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     background-size: auto;
+    cursor: pointer;
 }
 
 .play {
@@ -325,6 +328,7 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
+    cursor: pointer;
 }
 
 .forward {
@@ -334,6 +338,7 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     background-size: auto;
+    cursor: pointer;
 }
 
 .remaintime {
@@ -388,6 +393,7 @@ input:nth-child(5) {
   background: rgb(220, 220, 220);
   -webkit-appearance: none;
   margin-top: 13px;
+  cursor: pointer;
 }
 
 .totallength {
@@ -405,6 +411,7 @@ input:nth-child(5) {
     background-position: center;
     background-repeat: no-repeat;
     background-size: auto;
+    cursor: pointer;
 }
 
 .volumeimg {
@@ -414,6 +421,7 @@ input:nth-child(5) {
     background-position: center;
     background-repeat: no-repeat;
     background-size: auto;
+    cursor: pointer;
 }
 
 input:nth-child(9)[type=range] {
@@ -460,6 +468,7 @@ input:nth-child(9) {
   background: rgb(60, 210, 205);
   -webkit-appearance: none;
   margin-top: 13px;
+  cursor: pointer;
 }
 
 audio {
