@@ -160,6 +160,7 @@
     }
 
     var AudioControl = function(tracks) {
+        var i = 0;
         var isPlay = 0;
         var counter = 0;
         var tracklist = tracks;
@@ -173,11 +174,27 @@
         var shuffle = document.querySelector('.shuffle');
         var volume = document.querySelector('.volumeimg');
         var volumebarInput = document.querySelector('input:nth-child(9)');
-
-        var path = tracklist[0].path;
+        var path = tracklist[i].path;
         var interval;
         var shuffleOn = false;
+        var currentPlay = tracklist[i];
         audio.setAttribute('src', path);
+
+        var playNextTrack = function() {
+            if (audio.ended === true && shuffleOn === false) {
+                i < tracklist.length - 1 ? i++ : i = 0;
+                audio.setAttribute('src', tracklist[i].path)
+                totallengthFun();
+                audio.play()
+            }
+            if (audio.ended === true && shuffleOn === true) {
+                i = Math.floor(Math.random() * tracklist.length);
+                audio.setAttribute('src', tracklist[i].path)
+                totallengthFun();
+                audio.play()
+            }
+
+        };
 
         var playButtonClicked = function() {
             counter++;
@@ -192,7 +209,7 @@
                 audio.pause();
             }
             if (counter === 1) {
-                remaintime.innerHTML = timeManagement(tracklist[0].duration);
+                remaintime.innerHTML = timeManagement(tracklist[i].duration);
             }
             totallengthFun();
         };
@@ -206,13 +223,14 @@
         };
 
         var remaintimeCalculator = function() {
-            seekbarInput.value = (audio.currentTime / tracklist[0].duration) * 100;
+            seekbarInput.value = (audio.currentTime / tracklist[i].duration) * 100;
             seekbar();
             remaintimeFun();
+            playNextTrack();
         };
 
         var remaintimeFun = function() {
-            remaintime.innerHTML = timeManagement(tracklist[0].duration - Math.floor(audio.currentTime));
+            remaintime.innerHTML = timeManagement(tracklist[i].duration - Math.floor(audio.currentTime));
         };
 
         var seekbar = function () {
@@ -236,7 +254,7 @@
         };
 
         var totallengthFun = function() {
-            totallength.innerHTML = timeManagement(tracklist[0].duration);
+            totallength.innerHTML = timeManagement(tracklist[i].duration);
         };
 
         var shuffleClicked = function() {
@@ -244,10 +262,6 @@
                 shuffleOn = true;
             } else {
                 shuffleOn = false;
-            }
-
-            if (shuffleOn === true) {
-                return Math.floor(Math.random() * tracklist.length);
             }
         };
 
@@ -270,7 +284,7 @@
         };
 
         var seek = function () {
-            audio.currentTime = seekbarInput.value / 100 * tracklist[0].duration;
+            audio.currentTime = seekbarInput.value / 100 * tracklist[i].duration;
         };
 
         playButton.addEventListener('click', playButtonClicked);
