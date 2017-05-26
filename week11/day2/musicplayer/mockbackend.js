@@ -36,7 +36,6 @@ app.post ('/playlists', function(req, res) {
     };
 });
 
-
 app.get('/tracks', function(req, res) {
     conn.query('SELECT * FROM tracks', function(err,rows){
         if(err){
@@ -65,17 +64,29 @@ app.post ('/tracksdel', function(req, res) {
 });
 
 app.put ('/tracksfavplus', function(req, res) {
-    var query = 'UPDATE tracks SET favorite=1 WHERE id = ' + req.body.id;
+    var query = 'UPDATE tracks SET favorite=1 WHERE title = ' + '"' + req.body.title + '"';
     console.log(query);
     conn.query(query), function(err,rows){
     };
 });
 
 app.put ('/tracksfavminus', function(req, res) {
-    var query = 'UPDATE tracks SET favorite=0 WHERE id = ' + req.body.id;
+    var query = 'UPDATE tracks SET favorite=0 WHERE title = ' + '"' + req.body.title + '"';
     console.log(query);
     conn.query(query), function(err,rows){
     };
+});
+
+app.get('/favorites', function(req, res) {
+    conn.query('SELECT * FROM tracks WHERE favorite=1', function(err,rows){
+        if(err){
+            console.log("Error connecting to Db");
+            console.log(err);
+        }else {
+            console.log("Data received from Db:\n");
+        };
+    res.send(rows);
+    });
 });
 
 app.get('/', function(req, res) {

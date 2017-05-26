@@ -13,17 +13,58 @@ http.onreadystatechange = function() {
 http.open('GET', 'http://localhost:3000/playlists');
 http.send();
 
-var getTrack = new XMLHttpRequest();
 
-getTrack.onreadystatechange = function() {
-    if (getTrack.readyState === 4 && getTrack.status === 200) {
-        var tracks = JSON.parse(getTrack.response);
-        songListGenerator(tracks);
-        AudioControl(tracks);
+var trackCall = function() {
+    var getTrack = new XMLHttpRequest();
+    getTrack.onreadystatechange = function() {
+        if (getTrack.readyState === 4 && getTrack.status === 200) {
+            var tracks = JSON.parse(getTrack.response);
+            songListGenerator(tracks);
+            AudioControl(tracks);
+        }
     }
+    getTrack.open('GET', 'http://localhost:3000/tracks');
+    getTrack.send();
+};
+
+var favoriteCall = function() {
+    var getFavorite = new XMLHttpRequest();
+    getFavorite.onreadystatechange = function() {
+        if (getFavorite.readyState === 4 && getFavorite.status === 200) {
+            var tracks = JSON.parse(getFavorite.response);
+            songListGenerator(tracks);
+            AudioControl(tracks);
+        }
+    }
+    getFavorite.open('GET', 'http://localhost:3000/favorites');
+    getFavorite.send();
 }
-getTrack.open('GET', 'http://localhost:3000/tracks');
-getTrack.send();
+
+var favoritePlus = function() {
+    var http = new XMLHttpRequest();
+
+    var data = {
+        "title": "Grenade",
+        "favorite": "1"
+    }
+
+    http.open('PUT', 'http://localhost:3000/tracksfavplus');
+    http.setRequestHeader('Content-Type', 'application/json');
+    http.send(JSON.stringify(data));
+};
+
+var favoriteMinus = function() {
+    var http = new XMLHttpRequest();
+
+    var data = {
+        "id": "10",
+        "favorite": "0"
+    }
+
+    http.open('PUT', 'http://localhost:3000/tracksfavminus');
+    http.setRequestHeader('Content-Type', 'application/json');
+    http.send(JSON.stringify(data));
+};
 
 // function send() {
 //     var http = new XMLHttpRequest();

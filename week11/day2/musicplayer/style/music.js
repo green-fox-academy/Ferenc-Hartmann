@@ -1,60 +1,5 @@
 'use strict';
 
-var playlistGenerator = function(playlists) {
-    var playlists = playlists;
-    var playlistbox = document.querySelector('.playlistbox');
-
-    for (let i = 1; i < playlists.length; i++) {
-
-        var onelistcont = document.createElement('div');
-        playlistbox.appendChild(onelistcont);
-        onelistcont.setAttribute('class', 'onelist type' + ((i % 2) + 1));
-        onelistcont.addEventListener('click', coloredListElem);
-
-        var listbox = document.createElement('div');
-        onelistcont.appendChild(listbox);
-        listbox.innerHTML = playlists[i].title;
-        listbox.setAttribute('class', 'listbox');
-
-        var listex = document.createElement('div');
-        onelistcont.appendChild(listex);
-        listex.innerHTML = '&#10006';
-        listex.setAttribute('class', 'listex');
-    }
-}
-
-var songbox = document.querySelector('.songbox');
-
-var songListGenerator = function(tracks) {
-    var tracks = tracks;
-
-    for (let i = 0; i < tracks.length; i++) {
-
-        let time = timeManagement(tracks[i].duration, i);
-
-        var onesongcont = document.createElement('div');
-        songbox.appendChild(onesongcont);
-        onesongcont.setAttribute('class', 'onesong' + ((i % 2) + 1));
-        onesongcont.addEventListener('click', coloredTrackelem);
-
-        var ordernumber = document.createElement('div');
-        onesongcont.appendChild(ordernumber);
-        ordernumber.innerHTML = i + 1;
-        ordernumber.setAttribute('class', 'ordernumber');
-
-        var title = document.createElement('div');
-        onesongcont.appendChild(title);
-        title.innerHTML = tracks[i].title;
-        title.setAttribute('class', 'title');
-
-        var length = document.createElement('div');
-        onesongcont.appendChild(length);
-        length.innerHTML = time;
-        length.setAttribute('class', 'length');
-    }
-    staticHtmlSelector();
-}
-
 var timeManagement = function(duration, i) {
     if (duration > 60) {
         var minuteMan = Math.floor(duration / 60) + ':' + Math.floor(duration % 60);
@@ -70,9 +15,22 @@ var timeManagement = function(duration, i) {
 var staticHtmlSelector = function() {
     var standard1 = document.querySelector('.standard1');
     var standard2 = document.querySelector('.standard2');
-    standard1.addEventListener('click', coloredListElem);
-    standard2.addEventListener('click',coloredListElem);
+    standard1.addEventListener('click', eventRouter);
+    standard2.addEventListener('click', eventRouter2);
 };
+
+var eventRouter = function(e) {
+    var playListBox = document.querySelectorAll('.playlistbox>div');
+    document.getElementsByClassName(playListBox[0].setAttribute('class', "onelist type2 standard1 selected"));
+    coloredListElem(e);
+    getAllTrack();
+};
+
+var eventRouter2 = function(e) {
+    coloredListElem(e);
+    getfavorite();
+};
+
 var coloredTrackelem = function(e) {
     var songList = document.querySelectorAll('.songbox>div');
     try {
@@ -103,6 +61,8 @@ var coloredListElem = function(e) {
     try {
         for (let i = 0; i < playListBox.length; i++) {
             let elements = document.getElementsByClassName(playListBox[i].getAttribute("class"));
+            console.log(elements);
+            console.log(playListBox.length);
             if (elements[0].className === 'onelist type2 standard1 selected') {
                 elements[0].className = 'onelist type2 standard1';
             }
@@ -195,8 +155,10 @@ var AudioControl = function(tracks) {
     var playButtonClicked = function() {
         titleholder.innerHTML = tracklist[i].title;
         artistholder.innerHTML = tracklist[i].artist;
-        songList[i].className = songList[i].className + ' selected';
+        var playListBox = document.querySelectorAll('.playlistbox>div');
         document.getElementsByClassName(playListBox[0].setAttribute('class', "onelist type2 standard1 selected"));
+
+        songList[i].className = songList[i].className + ' selected';
 
         counter++;
 
@@ -296,3 +258,15 @@ var AudioControl = function(tracks) {
     volume.addEventListener('click', volumeClicked);
     volumebarInput.oninput = volumebar;
 };
+
+var favoriteButton = document.querySelector('.star');
+favoriteButton.addEventListener('click', favoritePlus);
+
+var getfavorite = function() {
+    favoriteCall();
+};
+
+var getAllTrack = function() {
+    trackCall();
+};
+getAllTrack();
