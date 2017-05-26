@@ -92,10 +92,10 @@ body {
 .imageholder {
     width: 130px;
     min-height: 100%;
-    background-image: url(images/cover.png);
+    background-image: url(images/kitten.jpg);
     background-position: center;
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
 }
 
 .notifications {
