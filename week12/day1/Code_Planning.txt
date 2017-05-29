@@ -3,27 +3,27 @@
 2. Specify the features it will include. (eg. every single features)
 3. Specify how the user will interact with it. (eg. buttons, inputs)
 
-Controller object
-    Every input and output goes through this object. (Central Processing Unit)
+Controller object (Routing Unit)
+    Every input and output goes through this object.
     This invokes the functions in other objects.
 
-Inner processing object
+Inner processing object (Processing Unit)
     This object sends and receives data from the controller.
     This object does all the inner calculations and program logic.
 
-Drawer object
+Drawer object (Render Unit)
     This object can draw. I mean only this can draw. Even the dynamic HTML tags.
     This object receives data from the controller.
 
-Input handler object
+Input handler object (Input Unit)
     This object sets up the eventListeners and every input elements.
     This object sends data to the controller.
 
-Frontend server object
+Frontend server object (Frontend Server Unit)
     This object communicates with the backend.
     This object sends and receives data from the controller and the backend server.
 
-Backend server object
+Backend server object (Backend Server Unit)
     This object communicates on the server side with the Frontend server object.
     This can be a totally separate project. Need to define API!
 
