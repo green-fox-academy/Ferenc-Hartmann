@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Revealing Modul Pattern practise</title>
+    <meta charset="utf-8">
+</head>
+<body>
+</body>
+</html>
+
+<script>
+    'use strict'
+
+    var greeter = (function() {
+
+        function hello (names) {
+            names.forEach(function(element) {
+            console.log('Hello ' + element);
+            });
+        }
+
+        return {
+            hello: hello
+        }
+
+    })();
+
+    var nameHolder = (function() {
+
+        function nameContainer (namelist) {
+            var name = namelist;
+            return name;
+        }
+
+        return {
+            nameContainer: nameContainer
+        }
+
+    })();
+
+    greeter.hello(nameHolder.nameContainer(['Feri', 'Misi', 'Peti']));
+
+</script>

@@ -1,0 +1,30 @@
+0. Specify the goal of your program. (eg. why will it be good, what will it do)
+1. Specify the design. (eg. what to copy)
+2. Specify the features it will include. (eg. every single features)
+3. Specify how the user will interact with it. (eg. buttons, inputs)
+
+Controller object
+    Every input and output goes through this object. (Central Processing Unit)
+    This invokes the functions in other objects.
+
+Inner processing object
+    This object sends and receives data from the controller.
+    This object does all the inner calculations and program logic.
+
+Drawer object
+    This object can draw. I mean only this can draw. Even the dynamic HTML tags.
+    This object receives data from the controller.
+
+Input handler object
+    This object sets up the eventListeners and every input elements.
+    This object sends data to the controller.
+
+Frontend server object
+    This object communicates with the backend.
+    This object sends and receives data from the controller and the backend server.
+
+Backend server object
+    This object communicates on the server side with the Frontend server object.
+    This can be a totally separate project. Need to define API!
+
+Every object can have one or more inner object(s) or support object(s) if the better code structure requires it.
