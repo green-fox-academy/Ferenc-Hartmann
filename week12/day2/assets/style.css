@@ -142,7 +142,6 @@ body {
 }
 
 .listbox {
-    padding-left: 10px;
     width: 318px;
 }
 
@@ -258,6 +257,14 @@ body {
     width: 0px;
 }
 
+.songbox div:nth-child(odd) {
+    background-color: rgba(234, 234, 234, 1);
+}
+
+.songbox div:nth-child(even) {
+    background-color: rgba(245, 245, 245, 1);
+}
+
 .onesong{
     width: 355px;
     min-height: 35px;
@@ -297,7 +304,6 @@ body {
     line-height: 35px;
     color: rgb(85, 85, 85);
     font-size: 14px;
-    letter-spacing:
 }
 
 .controlbar {

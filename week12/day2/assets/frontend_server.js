@@ -7,8 +7,7 @@ var frontendServer = (function() {
         http.onreadystatechange = function() {
             if (http.readyState === 4 && http.status === 200) {
                 var playlists = JSON.parse(http.response);
-                console.log(playlists);
-            }
+                controller.playlistDataRouter(playlists);            }
         }
         http.open('GET', 'http://localhost:3000/playlists');
         http.send();
@@ -23,12 +22,10 @@ var frontendServer = (function() {
         getTrack.onreadystatechange = function() {
             if (getTrack.readyState === 4 && getTrack.status === 200) {
                 var tracks = JSON.parse(getTrack.response);
-                console.log(tracks);
+                controller.trackDataRouter(tracks);            }
             }
-        }
         getTrack.open('GET', 'http://localhost:3000/tracks');
         getTrack.send();
-
     }
 
     function favoriteClicked(title) {
@@ -55,7 +52,7 @@ var frontendServer = (function() {
         getPlaylists: getPlaylists,
         getCurrentTracks: getCurrentTracks,
         favoriteClicked: favoriteClicked,
-        favoriteUnclicked: favoriteUnclicked
+        favoriteUnclicked: favoriteUnclicked,
     }
 
 })();

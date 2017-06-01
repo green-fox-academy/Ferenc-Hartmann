@@ -2,6 +2,19 @@
 
 var innerProcessor = (function() {
 
+    function timeManagement (duration) {
+        if (duration > 60) {
+            var minuteMan = Math.floor(duration / 60) + ':' + Math.floor(duration % 60);
+            if (Math.floor(duration % 60)  < 10) {
+                minuteMan = Math.floor(duration / 60) + ':0' + Math.floor(duration % 60);
+            }
+        } else {
+            var minuteMan = Math.floor(duration);
+        }
+        return minuteMan
+    }
+
+
     function playlistDrawer () {
 
     }
@@ -95,7 +108,7 @@ var innerProcessor = (function() {
     }
 
     return {
-        // nameContainer: nameContainer
+        timeManagement: timeManagement
     }
 
 })();

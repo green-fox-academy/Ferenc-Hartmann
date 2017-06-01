@@ -2,7 +2,7 @@
 
 var drawer = (function() {
 
-    function playlistDrawer () {
+    function playlistDrawer(playlists) {
         var playlists = playlists;
         var playlistbox = document.querySelector('.playlistbox');
 
@@ -10,67 +10,97 @@ var drawer = (function() {
 
             var onelistcont = document.createElement('div');
             playlistbox.appendChild(onelistcont);
-            onelistcont.setAttribute('class', 'onelist type' + ((i % 2) + 1));
-            onelistcont.addEventListener('click', coloredListElem);
+            onelistcont.setAttribute('class', 'onelist');
+            // onelistcont.addEventListener('click', coloredListElem);
 
             var listbox = document.createElement('div');
             onelistcont.appendChild(listbox);
             listbox.innerHTML = playlists[i].title;
             listbox.setAttribute('class', 'listbox');
 
-            var listex = document.createElement('div');
+            var listex = document.createElement('span');
             onelistcont.appendChild(listex);
             listex.innerHTML = '&#10006';
             listex.setAttribute('class', 'listex');
         }
     }
 
-    function tracklistDrawer () {
+    function tracklistDrawer(tracks) {
+
+        var tracks = tracks;
+        var songbox = document.querySelector('.songbox');
+
+        songbox.innerHTML = '';
+
+        for (let i = 0; i < tracks.length; i++) {
+
+            let time = innerProcessor.timeManagement(tracks[i].duration);
+
+            var onesongcont = document.createElement('div');
+            songbox.appendChild(onesongcont);
+            onesongcont.setAttribute('class', 'onesong');
+            // onesongcont.addEventListener('click', coloredTrackelem);
+
+            var ordernumber = document.createElement('span');
+            onesongcont.appendChild(ordernumber);
+            ordernumber.innerHTML = i + 1;
+            ordernumber.setAttribute('class', 'ordernumber');
+
+            var title = document.createElement('span');
+            onesongcont.appendChild(title);
+            title.innerHTML = tracks[i].title;
+            title.setAttribute('class', 'title');
+
+            var length = document.createElement('span');
+            onesongcont.appendChild(length);
+            length.innerHTML = time;
+            length.setAttribute('class', 'length');
+        }
+    }
+
+    function onelistHighlight() {
 
     }
 
-    function onelistHighlight () {
+    function onesongHighlight() {
 
     }
 
-    function onesongHighlight () {
+    function favoriteIconHighlight() {
 
     }
 
-    function favoriteIconHighlight () {
+    function shuffleHighlight() {
 
     }
 
-    function shuffleHighlight () {
+    function currentSongDisplay() {
 
     }
 
-    function currentSongDisplay () {
+    function currentSongsArtistDisplay() {
 
     }
 
-    function currentSongsArtistDisplay () {
+    function playButtonDisplay() {
 
     }
 
-    function playButtonDisplay () {
+    function pauseButtonDisplay() {
 
     }
 
-    function pauseButtonDisplay () {
+    function seekbarDisplay() {
 
     }
 
-    function seekbarDisplay () {
-
-    }
-
-    function volumebarDisplay () {
+    function volumebarDisplay() {
 
     }
 
     return {
-        // nameContainer: nameContainer
+        playlistDrawer: playlistDrawer,
+        tracklistDrawer: tracklistDrawer
     }
 
 })();

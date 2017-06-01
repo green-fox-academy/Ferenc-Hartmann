@@ -7,6 +7,14 @@ var controller = (function() {
         frontendServer.getCurrentTracks();
     }
 
+    function playlistDataRouter(playlists) {
+        drawer.playlistDrawer(playlists);
+    }
+
+    function trackDataRouter(tracks) {
+        drawer.tracklistDrawer(tracks);
+    }
+
     function logoClicked() {
 
     }
@@ -84,7 +92,9 @@ var controller = (function() {
     }
 
     return {
-        init: init
+        init: init,
+        playlistDataRouter: playlistDataRouter,
+        trackDataRouter: trackDataRouter
     }
 
 })();
