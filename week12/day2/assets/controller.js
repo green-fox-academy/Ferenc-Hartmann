@@ -3,9 +3,8 @@
 var controller = (function() {
 
     function init() {
-        frontendServer.getPlaylists;
-        frontendServer.getCurrentTracks;
-
+        frontendServer.getPlaylists();
+        frontendServer.getCurrentTracks();
     }
 
     function logoClicked() {
@@ -85,7 +84,9 @@ var controller = (function() {
     }
 
     return {
-        // nameContainer: nameContainer
+        init: init
     }
 
 })();
+
+controller.init();

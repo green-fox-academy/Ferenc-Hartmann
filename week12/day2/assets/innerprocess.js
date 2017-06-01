@@ -2,6 +2,14 @@
 
 var innerProcessor = (function() {
 
+    function playlistDrawer () {
+
+    }
+
+    function tracklistDrawer () {
+
+    }
+
     function logoClicked () {
 
     }

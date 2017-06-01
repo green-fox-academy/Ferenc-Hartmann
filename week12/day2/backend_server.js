@@ -33,9 +33,12 @@ var backendServer = (function() {
             };
             console.log("Connection established");
         });
+
+        getPlaylists(app, conn);
+        getCurrentTracks(app, conn);
     }
 
-    function getPlaylists() {
+    function getPlaylists(app, conn) {
         app.get('/playlists', function(req, res) {
             conn.query('SELECT * FROM playlists', function(err,rows){
                 if(err){
@@ -59,7 +62,7 @@ var backendServer = (function() {
     //     });
     // }
 
-    function getCurrentTracks() {
+    function getCurrentTracks(app, conn) {
         app.get('/tracks', function(req, res) {
             conn.query('SELECT * FROM tracks', function(err,rows){
                 if(err){
@@ -67,6 +70,7 @@ var backendServer = (function() {
                     console.log(err);
                 }else {
                     console.log("Data received from Db:\n");
+                    console.log(rows);
                 };
             res.send(rows);
             });
@@ -92,11 +96,7 @@ var backendServer = (function() {
     }
 
     return {
-        init: init,
-        getPlaylists: getPlaylists,
-        getCurrentTracks: getCurrentTracks,
-        putFavoritePlus: putFavoritePlus,
-        putFavoriteMinus: putFavoriteMinus
+        init: init
     }
 
 })();
