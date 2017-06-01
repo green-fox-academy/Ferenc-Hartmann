@@ -1,6 +1,6 @@
 'use strict'
 
-var innerProcessor = (function() {
+var InnerProcessor = (function() {
 
     function timeManagement(duration) {
         if (duration > 60) {
@@ -16,6 +16,30 @@ var innerProcessor = (function() {
 
     function eventListenAdder(element, action) {
         element.addEventListener('click', action);
+
+    }
+
+    function playPause() {
+        // console.log(action);
+        console.log(Drawer.audio.paused);
+        if (Drawer.audio.paused === false) {
+            // InputHandler.pauseClicked();
+            // Drawer.pauseButtonDisplay(element);
+            // console.log('pauseClicked')
+            console.log('pausing');
+            Controller.pause();
+        }
+        else if (Drawer.audio.paused === true) {
+            // InputHandler.playClicked('assets/drift.mp3');
+            // Drawer.playButtonDisplay(element);
+            // console.log('playClicked')
+            console.log('playing');
+            Controller.play();
+        }
+    }
+
+    function audioSource(path) {
+        Drawer.audio.setAttribute('src', path);
     }
 
     function onChangeAdder(element, action) {
@@ -117,7 +141,9 @@ var innerProcessor = (function() {
     return {
         timeManagement: timeManagement,
         eventListenAdder: eventListenAdder,
-        onChangeAdder: onChangeAdder
+        onChangeAdder: onChangeAdder,
+        playPause: playPause,
+        audioSource: audioSource
     }
 
 })();

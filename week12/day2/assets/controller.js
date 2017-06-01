@@ -1,27 +1,38 @@
 'use strict'
 
-var controller = (function() {
+var Controller = (function() {
 
     function init() {
-        frontendServer.getPlaylists();
-        frontendServer.getCurrentTracks();
-        drawer.staticHtmlEventListeners();
+        FrontendServer.getPlaylists();
+        FrontendServer.getCurrentTracks();
+        Drawer.staticHtmlEventListeners();
+        InnerProcessor.audioSource('assets/drift.mp3');
     }
 
     function playlistDataRouter(playlists) {
-        drawer.playlistDrawer(playlists);
+        Drawer.playlistDrawer(playlists);
     }
 
     function trackDataRouter(tracks) {
-        drawer.tracklistDrawer(tracks);
+        Drawer.tracklistDrawer(tracks);
     }
 
     function eventListenerRouter(element, action) {
-        innerProcessor.eventListenAdder(element, action);
+        InnerProcessor.eventListenAdder(element, action);
     }
 
     function onChangeRouter(element, action) {
-        innerProcessor.onChangeAdder(element, action);
+        InnerProcessor.onChangeAdder(element, action);
+    }
+
+    function play() {
+        Drawer.pauseButtonDisplay();
+        InputHandler.playClicked('assets/drift.mp3');
+    }
+
+    function pause() {
+        Drawer.playButtonDisplay();
+        InputHandler.pauseClicked();
     }
 
     function logoClicked() {
@@ -105,9 +116,11 @@ var controller = (function() {
         playlistDataRouter: playlistDataRouter,
         trackDataRouter: trackDataRouter,
         eventListenerRouter: eventListenerRouter,
-        onChangeRouter: onChangeRouter
+        onChangeRouter: onChangeRouter,
+        play: play,
+        pause: pause
     }
 
 })();
 
-controller.init();
+Controller.init();

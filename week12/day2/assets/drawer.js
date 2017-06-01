@@ -1,14 +1,14 @@
 'use strict'
 
-var drawer = (function() {
+var Drawer = (function() {
 
     function playlistDrawer(playlists) {
         var playlists = playlists;
         var playlistbox = document.querySelector('.playlistbox');
         var allTracks = document.querySelector('.onelist.tracks');
         var favorites = document.querySelector('.onelist.favorites');
-        controller.eventListenerRouter(allTracks, inputHandler.onelistClicked);
-        controller.eventListenerRouter(favorites, inputHandler.onelistClicked);
+        Controller.eventListenerRouter(allTracks, InputHandler.onelistClicked);
+        Controller.eventListenerRouter(favorites, InputHandler.onelistClicked);
 
         for (let i = 1; i < playlists.length; i++) {
 
@@ -20,13 +20,13 @@ var drawer = (function() {
             onelistcont.appendChild(listbox);
             listbox.innerHTML = playlists[i].title;
             listbox.setAttribute('class', 'listbox');
-            controller.eventListenerRouter(listbox, inputHandler.onelistClicked);
+            Controller.eventListenerRouter(listbox, InputHandler.onelistClicked);
 
             var listex = document.createElement('span');
             onelistcont.appendChild(listex);
             listex.innerHTML = '&#10006';
             listex.setAttribute('class', 'listex');
-            controller.eventListenerRouter(listex, inputHandler.deletePlaylistClicked);
+            Controller.eventListenerRouter(listex, InputHandler.deletePlaylistClicked);
         }
     }
 
@@ -39,12 +39,12 @@ var drawer = (function() {
 
         for (let i = 0; i < tracks.length; i++) {
 
-            let time = innerProcessor.timeManagement(tracks[i].duration);
+            let time = InnerProcessor.timeManagement(tracks[i].duration);
 
             var onesongcont = document.createElement('div');
             songbox.appendChild(onesongcont);
             onesongcont.setAttribute('class', 'onesong');
-            controller.eventListenerRouter(onesongcont, inputHandler.onesongClicked);
+            Controller.eventListenerRouter(onesongcont, InputHandler.onesongClicked);
 
             var ordernumber = document.createElement('span');
             onesongcont.appendChild(ordernumber);
@@ -64,9 +64,9 @@ var drawer = (function() {
     }
 
     function staticHtmlEventListeners() {
-        var audio = document.querySelector('audio');
+        // var audio = document.querySelector('audio');
         var logo = document.querySelector('.logo');
-        var playButton = document.querySelector('.play');
+        // var playButton = document.querySelector('.play');
         var rewind = document.querySelector('.rewind');
         var forward = document.querySelector('.forward');
         var remaintime = document.querySelector('.remaintime');
@@ -81,19 +81,17 @@ var drawer = (function() {
         var plus = document.querySelector('.plus');
         var adder = document.querySelector('.adder');
 
-        controller.eventListenerRouter(logo, inputHandler.logoClicked);
-        controller.eventListenerRouter(playButton, inputHandler.playClicked);
-        controller.eventListenerRouter(rewind, inputHandler.previousSongClicked);
-        controller.eventListenerRouter(forward, inputHandler.nextSongClicked);
-        controller.onChangeRouter(seekbarInput, inputHandler.seekbarClicked);
-        controller.eventListenerRouter(shuffle, inputHandler.shuffleClicked);
-        controller.eventListenerRouter(volume, inputHandler.volumeClicked);
-        controller.onChangeRouter(volumebarInput, inputHandler.volumebarClicked);
-        controller.eventListenerRouter(favorite, inputHandler.favoriteClicked);
-        controller.eventListenerRouter(plus, inputHandler.addtoPlaylistClicked);
-        controller.eventListenerRouter(adder, inputHandler.newPlaylistClicked);
-
-
+        Controller.eventListenerRouter(logo, InputHandler.logoClicked);
+        Controller.eventListenerRouter(this.playButton, InnerProcessor.playPause);
+        Controller.eventListenerRouter(rewind, InputHandler.previousSongClicked);
+        Controller.eventListenerRouter(forward, InputHandler.nextSongClicked);
+        Controller.onChangeRouter(seekbarInput, InputHandler.seekbarClicked);
+        Controller.eventListenerRouter(shuffle, InputHandler.shuffleClicked);
+        Controller.eventListenerRouter(volume, InputHandler.volumeClicked);
+        Controller.onChangeRouter(volumebarInput, InputHandler.volumebarClicked);
+        Controller.eventListenerRouter(favorite, InputHandler.favoriteClicked);
+        Controller.eventListenerRouter(plus, InputHandler.addtoPlaylistClicked);
+        Controller.eventListenerRouter(adder, InputHandler.newPlaylistClicked);
     }
 
     function onelistHighlight() {
@@ -121,11 +119,11 @@ var drawer = (function() {
     }
 
     function playButtonDisplay() {
-
+        this.playButton.setAttribute('style', 'background-image: url(assets/images/play.svg);');
     }
 
     function pauseButtonDisplay() {
-
+        this.playButton.setAttribute('style', 'background-image: url(assets/images/pause.svg);');
     }
 
     function seekbarDisplay() {
@@ -139,7 +137,11 @@ var drawer = (function() {
     return {
         playlistDrawer: playlistDrawer,
         tracklistDrawer: tracklistDrawer,
-        staticHtmlEventListeners: staticHtmlEventListeners
+        staticHtmlEventListeners: staticHtmlEventListeners,
+        audio: document.querySelector('audio'),
+        playButton: document.querySelector('.play'),
+        pauseButtonDisplay: pauseButtonDisplay,
+        playButtonDisplay: playButtonDisplay
     }
 
 })();

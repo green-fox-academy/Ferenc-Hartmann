@@ -1,13 +1,13 @@
 'use strict'
 
-var frontendServer = (function() {
+var FrontendServer = (function() {
 
     function getPlaylists() {
         var http = new XMLHttpRequest();
         http.onreadystatechange = function() {
             if (http.readyState === 4 && http.status === 200) {
                 var playlists = JSON.parse(http.response);
-                controller.playlistDataRouter(playlists);            }
+                Controller.playlistDataRouter(playlists);            }
         }
         http.open('GET', 'http://localhost:3000/playlists');
         http.send();
@@ -22,7 +22,7 @@ var frontendServer = (function() {
         getTrack.onreadystatechange = function() {
             if (getTrack.readyState === 4 && getTrack.status === 200) {
                 var tracks = JSON.parse(getTrack.response);
-                controller.trackDataRouter(tracks);            }
+                Controller.trackDataRouter(tracks);            }
             }
         getTrack.open('GET', 'http://localhost:3000/tracks');
         getTrack.send();

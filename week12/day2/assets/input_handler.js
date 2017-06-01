@@ -1,6 +1,6 @@
 'use strict'
 
-var inputHandler = (function() {
+var InputHandler = (function() {
 
     function logoClicked() {
         console.log('logoClicked');
@@ -22,12 +22,12 @@ var inputHandler = (function() {
         console.log('previousSongClicked');
     }
 
-    function playClicked() {
-        console.log('playClicked');
+    function playClicked(path) {
+        Drawer.audio.play();
     }
 
     function pauseClicked() {
-        console.log('pauseClicked');
+        Drawer.audio.pause();
     }
 
     function nextSongClicked() {

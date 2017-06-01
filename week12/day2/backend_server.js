@@ -1,6 +1,6 @@
 'use strict'
 
-var backendServer = (function() {
+var BackendServer = (function() {
 
     function init() {
         const mysql = require('mysql');
@@ -101,4 +101,4 @@ var backendServer = (function() {
 
 })();
 
-backendServer.init();
+BackendServer.init();
