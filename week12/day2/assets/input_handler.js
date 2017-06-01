@@ -3,85 +3,103 @@
 var inputHandler = (function() {
 
     function logoClicked() {
-
+        console.log('logoClicked');
     }
 
     function newPlaylistClicked() {
-
+        console.log('newPlaylistClicked');
     }
 
     function onelistClicked() {
-        console.log('list');
+        console.log('onelistClicked');
     }
 
     function onesongClicked() {
-        console.log('song');
-
+        console.log('onesongClicked');
     }
 
     function previousSongClicked() {
-
+        console.log('previousSongClicked');
     }
 
     function playClicked() {
-
+        console.log('playClicked');
     }
 
     function pauseClicked() {
-
+        console.log('pauseClicked');
     }
 
     function nextSongClicked() {
-
+        console.log('nextSongClicked');
     }
 
     function seekbarClicked() {
-
+        console.log('seekbarClicked');
     }
 
     function shuffleClicked() {
+        console.log('shuffleClicked');
 // If active it must be blue
     }
 
     function volumeClicked() {
-
+        console.log('volumeClicked');
     }
 
     function volumebarClicked() {
-
+        console.log('volumebarClicked');
     }
 
     function favoriteClicked() {
+        console.log('favoriteClicked');
 // The star is immediately turned to light blue
     }
 
     function addtoPlaylistClicked() {
-
+        console.log('addtoPlaylistClicked');
     }
 
     function deletePlaylistClicked() {
-
+        console.log('deletePlaylistClicked');
     }
 
     function spaceKeyPressed() {
-
+        console.log('spaceKeyPressed');
     }
 
     function nKeyPressed() {
-
+        console.log('nKeyPressed');
     }
 
     function pKeyPressed() {
-
+        console.log('pKeyPressed');
     }
 
     function escKeyPressed() {
-
+        console.log('escKeyPressed');
     }
 
     return {
+        logoClicked: logoClicked,
+        newPlaylistClicked: newPlaylistClicked,
         onelistClicked: onelistClicked,
-        onesongClicked: onesongClicked
+        onesongClicked: onesongClicked,
+        previousSongClicked: previousSongClicked,
+        playClicked: playClicked,
+        pauseClicked: pauseClicked,
+        nextSongClicked: nextSongClicked,
+        seekbarClicked: seekbarClicked,
+        shuffleClicked: shuffleClicked,
+        volumeClicked: volumeClicked,
+        volumebarClicked: volumebarClicked,
+        favoriteClicked: favoriteClicked,
+        addtoPlaylistClicked: addtoPlaylistClicked,
+        deletePlaylistClicked: deletePlaylistClicked,
+        spaceKeyPressed: spaceKeyPressed,
+        nKeyPressed: nKeyPressed,
+        pKeyPressed: pKeyPressed,
+        escKeyPressed: escKeyPressed
     }
 
 })();

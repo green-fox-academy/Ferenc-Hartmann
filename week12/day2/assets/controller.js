@@ -5,6 +5,7 @@ var controller = (function() {
     function init() {
         frontendServer.getPlaylists();
         frontendServer.getCurrentTracks();
+        drawer.staticHtmlEventListeners();
     }
 
     function playlistDataRouter(playlists) {
@@ -17,6 +18,10 @@ var controller = (function() {
 
     function eventListenerRouter(element, action) {
         innerProcessor.eventListenAdder(element, action);
+    }
+
+    function onChangeRouter(element, action) {
+        innerProcessor.onChangeAdder(element, action);
     }
 
     function logoClicked() {
@@ -99,7 +104,8 @@ var controller = (function() {
         init: init,
         playlistDataRouter: playlistDataRouter,
         trackDataRouter: trackDataRouter,
-        eventListenerRouter: eventListenerRouter
+        eventListenerRouter: eventListenerRouter,
+        onChangeRouter: onChangeRouter
     }
 
 })();

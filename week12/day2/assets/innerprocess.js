@@ -18,6 +18,10 @@ var innerProcessor = (function() {
         element.addEventListener('click', action);
     }
 
+    function onChangeAdder(element, action) {
+        element.onchange = action;
+    }
+
     function playlistDrawer() {
 
     }
@@ -112,7 +116,8 @@ var innerProcessor = (function() {
 
     return {
         timeManagement: timeManagement,
-        eventListenAdder: eventListenAdder
+        eventListenAdder: eventListenAdder,
+        onChangeAdder: onChangeAdder
     }
 
 })();
