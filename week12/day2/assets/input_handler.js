@@ -22,7 +22,7 @@ var InputHandler = (function() {
         console.log('previousSongClicked');
     }
 
-    function playClicked(path) {
+    function playClicked() {
         Drawer.audio.play();
     }
 

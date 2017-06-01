@@ -6,7 +6,6 @@ var Controller = (function() {
         FrontendServer.getPlaylists();
         FrontendServer.getCurrentTracks();
         Drawer.staticHtmlEventListeners();
-        InnerProcessor.audioSource('assets/drift.mp3');
     }
 
     function playlistDataRouter(playlists) {
@@ -15,6 +14,7 @@ var Controller = (function() {
 
     function trackDataRouter(tracks) {
         Drawer.tracklistDrawer(tracks);
+        InnerProcessor.audioSource(tracks);
     }
 
     function eventListenerRouter(element, action) {
@@ -27,7 +27,7 @@ var Controller = (function() {
 
     function play() {
         Drawer.pauseButtonDisplay();
-        InputHandler.playClicked('assets/drift.mp3');
+        InputHandler.playClicked();
     }
 
     function pause() {

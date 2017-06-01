@@ -38,8 +38,8 @@ var InnerProcessor = (function() {
         }
     }
 
-    function audioSource(path) {
-        Drawer.audio.setAttribute('src', path);
+    function audioSource(tracks) {
+        Drawer.audio.setAttribute('src', tracks[0].path);
     }
 
     function onChangeAdder(element, action) {

@@ -13,10 +13,6 @@ var FrontendServer = (function() {
         http.send();
     }
 
-    // function postPlaylists () {
-    //
-    // }
-
     function getCurrentTracks() {
         var getTrack = new XMLHttpRequest();
         getTrack.onreadystatechange = function() {
