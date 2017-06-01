@@ -2,79 +2,85 @@
 
 var controller = (function() {
 
-    function logoClicked () {
+    function init() {
+        frontendServer.getPlaylists;
+        frontendServer.getCurrentTracks;
 
     }
 
-    function newPlaylistClicked () {
+    function logoClicked() {
 
     }
 
-    function onelistClicked () {
+    function newPlaylistClicked() {
 
     }
 
-    function onesongClicked () {
+    function onelistClicked() {
 
     }
 
-    function previousSongClicked () {
+    function onesongClicked() {
 
     }
 
-    function playClicked () {
+    function previousSongClicked() {
 
     }
 
-    function pauseClicked () {
+    function playClicked() {
 
     }
 
-    function nextSongClicked () {
+    function pauseClicked() {
 
     }
 
-    function seekbarClicked () {
+    function nextSongClicked() {
 
     }
 
-    function shuffleClicked () {
+    function seekbarClicked() {
+
+    }
+
+    function shuffleClicked() {
 // If active it must be blue
     }
 
-    function volumeClicked () {
+    function volumeClicked() {
 
     }
 
-    function volumebarClicked () {
+    function volumebarClicked() {
 
     }
 
-    function favoriteClicked () {
+    function favoriteClicked() {
 // The star is immediately turned to light blue
     }
 
-    function addtoPlaylistClicked () {
+    function addtoPlaylistClicked() {
 
     }
 
-    function deletePlaylistClicked () {
+    function deletePlaylistClicked() {
 
     }
 
-    function spaceKeyPressed () {
+    function spaceKeyPressed() {
 
     }
 
-    function nKeyPressed () {
+    function nKeyPressed() {
 
     }
 
-    function pKeyPressed () {
+    function pKeyPressed() {
 
     }
 
-    function escKeyPressed () {
+    function escKeyPressed() {
 
     }
 

@@ -59,7 +59,7 @@ var backendServer = (function() {
     //     });
     // }
 
-    function getCurrentSongs() {
+    function getCurrentTracks() {
         app.get('/tracks', function(req, res) {
             conn.query('SELECT * FROM tracks', function(err,rows){
                 if(err){
@@ -94,7 +94,7 @@ var backendServer = (function() {
     return {
         init: init,
         getPlaylists: getPlaylists,
-        getCurrentSongs: getCurrentSongs,
+        getCurrentTracks: getCurrentTracks,
         putFavoritePlus: putFavoritePlus,
         putFavoriteMinus: putFavoriteMinus
     }
