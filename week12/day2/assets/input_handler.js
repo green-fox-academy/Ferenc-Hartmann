@@ -2,84 +2,86 @@
 
 var inputHandler = (function() {
 
-    function logoClicked () {
+    function logoClicked() {
 
     }
 
-    function newPlaylistClicked () {
+    function newPlaylistClicked() {
 
     }
 
-    function onelistClicked () {
+    function onelistClicked() {
+        console.log('list');
+    }
+
+    function onesongClicked() {
+        console.log('song');
 
     }
 
-    function onesongClicked () {
+    function previousSongClicked() {
 
     }
 
-    function previousSongClicked () {
+    function playClicked() {
 
     }
 
-    function playClicked () {
+    function pauseClicked() {
 
     }
 
-    function pauseClicked () {
+    function nextSongClicked() {
 
     }
 
-    function nextSongClicked () {
+    function seekbarClicked() {
 
     }
 
-    function seekbarClicked () {
-
-    }
-
-    function shuffleClicked () {
+    function shuffleClicked() {
 // If active it must be blue
     }
 
-    function volumeClicked () {
+    function volumeClicked() {
 
     }
 
-    function volumebarClicked () {
+    function volumebarClicked() {
 
     }
 
-    function favoriteClicked () {
+    function favoriteClicked() {
 // The star is immediately turned to light blue
     }
 
-    function addtoPlaylistClicked () {
+    function addtoPlaylistClicked() {
 
     }
 
-    function deletePlaylistClicked () {
+    function deletePlaylistClicked() {
 
     }
 
-    function spaceKeyPressed () {
+    function spaceKeyPressed() {
 
     }
 
-    function nKeyPressed () {
+    function nKeyPressed() {
 
     }
 
-    function pKeyPressed () {
+    function pKeyPressed() {
 
     }
 
-    function escKeyPressed () {
+    function escKeyPressed() {
 
     }
 
     return {
-        // nameContainer: nameContainer
+        onelistClicked: onelistClicked,
+        onesongClicked: onesongClicked
     }
 
 })();

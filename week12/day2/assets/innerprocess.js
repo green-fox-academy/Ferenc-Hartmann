@@ -2,7 +2,7 @@
 
 var innerProcessor = (function() {
 
-    function timeManagement (duration) {
+    function timeManagement(duration) {
         if (duration > 60) {
             var minuteMan = Math.floor(duration / 60) + ':' + Math.floor(duration % 60);
             if (Math.floor(duration % 60)  < 10) {
@@ -14,88 +14,91 @@ var innerProcessor = (function() {
         return minuteMan
     }
 
+    function eventListenAdder(element, action) {
+        element.addEventListener('click', action);
+    }
 
-    function playlistDrawer () {
+    function playlistDrawer() {
 
     }
 
-    function tracklistDrawer () {
+    function tracklistDrawer() {
 
     }
 
-    function logoClicked () {
+    function logoClicked() {
 
     }
 
-    function newPlaylistClicked () {
+    function newPlaylistClicked() {
 
     }
 
-    function onelistClicked () {
+    function onelistClicked() {
 
     }
 
-    function onesongClicked () {
+    function onesongClicked() {
 
     }
 
-    function previousSongClicked () {
+    function previousSongClicked() {
 
     }
 
-    function playClicked () {
+    function playClicked() {
 
     }
 
-    function pauseClicked () {
+    function pauseClicked() {
 
     }
 
-    function nextSongClicked () {
+    function nextSongClicked() {
 
     }
 
-    function seekbarClicked () {
+    function seekbarClicked() {
 
     }
 
-    function shuffleClicked () {
+    function shuffleClicked() {
 // If active it must be blue
     }
 
-    function volumeClicked () {
+    function volumeClicked() {
 
     }
 
-    function volumebarClicked () {
+    function volumebarClicked() {
 
     }
 
-    function favoriteClicked () {
+    function favoriteClicked() {
 // The star is immediately turned to light blue
     }
 
-    function addtoPlaylistClicked () {
+    function addtoPlaylistClicked() {
 
     }
 
-    function deletePlaylistClicked () {
+    function deletePlaylistClicked() {
 
     }
 
-    function spaceKeyPressed () {
+    function spaceKeyPressed() {
 
     }
 
-    function nKeyPressed () {
+    function nKeyPressed() {
 
     }
 
-    function pKeyPressed () {
+    function pKeyPressed() {
 
     }
 
-    function escKeyPressed () {
+    function escKeyPressed() {
 
     }
 
@@ -108,7 +111,8 @@ var innerProcessor = (function() {
     }
 
     return {
-        timeManagement: timeManagement
+        timeManagement: timeManagement,
+        eventListenAdder: eventListenAdder
     }
 
 })();

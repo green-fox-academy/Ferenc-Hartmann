@@ -77,6 +77,7 @@ body {
     color: rgb(80, 80, 80);
     font-size: 20px;
     font-weight: bold;
+    cursor: default;
 }
 
 .logoright{
@@ -155,7 +156,7 @@ body {
     font-size: 16px;
     display: flex;
     justify-content: space-between;
-    cursor: pointer;
+    cursor: default;
 }
 
 .playlistbox div:nth-child(odd) {
@@ -200,6 +201,7 @@ body {
     color: rgb(80, 80, 80);
     font-size: 16px;
     font-weight: bold;
+    cursor: default;
 }
 
 .artistholder {
@@ -207,6 +209,7 @@ body {
     line-height: 20px;
     color: rgb(160, 160, 160);
     font-size: 14px;
+    cursor: default;
 }
 
 .rightinfo {
@@ -270,7 +273,7 @@ body {
     min-height: 35px;
     display: flex;
     justify-content: flex-start;
-    cursor: pointer;
+    cursor: default;
 }
 
 .songbox div:nth-child(odd) {
@@ -320,7 +323,7 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     background-size: auto;
-    cursor: pointer;
+    cursor: default;
 }
 
 .play {
@@ -331,7 +334,7 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
-    cursor: pointer;
+    cursor: default;
 }
 
 .forward {
@@ -341,7 +344,7 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     background-size: auto;
-    cursor: pointer;
+    cursor: default;
 }
 
 .remaintime {
@@ -350,6 +353,7 @@ body {
     line-height: 30px;
     color: rgb(85, 85, 85);
     font-size: 14px;
+    cursor: default;
 }
 
 input:nth-child(5)[type=range] {
@@ -365,7 +369,7 @@ input:nth-child(5)[type=range]:focus {
 input:nth-child(5)[type=range]::-webkit-slider-runnable-track {
   width: 100%;
   height: 4px;
-  cursor: pointer;
+  cursor: default;
   border-radius: 2px;
   -webkit-appearance: none;
 }
@@ -378,7 +382,7 @@ input:nth-child(5)[type=range]::-webkit-slider-thumb {
   border-color: white;
   border-width: 4px;
   background: rgb(60, 210, 205);
-  cursor: pointer;
+  cursor: default;
   -webkit-appearance: none;
   margin-top: -4px;
   box-shadow:
@@ -391,12 +395,11 @@ input:nth-child(5)[type=range]::-webkit-slider-thumb {
 input:nth-child(5) {
   height: 4px;
   width: 320px;
-  cursor: pointer;
+  cursor: default;
   border-radius:2px;
   background: rgb(220, 220, 220);
   -webkit-appearance: none;
   margin-top: 13px;
-  cursor: pointer;
 }
 
 .totallength {
@@ -405,6 +408,7 @@ input:nth-child(5) {
     line-height: 30px;
     color: rgb(85, 85, 85);
     font-size: 14px;
+    cursor: default;
 }
 
 .shuffle {
@@ -414,7 +418,7 @@ input:nth-child(5) {
     background-position: center;
     background-repeat: no-repeat;
     background-size: auto;
-    cursor: pointer;
+    cursor: default;
 }
 
 .volumeimg {
@@ -424,7 +428,7 @@ input:nth-child(5) {
     background-position: center;
     background-repeat: no-repeat;
     background-size: auto;
-    cursor: pointer;
+    cursor: default;
 }
 
 input:nth-child(9)[type=range] {
@@ -440,7 +444,7 @@ input:nth-child(9)[type=range]:focus {
 input:nth-child(9)[type=range]::-webkit-slider-runnable-track {
   width: 100%;
   height: 4px;
-  cursor: pointer;
+  cursor: default;
   border-radius: 2px;
   -webkit-appearance: none;
 }
@@ -453,7 +457,7 @@ input:nth-child(9)[type=range]::-webkit-slider-thumb {
   border-color: white;
   border-width: 4px;
   background: rgb(60, 210, 205);
-  cursor: pointer;
+  cursor: default;
   -webkit-appearance: none;
   margin-top: -4px;
   box-shadow:
@@ -466,12 +470,11 @@ input:nth-child(9)[type=range]::-webkit-slider-thumb {
 input:nth-child(9) {
   height: 4px;
   width: 80px;
-  cursor: pointer;
+  cursor: default;
   border-radius:2px;
   background: rgb(60, 210, 205);
   -webkit-appearance: none;
   margin-top: 13px;
-  cursor: pointer;
 }
 
 audio {

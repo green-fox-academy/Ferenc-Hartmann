@@ -15,6 +15,10 @@ var controller = (function() {
         drawer.tracklistDrawer(tracks);
     }
 
+    function eventListenerRouter(element, action) {
+        innerProcessor.eventListenAdder(element, action);
+    }
+
     function logoClicked() {
 
     }
@@ -94,7 +98,8 @@ var controller = (function() {
     return {
         init: init,
         playlistDataRouter: playlistDataRouter,
-        trackDataRouter: trackDataRouter
+        trackDataRouter: trackDataRouter,
+        eventListenerRouter: eventListenerRouter
     }
 
 })();

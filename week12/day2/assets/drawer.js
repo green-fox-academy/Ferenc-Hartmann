@@ -5,13 +5,17 @@ var drawer = (function() {
     function playlistDrawer(playlists) {
         var playlists = playlists;
         var playlistbox = document.querySelector('.playlistbox');
+        var allTracks = document.querySelector('.onelist.tracks');
+        var favorites = document.querySelector('.onelist.favorites');
+        controller.eventListenerRouter(allTracks, inputHandler.onelistClicked);
+        controller.eventListenerRouter(favorites, inputHandler.onelistClicked);
 
         for (let i = 1; i < playlists.length; i++) {
 
             var onelistcont = document.createElement('div');
             playlistbox.appendChild(onelistcont);
             onelistcont.setAttribute('class', 'onelist');
-            // onelistcont.addEventListener('click', coloredListElem);
+            controller.eventListenerRouter(onelistcont, inputHandler.onelistClicked);
 
             var listbox = document.createElement('div');
             onelistcont.appendChild(listbox);
@@ -39,7 +43,7 @@ var drawer = (function() {
             var onesongcont = document.createElement('div');
             songbox.appendChild(onesongcont);
             onesongcont.setAttribute('class', 'onesong');
-            // onesongcont.addEventListener('click', coloredTrackelem);
+            controller.eventListenerRouter(onesongcont, inputHandler.onesongClicked);
 
             var ordernumber = document.createElement('span');
             onesongcont.appendChild(ordernumber);
