@@ -92,7 +92,7 @@ var InnerProcessor = (function() {
     }
 
     function seekbarClicked() {
-
+        Drawer.audio.currentTime = Drawer.seekbarInput.value / 100 * Controller.tracks[InnerProcessor.currentSong].duration;
     }
 
     function shuffleClicked() {
@@ -108,7 +108,23 @@ var InnerProcessor = (function() {
     }
 
     function favoriteClicked() {
-// The star is immediately turned to light blue
+        if (Controller.tracks[InnerProcessor.currentSong].favorite === 0) {
+            Controller.setFavorite(Controller.tracks[InnerProcessor.currentSong].title);
+            Controller.tracks[InnerProcessor.currentSong].favorite = 1;
+        } else if (Controller.tracks[InnerProcessor.currentSong].favorite === 1) {
+            Controller.unsetFavorite(Controller.tracks[InnerProcessor.currentSong].title);
+            Controller.tracks[InnerProcessor.currentSong].favorite = 0;
+        }
+    }
+
+    function favoriteCheck() {
+        if (Controller.tracks[InnerProcessor.currentSong].favorite === 0) {
+            Controller.favoriteChecked(Drawer.favoriteIconNormal());
+        } else {
+            Controller.favoriteChecked(Drawer.favoriteIconHighlight());
+
+        }
+
     }
 
     function addtoPlaylistClicked() {
@@ -136,6 +152,7 @@ var InnerProcessor = (function() {
     }
 
     function seekbarProgress() {
+        Drawer.seekbarInput.value = (Drawer.audio.currentTime / Controller.tracks[InnerProcessor.currentSong].duration) * 100;
 
     }
 
@@ -151,7 +168,11 @@ var InnerProcessor = (function() {
         trackSwitcher: trackSwitcher,
         currentSong: 0,
         interval: interval,
-        endChacker: endChacker
+        endChacker: endChacker,
+        seekbarProgress: seekbarProgress,
+        seekbarClicked: seekbarClicked,
+        favoriteClicked: favoriteClicked,
+        favoriteCheck: favoriteCheck
     }
 
 })();

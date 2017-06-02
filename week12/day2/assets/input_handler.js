@@ -35,7 +35,7 @@ var InputHandler = (function() {
     }
 
     function seekbarClicked() {
-        console.log('seekbarClicked');
+         Controller.seekbarClicked();
     }
 
     function shuffleClicked() {
@@ -52,8 +52,7 @@ var InputHandler = (function() {
     }
 
     function favoriteClicked() {
-        console.log('favoriteClicked');
-// The star is immediately turned to light blue
+        Controller.favoriteClicked();
     }
 
     function addtoPlaylistClicked() {

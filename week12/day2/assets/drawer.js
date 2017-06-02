@@ -66,25 +66,23 @@ var Drawer = (function() {
         var logo = document.querySelector('.logo');
         var rewind = document.querySelector('.rewind');
         var forward = document.querySelector('.forward');
-        var seekbarInput = document.querySelector('input:nth-child(5)');
         var shuffle = document.querySelector('.shuffle');
         var volume = document.querySelector('.volumeimg');
         var volumebarInput = document.querySelector('input:nth-child(9)');
         var titleholder = document.querySelector('.titleholder');
         var artistholder = document.querySelector('.artistholder');
-        var favorite = document.querySelector('.star');
         var plus = document.querySelector('.plus');
         var adder = document.querySelector('.adder');
 
         Controller.eventListenerRouter(logo, InputHandler.logoClicked);
-        Controller.eventListenerRouter(this.playButton, InnerProcessor.playPause);
+        Controller.eventListenerRouter(Drawer.playButton, InnerProcessor.playPause);
         Controller.eventListenerRouter(rewind, InputHandler.previousSongClicked);
         Controller.eventListenerRouter(forward, InputHandler.nextSongClicked);
-        Controller.onChangeRouter(seekbarInput, InputHandler.seekbarClicked);
+        Controller.onChangeRouter(Drawer.seekbarInput, InputHandler.seekbarClicked);
         Controller.eventListenerRouter(shuffle, InputHandler.shuffleClicked);
         Controller.eventListenerRouter(volume, InputHandler.volumeClicked);
         Controller.onChangeRouter(volumebarInput, InputHandler.volumebarClicked);
-        Controller.eventListenerRouter(favorite, InputHandler.favoriteClicked);
+        Controller.eventListenerRouter(Drawer.favorite, InputHandler.favoriteClicked);
         Controller.eventListenerRouter(plus, InputHandler.addtoPlaylistClicked);
         Controller.eventListenerRouter(adder, InputHandler.newPlaylistClicked);
     }
@@ -118,7 +116,11 @@ var Drawer = (function() {
     }
 
     function favoriteIconHighlight() {
+        Drawer.favorite.setAttribute('style', 'background-image: url(assets/images/starcolored.png);')
+    }
 
+    function favoriteIconNormal() {
+        Drawer.favorite.setAttribute('style', 'background-image: url(assets/images/star.png);')
     }
 
     function shuffleHighlight() {
@@ -142,6 +144,11 @@ var Drawer = (function() {
     }
 
     function seekbarDisplay() {
+        if (Drawer.seekbarInput.value >= 50) {
+            Drawer.seekbarInput.setAttribute('style', 'background: linear-gradient(to right, rgb(60, 210, 205) ' + Drawer.seekbarInput.value + '%, rgb(220, 220, 220)' + (100-Drawer.seekbarInput.value) + '%);');
+        } else {
+            Drawer.seekbarInput.setAttribute('style', 'background: linear-gradient(to left, rgb(220, 220, 220) ' + (100-Drawer.seekbarInput.value) + '%, rgb(60, 210, 205)' + Drawer.seekbarInput.value + '%);');
+        }
 
     }
 
@@ -156,11 +163,17 @@ var Drawer = (function() {
         audio: document.querySelector('audio'),
         playButton: document.querySelector('.play'),
         songbox: document.querySelector('.songbox'),
+        seekbarInput: document.querySelector('input:nth-child(5)'),
+        favorite: document.querySelector('.star'),
         pauseButtonDisplay: pauseButtonDisplay,
         playButtonDisplay: playButtonDisplay,
         onesongHighlight: onesongHighlight,
         totalLengthDrawer: totalLengthDrawer,
-        remainTimeDrawer: remainTimeDrawer
+        remainTimeDrawer: remainTimeDrawer,
+        seekbarDisplay: seekbarDisplay,
+        favoriteIconHighlight: favoriteIconHighlight,
+        favoriteIconNormal: favoriteIconNormal
+
     }
 
 })();

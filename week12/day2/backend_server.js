@@ -36,6 +36,8 @@ var BackendServer = (function() {
 
         getPlaylists(app, conn);
         getCurrentTracks(app, conn);
+        putFavoritePlus(app, conn);
+        putFavoriteMinus(app, conn);
     }
 
     function getPlaylists(app, conn) {
@@ -77,7 +79,7 @@ var BackendServer = (function() {
         });
     }
 
-    function putFavoritePlus() {
+    function putFavoritePlus(app, conn) {
         app.put ('/tracksfavplus', function(req, res) {
             var query = 'UPDATE tracks SET favorite=1 WHERE title = ' + '"' + req.body.title + '"';
             console.log(query);
@@ -86,7 +88,7 @@ var BackendServer = (function() {
         });
     }
 
-    function putFavoriteMinus() {
+    function putFavoriteMinus(app, conn) {
         app.put ('/tracksfavminus', function(req, res) {
             var query = 'UPDATE tracks SET favorite=0 WHERE title = ' + '"' + req.body.title + '"';
             console.log(query);

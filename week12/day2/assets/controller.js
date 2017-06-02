@@ -34,6 +34,8 @@ var Controller = (function() {
     function intervalCaller() {
         Drawer.remainTimeDrawer();
         InnerProcessor.endChacker();
+        InnerProcessor.seekbarProgress();
+        Drawer.seekbarDisplay();
     }
 
     function trackChange(value) {
@@ -41,6 +43,7 @@ var Controller = (function() {
         Drawer.onesongHighlight();
         Drawer.totalLengthDrawer();
         Drawer.remainTimeDrawer();
+        Controller.favoriteCheck();
     }
 
     function logoClicked() {
@@ -78,7 +81,7 @@ var Controller = (function() {
     }
 
     function seekbarClicked() {
-
+        InnerProcessor.seekbarClicked();
     }
 
     function shuffleClicked() {
@@ -94,7 +97,27 @@ var Controller = (function() {
     }
 
     function favoriteClicked() {
-// The star is immediately turned to light blue
+        InnerProcessor.favoriteClicked();
+    }
+
+    function setFavorite(title) {
+        console.log('set');
+        FrontendServer.favoriteClicked(title);
+        Drawer.favoriteIconHighlight();
+    }
+
+    function unsetFavorite(title) {
+        console.log('unset');
+        FrontendServer.favoriteUnclicked(title);
+        Drawer.favoriteIconNormal();
+    }
+
+    function favoriteCheck() {
+        InnerProcessor.favoriteCheck();
+    }
+
+    function favoriteChecked(value) {
+        return value;
     }
 
     function addtoPlaylistClicked() {
@@ -132,7 +155,13 @@ var Controller = (function() {
         pauseClicked: pauseClicked,
         trackChange: trackChange,
         tracks: {},
-        intervalCaller: intervalCaller
+        intervalCaller: intervalCaller,
+        seekbarClicked: seekbarClicked,
+        favoriteClicked: favoriteClicked,
+        setFavorite: setFavorite,
+        unsetFavorite: unsetFavorite,
+        favoriteCheck: favoriteCheck,
+        favoriteChecked: favoriteChecked
     }
 
 })();
