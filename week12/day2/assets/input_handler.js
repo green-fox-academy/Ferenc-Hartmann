@@ -19,7 +19,7 @@ var InputHandler = (function() {
     }
 
     function previousSongClicked() {
-        console.log('previousSongClicked');
+        Controller.trackChange(-1);
     }
 
     function playClicked() {
@@ -31,7 +31,7 @@ var InputHandler = (function() {
     }
 
     function nextSongClicked() {
-        console.log('nextSongClicked');
+        Controller.trackChange(+1);
     }
 
     function seekbarClicked() {

@@ -13,8 +13,9 @@ var Controller = (function() {
     }
 
     function trackDataRouter(tracks) {
-        Drawer.tracklistDrawer(tracks);
-        InnerProcessor.audioSource(tracks);
+        this.tracks = tracks;
+        Drawer.tracklistDrawer(this.tracks);
+        trackChange('init');
     }
 
     function eventListenerRouter(element, action) {
@@ -25,14 +26,12 @@ var Controller = (function() {
         InnerProcessor.onChangeAdder(element, action);
     }
 
-    function play() {
-        Drawer.pauseButtonDisplay();
-        InputHandler.playClicked();
+    function timeRouter(duration) {
+        return InnerProcessor.timeManagement(duration);
     }
 
-    function pause() {
-        Drawer.playButtonDisplay();
-        InputHandler.pauseClicked();
+    function trackChange(value) {
+        InnerProcessor.trackSwitcher(value, Controller.tracks);
     }
 
     function logoClicked() {
@@ -56,11 +55,13 @@ var Controller = (function() {
     }
 
     function playClicked() {
-
+        Drawer.pauseButtonDisplay();
+        InputHandler.playClicked();
     }
 
     function pauseClicked() {
-
+        Drawer.playButtonDisplay();
+        InputHandler.pauseClicked();
     }
 
     function nextSongClicked() {
@@ -117,8 +118,11 @@ var Controller = (function() {
         trackDataRouter: trackDataRouter,
         eventListenerRouter: eventListenerRouter,
         onChangeRouter: onChangeRouter,
-        play: play,
-        pause: pause
+        timeRouter: timeRouter,
+        playClicked: playClicked,
+        pauseClicked: pauseClicked,
+        trackChange: trackChange,
+        tracks: {}
     }
 
 })();

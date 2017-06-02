@@ -39,7 +39,7 @@ var Drawer = (function() {
 
         for (let i = 0; i < tracks.length; i++) {
 
-            let time = InnerProcessor.timeManagement(tracks[i].duration);
+            let time = Controller.timeRouter(tracks[i].duration);
 
             var onesongcont = document.createElement('div');
             songbox.appendChild(onesongcont);

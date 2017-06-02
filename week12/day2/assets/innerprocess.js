@@ -16,30 +16,33 @@ var InnerProcessor = (function() {
 
     function eventListenAdder(element, action) {
         element.addEventListener('click', action);
-
     }
 
     function playPause() {
-        // console.log(action);
         console.log(Drawer.audio.paused);
         if (Drawer.audio.paused === false) {
-            // InputHandler.pauseClicked();
-            // Drawer.pauseButtonDisplay(element);
-            // console.log('pauseClicked')
             console.log('pausing');
-            Controller.pause();
+            Controller.pauseClicked();
         }
         else if (Drawer.audio.paused === true) {
-            // InputHandler.playClicked('assets/drift.mp3');
-            // Drawer.playButtonDisplay(element);
-            // console.log('playClicked')
             console.log('playing');
-            Controller.play();
+            Controller.playClicked();
         }
     }
 
-    function audioSource(tracks) {
-        Drawer.audio.setAttribute('src', tracks[0].path);
+    function trackSwitcher(value, tracks) {
+        if (value === 'init') {
+            InnerProcessor.currentSong = 0;
+        } else if (value === -1 && InnerProcessor.currentSong > 0){
+            InnerProcessor.currentSong--;
+        } else if (value === -1 && InnerProcessor.currentSong === 0){
+            InnerProcessor.currentSong = (tracks.length - 1);
+        } else if (value === +1 && InnerProcessor.currentSong < (tracks.length - 1)){
+            InnerProcessor.currentSong++;
+        } else if (value === +1 && InnerProcessor.currentSong === (tracks.length - 1)){
+            InnerProcessor.currentSong = 0;
+        }
+        Drawer.audio.setAttribute('src', tracks[InnerProcessor.currentSong].path);
     }
 
     function onChangeAdder(element, action) {
@@ -71,14 +74,6 @@ var InnerProcessor = (function() {
     }
 
     function previousSongClicked() {
-
-    }
-
-    function playClicked() {
-
-    }
-
-    function pauseClicked() {
 
     }
 
@@ -143,7 +138,8 @@ var InnerProcessor = (function() {
         eventListenAdder: eventListenAdder,
         onChangeAdder: onChangeAdder,
         playPause: playPause,
-        audioSource: audioSource
+        trackSwitcher: trackSwitcher,
+        currentSong: 0
     }
 
 })();
