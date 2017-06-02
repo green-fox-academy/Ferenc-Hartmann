@@ -19,13 +19,10 @@ var InnerProcessor = (function() {
     }
 
     function playPause() {
-        console.log(Drawer.audio.paused);
         if (Drawer.audio.paused === false) {
-            console.log('pausing');
             Controller.pauseClicked();
         }
         else if (Drawer.audio.paused === true) {
-            console.log('playing');
             Controller.playClicked();
         }
     }
@@ -33,20 +30,33 @@ var InnerProcessor = (function() {
     function trackSwitcher(value, tracks) {
         if (value === 'init') {
             InnerProcessor.currentSong = 0;
-        } else if (value === -1 && InnerProcessor.currentSong > 0){
+            Drawer.audio.setAttribute('src', tracks[InnerProcessor.currentSong].path);
+        } else if (value === -1 && InnerProcessor.currentSong > 0) {
             InnerProcessor.currentSong--;
-        } else if (value === -1 && InnerProcessor.currentSong === 0){
+        } else if (value === -1 && InnerProcessor.currentSong === 0) {
             InnerProcessor.currentSong = (tracks.length - 1);
-        } else if (value === +1 && InnerProcessor.currentSong < (tracks.length - 1)){
+        } else if (value === +1 && InnerProcessor.currentSong < (tracks.length - 1)) {
             InnerProcessor.currentSong++;
-        } else if (value === +1 && InnerProcessor.currentSong === (tracks.length - 1)){
+        } else if (value === +1 && InnerProcessor.currentSong === (tracks.length - 1)) {
             InnerProcessor.currentSong = 0;
         }
+
         Drawer.audio.setAttribute('src', tracks[InnerProcessor.currentSong].path);
+    }
+
+    function endChacker() {
+        if (Drawer.audio.ended === true) {
+            Controller.trackChange(+1);
+            playPause();
+        }
     }
 
     function onChangeAdder(element, action) {
         element.onchange = action;
+    }
+
+    function interval() {
+        var interval = setInterval(Controller.intervalCaller, 1000);
     }
 
     function playlistDrawer() {
@@ -139,7 +149,9 @@ var InnerProcessor = (function() {
         onChangeAdder: onChangeAdder,
         playPause: playPause,
         trackSwitcher: trackSwitcher,
-        currentSong: 0
+        currentSong: 0,
+        interval: interval,
+        endChacker: endChacker
     }
 
 })();

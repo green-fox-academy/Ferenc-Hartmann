@@ -6,6 +6,7 @@ var Controller = (function() {
         FrontendServer.getPlaylists();
         FrontendServer.getCurrentTracks();
         Drawer.staticHtmlEventListeners();
+        InnerProcessor.interval();
     }
 
     function playlistDataRouter(playlists) {
@@ -30,8 +31,16 @@ var Controller = (function() {
         return InnerProcessor.timeManagement(duration);
     }
 
+    function intervalCaller() {
+        Drawer.remainTimeDrawer();
+        InnerProcessor.endChacker();
+    }
+
     function trackChange(value) {
         InnerProcessor.trackSwitcher(value, Controller.tracks);
+        Drawer.onesongHighlight();
+        Drawer.totalLengthDrawer();
+        Drawer.remainTimeDrawer();
     }
 
     function logoClicked() {
@@ -122,7 +131,8 @@ var Controller = (function() {
         playClicked: playClicked,
         pauseClicked: pauseClicked,
         trackChange: trackChange,
-        tracks: {}
+        tracks: {},
+        intervalCaller: intervalCaller
     }
 
 })();

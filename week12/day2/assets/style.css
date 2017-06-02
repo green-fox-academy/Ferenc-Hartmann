@@ -486,7 +486,3 @@ input:nth-child(9) {
 audio {
     visibility: hidden;
 }
-
-.selected {
-    background-color: rgb(170, 230, 230);
-}

@@ -33,16 +33,15 @@ var Drawer = (function() {
     function tracklistDrawer(tracks) {
 
         var tracks = tracks;
-        var songbox = document.querySelector('.songbox');
 
-        songbox.innerHTML = '';
+        Drawer.songbox.innerHTML = '';
 
         for (let i = 0; i < tracks.length; i++) {
 
             let time = Controller.timeRouter(tracks[i].duration);
 
             var onesongcont = document.createElement('div');
-            songbox.appendChild(onesongcont);
+            Drawer.songbox.appendChild(onesongcont);
             onesongcont.setAttribute('class', 'onesong');
             Controller.eventListenerRouter(onesongcont, InputHandler.onesongClicked);
 
@@ -64,14 +63,10 @@ var Drawer = (function() {
     }
 
     function staticHtmlEventListeners() {
-        // var audio = document.querySelector('audio');
         var logo = document.querySelector('.logo');
-        // var playButton = document.querySelector('.play');
         var rewind = document.querySelector('.rewind');
         var forward = document.querySelector('.forward');
-        var remaintime = document.querySelector('.remaintime');
         var seekbarInput = document.querySelector('input:nth-child(5)');
-        var totallength = document.querySelector('.totallength');
         var shuffle = document.querySelector('.shuffle');
         var volume = document.querySelector('.volumeimg');
         var volumebarInput = document.querySelector('input:nth-child(9)');
@@ -99,7 +94,27 @@ var Drawer = (function() {
     }
 
     function onesongHighlight() {
+        var rowNumber = InnerProcessor.currentSong + 1;
+        var currentRow = Drawer.songbox.querySelector('div:nth-child(' + rowNumber + ')');
 
+        for (let i = 1; i <= Controller.tracks.length; i++) {
+            if (i % 2 === 1) {
+                Drawer.songbox.querySelector('div:nth-child(' + i + ')').setAttribute('style', 'background-color: rgb(234, 234, 234);')
+            } else if (i % 2 === 0){
+                Drawer.songbox.querySelector('div:nth-child(' + i + ')').setAttribute('style', 'background-color: rgb(245, 245, 245);')
+            }
+        }
+        currentRow.setAttribute('style', 'background-color: rgb(170, 230, 230);')
+    }
+
+    function remainTimeDrawer() {
+        var remaintime = document.querySelector('.remaintime');
+        remaintime.innerHTML = Controller.timeRouter(Controller.tracks[InnerProcessor.currentSong].duration - Math.floor(Drawer.audio.currentTime));
+    }
+
+    function totalLengthDrawer() {
+        var totallength = document.querySelector('.totallength');
+        totallength.innerHTML = Controller.timeRouter(Controller.tracks[InnerProcessor.currentSong].duration);
     }
 
     function favoriteIconHighlight() {
@@ -140,8 +155,12 @@ var Drawer = (function() {
         staticHtmlEventListeners: staticHtmlEventListeners,
         audio: document.querySelector('audio'),
         playButton: document.querySelector('.play'),
+        songbox: document.querySelector('.songbox'),
         pauseButtonDisplay: pauseButtonDisplay,
-        playButtonDisplay: playButtonDisplay
+        playButtonDisplay: playButtonDisplay,
+        onesongHighlight: onesongHighlight,
+        totalLengthDrawer: totalLengthDrawer,
+        remainTimeDrawer: remainTimeDrawer
     }
 
 })();
