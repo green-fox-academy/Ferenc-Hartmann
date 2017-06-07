@@ -1,0 +1,125 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(80, 227, 194);
+}
+
+.positioner {
+    margin-top: 50px;
+}
+
+.maincontainer{
+    margin: auto;
+    height: 550px;
+    width: 465px;
+    border-radius: 5px;
+    background-color: rgb(247, 247, 247);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow:
+    -2px 0px 5px rgb(220, 220, 220),
+    2px 0px 5px rgb(220, 220, 220),
+    0px 3px 10px rgb(180, 180, 180);
+    overflow-y: scroll;
+}
+
+.rowcontainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-family: 'Lato', sans-serif;
+    font-size: 50px;
+    color: rgb(170, 170, 170);
+}
+
+.inputcontainer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.input {
+    height: 50px;
+    width: 300px;
+    font-family: 'Lato', sans-serif;
+    border-style: solid;
+    border-color: rgb(183, 183, 183);
+    border-width: 1px;
+    box-shadow:inset 0 0 5px rgb(183, 183, 183);
+    color: rgb(170, 170, 170);
+    font-size: 26px;
+}
+
+.addbutton {
+    width: 76px;
+    line-height: 50px;
+    background-color: rgb(223, 105, 232);
+    border-style: solid;
+    border-color: rgb(183, 183, 183);
+    border-width: 1px;
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+    font-size: 26px;
+    color: rgb(247, 247, 247);
+    cursor: pointer;
+}
+
+.todorow {
+    margin-top: 10px;
+    min-height: 45px;
+    font-family: 'Lato', sans-serif;
+    font-size: 26px;
+    line-height: 45px;
+    color: rgb(170, 170, 170);
+    display: flex;
+    justify-content: space-between;
+}
+
+.title {
+    width: 300px;
+    overflow-x: hidden;
+}
+
+.delete {
+    margin-top: 5px;
+    width: 40px;
+    height: 40px;
+    background-image: url(images/basket.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.readycheck {
+    margin-top: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 20px;
+    border-style: solid;
+    border-color: rgb(170, 170, 170);
+    background-color: rgb(223, 105, 232);
+    border-width: 1px;
+    background-image: url(images/check.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.uncheck {
+    margin-top: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 20px;
+    border-style: solid;
+    border-color: rgb(170, 170, 170);
+    border-width: 1px;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+
+}
