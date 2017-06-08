@@ -13,9 +13,9 @@ import { TodoComponentComponent } from './todo-component/todo-component.componen
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpModule,
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

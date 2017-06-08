@@ -5,9 +5,15 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './todo-component.component.html',
   styleUrls: ['./todo-component.component.css']
 })
+
 export class TodoComponentComponent implements OnInit {
 
-  items = ['Angular 4', 'Norma', 'Typescript'];
+  constructor() {}
+
+  ngOnInit() {}
+
+  items = ['Angular', 'React', 'Javascript'];
+
   pushItem = function(value) {
     this.items.push(value);
   }
@@ -26,10 +32,4 @@ export class TodoComponentComponent implements OnInit {
       console.log(e.target.className);
     }
   }
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
 }
