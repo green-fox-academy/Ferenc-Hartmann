@@ -3,6 +3,12 @@
 2. Specify the features it will include. (eg. every single features)
 3. Specify how the user will interact with it. (eg. buttons, inputs)
 
+Suggested coding patterns:
+- modul
+- factory
+- revealing modul
+- function constructor
+
 Controller object (Routing Unit)
     Every input and output goes through this object.
     This invokes the functions in other objects.

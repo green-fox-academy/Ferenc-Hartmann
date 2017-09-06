@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Http} from '@angular/http';
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'app-todo-component',
@@ -8,14 +10,41 @@ import { Component, OnInit } from '@angular/core';
 
 export class TodoComponentComponent implements OnInit {
 
-  constructor() {}
+  ngOnInit() {
+    this.getData();
+  }
 
-  ngOnInit() {}
+  items = [];
+  data = {};
 
-  items = ['Angular', 'React', 'Javascript'];
+  constructor(private http: Http) {
+  }
+
+  getData() {
+    return this.http.get('http://localhost:3000/todo_data_get')
+      .map(res => res.json())
+      .subscribe(items => this.items = items);
+  }
+
+
+  logger = function() {
+    console.log(this.items);
+  }
 
   pushItem = function(value) {
-    this.items.push(value);
+    this.data = {};
+    this.data = {
+        'title': value,
+        'status': 0,
+    }
+    this.items.push(this.data);
+    // console.log(this.input.value);
+    this.postData();
+  };
+
+  postData() {
+    return this.http.post('http://localhost:3000/todo_data_post', this.data)
+               .map(req => req.json());
   }
 
   removeItem = function(index) {
