@@ -1,6 +1,7 @@
 'use strict'
 
 const fs = require('fs');
+const cluster = require('cluster');
 
 const FileIO = (function() {
 
@@ -118,7 +119,8 @@ const FileIO = (function() {
     let fullTableLength = fullTable.length;
     let inputDataLength = inputData.length;
     startTimeStamp = new Date();
-    console.log('Compression algorithm started on ' + threads + ' CPU cores.');
+    console.log('Compression algorithm started on ' + threads + ' CPU cores...');
+
     for (let i = 0; i < fullTableLength; i++) {
       fullTableZero[i] = fullTable[i][0];
       fullTableOne[i] = fullTable[i][1];
@@ -126,22 +128,22 @@ const FileIO = (function() {
 
     function workSlicer() {
       let dividedTable = Math.floor(fullTableLength / threads);
-
-      for (let i = 0; i < threads; i++) {
-        if (i !== (threads - 1)) {
-          slicedFullTableZero[i] = fullTableZero.slice((i * dividedTable), ((i + 1) * dividedTable));
-        } else {
-          slicedFullTableZero[i] = fullTableZero.slice((i * dividedTable));
+      let n = 0;
+      if (cluster.isMaster) {
+        for (let i = 0; i < threads; i++) {
+          if (i !== (threads - 1)) {
+            slicedFullTableZero[i] = fullTableZero.slice((i * dividedTable), ((i + 1) * dividedTable));
+          } else {
+            slicedFullTableZero[i] = fullTableZero.slice((i * dividedTable));
+          }
+          let worker = cluster.fork();
         }
-      }
-    };
-    workSlicer()
+        worker.kill();
+     } else {
+     };
 
-    function encoder(j) {
-      if (oneCycleData == fullTableZero[j]) {
-        codedData += fullTableOne[j];
-      }
     }
+    workSlicer();
 
     let i = inputData.length;
     while(i--) {
@@ -152,13 +154,11 @@ const FileIO = (function() {
       }
     }
 
-    // for (let i = 0; i < inputData.length; i++) {
-    //   for (let j = 0; j < fullTable.length; j++) {
-    //     if (inputData[i] == fullTable[j][0]) {
-    //       codedData += fullTable[j][1] + '00';
-    //     }
-    //   }
-    // }
+    function encoder(j) {
+      if (oneCycleData == fullTableZero[j]) {
+        codedData += fullTableOne[j];
+      }
+    }
 
     for (let i = 0; i < fullTable.length; i++) {
       codeSequence += fullTable[i][0].codePointAt().toString(2);
