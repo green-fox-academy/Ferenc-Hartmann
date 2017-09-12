@@ -9,26 +9,35 @@ const FileIO = (function() {
       console.log('Usage: node zipper.js [filename]');
       process.exit(1);
     }
+    console.log('File compression started...');
     fileRead();
   }
 
   function fileRead() {
+    let startTimeStamp;
+    let endTimeStamp;
     let inputData;
     let fileName = process.argv[2];
     let name = fileName.split('.')[0];
+    startTimeStamp = new Date();
 
     fs.readFile(fileName, 'utf8', function(err, data) {
       if (err) throw err;
       inputData = data;
 
+      endTimeStamp = new Date();
+      console.log('fileRead function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
       characterCalc(inputData, fileName);
     });
   }
 
   function characterCalc(inputData, fileName) {
+    let startTimeStamp;
+    let endTimeStamp;
     let keyTable = [];
     let oneKey = [];
     let fullTable = [];
+    startTimeStamp = new Date();
 
     for (let i = 0; i < inputData.length; i++) {
       oneKey = [inputData[i], 1];
@@ -59,12 +68,17 @@ const FileIO = (function() {
     }
 
     fullTable.sort(Comparator);
+    endTimeStamp = new Date();
+    console.log('characterCalc function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
     codeTableBuilder(fullTable, fileName, inputData);
   }
 
   function codeTableBuilder(fullTable, fileName, inputData) {
+    let startTimeStamp;
+    let endTimeStamp;
     let binaryCode = 0;
     let replaceNumber;
+    startTimeStamp = new Date();
 
     for (let i = 0; i < fullTable.length; i++) {
       let counter = 0;
@@ -81,58 +95,74 @@ const FileIO = (function() {
           binaryCode = parseInt(replaceNumber, 2);
         }
       }
-      fullTable[i][1] = binaryCode.toString(2);
+      fullTable[i][1] = binaryCode.toString(2) + '00';
     }
-    console.log(fullTable);
-    BinaryCoder(fullTable, fileName, inputData);
+    endTimeStamp = new Date();
+    console.log('codeTableBuilder function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
+    binaryCoder(fullTable, fileName, inputData);
   }
 
-  function BinaryCoder(fullTable, fileName, inputData) {
+  function binaryCoder(fullTable, fileName, inputData) {
+    let startTimeStamp;
+    let endTimeStamp;
     let codedData = '';
     let codeSequence = '';
+    startTimeStamp = new Date();
 
-    for (let i = 0; i < inputData.length; i++) {
-      for (let j = 0; j < fullTable.length; j++) {
-        if (inputData[i] == fullTable[j][0]) {
-          codedData += fullTable[j][1] + '00';
-        }
+    let k=0;
+    let i = inputData.length;
+    let fullTableMinusOne = fullTable.length - 1;
+    let inputDataMinusOne = inputData.length - 1;
+    function encoder (i, j) {
+      if (inputData[inputDataMinusOne - i] == fullTable[fullTableMinusOne - j][0]) {
+        codedData += fullTable[fullTableMinusOne - j][1];
       }
     }
+
+    while(i--) {
+      let j = fullTable.length;
+      // let oneCycleData = inputData[inputDataMinusOne - i]
+      while(j--) {
+        encoder(i, j);
+      }
+    }
+
+    // for (let i = 0; i < inputData.length; i++) {
+    //   for (let j = 0; j < fullTable.length; j++) {
+    //     if (inputData[i] == fullTable[j][0]) {
+    //       codedData += fullTable[j][1] + '00';
+    //     }
+    //   }
+    // }
 
     for (let i = 0; i < fullTable.length; i++) {
       codeSequence += fullTable[i][0].codePointAt().toString(2);
     }
     codeSequence += '00000000';
 
-    let dataForUtf = codeSequence + codedData;
-    utfCoder(dataForUtf, fileName);
+    let dataToWrite = codeSequence + codedData;
+    endTimeStamp = new Date();
+    console.log('binaryCoder function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
+    fileWrite(dataToWrite, fileName);
   }
 
-  function utfCoder(dataForUtf, fileName) {
-    let fullyCoded = '';
-
-    let hangya = [];
-    for (let i = 0; i < 128; i++) {
-      let code = String.fromCharCode(i);
-      hangya.push(code);
-    }
-
-    for (let i = 1; i <= (dataForUtf.length / 7); i++) {
-      let slicedData = dataForUtf.slice(7 * (i -1), (7 * i));
-      let slicedDecimalData = parseInt(slicedData, 2);
-      fullyCoded += hangya[slicedDecimalData];
-    }
-
-    fileWrite(fullyCoded, fileName)
-  }
-
-  function fileWrite(fullyCoded, name) {
+  function fileWrite(dataToWrite, name) {
+    let startTimeStamp;
+    let endTimeStamp;
     let fileName = name.split(".")[0] + '.zap';
+    let dataInTypedArray = Uint8Array.from(dataToWrite);
+    startTimeStamp = new Date();
 
-    fs.writeFile(fileName, fullyCoded, function(err) {
+    let buffer = new ArrayBuffer(Math.ceil(dataToWrite.length/8));
+    for (let i = 0; i < dataToWrite.length; i++) {
+      buffer[i] = dataToWrite[i];
+    }
+    fs.writeFile(fileName, new Buffer(buffer), function(err) {
       if (err) {
         return console.error(err);
       }
+      endTimeStamp = new Date();
+      console.log('fileWrite function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
       console.log(name + ' file compressed successfully into ' + fileName);
     });
   }
