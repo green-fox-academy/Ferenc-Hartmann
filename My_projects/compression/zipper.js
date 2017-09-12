@@ -118,21 +118,24 @@ const FileIO = (function() {
     let fullTableLength = fullTable.length;
     let inputDataLength = inputData.length;
     startTimeStamp = new Date();
-    console.log('number of CPU cores', threads);
+    console.log('Compression algorithm started on ' + threads + ' CPU cores.');
     for (let i = 0; i < fullTableLength; i++) {
       fullTableZero[i] = fullTable[i][0];
       fullTableOne[i] = fullTable[i][1];
     }
 
-    let dividedTable = Math.floor(fullTableLength / threads);
+    function workSlicer() {
+      let dividedTable = Math.floor(fullTableLength / threads);
 
-    for (let i = 0; i < threads; i++) {
-      if (i !== (threads - 1)) {
-        slicedFullTableZero[i] = fullTableZero.slice((i * dividedTable), ((i + 1) * dividedTable));
-      } else {
-        slicedFullTableZero[i] = fullTableZero.slice((i * dividedTable));
+      for (let i = 0; i < threads; i++) {
+        if (i !== (threads - 1)) {
+          slicedFullTableZero[i] = fullTableZero.slice((i * dividedTable), ((i + 1) * dividedTable));
+        } else {
+          slicedFullTableZero[i] = fullTableZero.slice((i * dividedTable));
+        }
       }
-    }
+    };
+    workSlicer()
 
     function encoder(j) {
       if (oneCycleData == fullTableZero[j]) {
