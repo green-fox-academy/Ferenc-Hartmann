@@ -107,23 +107,45 @@ const FileIO = (function() {
     let endTimeStamp;
     let codedData = '';
     let codeSequence = '';
-    startTimeStamp = new Date();
-
-    let k=0;
-    let i = inputData.length;
+    let oneCycleData;
+    let workerData = [];
     let fullTableMinusOne = fullTable.length - 1;
     let inputDataMinusOne = inputData.length - 1;
-    function encoder (i, j) {
-      if (inputData[inputDataMinusOne - i] == fullTable[fullTableMinusOne - j][0]) {
-        codedData += fullTable[fullTableMinusOne - j][1];
+    let threads = require('os').cpus().length;
+    let fullTableZero = [];
+    let fullTableOne = [];
+    let slicedFullTableZero = [];
+    let fullTableLength = fullTable.length;
+    let inputDataLength = inputData.length;
+    startTimeStamp = new Date();
+    console.log('number of CPU cores', threads);
+    for (let i = 0; i < fullTableLength; i++) {
+      fullTableZero[i] = fullTable[i][0];
+      fullTableOne[i] = fullTable[i][1];
+    }
+
+    let dividedTable = Math.floor(fullTableLength / threads);
+
+    for (let i = 0; i < threads; i++) {
+      if (i !== (threads - 1)) {
+        slicedFullTableZero[i] = fullTableZero.slice((i * dividedTable), ((i + 1) * dividedTable));
+      } else {
+        slicedFullTableZero[i] = fullTableZero.slice((i * dividedTable));
       }
     }
 
+    function encoder(j) {
+      if (oneCycleData == fullTableZero[j]) {
+        codedData += fullTableOne[j];
+      }
+    }
+
+    let i = inputData.length;
     while(i--) {
       let j = fullTable.length;
-      // let oneCycleData = inputData[inputDataMinusOne - i]
+      oneCycleData = inputData[inputDataMinusOne - i]
       while(j--) {
-        encoder(i, j);
+        encoder(j);
       }
     }
 
