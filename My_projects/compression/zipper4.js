@@ -121,54 +121,67 @@ const FileIO = (function() {
     startTimeStamp = new Date();
     console.log('Compression algorithm started on ' + threads + ' CPU cores...');
 
+    let dividedTable = Math.floor(fullTableLength / threads);
+
     for (let i = 0; i < fullTableLength; i++) {
       fullTableZero[i] = fullTable[i][0];
       fullTableOne[i] = fullTable[i][1];
     }
 
-    function workSlicer() {
-      let dividedTable = Math.floor(fullTableLength / threads);
-      let n = 0;
-      if (cluster.isMaster) {
-        for (let i = 0; i < threads; i++) {
-          if (i !== (threads - 1)) {
-            slicedFullTableZero[i] = fullTableZero.slice((i * dividedTable), ((i + 1) * dividedTable));
-          } else {
-            slicedFullTableZero[i] = fullTableZero.slice((i * dividedTable));
-          }
-          let worker = cluster.fork();
+    for (let i = 0; i < threads; i++) {
+      if (i !== (threads - 1)) {
+        slicedFullTableZero[i] = fullTableZero.slice((i * dividedTable), ((i + 1) * dividedTable));
+      } else {
+        slicedFullTableZero[i] = fullTableZero.slice((i * dividedTable));
+      }
+    }
+
+    if (cluster.isMaster) {
+      for (let k = 0; k < threads; k++) {
+        cluster.fork();
+        hangya();
+      }
+      cluster.on('exit', function(worker, code, signal) {
+        console.log("worker " + worker.id + " died");
+        if (Object.keys(cluster.workers).length == 0) {
+          alma();
         }
-        worker.kill();
-     } else {
-     };
-
+      });
     }
-    workSlicer();
 
-    let i = inputData.length;
-    while(i--) {
-      let j = fullTable.length;
-      oneCycleData = inputData[inputDataMinusOne - i]
-      while(j--) {
-        encoder(j);
+    function hangya() {
+      if (cluster.isWorker) {
+        console.log('CLUSTERWORKERID:   ', slicedFullTableZero[cluster.worker.id-1].length);
+        let i = inputData.length;
+        while(i--) {
+          let j = slicedFullTableZero[cluster.worker.id-1].length;
+          oneCycleData = inputData[inputDataMinusOne - i]
+          while(j--) {
+            encoder(j);
+          }
+        }
+
+        function encoder(j) {
+          if (oneCycleData == slicedFullTableZero[cluster.worker.id-1][j]) {
+            codedData += slicedFullTableZero[cluster.worker.id-1][j];
+          }
+        }
+        // console.log(codedData);
+        cluster.worker.kill();
       }
     }
 
-    function encoder(j) {
-      if (oneCycleData == fullTableZero[j]) {
-        codedData += fullTableOne[j];
+    function alma() {
+      for (let i = 0; i < fullTable.length; i++) {
+        codeSequence += fullTable[i][0].codePointAt().toString(2);
       }
-    }
+      codeSequence += '00000000';
 
-    for (let i = 0; i < fullTable.length; i++) {
-      codeSequence += fullTable[i][0].codePointAt().toString(2);
+      let dataToWrite = codeSequence + codedData;
+      endTimeStamp = new Date();
+      console.log('binaryCoder function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
+      fileWrite(dataToWrite, fileName);
     }
-    codeSequence += '00000000';
-
-    let dataToWrite = codeSequence + codedData;
-    endTimeStamp = new Date();
-    console.log('binaryCoder function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
-    fileWrite(dataToWrite, fileName);
   }
 
   function fileWrite(dataToWrite, name) {
@@ -198,4 +211,6 @@ const FileIO = (function() {
 
 })();
 
-FileIO.init();
+if (cluster.isMaster) {
+  FileIO.init();
+}
