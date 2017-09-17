@@ -1,57 +1,44 @@
-var cluster = require('cluster');
-var numCPUs = require('os').cpus().length;
+'use strict'
 
-console.log('ezt neee');
-console.log(cluster);
-if (cluster.isMaster) {
-  for (var i = 0; i < numCPUs; i++) {
-    cluster.fork();
-  }
-  cluster.on('exit', function(worker, code, signal) {
-    console.log("worker " + worker.id + " died");
-    if (Object.keys(cluster.workers).length == 0) {
-      console.log('Csak egy maradt');
-      alma();
+const MultiThreadProcess = (function() {
+
+  function init() {
+
+    const cluster = require('cluster');
+
+    if (cluster.isMaster) {
+      const threads = require('os').cpus().length;
+      let exampleArray = [[0, 1], [1, 1], [2, 1], [3, 1], [4, 1], [5, 1], [6, 1], [7, 1]];
+      let finishedArray = [];
+      for (let i = 0; i < threads; i++) {
+          cluster.fork();
+      }
+
+      cluster.on('exit', function(worker) {
+        finishedArray[worker.id - 1] = exampleArray[worker.id - 1][0] + exampleArray[worker.id - 1][1];
+        if (Object.keys(cluster.workers).length == 0) {
+          multiThreadProcess.singleThreadFunction(finishedArray);
+        }
+      });
+
+    } else if (cluster.isWorker) {
+      cluster.worker.kill();
     }
-  });
-} else if (cluster.isWorker) {
-  cluster.worker.kill();
-  console.log(cluster.worker.id + 'WORKER WORKS');
-}
 
-function alma() {
-  cluster.setupMaster()
-  console.log("egyke");
-  if (cluster.isMaster) {
-    console.log("master ");
   }
-}
+
+  function singleThreadFunction(finishedArray) {
+    cluster.setupMaster()
+    if (cluster.isMaster) {
+      console.log(finishedArray);
+    }
+  }
+
+  return {
+      init: init
+  }
+
+})();
 
 
-// var cluster = require('cluster');
-// var numCPUs = require('os').cpus().length;
-// if (cluster.isMaster) {
-//   for (var i = 0; i < numCPUs; i++) {
-//     cluster.fork();
-//   }
-//   cluster.on('exit', function(worker, code, signal) {
-//     console.log("worker " + worker.id + " died");
-//     if (worker.id == numCPUs) {
-//       alma();
-//     }
-//   });
-// } else if (cluster.isWorker) {
-//   cluster.worker.kill();
-//   console.log(cluster.worker.id);
-//
-// } else if (cluster.isMaster) {
-//   console.log("master ");
-// }
-//
-// function alma() {
-//   cluster.setupMaster()
-//   console.log("egyke");
-//   if (cluster.isMaster) {
-//     console.log("master ");
-//   }
-// }
+MultiThreadProcess.init();
