@@ -129,6 +129,7 @@ const MultiThreadProcess = (function() {
       let fullTableZero = [];
       let fullTableOne = [];
       let slicedFullTableZero = [];
+      let slicedFullTableOne = [];
       let fullTableLength = fullTable.length;
       let inputDataLength = inputData.length;
       startTimeStamp = new Date();
@@ -145,25 +146,32 @@ const MultiThreadProcess = (function() {
         for (let i = 0; i < threads; i++) {
           if (i !== (threads - 1)) {
             slicedFullTableZero[i] = fullTableZero.slice((i * dividedTable), ((i + 1) * dividedTable));
+            slicedFullTableOne[i] = fullTableOne.slice((i * dividedTable), ((i + 1) * dividedTable));
           } else {
             slicedFullTableZero[i] = fullTableZero.slice((i * dividedTable));
+            slicedFullTableOne[i] = fullTableOne.slice((i * dividedTable));
           }
         }
       }
       workSlicer();
 
-      function encoder(j) {
-        if (oneCycleData == fullTableZero[j]) {
-          codedData += fullTableOne[j];
-        }
-      }
 
-      let i = inputData.length;
-      while(i--) {
-        let j = fullTable.length;
-        oneCycleData = inputData[inputDataMinusOne - i]
-        while(j--) {
-          encoder(j);
+      // This loop's one cycle should be done in each CPU core
+      for (let x = 0; x < threads; x++) {
+
+        function encoder(j) {
+          if (oneCycleData == slicedFullTableZero[x][j]) {
+            codedData += slicedFullTableOne[x][j];
+          }
+        }
+
+        let i = inputData.length;
+        while(i--) {
+          let j = slicedFullTableZero[x].length;
+          oneCycleData = inputData[inputDataMinusOne - i]
+          while(j--) {
+            encoder(j);
+          }
         }
       }
 
@@ -174,13 +182,17 @@ const MultiThreadProcess = (function() {
 
       dataToWrite = codeSequence + codedData;
       endTimeStamp = new Date();
+
       console.log('binaryCoder function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
 
       cluster.on('exit', function(worker) {
         finishedArray[worker.id - 1] = exampleArray[worker.id - 1][0] + exampleArray[worker.id - 1][1];
+
+
         if (Object.keys(cluster.workers).length == 0) {
           MultiThreadProcess.singleThreadFunction(cluster, fs, finishedArray, dataToWrite);
         }
+
       });
 
       for (let i = 0; i < threads; i++) {
@@ -197,6 +209,7 @@ const MultiThreadProcess = (function() {
   function singleThreadFunction(cluster, fs, finishedArray, dataToWrite) {
     cluster.setupMaster()
     if (cluster.isMaster) {
+      console.log(finishedArray);
       function fileWrite(dataToWrite) {
         let startTimeStamp;
         let endTimeStamp;
