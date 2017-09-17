@@ -17,19 +17,20 @@ const MultiThreadProcess = (function() {
     const threads = require('os').cpus().length;
     let exampleArray = [[0, 1], [1, 1], [2, 1], [3, 1], [4, 1], [5, 1], [6, 1], [7, 1]];
     let finishedArray = [];
+    let dataToWrite;
 
     if (process.argv.length < 3) {
       console.log('Usage: node zipper.js [filename]');
       process.exit(1);
     }
     console.log('File compression started...');
+    let fileName = process.argv[2];
     fileRead();
 
     function fileRead() {
       let startTimeStamp;
       let endTimeStamp;
       let inputData;
-      let fileName = process.argv[2];
       let name = fileName.split('.')[0];
       startTimeStamp = new Date();
 
@@ -39,11 +40,11 @@ const MultiThreadProcess = (function() {
 
         endTimeStamp = new Date();
         console.log('fileRead function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
-        characterCalc(inputData, fileName);
+        characterCalc(inputData);
       });
     }
 
-    function characterCalc(inputData, fileName) {
+    function characterCalc(inputData) {
       let startTimeStamp;
       let endTimeStamp;
       let keyTable = [];
@@ -82,10 +83,10 @@ const MultiThreadProcess = (function() {
       fullTable.sort(Comparator);
       endTimeStamp = new Date();
       console.log('characterCalc function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
-      codeTableBuilder(fullTable, fileName, inputData);
+      codeTableBuilder(fullTable, inputData);
     }
 
-    function codeTableBuilder(fullTable, fileName, inputData) {
+    function codeTableBuilder(fullTable, inputData) {
       let startTimeStamp;
       let endTimeStamp;
       let binaryCode = 0;
@@ -111,10 +112,11 @@ const MultiThreadProcess = (function() {
       }
       endTimeStamp = new Date();
       console.log('codeTableBuilder function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
-      binaryCoder(fullTable, fileName, inputData);
+      binaryCoder(fullTable, inputData);
+
     }
 
-    function binaryCoder(fullTable, fileName, inputData) {
+    function binaryCoder(fullTable, inputData) {
       let startTimeStamp;
       let endTimeStamp;
       let codedData = '';
@@ -131,6 +133,7 @@ const MultiThreadProcess = (function() {
       let inputDataLength = inputData.length;
       startTimeStamp = new Date();
       console.log('Compression algorithm started on ' + threads + ' CPU cores.');
+
       for (let i = 0; i < fullTableLength; i++) {
         fullTableZero[i] = fullTable[i][0];
         fullTableOne[i] = fullTable[i][1];
@@ -146,8 +149,8 @@ const MultiThreadProcess = (function() {
             slicedFullTableZero[i] = fullTableZero.slice((i * dividedTable));
           }
         }
-      };
-      workSlicer()
+      }
+      workSlicer();
 
       function encoder(j) {
         if (oneCycleData == fullTableZero[j]) {
@@ -167,56 +170,54 @@ const MultiThreadProcess = (function() {
       for (let i = 0; i < fullTable.length; i++) {
         codeSequence += fullTable[i][0].codePointAt().toString(2);
       }
-      codeSequence += '00000000';
+      codeSequence += '000000000000000000000000';
 
-      let dataToWrite = codeSequence + codedData;
+      dataToWrite = codeSequence + codedData;
       endTimeStamp = new Date();
       console.log('binaryCoder function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
-      fileWrite(dataToWrite, fileName);
-    }
 
-    function fileWrite(dataToWrite, name) {
-      let startTimeStamp;
-      let endTimeStamp;
-      let fileName = name.split(".")[0] + '.zap';
-      let dataInTypedArray = Uint8Array.from(dataToWrite);
-      startTimeStamp = new Date();
-
-      let buffer = new ArrayBuffer(Math.ceil(dataToWrite.length/8));
-      for (let i = 0; i < dataToWrite.length; i++) {
-        buffer[i] = dataToWrite[i];
-      }
-      fs.writeFile(fileName, new Buffer(buffer), function(err) {
-        if (err) {
-          return console.error(err);
+      cluster.on('exit', function(worker) {
+        finishedArray[worker.id - 1] = exampleArray[worker.id - 1][0] + exampleArray[worker.id - 1][1];
+        if (Object.keys(cluster.workers).length == 0) {
+          MultiThreadProcess.singleThreadFunction(cluster, fs, finishedArray, dataToWrite);
         }
-        endTimeStamp = new Date();
-        console.log('fileWrite function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
-        console.log(name + ' file compressed successfully into ' + fileName);
       });
-    }
 
-
-    cluster.on('exit', function(worker) {
-      finishedArray[worker.id - 1] = exampleArray[worker.id - 1][0] + exampleArray[worker.id - 1][1];
-      if (Object.keys(cluster.workers).length == 0) {
-        MultiThreadProcess.singleThreadFunction(cluster, finishedArray);
+      for (let i = 0; i < threads; i++) {
+          cluster.fork();
       }
-    });
-
-    for (let i = 0; i < threads; i++) {
-        cluster.fork();
     }
+
   }
 
   function workerProcess(cluster) {
     cluster.worker.kill();
   }
 
-  function singleThreadFunction(cluster, finishedArray) {
+  function singleThreadFunction(cluster, fs, finishedArray, dataToWrite) {
     cluster.setupMaster()
     if (cluster.isMaster) {
-      console.log(finishedArray);
+      function fileWrite(dataToWrite) {
+        let startTimeStamp;
+        let endTimeStamp;
+        let fileName = process.argv[2].split(".")[0] + '.zap';
+        let dataInTypedArray = Uint8Array.from(dataToWrite);
+        startTimeStamp = new Date();
+
+        let buffer = new ArrayBuffer(Math.ceil(dataToWrite.length/8));
+        for (let i = 0; i < dataToWrite.length; i++) {
+          buffer[i] = dataToWrite[i];
+        }
+        fs.writeFile(fileName, new Buffer(buffer), function(err) {
+          if (err) {
+            return console.error(err);
+          }
+          endTimeStamp = new Date();
+          console.log('fileWrite function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
+          console.log(process.argv[2] + ' file compressed successfully into ' + fileName);
+        });
+      }
+      fileWrite(dataToWrite);
     }
   }
 
