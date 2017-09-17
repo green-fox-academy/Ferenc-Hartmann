@@ -111,9 +111,90 @@ const MultiThreadProcess = (function() {
       }
       endTimeStamp = new Date();
       console.log('codeTableBuilder function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
-      // binaryCoder(fullTable, fileName, inputData);
+      binaryCoder(fullTable, fileName, inputData);
     }
 
+    function binaryCoder(fullTable, fileName, inputData) {
+      let startTimeStamp;
+      let endTimeStamp;
+      let codedData = '';
+      let codeSequence = '';
+      let oneCycleData;
+      let workerData = [];
+      let fullTableMinusOne = fullTable.length - 1;
+      let inputDataMinusOne = inputData.length - 1;
+      let threads = require('os').cpus().length;
+      let fullTableZero = [];
+      let fullTableOne = [];
+      let slicedFullTableZero = [];
+      let fullTableLength = fullTable.length;
+      let inputDataLength = inputData.length;
+      startTimeStamp = new Date();
+      console.log('Compression algorithm started on ' + threads + ' CPU cores.');
+      for (let i = 0; i < fullTableLength; i++) {
+        fullTableZero[i] = fullTable[i][0];
+        fullTableOne[i] = fullTable[i][1];
+      }
+
+      function workSlicer() {
+        let dividedTable = Math.floor(fullTableLength / threads);
+
+        for (let i = 0; i < threads; i++) {
+          if (i !== (threads - 1)) {
+            slicedFullTableZero[i] = fullTableZero.slice((i * dividedTable), ((i + 1) * dividedTable));
+          } else {
+            slicedFullTableZero[i] = fullTableZero.slice((i * dividedTable));
+          }
+        }
+      };
+      workSlicer()
+
+      function encoder(j) {
+        if (oneCycleData == fullTableZero[j]) {
+          codedData += fullTableOne[j];
+        }
+      }
+
+      let i = inputData.length;
+      while(i--) {
+        let j = fullTable.length;
+        oneCycleData = inputData[inputDataMinusOne - i]
+        while(j--) {
+          encoder(j);
+        }
+      }
+
+      for (let i = 0; i < fullTable.length; i++) {
+        codeSequence += fullTable[i][0].codePointAt().toString(2);
+      }
+      codeSequence += '00000000';
+
+      let dataToWrite = codeSequence + codedData;
+      endTimeStamp = new Date();
+      console.log('binaryCoder function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
+      fileWrite(dataToWrite, fileName);
+    }
+
+    function fileWrite(dataToWrite, name) {
+      let startTimeStamp;
+      let endTimeStamp;
+      let fileName = name.split(".")[0] + '.zap';
+      let dataInTypedArray = Uint8Array.from(dataToWrite);
+      startTimeStamp = new Date();
+
+      let buffer = new ArrayBuffer(Math.ceil(dataToWrite.length/8));
+      for (let i = 0; i < dataToWrite.length; i++) {
+        buffer[i] = dataToWrite[i];
+      }
+      fs.writeFile(fileName, new Buffer(buffer), function(err) {
+        if (err) {
+          return console.error(err);
+        }
+        endTimeStamp = new Date();
+        console.log('fileWrite function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
+        console.log(name + ' file compressed successfully into ' + fileName);
+      });
+    }
 
 
     cluster.on('exit', function(worker) {
