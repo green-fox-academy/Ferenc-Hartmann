@@ -5,6 +5,7 @@ const MultiThreadProcess = (function() {
   function init() {
 
     const cluster = require('cluster');
+    const fs = require('fs');
 
     if (cluster.isMaster) {
       const threads = require('os').cpus().length;
@@ -17,7 +18,7 @@ const MultiThreadProcess = (function() {
       cluster.on('exit', function(worker) {
         finishedArray[worker.id - 1] = exampleArray[worker.id - 1][0] + exampleArray[worker.id - 1][1];
         if (Object.keys(cluster.workers).length == 0) {
-          multiThreadProcess.singleThreadFunction(finishedArray);
+          MultiThreadProcess.singleThreadFunction(cluster, finishedArray);
         }
       });
 
@@ -27,7 +28,7 @@ const MultiThreadProcess = (function() {
 
   }
 
-  function singleThreadFunction(finishedArray) {
+  function singleThreadFunction(cluster, finishedArray) {
     cluster.setupMaster()
     if (cluster.isMaster) {
       console.log(finishedArray);
@@ -35,7 +36,8 @@ const MultiThreadProcess = (function() {
   }
 
   return {
-      init: init
+      init: init,
+      singleThreadFunction: singleThreadFunction
   }
 
 })();
