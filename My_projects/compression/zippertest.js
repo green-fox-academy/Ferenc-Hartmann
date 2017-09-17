@@ -15,9 +15,14 @@ const MultiThreadProcess = (function() {
 
   function masterProcess(cluster, fs) {
     const threads = require('os').cpus().length;
-    let exampleArray = [[0, 1], [1, 1], [2, 1], [3, 1], [4, 1], [5, 1], [6, 1], [7, 1]];
-    let finishedArray = [];
     let dataToWrite;
+    let slicedFullTableZero = [];
+    let slicedFullTableOne = [];
+    let codedArray = [];
+    let codedData = '';
+    let inputData;
+    let inputDataMinusOne;
+    let fullTable = [];
 
     if (process.argv.length < 3) {
       console.log('Usage: node zipper.js [filename]');
@@ -30,7 +35,6 @@ const MultiThreadProcess = (function() {
     function fileRead() {
       let startTimeStamp;
       let endTimeStamp;
-      let inputData;
       let name = fileName.split('.')[0];
       startTimeStamp = new Date();
 
@@ -49,7 +53,6 @@ const MultiThreadProcess = (function() {
       let endTimeStamp;
       let keyTable = [];
       let oneKey = [];
-      let fullTable = [];
       startTimeStamp = new Date();
 
       for (let i = 0; i < inputData.length; i++) {
@@ -83,10 +86,10 @@ const MultiThreadProcess = (function() {
       fullTable.sort(Comparator);
       endTimeStamp = new Date();
       console.log('characterCalc function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
-      codeTableBuilder(fullTable, inputData);
+      codeTableBuilder(inputData);
     }
 
-    function codeTableBuilder(fullTable, inputData) {
+    function codeTableBuilder(inputData) {
       let startTimeStamp;
       let endTimeStamp;
       let binaryCode = 0;
@@ -112,24 +115,21 @@ const MultiThreadProcess = (function() {
       }
       endTimeStamp = new Date();
       console.log('codeTableBuilder function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
-      binaryCoder(fullTable, inputData);
+      binaryCoder(inputData);
 
     }
 
-    function binaryCoder(fullTable, inputData) {
+    function binaryCoder(inputData) {
       let startTimeStamp;
       let endTimeStamp;
-      let codedData = '';
       let codeSequence = '';
       let oneCycleData;
       let workerData = [];
       let fullTableMinusOne = fullTable.length - 1;
-      let inputDataMinusOne = inputData.length - 1;
+      inputDataMinusOne = inputData.length - 1;
       let threads = require('os').cpus().length;
       let fullTableZero = [];
       let fullTableOne = [];
-      let slicedFullTableZero = [];
-      let slicedFullTableOne = [];
       let fullTableLength = fullTable.length;
       let inputDataLength = inputData.length;
       startTimeStamp = new Date();
@@ -157,40 +157,48 @@ const MultiThreadProcess = (function() {
 
 
       // This loop's one cycle should be done in each CPU core
-      for (let x = 0; x < threads; x++) {
+      // for (let x = 0; x < threads; x++) {
+      //
+      //   function encoder(j) {
+      //     if (oneCycleData == slicedFullTableZero[x][j]) {
+      //       codedData += slicedFullTableOne[x][j];
+      //     }
+      //   }
+      //
+      //   let i = inputData.length;
+      //   while(i--) {
+      //     let j = slicedFullTableZero[x].length;
+      //     oneCycleData = inputData[inputDataMinusOne - i]
+      //     while(j--) {
+      //       encoder(j);
+      //     }
+      //   }
+      // }
 
-        function encoder(j) {
-          if (oneCycleData == slicedFullTableZero[x][j]) {
-            codedData += slicedFullTableOne[x][j];
-          }
-        }
-
-        let i = inputData.length;
-        while(i--) {
-          let j = slicedFullTableZero[x].length;
-          oneCycleData = inputData[inputDataMinusOne - i]
-          while(j--) {
-            encoder(j);
-          }
-        }
-      }
-
-      for (let i = 0; i < fullTable.length; i++) {
-        codeSequence += fullTable[i][0].codePointAt().toString(2);
-      }
-      codeSequence += '000000000000000000000000';
-
-      dataToWrite = codeSequence + codedData;
       endTimeStamp = new Date();
 
       console.log('binaryCoder function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
 
       cluster.on('exit', function(worker) {
-        finishedArray[worker.id - 1] = exampleArray[worker.id - 1][0] + exampleArray[worker.id - 1][1];
-
-
+        console.log(worker.id);
+        let i = inputData.length;
+        let tempCodedData = '';
+        while(i--) {
+          let j = slicedFullTableZero[worker.id - 1].length;
+          oneCycleData = inputData[inputDataMinusOne - i]
+          while(j--) {
+            encoder(j);
+          }
+        }
+        function encoder(j) {
+          if (oneCycleData == slicedFullTableZero[worker.id - 1][j]) {
+            tempCodedData += slicedFullTableOne[worker.id - 1][j];
+          }
+        }
+        codedArray[worker.id - 1] = tempCodedData;
+        codedData = codedArray.join('');
         if (Object.keys(cluster.workers).length == 0) {
-          MultiThreadProcess.singleThreadFunction(cluster, fs, finishedArray, dataToWrite);
+          MultiThreadProcess.singleThreadFunction(cluster, fs, codedData, fullTable);
         }
 
       });
@@ -206,16 +214,23 @@ const MultiThreadProcess = (function() {
     cluster.worker.kill();
   }
 
-  function singleThreadFunction(cluster, fs, finishedArray, dataToWrite) {
+  function singleThreadFunction(cluster, fs, codedData, fullTable) {
     cluster.setupMaster()
     if (cluster.isMaster) {
-      console.log(finishedArray);
-      function fileWrite(dataToWrite) {
+      function fileWrite(codedData) {
         let startTimeStamp;
         let endTimeStamp;
         let fileName = process.argv[2].split(".")[0] + '.zap';
-        let dataInTypedArray = Uint8Array.from(dataToWrite);
+        let codeSequence;
         startTimeStamp = new Date();
+
+        for (let i = 0; i < fullTable.length; i++) {
+          codeSequence += fullTable[i][0].codePointAt().toString(2);
+        }
+        codeSequence += '000000000000000000000000';
+
+        let dataToWrite = codeSequence + codedData;
+        let dataInTypedArray = Uint8Array.from(dataToWrite);
 
         let buffer = new ArrayBuffer(Math.ceil(dataToWrite.length/8));
         for (let i = 0; i < dataToWrite.length; i++) {
@@ -230,7 +245,7 @@ const MultiThreadProcess = (function() {
           console.log(process.argv[2] + ' file compressed successfully into ' + fileName);
         });
       }
-      fileWrite(dataToWrite);
+      fileWrite(codedData);
     }
   }
 
