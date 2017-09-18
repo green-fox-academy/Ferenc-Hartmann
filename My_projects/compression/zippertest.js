@@ -21,7 +21,6 @@ const MultiThreadProcess = (function() {
     let codedArray = [];
     let codedData = '';
     let inputData;
-    let inputDataMinusOne;
     let fullTable = [];
 
     if (process.argv.length < 3) {
@@ -123,10 +122,8 @@ const MultiThreadProcess = (function() {
       let startTimeStamp;
       let endTimeStamp;
       let codeSequence = '';
-      let oneCycleData;
       let workerData = [];
       let fullTableMinusOne = fullTable.length - 1;
-      inputDataMinusOne = inputData.length - 1;
       let threads = require('os').cpus().length;
       let fullTableZero = [];
       let fullTableOne = [];
@@ -155,62 +152,57 @@ const MultiThreadProcess = (function() {
       }
       workSlicer();
 
-
-      // This loop's one cycle should be done in each CPU core
-      // for (let x = 0; x < threads; x++) {
-      //
-      //   function encoder(j) {
-      //     if (oneCycleData == slicedFullTableZero[x][j]) {
-      //       codedData += slicedFullTableOne[x][j];
-      //     }
-      //   }
-      //
-      //   let i = inputData.length;
-      //   while(i--) {
-      //     let j = slicedFullTableZero[x].length;
-      //     oneCycleData = inputData[inputDataMinusOne - i]
-      //     while(j--) {
-      //       encoder(j);
-      //     }
-      //   }
-      // }
-
       endTimeStamp = new Date();
 
       console.log('binaryCoder function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
 
+      // Receive messages from cluster and handle them in the master process.
+      cluster.on('message', function(worker, msg) {
+        codedArray[worker.id - 1] = msg.tempCodedData;
+      });
+
+      // If any worker dies this process starts.
       cluster.on('exit', function(worker) {
-        console.log(worker.id);
-        let i = inputData.length;
-        let tempCodedData = '';
-        while(i--) {
-          let j = slicedFullTableZero[worker.id - 1].length;
-          oneCycleData = inputData[inputDataMinusOne - i]
-          while(j--) {
-            encoder(j);
-          }
-        }
-        function encoder(j) {
-          if (oneCycleData == slicedFullTableZero[worker.id - 1][j]) {
-            tempCodedData += slicedFullTableOne[worker.id - 1][j];
-          }
-        }
-        codedArray[worker.id - 1] = tempCodedData;
-        codedData = codedArray.join('');
         if (Object.keys(cluster.workers).length == 0) {
+          codedData = codedArray.join('');
           MultiThreadProcess.singleThreadFunction(cluster, fs, codedData, fullTable);
         }
-
       });
 
       for (let i = 0; i < threads; i++) {
-          cluster.fork();
+          let worker = cluster.fork();
+
+          // Send a message from the master process to the worker.
+          worker.send({zeroArray: slicedFullTableZero[worker.id - 1], oneArray: slicedFullTableOne[worker.id - 1], inputData: inputData});
       }
     }
 
   }
 
   function workerProcess(cluster) {
+    process.on('message', function(msg) {
+      let i = msg.inputData.length;
+      let tempCodedData = '';
+      let oneCycleData;
+      let inputDataMinusOne = msg.inputData.length - 1;
+      console.log('msg.inputData   ' + msg.inputData);
+      while(i--) {
+        let j = msg.zeroArray.length;
+        oneCycleData = msg.inputData[inputDataMinusOne - i]
+        while(j--) {
+          encoder(j);
+        }
+      }
+      function encoder(j) {
+        if (oneCycleData == msg.zeroArray[j]) {
+          tempCodedData += msg.oneArray[j];
+        }
+      }
+      console.log('tempCodedData   ' + tempCodedData);
+      // Send message to master process.
+      process.send({tempCodedData: tempCodedData})
+    });
+
     cluster.worker.kill();
   }
 
@@ -221,15 +213,15 @@ const MultiThreadProcess = (function() {
         let startTimeStamp;
         let endTimeStamp;
         let fileName = process.argv[2].split(".")[0] + '.zap';
-        let codeSequence;
+        let codeSequence = '';
         startTimeStamp = new Date();
 
         for (let i = 0; i < fullTable.length; i++) {
           codeSequence += fullTable[i][0].codePointAt().toString(2);
         }
         codeSequence += '000000000000000000000000';
-
         let dataToWrite = codeSequence + codedData;
+        console.log(dataToWrite);
         let dataInTypedArray = Uint8Array.from(dataToWrite);
 
         let buffer = new ArrayBuffer(Math.ceil(dataToWrite.length/8));
