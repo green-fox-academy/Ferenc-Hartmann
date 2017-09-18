@@ -12,17 +12,29 @@ const MultiThreadProcess = (function() {
       let exampleArray = [[0, 1], [1, 1], [2, 1], [3, 1], [4, 1], [5, 1], [6, 1], [7, 1]];
       let finishedArray = [];
       for (let i = 0; i < threads; i++) {
-          cluster.fork();
+          let worker = cluster.fork();
+
+          // Send a message from the master process to the worker.
+          worker.send({oneArray: exampleArray[worker.id -1]});
       }
 
+      // If any worker exit this process starts.
       cluster.on('exit', function(worker) {
-        finishedArray[worker.id - 1] = exampleArray[worker.id - 1][0] + exampleArray[worker.id - 1][1];
         if (Object.keys(cluster.workers).length == 0) {
           MultiThreadProcess.singleThreadFunction(cluster, finishedArray);
         }
       });
 
+      // Receive messages from cluster and handle them in the master process.
+      cluster.on('message', function(worker, msg) {
+        finishedArray[worker.id -1] = msg.oneNumber;
+      });
+
     } else if (cluster.isWorker) {
+      process.on('message', function(msg) {
+        let oneNumber = msg.oneArray[0] + msg.oneArray[1];
+        process.send({oneNumber: oneNumber})
+      });
       cluster.worker.kill();
     }
 
