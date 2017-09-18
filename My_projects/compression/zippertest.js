@@ -119,8 +119,6 @@ const MultiThreadProcess = (function() {
     }
 
     function binaryCoder(inputData) {
-      let startTimeStamp;
-      let endTimeStamp;
       let codeSequence = '';
       let workerData = [];
       let fullTableMinusOne = fullTable.length - 1;
@@ -129,13 +127,13 @@ const MultiThreadProcess = (function() {
       let fullTableOne = [];
       let fullTableLength = fullTable.length;
       let inputDataLength = inputData.length;
-      startTimeStamp = new Date();
       console.log('Compression algorithm started on ' + threads + ' CPU cores.');
 
       for (let i = 0; i < fullTableLength; i++) {
         fullTableZero[i] = fullTable[i][0];
         fullTableOne[i] = fullTable[i][1];
       }
+console.log(fullTableOne[1000]);
 
       function workSlicer() {
         let dividedTable = Math.floor(fullTableLength / threads);
@@ -152,11 +150,7 @@ const MultiThreadProcess = (function() {
       }
       workSlicer();
 
-      endTimeStamp = new Date();
-
-      console.log('binaryCoder function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
-
-      // Receive messages from cluster and handle them in the master process.
+      // Receive messages from worker and handle them in the master process.
       cluster.on('message', function(worker, msg) {
         codedArray[worker.id - 1] = msg.tempCodedData;
       });
@@ -181,11 +175,14 @@ const MultiThreadProcess = (function() {
 
   function workerProcess(cluster) {
     process.on('message', function(msg) {
+      let startTimeStamp;
+      let endTimeStamp;
       let i = msg.inputData.length;
       let tempCodedData = '';
       let oneCycleData;
       let inputDataMinusOne = msg.inputData.length - 1;
-      console.log('msg.inputData   ' + msg.inputData);
+      startTimeStamp = new Date();
+
       while(i--) {
         let j = msg.zeroArray.length;
         oneCycleData = msg.inputData[inputDataMinusOne - i]
@@ -198,7 +195,13 @@ const MultiThreadProcess = (function() {
           tempCodedData += msg.oneArray[j];
         }
       }
-      console.log('tempCodedData   ' + tempCodedData);
+// console.log(cluster.worker.id + '   ' + msg.zeroArray)
+console.log(msg.inputData.length)
+console.log(msg.zeroArray[249])
+console.log(msg.oneArray[249])
+      endTimeStamp = new Date();
+      console.log('binaryCoder function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
+
       // Send message to master process.
       process.send({tempCodedData: tempCodedData})
     });
@@ -215,15 +218,13 @@ const MultiThreadProcess = (function() {
         let fileName = process.argv[2].split(".")[0] + '.zap';
         let codeSequence = '';
         startTimeStamp = new Date();
-
         for (let i = 0; i < fullTable.length; i++) {
           codeSequence += fullTable[i][0].codePointAt().toString(2);
         }
+        console.log('fulltable', fullTable.length);
         codeSequence += '000000000000000000000000';
         let dataToWrite = codeSequence + codedData;
-        console.log(dataToWrite);
         let dataInTypedArray = Uint8Array.from(dataToWrite);
-
         let buffer = new ArrayBuffer(Math.ceil(dataToWrite.length/8));
         for (let i = 0; i < dataToWrite.length; i++) {
           buffer[i] = dataToWrite[i];
