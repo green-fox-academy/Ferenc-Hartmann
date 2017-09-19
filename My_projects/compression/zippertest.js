@@ -16,8 +16,7 @@ const MultiThreadProcess = (function() {
   function masterProcess(cluster, fs) {
     const threads = require('os').cpus().length;
     let dataToWrite;
-    let slicedFullTableZero = [];
-    let slicedFullTableOne = [];
+    let slicedInputData = [];
     let codedArray = [];
     let codedData = '';
     let inputData;
@@ -133,41 +132,43 @@ const MultiThreadProcess = (function() {
         fullTableZero[i] = fullTable[i][0];
         fullTableOne[i] = fullTable[i][1];
       }
-console.log(fullTableOne[1000]);
 
       function workSlicer() {
-        let dividedTable = Math.floor(fullTableLength / threads);
+        let dividedTable = Math.floor(inputDataLength / threads);
 
         for (let i = 0; i < threads; i++) {
           if (i !== (threads - 1)) {
-            slicedFullTableZero[i] = fullTableZero.slice((i * dividedTable), ((i + 1) * dividedTable));
-            slicedFullTableOne[i] = fullTableOne.slice((i * dividedTable), ((i + 1) * dividedTable));
+            slicedInputData[i] = inputData.slice((i * dividedTable), ((i + 1) * dividedTable));
           } else {
-            slicedFullTableZero[i] = fullTableZero.slice((i * dividedTable));
-            slicedFullTableOne[i] = fullTableOne.slice((i * dividedTable));
+            slicedInputData[i] = inputData.slice((i * dividedTable));
           }
+// console.log('slicedinputdata length', slicedInputData[i].length);
         }
-      }
-      workSlicer();
+      };
+      workSlicer()
 
       // Receive messages from worker and handle them in the master process.
       cluster.on('message', function(worker, msg) {
         codedArray[worker.id - 1] = msg.tempCodedData;
+// console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX codedArray[worker.id - 1] length', codedArray[worker.id - 1].length);
       });
 
       // If any worker dies this process starts.
-      cluster.on('exit', function(worker) {
+      cluster.on('exit', function(worker, msg) {
+// console.log('worker number', Object.keys(cluster.workers).length);
+
         if (Object.keys(cluster.workers).length == 0) {
           codedData = codedArray.join('');
           MultiThreadProcess.singleThreadFunction(cluster, fs, codedData, fullTable);
         }
       });
+// console.log('inputdata length', inputData.length);
 
       for (let i = 0; i < threads; i++) {
           let worker = cluster.fork();
 
           // Send a message from the master process to the worker.
-          worker.send({zeroArray: slicedFullTableZero[worker.id - 1], oneArray: slicedFullTableOne[worker.id - 1], inputData: inputData});
+          worker.send({fullTableOne: fullTableOne, fullTableZero: fullTableZero, slicedInputData: slicedInputData[worker.id - 1]});
       }
     }
 
@@ -177,36 +178,45 @@ console.log(fullTableOne[1000]);
     process.on('message', function(msg) {
       let startTimeStamp;
       let endTimeStamp;
-      let i = msg.inputData.length;
+      let i = msg.slicedInputData.length;
       let tempCodedData = '';
       let oneCycleData;
-      let inputDataMinusOne = msg.inputData.length - 1;
+      let slicedInputDataMinusOne = msg.slicedInputData.length - 1;
       startTimeStamp = new Date();
+console.log('msg.slicedInputData.length  ', msg.slicedInputData.length);
+console.log('msg.fullTableOne.length  ', msg.fullTableOne.length);
+console.log('msg.fullTableZero 10  ', msg.fullTableZero[10]);
+console.log('msg.fullTableZero.length  ', msg.fullTableZero.length);
+console.log('tempCodedData length', tempCodedData.length);
+let p = 0;
+let v = 0;
+
+      function encoder(j) {
+        if (oneCycleData === msg.fullTableZero[j]) {
+          v +=1;
+          tempCodedData += msg.fullTableOne[j];
+        }
+      }
 
       while(i--) {
-        let j = msg.zeroArray.length;
-        oneCycleData = msg.inputData[inputDataMinusOne - i]
+p +=1;
+        let j = msg.fullTableOne.length;
+        oneCycleData = msg.slicedInputData[slicedInputDataMinusOne - i];
         while(j--) {
-          encoder(j);
+          encoder(j)
         }
       }
-      function encoder(j) {
-        if (oneCycleData == msg.zeroArray[j]) {
-          tempCodedData += msg.oneArray[j];
-        }
-      }
-// console.log(cluster.worker.id + '   ' + msg.zeroArray)
-console.log(msg.inputData.length)
-console.log(msg.zeroArray[249])
-console.log(msg.oneArray[249])
+console.log('i  ', p);
+console.log('j  ', v);
+      // console.log(cluster.worker.id + '   ' + msg.zeroArray)
       endTimeStamp = new Date();
       console.log('binaryCoder function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
 
       // Send message to master process.
       process.send({tempCodedData: tempCodedData})
+      cluster.worker.kill();
     });
 
-    cluster.worker.kill();
   }
 
   function singleThreadFunction(cluster, fs, codedData, fullTable) {
@@ -221,8 +231,8 @@ console.log(msg.oneArray[249])
         for (let i = 0; i < fullTable.length; i++) {
           codeSequence += fullTable[i][0].codePointAt().toString(2);
         }
-        console.log('fulltable', fullTable.length);
         codeSequence += '000000000000000000000000';
+console.log('codeddata length', codedData.length);
         let dataToWrite = codeSequence + codedData;
         let dataInTypedArray = Uint8Array.from(dataToWrite);
         let buffer = new ArrayBuffer(Math.ceil(dataToWrite.length/8));
