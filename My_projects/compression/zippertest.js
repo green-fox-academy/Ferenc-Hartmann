@@ -23,18 +23,17 @@ const MultiThreadProcess = (function() {
     let fullTable = [];
 
     if (process.argv.length < 3) {
-      console.log('Usage: node zipper.js [filename]');
+      console.log('Usage: node zipper.js [filename to compress] [compressed filename]');
       process.exit(1);
     }
     console.log('File compression started...');
-    let fileName = process.argv[2];
     fileRead();
 
     function fileRead() {
       let startTimeStamp;
       let endTimeStamp;
-      let name = fileName.split('.')[0];
       startTimeStamp = new Date();
+      let fileName = process.argv[2];
 
       fs.readFile(fileName, 'utf8', function(err, data) {
         if (err) throw err;
@@ -184,6 +183,8 @@ const MultiThreadProcess = (function() {
       let tempCodedData = '';
       let oneCycleData;
       let slicedInputDataMinusOne = msg.slicedInputData.length - 1;
+      let msgfullTableZero = msg.fullTableZero;
+      let msgfullTableOne = msg.fullTableOne;
 
       for (let k = 0; k < msg.fullTableZero.length; k++) {
         msg.fullTableZero[k] =  String.fromCharCode(msg.fullTableZero[k]);
@@ -192,19 +193,19 @@ const MultiThreadProcess = (function() {
       startTimeStamp = new Date();
 
       function encoder(j) {
-        if (oneCycleData === msg.fullTableZero[j]) {
-          tempCodedData += msg.fullTableOne[j];
+        if (oneCycleData === msgfullTableZero[j]) {
+          tempCodedData += msgfullTableOne[j];
         }
       }
 
       while(i--) {
-        let j = msg.fullTableOne.length;
+        let j = msgfullTableOne.length;
         oneCycleData = msg.slicedInputData[slicedInputDataMinusOne - i];
         while(j--) {
           encoder(j)
         }
       }
-      // console.log(cluster.worker.id + '   ' + msg.zeroArray)
+
       endTimeStamp = new Date();
       console.log('binaryCoder function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
 
@@ -221,26 +222,27 @@ const MultiThreadProcess = (function() {
       function fileWrite(codedData) {
         let startTimeStamp;
         let endTimeStamp;
-        let fileName = process.argv[2].split(".")[0] + '.zap';
         let codeSequence = '';
+        let compressedFileName = process.argv[3];
         startTimeStamp = new Date();
+
         for (let i = 0; i < fullTable.length; i++) {
           codeSequence += fullTable[i][0].toString(2);
         }
-        codeSequence += '000000000000000000000000';
-        let dataToWrite = codeSequence + codedData;
+
+        let dataToWrite = codeSequence + '000000000000000000000000' + codedData;
         let dataInTypedArray = Uint8Array.from(dataToWrite);
         let buffer = new ArrayBuffer(Math.ceil(dataToWrite.length/8));
         for (let i = 0; i < dataToWrite.length; i++) {
           buffer[i] = dataToWrite[i];
         }
-        fs.writeFile(fileName, new Buffer(buffer), function(err) {
+        fs.writeFile(compressedFileName, new Buffer(buffer), function(err) {
           if (err) {
             return console.error(err);
           }
           endTimeStamp = new Date();
           console.log('fileWrite function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
-          console.log(process.argv[2] + ' file compressed successfully into ' + fileName);
+          console.log(process.argv[2] + ' file compressed successfully into ' + process.argv[3]);
         });
       }
       fileWrite(codedData);
