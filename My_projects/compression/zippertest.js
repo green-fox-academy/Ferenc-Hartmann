@@ -192,17 +192,14 @@ const MultiThreadProcess = (function() {
 
       startTimeStamp = new Date();
 
-      function encoder(j) {
-        if (oneCycleData === msgfullTableZero[j]) {
-          tempCodedData += msgfullTableOne[j];
-        }
-      }
-
       while(i--) {
         let j = msgfullTableOne.length;
         oneCycleData = msg.slicedInputData[slicedInputDataMinusOne - i];
         while(j--) {
-          encoder(j)
+          if (oneCycleData === msgfullTableZero[j]) {
+            tempCodedData += msgfullTableOne[j];
+            break;
+          }
         }
       }
 
@@ -222,15 +219,26 @@ const MultiThreadProcess = (function() {
       function fileWrite(codedData) {
         let startTimeStamp;
         let endTimeStamp;
+        let reversedCodeSequence;
+        let reversedcodedData;
         let codeSequence = '';
         let compressedFileName = process.argv[3];
         startTimeStamp = new Date();
 
         for (let i = 0; i < fullTable.length; i++) {
           codeSequence += fullTable[i][0].toString(2);
+          codeSequence += '00000000';
         }
 
-        let dataToWrite = codeSequence + '000000000000000000000000' + codedData;
+        function reverse(string) {
+          for (var i = string.length - 1, o = ''; i >= 0; o += string[i--]) { }
+          return o;
+        }
+
+        reversedCodeSequence = reverse(codeSequence);
+        reversedcodedData = reverse(codedData);
+
+        let dataToWrite = reversedCodeSequence + '000000000000000000000000' + reversedcodedData;
         let dataInTypedArray = Uint8Array.from(dataToWrite);
         let buffer = new ArrayBuffer(Math.ceil(dataToWrite.length/8));
         for (let i = 0; i < dataToWrite.length; i++) {
