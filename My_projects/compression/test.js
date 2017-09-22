@@ -17,7 +17,7 @@ const MultiThreadProcess = (function() {
     const threads = require('os').cpus().length;
     let dataToWrite;
     let codedData = '';
-    let inputData;
+    let inputData = '';
     let fullTable = [];
     let fileName = '';
 
@@ -34,19 +34,19 @@ const MultiThreadProcess = (function() {
       let endTimeStamp;
       startTimeStamp = new Date();
 
-      fs.readFile(fileName, 'binary', function(err, data) {
+      fs.readFile(fileName, 'hex', function(err, data) {
         if (err) throw err;
-        inputData = data;
+        let readedData = data;
 
         endTimeStamp = new Date();
         console.log('fileRead function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
         console.log(data);
 
-        keyTableBuild(inputData);
+        keyTableBuild(readedData);
       });
     }
 
-    function keyTableBuild(inputData) {
+    function keyTableBuild(readedData) {
       let startTimeStamp;
       let endTimeStamp;
       let keyTable = [];
@@ -57,29 +57,80 @@ const MultiThreadProcess = (function() {
 
       startTimeStamp = new Date();
 
-      keyTable = inputData.split('000000000000000000000000')[0];
-      keyTable = keyTable.split('00000000');
-
-      function stringReverser(string) {
-        for (var i = string.length - 1, o = ''; i >= 0; o += string[i--]) { }
-        return o;
+      for (let i = 0; i < readedData.length; i++) {
+        if (readedData[i] == 0) {
+          inputData += '0000';
+        }
+        if (readedData[i] == 1) {
+          inputData += '0001';
+        }
+        if (readedData[i] == 2) {
+          inputData += '0010';
+        }
+        if (readedData[i] == 3) {
+          inputData += '0011';
+        }
+        if (readedData[i] == 4) {
+          inputData += '0100';
+        }
+        if (readedData[i] == 5) {
+          inputData += '0101';
+        }
+        if (readedData[i] == 6) {
+          inputData += '0110';
+        }
+        if (readedData[i] == 7) {
+          inputData += '0111';
+        }
+        if (readedData[i] == 8) {
+          inputData += '1000';
+        }
+        if (readedData[i] == 9) {
+          inputData += '1001';
+        }
+        if (readedData[i] == 'a') {
+          inputData += '1010';
+        }
+        if (readedData[i] == 'b') {
+          inputData += '1011';
+        }
+        if (readedData[i] == 'c') {
+          inputData += '1100';
+        }
+        if (readedData[i] == 'd') {
+          inputData += '1101';
+        }
+        if (readedData[i] == 'e') {
+          inputData += '1110';
+        }
+        if (readedData[i] == 'f') {
+          inputData += '1111';
+        }
       }
+      console.log(inputData);
+
+      keyTable = inputData.split('0000000000000000')[0];
+      keyTable = keyTable.split('00000000');
+      let stringReverser = str => Array.prototype.reduce.call(str, (result, c) => c + result, "");
 
       for (let i = 0; i < keyTable.length; i++) {
         keyTable[i] = stringReverser(keyTable[i]);
       }
 
       keyTable = keyTable.reverse();
+      console.log('keyTable', keyTable);
 
 
-      codedData = inputData.split('000000000000000000000000')[1];
+      codedData = inputData.split('0000000000000000')[1];
       codedData = codedData.split('00');
+      console.log('codedData', codedData);
 
       for (let i = 0; i < codedData.length; i++) {
-        code[i] = stringReverser(code[i]);
+        code[i] = stringReverser(codedData[i]);
       }
 
       code = code.reverse();
+      console.log('code', code);
 
 
       for (let i = 0; i < keyTable.length; i++) {
@@ -142,11 +193,7 @@ const MultiThreadProcess = (function() {
 
       let dataToWrite = decodedData;
       let dataInTypedArray = Uint8Array.from(dataToWrite);
-      let buffer = new ArrayBuffer(Math.ceil(dataToWrite.length/8));
-      for (let i = 0; i < dataToWrite.length; i++) {
-        buffer[i] = dataToWrite[i];
-      }
-      fs.writeFile(compressedFileName, new Buffer(buffer), function(err) {
+      fs.writeFile(compressedFileName, Buffer.from(dataInTypedArray.buffer), 'utf-8', function(err) {
         if (err) {
           return console.error(err);
         }

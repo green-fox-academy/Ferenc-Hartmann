@@ -229,22 +229,26 @@ const MultiThreadProcess = (function() {
           codeSequence += fullTable[i][0].toString(2);
           codeSequence += '00000000';
         }
+console.log(fullTable)
+console.log(codeSequence)
+        let stringReverser = str => Array.prototype.reduce.call(str, (result, c) => c + result, "");
+console.log(codedData)
 
-        function reverse(string) {
-          for (var i = string.length - 1, o = ''; i >= 0; o += string[i--]) { }
-          return o;
+        reversedCodeSequence = stringReverser(codeSequence);
+        reversedcodedData = stringReverser(codedData);
+
+        let dataToWrite = reversedCodeSequence + '0000000000000000' + reversedcodedData;
+        let dataInArray = [];
+        let i = 0;
+        for (i = 0; i < dataToWrite.length - 8; i++) {
+          if ((i % 8) == 0) {
+            dataInArray.push(dataToWrite.slice(i, i + 8));
+          }
         }
+        dataInArray.push(dataToWrite.slice(-(i % 8), dataToWrite.length));
 
-        reversedCodeSequence = reverse(codeSequence);
-        reversedcodedData = reverse(codedData);
-
-        let dataToWrite = reversedCodeSequence + '000000000000000000000000' + reversedcodedData;
-        let dataInTypedArray = Uint8Array.from(dataToWrite);
-        let buffer = new ArrayBuffer(Math.ceil(dataToWrite.length/8));
-        for (let i = 0; i < dataToWrite.length; i++) {
-          buffer[i] = dataToWrite[i];
-        }
-        fs.writeFile(compressedFileName, new Buffer(buffer), function(err) {
+        let dataInTypedArray = Uint8Array.from(dataInArray);
+        fs.writeFile(compressedFileName, Buffer.from(dataInTypedArray.buffer), 'hex', function(err) {
           if (err) {
             return console.error(err);
           }
