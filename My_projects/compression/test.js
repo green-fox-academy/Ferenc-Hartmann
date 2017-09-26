@@ -34,7 +34,7 @@ const MultiThreadProcess = (function() {
       let endTimeStamp;
       startTimeStamp = new Date();
 
-      fs.readFile(fileName, 'hex', function(err, data) {
+      fs.readFile(fileName, 'utf-8', function(err, data) {
         if (err) throw err;
         let readedData = data;
 
@@ -42,8 +42,16 @@ const MultiThreadProcess = (function() {
         console.log('fileRead function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
         console.log(data);
 
-        keyTableBuild(readedData);
+        dataTransformer(readedData);
       });
+    }
+
+    function dataTransformer(readedData) {
+      let codeSequence = '';
+      for (let i = 0; i < readedData.length; i++) {
+        codeSequence += readedData[i].charCodeAt(0).toString(2);
+      }
+      console.log(codeSequence);
     }
 
     function keyTableBuild(readedData) {

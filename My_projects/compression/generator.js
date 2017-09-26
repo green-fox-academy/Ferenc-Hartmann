@@ -2,32 +2,15 @@
 
 const fs = require('fs');
 
-let binaryCode = 0;
-let replaceNumber;
-let hartmannTable = [];
-let binaryTable = [];
-let codeTable = [];
-let oneCodePair = [];
 let i = 0;
+let hartmannHexNumber;
+let codeTable = [];
 
 for (i; i < 65536; i++) {
   let oneCodePair = [];
   let counter = 0;
-  while (binaryCode.toString(2).indexOf('00') > 0) {
-    replaceNumber = binaryCode.toString(2).replace('00', '01');
-    binaryCode = parseInt(replaceNumber, 2);
-    counter++;
-  }
-
-  if (counter == 0) {
-    binaryCode++;
-    while (binaryCode.toString(2).indexOf('00') > 0) {
-      replaceNumber = binaryCode.toString(2).replace('00', '01');
-      binaryCode = parseInt(replaceNumber, 2);
-    }
-  }
-  oneCodePair.push(i.toString(2));
-  oneCodePair.push(binaryCode.toString(2) + '00');
+  oneCodePair.push(i.toString(16));
+  oneCodePair.push(i.toString(15) + 'f');
   codeTable.push(oneCodePair);
   if (i == 65535) {
     writer();

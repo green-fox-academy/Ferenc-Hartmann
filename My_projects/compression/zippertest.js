@@ -150,7 +150,6 @@ const MultiThreadProcess = (function() {
         }
       };
       workSlicer()
-
       // Receive messages from worker and handle them in the master process.
       cluster.on('message', function(worker, msg) {
         codedArray[worker.id - 1] = msg.tempCodedData;
@@ -219,36 +218,49 @@ const MultiThreadProcess = (function() {
       function fileWrite(codedData) {
         let startTimeStamp;
         let endTimeStamp;
-        let reversedCodeSequence;
-        let reversedcodedData;
         let codeSequence = '';
+        let codedDataUtf = '';
+        let dataInArray = [];
         let compressedFileName = process.argv[3];
         startTimeStamp = new Date();
 
         for (let i = 0; i < fullTable.length; i++) {
-          codeSequence += fullTable[i][0].toString(2);
-          codeSequence += '00000000';
+          codeSequence += String.fromCharCode(fullTable[i][0]);
         }
-console.log(fullTable)
-console.log(codeSequence)
-        let stringReverser = str => Array.prototype.reduce.call(str, (result, c) => c + result, "");
 console.log(codedData)
-
-        reversedCodeSequence = stringReverser(codeSequence);
-        reversedcodedData = stringReverser(codedData);
-
-        let dataToWrite = reversedCodeSequence + '0000000000000000' + reversedcodedData;
-        let dataInArray = [];
-        let i = 0;
-        for (i = 0; i < dataToWrite.length - 8; i++) {
-          if ((i % 8) == 0) {
-            dataInArray.push(dataToWrite.slice(i, i + 8));
-          }
+      let i = 0;
+      for (i = 0; i < codedData.length - 8; i++) {
+        if ((i % 8) == 0) {
+          dataInArray.push(codedData.slice(i, i + 8));
         }
-        dataInArray.push(dataToWrite.slice(-(i % 8), dataToWrite.length));
+      }
+      if (i == (codedData.length - 8) && (i % 8) == 0) {
+        dataInArray.push(codedData.slice(i, -1));
+      } else {
+        dataInArray.push(codedData.slice(-(i % 8), codedData.length));
+      }
 
+      for (i = 0; i < dataInArray.length; i++) {
+console.log(Number(dataInArray[i]))
+
+        codedDataUtf += String.fromCharCode(parseInt(Number(dataInArray[i]), 2));
+      }
+console.log(dataInArray)
+
+// console.log(fullTable)
+// console.log(codeSequence)
+// console.log(codedData)
+
+        let dataToWrite = codeSequence + '00' + codedDataUtf;
+        // for (i = 0; i < dataToWrite.length - 8; i++) {
+        //   if ((i % 8) == 0) {
+        //     dataInArray.push(dataToWrite.slice(i, i + 8));
+        //   }
+        // }
+        // dataInArray.push(dataToWrite.slice(-(i % 8), dataToWrite.length));
+console.log(dataToWrite);
         let dataInTypedArray = Uint8Array.from(dataInArray);
-        fs.writeFile(compressedFileName, Buffer.from(dataInTypedArray.buffer), 'hex', function(err) {
+        fs.writeFile(compressedFileName, Buffer.from(dataInTypedArray.buffer), 'utf-8', function(err) {
           if (err) {
             return console.error(err);
           }
