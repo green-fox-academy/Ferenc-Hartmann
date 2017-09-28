@@ -60,7 +60,6 @@ const MultiThreadProcess = (function() {
       const probabilityTable = [];
       const startTimeStamp = new Date();
 
-
       for (let i = 0; i < probabilityBasicTable.length - 1; i++) {
         if (onePair[0] == probabilityBasicTable[i + 1][0]) {
           onePair[1] += 1;
@@ -137,7 +136,6 @@ const MultiThreadProcess = (function() {
       }
       const endTimeStamp = new Date();
       console.log('huffmanFunction function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
-console.log(huffmanCodeTable);
       workSlicer(inputDataInArray);
     }
 
@@ -236,29 +234,44 @@ console.log(huffmanCodeTable);
 
     function fileDataConstructer() {
       const startTimeStamp = new Date();
+      let decodedHuffmanCodeTable = [];
+      let dataToWrite = process.argv[2] + ' [[';
 
-      // huffmanCodeTable.forEach((e) => e[1] = parseInt(e[1], 2) );
+      huffmanCodeTable.forEach(e => e[1] = parseInt(e[1], 2));
 
-      console.log(codedData)
+      dataToWrite += huffmanCodeTable.join('],[');
+      dataToWrite += ']]';
+
+      let i = 0;
+      for (i = 0; i < codedData.length - 8; i++) {
+        if ((i % 8) == 0) {
+          dataToWrite += String.fromCharCode(parseInt((codedData.slice(i, i + 8)), 2));
+        }
+      }
+      if (i == (codedData.length - 8) && (i % 8) == 0) {
+        dataToWrite += String.fromCharCode(parseInt((codedData.slice(i, -1)), 2));
+      } else {
+        dataToWrite += String.fromCharCode(parseInt((codedData.slice(-(i % 8), codedData.length)), 2));
+      }
 
       const endTimeStamp = new Date();
       console.log('fileDataConstructer function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
+      fileWriter(codedData);
     }
 
-      function fileWrite(codedData) {
-        let startTimeStamp;
-        let endTimeStamp;
-        startTimeStamp = new Date();
+    function fileWriter(codedData) {
+      const startTimeStamp = new Date();
 
-        fs.writeFile( process.argv[3], data, 'hex', function(err) {
-          if (err) {
-            return console.error(err);
-          }
-          endTimeStamp = new Date();
-          console.log('fileWrite function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
-          console.log(process.argv[2] + ' file compressed successfully into ' + process.argv[3]);
-        });
-      }
+      fs.writeFile( process.argv[3], codedData, 'utf-8', function(err) {
+        if (err) {
+          return console.error(err);
+        }
+      });
+
+      const endTimeStamp = new Date();
+      console.log('fileWriter function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
+      console.log(process.argv[2] + ' file compressed successfully into ' + process.argv[3]);
+    }
   }
 
   return {
