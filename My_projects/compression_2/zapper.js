@@ -15,6 +15,9 @@ const MultiThreadProcess = (function() {
 
   function masterProcess(cluster, fs) {
     const threads = require('os').cpus().length;
+    let huffmanCodeTable;
+    let codedData = '';
+    let codedArray = [];
 
     if (process.argv.length < 3) {
       console.log('Usage: node zapper.js [filename to compress] [compressed filename]');
@@ -24,71 +27,39 @@ const MultiThreadProcess = (function() {
     fileRead();
 
     function fileRead() {
-      let startTimeStamp;
-      let endTimeStamp;
-      let fileName = process.argv[2];
-      let inputData;
-      startTimeStamp = new Date();
+      const fileName = process.argv[2];
+      const startTimeStamp = new Date();
 
-      fs.readFile(fileName, 'hex', function(err, data) {
+      fs.readFile(fileName, 'utf-8', function(err, data) {
         if (err) throw err;
-        inputData = data;
+        const inputDataInArray = data.split("");
 
-        endTimeStamp = new Date();
+        const endTimeStamp = new Date();
         console.log('fileRead function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
-        inputDataSlicer(inputData);
+        probabilityTableInitializer(inputDataInArray);
       });
     }
 
-
-    function inputDataSlicer(inputData) {
-      let startTimeStamp;
-      let endTimeStamp;
-      let inputDataInArray = [];
-      let i = 0;
-      startTimeStamp = new Date();
-
-      for (i; i < inputData.length - 4; i++) {
-        if ((i % 4) == 0) {
-          inputDataInArray.push(inputData.slice(i, i + 4));
-        }
-      }
-      if (i == (inputData.length - 4) && (i % 4) == 0) {
-        inputDataInArray.push(inputData.slice(i, - 1));
-      } else {
-        inputDataInArray.push(inputData.slice(-(i % 4), inputData.length));
-      }
-
-      endTimeStamp = new Date();
-      console.log('inputDataSlicer function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
-      probabilityTableInitializer(inputDataInArray);
-    }
-
     function probabilityTableInitializer(inputDataInArray) {
-      let startTimeStamp;
-      let endTimeStamp;
       let probabilityBasicTable = [];
-      let oneKey = [];
-      startTimeStamp = new Date();
+      const startTimeStamp = new Date();
 
-      for (let i = 0; i < inputDataInArray.length; i++) {
-        oneKey = [inputDataInArray[i], 1];
-        probabilityBasicTable.push(oneKey);
-      }
+      inputDataInArray.forEach(e => probabilityBasicTable.push([e]));
 
       probabilityBasicTable.sort();
 
-      endTimeStamp = new Date();
+      probabilityBasicTable.forEach(e => e.push(1));
+
+      const endTimeStamp = new Date();
       console.log('probabilityTableInitializer function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
       probabilityCalculator(inputDataInArray, probabilityBasicTable);
     }
 
     function probabilityCalculator(inputDataInArray, probabilityBasicTable) {
-      let startTimeStamp;
-      let endTimeStamp;
-      let probabilityTable = [];
       let onePair = probabilityBasicTable[0];
-      startTimeStamp = new Date();
+      const probabilityTable = [];
+      const startTimeStamp = new Date();
+
 
       for (let i = 0; i < probabilityBasicTable.length - 1; i++) {
         if (onePair[0] == probabilityBasicTable[i + 1][0]) {
@@ -105,89 +76,110 @@ const MultiThreadProcess = (function() {
           }
         }
       }
-      endTimeStamp = new Date();
+      const endTimeStamp = new Date();
       console.log('probabilityCalculator function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
       probabilityTableSorter(inputDataInArray, probabilityTable);
     }
 
     function probabilityTableSorter(inputDataInArray, probabilityTable) {
-      let startTimeStamp;
-      let endTimeStamp;
-      startTimeStamp = new Date();
+      const startTimeStamp = new Date();
 
       function Comparator(a, b) {
-        if (a[1] < b[1]) return 1;
-        if (a[1] > b[1]) return -1;
+        if (a[1] < b[1]) return -1;
+        if (a[1] > b[1]) return 1;
         return 0;
       }
 
+      //reversed probabilityTable
       probabilityTable.sort(Comparator);
 
-      endTimeStamp = new Date();
+      const endTimeStamp = new Date();
       console.log('probabilityTableSorter function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
-      staticKeyTableGenerator(inputDataInArray, probabilityTable);
+      huffmanFunction(inputDataInArray, probabilityTable);
     }
 
-    function staticKeyTableGenerator(inputDataInArray, probabilityTable) {
-      let startTimeStamp;
-      let endTimeStamp;
-      let oneCodePair = [];
-      let staticKeyTable = [];
-      startTimeStamp = new Date();
 
-      for (let number = 0; number < 65536; number++) {
-        let oneCodePair = [];
-        oneCodePair.push(number.toString(16));
-        oneCodePair.push(number.toString(15) + 'f');
-        staticKeyTable.push(oneCodePair);
-        if (number == 65535) {
-          dynamicKeyTableGenerator(inputDataInArray, probabilityTable, staticKeyTable);
+    function huffmanFunction(inputDataInArray, probabilityTable) {
+      huffmanCodeTable = [];
+      let oneArrayPair = [];
+      let oneCombinedArrayPair = [];
+      const startTimeStamp = new Date();
+
+      function orderedPush(arr, item) {
+          let k = 0;
+          while (k < arr.length) {
+              if (item[1] < arr[k][1]) { break; }
+              k++;
+          }
+          arr.splice(k, 0, item);
+          return arr
+      }
+
+      probabilityTable.forEach(e => huffmanCodeTable.push([(e[0]), ['']]));
+
+      while (probabilityTable.length > 1) {
+        oneArrayPair = probabilityTable.splice(0, 2);
+        oneCombinedArrayPair = [];
+
+        for (let i = 0; i < huffmanCodeTable.length; i++) {
+          if (oneArrayPair[0][0].includes(huffmanCodeTable[i][0])) {
+            huffmanCodeTable[i][1] = '0' + huffmanCodeTable[i][1];
+          }
+          if (oneArrayPair[1][0].includes(huffmanCodeTable[i][0])) {
+            huffmanCodeTable[i][1] = '1' + huffmanCodeTable[i][1];
+          }
+        }
+
+        oneCombinedArrayPair[0] = oneArrayPair[0][0] + oneArrayPair[1][0];
+        oneCombinedArrayPair[1] = oneArrayPair[0][1] + oneArrayPair[1][1];
+
+        probabilityTable = orderedPush(probabilityTable, oneCombinedArrayPair);
+      }
+      const endTimeStamp = new Date();
+      console.log('huffmanFunction function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
+console.log(huffmanCodeTable);
+      workSlicer(inputDataInArray);
+    }
+
+    function workSlicer(inputDataInArray) {
+      let slicedInputDataInArray = [];
+      const startTimeStamp = new Date();
+      let dividedTable = Math.floor(inputDataInArray.length / threads);
+      const inputData = inputDataInArray.join();
+      for (let i = 0; i < threads; i++) {
+        if (i !== (threads - 1)) {
+          slicedInputDataInArray[i] = inputData.slice((i * dividedTable), ((i + 1) * dividedTable));
+        } else {
+          slicedInputDataInArray[i] = inputData.slice((i * dividedTable));
         }
       }
+
+      const endTimeStamp = new Date();
+      console.log('workSlicer function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
+      multiThreadInvoker(slicedInputDataInArray);
     }
 
-    function dynamicKeyTableGenerator(inputDataInArray, probabilityTable, staticKeyTable) {
-      let startTimeStamp;
-      let endTimeStamp;
-      let dynamicKeyTable = probabilityTable;
-      startTimeStamp = new Date();
-      for (let i = 0; i < probabilityTable.length; i++) {
-        dynamicKeyTable[i][1] = staticKeyTable[i][1];
-      }
+    function multiThreadInvoker(slicedInputDataInArray) {
+      let huffmanCodeTableZero = [];
+      let huffmanCodeTableZeroNumber = [];
+      let huffmanCodeTableOne =[];
 
-      endTimeStamp = new Date();
-      console.log('dynamicKeyTableGenerator function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
-      // dynamicKeyTableGenerator(inputDataInArray, probabilityTable, staticKeyTable);
-    }
-
-// eddig jó! :)
-// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-
-
-
-    function characterCalc(inputData) {
-      let startTimeStamp;
-      let endTimeStamp;
-      startTimeStamp = new Date();
-
-      endTimeStamp = new Date();
-      console.log('characterCalc function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
-
-      codeTableBuilder(inputData);
-    }
-
-    function binaryCoder(inputData) {
       console.log('Compression algorithm started on ' + threads + ' CPU cores.');
+      huffmanCodeTable.forEach((e, i) => { huffmanCodeTableZero[i] = e[0]; huffmanCodeTableOne[i] = e[1] } );
+
+      huffmanCodeTableZero.forEach((e) => huffmanCodeTableZeroNumber.push(e.codePointAt()) );
 
       // Receive messages from worker and handle them in the master process.
       cluster.on('message', function(worker, msg) {
+        codedArray[worker.id - 1] = msg.tempCodedData;
       });
 
       // If any worker dies this process starts.
       cluster.on('exit', function(worker, msg) {
 
         if (Object.keys(cluster.workers).length == 0) {
-          MultiThreadProcess.singleThreadFunction(cluster, fs);
+          codedData = codedArray.join('');
+          MultiThreadProcess.singleThreadFunction(cluster, fs, codedData, huffmanCodeTable);
         }
       });
 
@@ -195,29 +187,65 @@ const MultiThreadProcess = (function() {
           let worker = cluster.fork();
 
           // Send a message from the master process to the worker.
-          worker.send({});
+          worker.send({ slicedInputDataInArray: slicedInputDataInArray[worker.id - 1], huffmanCodeTableZeroNumber: huffmanCodeTableZeroNumber, huffmanCodeTableOne: huffmanCodeTableOne });
       }
     }
   }
 
   function workerProcess(cluster) {
     process.on('message', function(msg) {
-      startTimeStamp = new Date();
+      let i = msg.slicedInputDataInArray.length;
+      let tempCodedData = '';
+      let oneCycleData;
+      let slicedInputDataMinusOne = msg.slicedInputDataInArray.length - 1;
+      let msghuffmanCodeTableZeroNumber = msg.huffmanCodeTableZeroNumber;
+      let msghuffmanCodeTableOne = msg.huffmanCodeTableOne;
 
-      endTimeStamp = new Date();
-      console.log('binaryCoder function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
+      const startTimeStamp = new Date();
+
+      for (let k = 0; k < msg.huffmanCodeTableZeroNumber.length; k++) {
+        msg.huffmanCodeTableZeroNumber[k] =  String.fromCharCode(msg.huffmanCodeTableZeroNumber[k]);
+      }
+
+      while(i--) {
+        let j = msg.huffmanCodeTableOne.length;
+        oneCycleData = msg.slicedInputDataInArray[slicedInputDataMinusOne - i];
+        while(j--) {
+          if (oneCycleData === msghuffmanCodeTableZeroNumber[j]) {
+            tempCodedData += msghuffmanCodeTableOne[j];
+            break;
+          }
+        }
+      }
+
+      const endTimeStamp = new Date();
+      console.log('workerProcess function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
 
       // Send message to master process.
-      process.send({})
+      process.send({tempCodedData: tempCodedData})
       cluster.worker.kill();
     });
 
   }
 
-  function singleThreadFunction(cluster, fs) {
+  function singleThreadFunction(cluster, fs, codedData, huffmanCodeTable) {
     cluster.setupMaster()
     if (cluster.isMaster) {
-      function fileWrite() {
+      fileDataConstructer();
+    }
+
+    function fileDataConstructer() {
+      const startTimeStamp = new Date();
+
+      // huffmanCodeTable.forEach((e) => e[1] = parseInt(e[1], 2) );
+
+      console.log(codedData)
+
+      const endTimeStamp = new Date();
+      console.log('fileDataConstructer function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
+    }
+
+      function fileWrite(codedData) {
         let startTimeStamp;
         let endTimeStamp;
         startTimeStamp = new Date();
@@ -231,8 +259,6 @@ const MultiThreadProcess = (function() {
           console.log(process.argv[2] + ' file compressed successfully into ' + process.argv[3]);
         });
       }
-      fileWrite(codedData);
-    }
   }
 
   return {
