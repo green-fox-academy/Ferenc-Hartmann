@@ -15,7 +15,7 @@ const MultiThreadProcess = (function() {
 
   function masterProcess(cluster, fs) {
     const threads = require('os').cpus().length;
-    let huffmanCodeTable;
+    let hartmannCodeTable;
     let codedData = '';
     let codedArray = [];
 
@@ -36,7 +36,6 @@ const MultiThreadProcess = (function() {
         const inputDataInArray = splittedData.map(function(x) {
           return x.codePointAt();
         });
-console.log(inputDataInArray)
         const endTimeStamp = new Date();
         console.log('fileRead function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
         probabilityTableInitializer(inputDataInArray);
@@ -52,7 +51,6 @@ console.log(inputDataInArray)
       probabilityBasicTable.sort();
 
       probabilityBasicTable.forEach(e => e.push(1));
-
       const endTimeStamp = new Date();
       console.log('probabilityTableInitializer function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
       probabilityCalculator(inputDataInArray, probabilityBasicTable);
@@ -97,61 +95,53 @@ console.log(inputDataInArray)
 
       const endTimeStamp = new Date();
       console.log('probabilityTableSorter function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
-      huffmanFunction(inputDataInArray, probabilityTable);
+      hartmannFunction(inputDataInArray, probabilityTable);
     }
 
 
-    function huffmanFunction(inputDataInArray, probabilityTable) {
-      huffmanCodeTable = [];
+    function hartmannFunction(inputDataInArray, probabilityTable) {
+      hartmannCodeTable = [];
       let oneArrayPair = [];
       let oneCombinedArrayPair = [];
+      let binaryCode = 0;
+      let replaceNumber;
       const startTimeStamp = new Date();
 
-      function orderedPush(arr, item) {
-          let k = 0;
-          while (k < arr.length) {
-              if (item[1] < arr[k][1]) { break; }
-              k++;
-          }
-          arr.splice(k, 0, item);
-          return arr
-      }
+      probabilityTable.forEach(e => hartmannCodeTable.push([(e[0]), ['']]));
 
-      probabilityTable.forEach(e => huffmanCodeTable.push([(e[0]), ['']]));
-
-      while (probabilityTable.length > 1) {
-        oneArrayPair = probabilityTable.splice(0, 2);
-        oneCombinedArrayPair = [];
-
-        for (let i = 0; i < huffmanCodeTable.length; i++) {
-          if (oneArrayPair[0][0].includes(huffmanCodeTable[i][0])) {
-            huffmanCodeTable[i][1] = '0' + huffmanCodeTable[i][1];
-          }
-          if (oneArrayPair[1][0].includes(huffmanCodeTable[i][0])) {
-            huffmanCodeTable[i][1] = '1' + huffmanCodeTable[i][1];
-          }
+      for (let i = 0; i < hartmannCodeTable.length; i++) {
+        let counter = 0;
+        while (binaryCode.toString(2).indexOf('00') > 0) {
+          replaceNumber = binaryCode.toString(2).replace('00', '01');
+          binaryCode = parseInt(replaceNumber, 2);
+          counter++;
         }
 
-        oneCombinedArrayPair[0] = oneArrayPair[0][0] + oneArrayPair[1][0];
-        oneCombinedArrayPair[1] = oneArrayPair[0][1] + oneArrayPair[1][1];
-
-        probabilityTable = orderedPush(probabilityTable, oneCombinedArrayPair);
+        if (counter == 0) {
+          binaryCode++;
+          while (binaryCode.toString(2).indexOf('00') > 0) {
+            replaceNumber = binaryCode.toString(2).replace('00', '01');
+            binaryCode = parseInt(replaceNumber, 2);
+          }
+        }
+        hartmannCodeTable[i][1] = binaryCode.toString(2) + '00';
       }
+
       const endTimeStamp = new Date();
-      console.log('huffmanFunction function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
+      console.log('hartmannFunction function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
       workSlicer(inputDataInArray);
     }
 
     function workSlicer(inputDataInArray) {
       let slicedInputDataInArray = [];
       const startTimeStamp = new Date();
-      let dividedTable = Math.floor(inputDataInArray.length / threads);
-      const inputData = inputDataInArray.join();
+      const dividedTable = Math.floor(inputDataInArray.length / threads);
+
       for (let i = 0; i < threads; i++) {
         if (i !== (threads - 1)) {
-          slicedInputDataInArray[i] = inputData.slice((i * dividedTable), ((i + 1) * dividedTable));
+          slicedInputDataInArray[i] = inputDataInArray.splice(0, dividedTable);
         } else {
-          slicedInputDataInArray[i] = inputData.slice((i * dividedTable));
+          slicedInputDataInArray[i] = inputDataInArray;
         }
       }
 
@@ -161,14 +151,11 @@ console.log(inputDataInArray)
     }
 
     function multiThreadInvoker(slicedInputDataInArray) {
-      let huffmanCodeTableZero = [];
-      let huffmanCodeTableZeroNumber = [];
-      let huffmanCodeTableOne =[];
+      let hartmannCodeTableZero = [];
+      let hartmannCodeTableOne =[];
 
       console.log('Compression algorithm started on ' + threads + ' CPU cores.');
-      huffmanCodeTable.forEach((e, i) => { huffmanCodeTableZero[i] = e[0]; huffmanCodeTableOne[i] = e[1] } );
-
-      huffmanCodeTableZero.forEach((e) => huffmanCodeTableZeroNumber.push(e.codePointAt()) );
+      hartmannCodeTable.forEach((e, i) => { hartmannCodeTableZero[i] = e[0]; hartmannCodeTableOne[i] = e[1] } );
 
       // Receive messages from worker and handle them in the master process.
       cluster.on('message', function(worker, msg) {
@@ -180,7 +167,7 @@ console.log(inputDataInArray)
 
         if (Object.keys(cluster.workers).length == 0) {
           codedData = codedArray.join('');
-          MultiThreadProcess.singleThreadFunction(cluster, fs, codedData, huffmanCodeTable);
+          MultiThreadProcess.singleThreadFunction(cluster, fs, codedData, hartmannCodeTable);
         }
       });
 
@@ -188,7 +175,7 @@ console.log(inputDataInArray)
           let worker = cluster.fork();
 
           // Send a message from the master process to the worker.
-          worker.send({ slicedInputDataInArray: slicedInputDataInArray[worker.id - 1], huffmanCodeTableZeroNumber: huffmanCodeTableZeroNumber, huffmanCodeTableOne: huffmanCodeTableOne });
+          worker.send({ slicedInputDataInArray: slicedInputDataInArray[worker.id - 1], hartmannCodeTableZero: hartmannCodeTableZero, hartmannCodeTableOne: hartmannCodeTableOne });
       }
     }
   }
@@ -199,21 +186,17 @@ console.log(inputDataInArray)
       let tempCodedData = '';
       let oneCycleData;
       let slicedInputDataMinusOne = msg.slicedInputDataInArray.length - 1;
-      let msghuffmanCodeTableZeroNumber = msg.huffmanCodeTableZeroNumber;
-      let msghuffmanCodeTableOne = msg.huffmanCodeTableOne;
+      let msghartmannCodeTableZero = msg.hartmannCodeTableZero;
+      let msghartmannCodeTableOne = msg.hartmannCodeTableOne;
 
       const startTimeStamp = new Date();
 
-      for (let k = 0; k < msg.huffmanCodeTableZeroNumber.length; k++) {
-        msg.huffmanCodeTableZeroNumber[k] =  String.fromCharCode(msg.huffmanCodeTableZeroNumber[k]);
-      }
-
       while(i--) {
-        let j = msg.huffmanCodeTableOne.length;
+        let j = msg.hartmannCodeTableOne.length;
         oneCycleData = msg.slicedInputDataInArray[slicedInputDataMinusOne - i];
         while(j--) {
-          if (oneCycleData === msghuffmanCodeTableZeroNumber[j]) {
-            tempCodedData += msghuffmanCodeTableOne[j];
+          if (oneCycleData === msghartmannCodeTableZero[j]) {
+            tempCodedData += msghartmannCodeTableOne[j];
             break;
           }
         }
@@ -229,7 +212,7 @@ console.log(inputDataInArray)
 
   }
 
-  function singleThreadFunction(cluster, fs, codedData, huffmanCodeTable) {
+  function singleThreadFunction(cluster, fs, codedData, hartmannCodeTable) {
     cluster.setupMaster()
     if (cluster.isMaster) {
       fileDataConstructer();
@@ -237,19 +220,22 @@ console.log(inputDataInArray)
 
     function fileDataConstructer() {
       const startTimeStamp = new Date();
-      let dataToWrite = process.argv[2] + ' [[';
+      let decodedhartmannCodeTable = [];
+      let dataToWrite = '[';
 
-      huffmanCodeTable.forEach(e => e[1] = parseInt(e[1], 2));
+      hartmannCodeTable.forEach(e => e[1] = parseInt(e[1], 2));
 
-      dataToWrite += huffmanCodeTable.join('],[');
-      dataToWrite += ']]';
+      for (let i = 0; i < hartmannCodeTable.length; i++) {
+        dataToWrite += hartmannCodeTable[i][0];
+      }
 
+      dataToWrite += ']';
+// DataToWrite = codedData!!!!!!
       dataToWrite='';
       let i = 0;
       for (i = 0; i < codedData.length - 4; i++) {
         if ((i % 4) == 0) {
           dataToWrite += parseInt(codedData.slice(i, i + 4), 2).toString(16);
-
         }
       }
       if (i == (codedData.length - 4) && (i % 4) == 0) {
@@ -258,12 +244,11 @@ console.log(inputDataInArray)
         // dataToWrite += String.fromCharCode(parseInt((codedData.slice(-(i % 4), codedData.length)), 2));
         dataToWrite += parseInt(codedData.slice(-(i % 4), codedData.length), 2).toString(16);
       }
-
+      dataToWrite += 'f';
       const endTimeStamp = new Date();
       console.log('fileDataConstructer function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
       fileWriter(dataToWrite);
     }
-
     function fileWriter(dataToWrite) {
       const startTimeStamp = new Date();
 
