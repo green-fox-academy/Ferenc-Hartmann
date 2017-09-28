@@ -85,12 +85,11 @@ const MultiThreadProcess = (function() {
       const startTimeStamp = new Date();
 
       function Comparator(a, b) {
-        if (a[1] < b[1]) return -1;
-        if (a[1] > b[1]) return 1;
+        if (a[1] < b[1]) return 1;
+        if (a[1] > b[1]) return -1;
         return 0;
       }
 
-      //reversed probabilityTable
       probabilityTable.sort(Comparator);
 
       const endTimeStamp = new Date();
@@ -251,7 +250,6 @@ const MultiThreadProcess = (function() {
     }
     function fileWriter(dataToWrite) {
       const startTimeStamp = new Date();
-
       fs.writeFile( process.argv[3], dataToWrite, 'hex', function(err) {
         if (err) {
           return console.error(err);
