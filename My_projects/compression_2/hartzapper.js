@@ -215,13 +215,23 @@ const Compressor = (function() {
 
       hartmannCodeTable.forEach(e => e[1] = parseInt(e[1], 2).toString(16));
 
+      if (codedData.length % 4 !== 0) {
+        let alma = codedData.length - (codedData.length % 4);
+        console.log('last chars: ', codedData.substring((codedData.length - (codedData.length % 4)), codedData.length))
+        dataToWrite += codedData.substring((codedData.length - (codedData.length % 4)), codedData.length)
+        codedData = codedData.slice(0, (codedData.length - (codedData.length % 4)));
+      }
+
+      dataToWrite += 'fff';
+
       for (let i = 0; i < hartmannCodeTable.length; i++) {
         dataToWrite += hartmannCodeTable[i][0].toString(15);
         dataToWrite += 'f';
       }
-      dataToWrite += 'ff';
-      codedData = codedData.slice(0, -2);
-console.log(codedData)
+      dataToWrite += 'fff';
+
+
+console.log(dataToWrite)
 
       for (var i = 0; i < codedData.length - 4; i++) {
         if ((i % 4) == 0) {
@@ -229,15 +239,13 @@ console.log(codedData)
         }
       }
       if (i == (codedData.length - 4) && (i % 4) == 0) {
-        dataToWrite += parseInt(codedData.slice(i, -1), 2).toString(16);
-      } else {
-        dataToWrite += parseInt(codedData.slice(-(i % 4), codedData.length), 2).toString(16);
+        dataToWrite += parseInt(codedData.slice(i, codedData.length), 2).toString(16);
       }
 
       const endTimeStamp = new Date();
       console.log('fileDataConstructer function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
-      fileWriter(dataToWrite);
 console.log(dataToWrite)
+      fileWriter(dataToWrite);
     }
 
     function fileWriter(dataToWrite) {
@@ -279,12 +287,13 @@ const Decompressor = (function() {
     const threads = require('os').cpus().length;
     let hartmannCodeTable;
     let codedData;
+    let codedDataSupport;
 
     if (process.argv.length < 3) {
       console.log('Usage: node zapper.js [filename to decompress] [decompressed filename]');
       process.exit(1);
     }
-    console.log('File compression started...');
+    console.log('File decompression started...');
     fileRead();
 
     function fileRead() {
@@ -293,8 +302,10 @@ const Decompressor = (function() {
 
       fs.readFile(fileName, 'hex', function(err, data) {
         if (err) throw err;
-        const codedKeytable = data.slice(0, data.indexOf('ff'));
-        codedData = data.slice((data.indexOf('fff') + 3), data.length);
+        codedDataSupport = data.slice(0, data.indexOf('fff'));
+        const codedKeytable = data.slice((data.indexOf('fff') + 3), data.indexOf('ffff'));
+        codedData = data.slice((data.indexOf('ffff') + 4), data.length);
+console.log(codedDataSupport)
 console.log(codedKeytable)
 console.log(codedData)
 
@@ -316,14 +327,14 @@ console.log(decodedKeytable)
     }
 
     function keyTableValueGenerator(decodedKeytable) {
-      let originalKeytable = [];
+      let hartmannCodeTable = [];
       let binaryCode = 0;
       let replaceNumber;
       const startTimeStamp = new Date();
 
-      decodedKeytable.forEach(e => originalKeytable.push([(e[0]), ['']]));
+      decodedKeytable.forEach(e => hartmannCodeTable.push([(e[0]), ['']]));
 
-      for (let i = 0; i < originalKeytable.length; i++) {
+      for (let i = 0; i < hartmannCodeTable.length; i++) {
         let counter = 0;
         while (binaryCode.toString(2).indexOf('00') > 0) {
           replaceNumber = binaryCode.toString(2).replace('00', '01');
@@ -338,20 +349,19 @@ console.log(decodedKeytable)
             binaryCode = parseInt(replaceNumber, 2);
           }
         }
-        originalKeytable[i][1] = binaryCode.toString(2);
+        hartmannCodeTable[i][1] = binaryCode.toString(2);
       }
 
-console.log(originalKeytable)
       const endTimeStamp = new Date();
       console.log('keyTableValueGenerator function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
-      codedDataToBinary(originalKeytable);
+      codedDataToBinary();
     }
 
-    function codedDataToBinary(originalKeytable) {
+    function codedDataToBinary() {
       let binaryCodedData = '';
       const startTimeStamp = new Date();
 
-      for (let i = 0; i < codedData.length - 1; i++) {
+      for (let i = 0; i < codedData.length; i++) {
         if (codedData[i] == 0) {
           binaryCodedData += '0000';
         }
@@ -402,57 +412,6 @@ console.log(originalKeytable)
         }
       }
 
-      let i =  codedData.length - 1;
-      if (codedData[i] == 0) {
-        binaryCodedData += '0';
-      }
-      if (codedData[i] == 1) {
-        binaryCodedData += '1';
-      }
-      if (codedData[i] == 2) {
-        binaryCodedData += '10';
-      }
-      if (codedData[i] == 3) {
-        binaryCodedData += '11';
-      }
-      if (codedData[i] == 4) {
-        binaryCodedData += '100';
-      }
-      if (codedData[i] == 5) {
-        binaryCodedData += '101';
-      }
-      if (codedData[i] == 6) {
-        binaryCodedData += '110';
-      }
-      if (codedData[i] == 7) {
-        binaryCodedData += '111';
-      }
-      if (codedData[i] == 8) {
-        binaryCodedData += '1000';
-      }
-      if (codedData[i] == 9) {
-        binaryCodedData += '1001';
-      }
-      if (codedData[i] == 'a') {
-        binaryCodedData += '1010';
-      }
-      if (codedData[i] == 'b') {
-        binaryCodedData += '1011';
-      }
-      if (codedData[i] == 'c') {
-        binaryCodedData += '1100';
-      }
-      if (codedData[i] == 'd') {
-        binaryCodedData += '1101';
-      }
-      if (codedData[i] == 'e') {
-        binaryCodedData += '1110';
-      }
-      if (codedData[i] == 'f') {
-        binaryCodedData += '1111';
-      }
-
-
 console.log(binaryCodedData)
       const endTimeStamp = new Date();
       console.log('codedDataToBinary function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
@@ -463,26 +422,22 @@ console.log(binaryCodedData)
       let inputDataInArray = [];
       const startTimeStamp = new Date();
 
-      function reverser(string) {
-        let reversed = '';
-        let i = string.length;
-        while (i--) {
-          reversed += string[i];
-        }
-        return reversed;
+      binaryCodedData = ('00' + binaryCodedData + codedDataSupport);
+console.log(binaryCodedData)
+
+
+      inputDataInArray = binaryCodedData.substring(0, (binaryCodedData.length - 2)).split('001');
+      inputDataInArray.splice(0, 1);
+
+      for (let i = 0; i < inputDataInArray.length; i++) {
+        inputDataInArray[i] = ('1' + inputDataInArray[i]);
       }
 
-      let reversedBinaryCodedData = reverser(binaryCodedData);
-console.log(reversedBinaryCodedData)
-
-      inputDataInArray = reverser(binaryCodedData).slice(reverser(binaryCodedData).indexOf('0')).split('00');
-
-      inputDataInArray = inputDataInArray.reverse();
 
 console.log(inputDataInArray)
       const endTimeStamp = new Date();
       console.log('dataToArray function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
-      // workSlicer(inputDataInArray);
+      workSlicer(inputDataInArray);
     }
 
     function workSlicer(inputDataInArray) {
