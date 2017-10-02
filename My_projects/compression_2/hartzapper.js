@@ -47,6 +47,7 @@ const Compressor = (function() {
       probabilityBasicTable.sort();
 
       probabilityBasicTable.forEach(e => e.push(1));
+
       const endTimeStamp = new Date();
       console.log('probabilityTableInitializer function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
       probabilityCalculator(inputDataInArray, probabilityBasicTable);
@@ -72,6 +73,7 @@ const Compressor = (function() {
           }
         }
       }
+
       const endTimeStamp = new Date();
       console.log('probabilityCalculator function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
       probabilityTableSorter(inputDataInArray, probabilityTable);
@@ -231,7 +233,6 @@ const Compressor = (function() {
       dataToWrite += 'fff';
 
 
-console.log(dataToWrite)
 
       for (var i = 0; i < codedData.length - 4; i++) {
         if ((i % 4) == 0) {
@@ -244,7 +245,6 @@ console.log(dataToWrite)
 
       const endTimeStamp = new Date();
       console.log('fileDataConstructer function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
-console.log(dataToWrite)
       fileWriter(dataToWrite);
     }
 
@@ -285,9 +285,10 @@ const Decompressor = (function() {
 
   function masterProcess(cluster, fs) {
     const threads = require('os').cpus().length;
-    let hartmannCodeTable;
+    let hartmannCodeTable = [];
     let codedData;
     let codedDataSupport;
+    let codedArray = [];
 
     if (process.argv.length < 3) {
       console.log('Usage: node zapper.js [filename to decompress] [decompressed filename]');
@@ -305,9 +306,7 @@ const Decompressor = (function() {
         codedDataSupport = data.slice(0, data.indexOf('fff'));
         const codedKeytable = data.slice((data.indexOf('fff') + 3), data.indexOf('ffff'));
         codedData = data.slice((data.indexOf('ffff') + 4), data.length);
-console.log(codedDataSupport)
 console.log(codedKeytable)
-console.log(codedData)
 
         const endTimeStamp = new Date();
         console.log('fileRead function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
@@ -319,20 +318,19 @@ console.log(codedData)
       let decodedKeytable = [];
       const startTimeStamp = new Date();
 
-      decodedKeytable = Array.from(codedKeytable.split('f'), x => String.fromCodePoint(parseInt(x, 15)))
-console.log(decodedKeytable)
+      decodedKeytable = Array.from(codedKeytable.split('f'), x => parseInt(x, 15).toString(16));
+
       const endTimeStamp = new Date();
       console.log('keyTableDecoder function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
       keyTableValueGenerator(decodedKeytable);
     }
 
     function keyTableValueGenerator(decodedKeytable) {
-      let hartmannCodeTable = [];
       let binaryCode = 0;
       let replaceNumber;
       const startTimeStamp = new Date();
 
-      decodedKeytable.forEach(e => hartmannCodeTable.push([(e[0]), ['']]));
+      decodedKeytable.forEach(e => hartmannCodeTable.push([(e), ['']]));
 
       for (let i = 0; i < hartmannCodeTable.length; i++) {
         let counter = 0;
@@ -351,7 +349,6 @@ console.log(decodedKeytable)
         }
         hartmannCodeTable[i][1] = binaryCode.toString(2);
       }
-
       const endTimeStamp = new Date();
       console.log('keyTableValueGenerator function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
       codedDataToBinary();
@@ -412,7 +409,6 @@ console.log(decodedKeytable)
         }
       }
 
-console.log(binaryCodedData)
       const endTimeStamp = new Date();
       console.log('codedDataToBinary function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
       dataToArray(binaryCodedData);
@@ -423,8 +419,6 @@ console.log(binaryCodedData)
       const startTimeStamp = new Date();
 
       binaryCodedData = ('00' + binaryCodedData + codedDataSupport);
-console.log(binaryCodedData)
-
 
       inputDataInArray = binaryCodedData.substring(0, (binaryCodedData.length - 2)).split('001');
       inputDataInArray.splice(0, 1);
@@ -433,8 +427,6 @@ console.log(binaryCodedData)
         inputDataInArray[i] = ('1' + inputDataInArray[i]);
       }
 
-
-console.log(inputDataInArray)
       const endTimeStamp = new Date();
       console.log('dataToArray function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
       workSlicer(inputDataInArray);
@@ -461,7 +453,8 @@ console.log(inputDataInArray)
     function multiThreadInvoker(slicedInputDataInArray) {
       let hartmannCodeTableZero = [];
       let hartmannCodeTableOne =[];
-
+console.log('hartmannCodeTable')
+console.log(hartmannCodeTable)
       console.log('Compression algorithm started on ' + threads + ' CPU cores.');
       hartmannCodeTable.forEach((e, i) => { hartmannCodeTableZero[i] = e[0]; hartmannCodeTableOne[i] = e[1] } );
 
@@ -478,7 +471,6 @@ console.log(inputDataInArray)
           Decompressor.singleThreadFunction(cluster, fs, codedData, hartmannCodeTable);
         }
       });
-
       for (let i = 0; i < threads; i++) {
           let worker = cluster.fork();
           // Send a message from the master process to the worker.
@@ -493,7 +485,7 @@ console.log(inputDataInArray)
       let tempCodedData = '';
       let oneCycleData;
       const slicedInputDataMinusOne = msg.slicedInputDataInArray.length - 1;
-      const msghartmannCodeTableZero = msg.hartmannCodeTableZero;
+      let msghartmannCodeTableZero = msg.hartmannCodeTableZero;
       const msghartmannCodeTableOne = msg.hartmannCodeTableOne;
 
       const startTimeStamp = new Date();
@@ -502,13 +494,12 @@ console.log(inputDataInArray)
         let j = msg.hartmannCodeTableOne.length;
         oneCycleData = msg.slicedInputDataInArray[slicedInputDataMinusOne - i];
         while(j--) {
-          if (oneCycleData === msghartmannCodeTableZero[j]) {
-            tempCodedData += msghartmannCodeTableOne[j];
+          if (oneCycleData === msghartmannCodeTableOne[j]) {
+            tempCodedData += msghartmannCodeTableZero[j];
             break;
           }
         }
       }
-
       const endTimeStamp = new Date();
       console.log('workerProcess function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
 
@@ -522,39 +513,12 @@ console.log(inputDataInArray)
   function singleThreadFunction(cluster, fs, codedData, hartmannCodeTable) {
     cluster.setupMaster()
     if (cluster.isMaster) {
-      fileDataConstructer();
+      fileWriter(codedData);
     }
 
-    function fileDataConstructer() {
+    function fileWriter(codedData) {
       const startTimeStamp = new Date();
-      let dataToWrite = 'ff';
-
-      hartmannCodeTable.forEach(e => e[1] = parseInt(e[1], 2).toString(16));
-
-      for (let i = 0; i < hartmannCodeTable.length; i++) {
-        dataToWrite += hartmannCodeTable[i][0].toString(15);
-        dataToWrite += 'f';
-      }
-      dataToWrite += 'ff';
-
-      for (var i = 0; i < codedData.length - 4; i++) {
-        if ((i % 4) == 0) {
-          dataToWrite += parseInt(codedData.slice(i, i + 4), 2).toString(16);
-        }
-      }
-      if (i == (codedData.length - 4) && (i % 4) == 0) {
-        dataToWrite += parseInt(codedData.slice(i, -1), 2).toString(16);
-      } else {
-        dataToWrite += parseInt(codedData.slice(-(i % 4), codedData.length), 2).toString(16);
-      }
-
-      const endTimeStamp = new Date();
-      console.log('fileDataConstructer function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
-      fileWriter(dataToWrite);
-    }
-    function fileWriter(dataToWrite) {
-      const startTimeStamp = new Date();
-      fs.writeFile( process.argv[3], dataToWrite, 'hex', function(err) {
+      fs.writeFile( process.argv[3], codedData, 'hex', function(err) {
         if (err) {
           return console.error(err);
         }
