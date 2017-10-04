@@ -120,7 +120,6 @@ const Compressor = (function() {
         }
         hartmannCodeTable[i][1] = binaryCode.toString(2) + '00';
       }
-
       const endTimeStamp = new Date();
       console.log('hartmannFunction function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
       workSlicer(inputDataInArray);
@@ -306,7 +305,6 @@ const Decompressor = (function() {
         codedDataSupport = data.slice(0, data.indexOf('fff'));
         const codedKeytable = data.slice((data.indexOf('fff') + 3), data.indexOf('ffff'));
         codedData = data.slice((data.indexOf('ffff') + 4), data.length);
-console.log(codedKeytable)
 
         const endTimeStamp = new Date();
         console.log('fileRead function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
@@ -318,7 +316,7 @@ console.log(codedKeytable)
       let decodedKeytable = [];
       const startTimeStamp = new Date();
 
-      decodedKeytable = Array.from(codedKeytable.split('f'), x => parseInt(x, 15).toString(16));
+      decodedKeytable = Array.from(codedKeytable.split('f'), x => parseInt(x, 15).toString(10));
 
       const endTimeStamp = new Date();
       console.log('keyTableDecoder function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
@@ -453,14 +451,17 @@ console.log(codedKeytable)
     function multiThreadInvoker(slicedInputDataInArray) {
       let hartmannCodeTableZero = [];
       let hartmannCodeTableOne =[];
-console.log('hartmannCodeTable')
-console.log(hartmannCodeTable)
+
       console.log('Compression algorithm started on ' + threads + ' CPU cores.');
       hartmannCodeTable.forEach((e, i) => { hartmannCodeTableZero[i] = e[0]; hartmannCodeTableOne[i] = e[1] } );
 
       // Receive messages from worker and handle them in the master process.
       cluster.on('message', function(worker, msg) {
-        codedArray[worker.id - 1] = msg.tempCodedData;
+        let helperArray = [];
+        for (let i = 0; i < msg.tempCodedData.length; i++) {
+          helperArray[i] = String.fromCodePoint(msg.tempCodedData[i]);
+        }
+        codedArray[worker.id - 1] = helperArray.join('');
       });
 
       // If any worker dies this process starts.
@@ -482,7 +483,7 @@ console.log(hartmannCodeTable)
   function workerProcess(cluster) {
     process.on('message', function(msg) {
       let i = msg.slicedInputDataInArray.length;
-      let tempCodedData = '';
+      let tempCodedData = [];
       let oneCycleData;
       const slicedInputDataMinusOne = msg.slicedInputDataInArray.length - 1;
       let msghartmannCodeTableZero = msg.hartmannCodeTableZero;
@@ -495,11 +496,12 @@ console.log(hartmannCodeTable)
         oneCycleData = msg.slicedInputDataInArray[slicedInputDataMinusOne - i];
         while(j--) {
           if (oneCycleData === msghartmannCodeTableOne[j]) {
-            tempCodedData += msghartmannCodeTableZero[j];
+            tempCodedData.push(msghartmannCodeTableZero[j]);
             break;
           }
         }
       }
+
       const endTimeStamp = new Date();
       console.log('workerProcess function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
 
@@ -513,12 +515,13 @@ console.log(hartmannCodeTable)
   function singleThreadFunction(cluster, fs, codedData, hartmannCodeTable) {
     cluster.setupMaster()
     if (cluster.isMaster) {
+// console.log(codedData)
       fileWriter(codedData);
     }
 
     function fileWriter(codedData) {
       const startTimeStamp = new Date();
-      fs.writeFile( process.argv[3], codedData, 'hex', function(err) {
+      fs.writeFile( process.argv[3], codedData, 'utf-8', function(err) {
         if (err) {
           return console.error(err);
         }
