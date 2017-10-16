@@ -26,12 +26,10 @@ const Compressor = (function() {
       const fileName = process.argv[2];
       const startTimeStamp = new Date();
 
-      fs.readFile(fileName, 'utf-8', function(err, data) {
+      fs.readFile(fileName, 'hex', function(err, data) {
         if (err) throw err;
-        const splittedData = data.split("");
-        const inputDataInArray = splittedData.map(function(x) {
-          return x.codePointAt();
-        });
+        const inputDataInArray = data.split('');
+
         const endTimeStamp = new Date();
         console.log('fileRead function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
         probabilityTableInitializer(inputDataInArray);
@@ -89,7 +87,7 @@ const Compressor = (function() {
       }
 
       probabilityTable.sort(Comparator);
-
+console.log(probabilityTable)
       const endTimeStamp = new Date();
       console.log('probabilityTableSorter function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
       hartmannFunction(inputDataInArray, probabilityTable);
@@ -120,6 +118,7 @@ const Compressor = (function() {
         }
         hartmannCodeTable[i][1] = binaryCode.toString(2) + '00';
       }
+console.log(hartmannCodeTable)
       const endTimeStamp = new Date();
       console.log('hartmannFunction function duration: ' + (endTimeStamp.getTime() - startTimeStamp.getTime()) + ' msec');
       workSlicer(inputDataInArray);
@@ -214,8 +213,6 @@ const Compressor = (function() {
       const startTimeStamp = new Date();
       let dataToWrite = '';
 
-      hartmannCodeTable.forEach(e => e[1] = parseInt(e[1], 2).toString(16));
-
       if (codedData.length % 4 !== 0) {
         let alma = codedData.length - (codedData.length % 4);
         console.log('last chars: ', codedData.substring((codedData.length - (codedData.length % 4)), codedData.length))
@@ -226,12 +223,11 @@ const Compressor = (function() {
       dataToWrite += 'fff';
 
       for (let i = 0; i < hartmannCodeTable.length; i++) {
-        dataToWrite += hartmannCodeTable[i][0].toString(15);
+        dataToWrite += parseInt(hartmannCodeTable[i][0], 16).toString(15);
         dataToWrite += 'f';
+        dataToWrite += parseInt(hartmannCodeTable[i][1], 2).toString(15);
       }
       dataToWrite += 'fff';
-
-
 
       for (var i = 0; i < codedData.length - 4; i++) {
         if ((i % 4) == 0) {

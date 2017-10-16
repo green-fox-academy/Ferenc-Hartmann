@@ -1,3 +1,4 @@
 'use strict'
-
-console.log(Number('65533').toString(15))
+var alma = 'Hello World';
+console.log(alma.substring(0, 3))
+console.log(alma)
